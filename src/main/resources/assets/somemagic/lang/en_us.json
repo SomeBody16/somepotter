@@ -1,0 +1,7 @@
+{
+  "itemGroup.somemagic": "Some Magic",
+  "item.somemagic.wand": "Wand",
+  "key.category.somemagic.main": "Some Magic",
+  "key.somemagic.toggle_spell_mode": "Toggle spell mode",
+  "death.attack.somemagic.avada_kedavra": "%2$s killed %1$s with unforgivable curse"
+}
