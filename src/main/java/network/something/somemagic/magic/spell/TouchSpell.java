@@ -1,4 +1,4 @@
-package network.something.somemagic.spell;
+package network.something.somemagic.magic.spell;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;

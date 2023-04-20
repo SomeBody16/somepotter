@@ -1,4 +1,4 @@
-package network.something.somemagic.spell;
+package network.something.somemagic.magic.spell;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;

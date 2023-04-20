@@ -1,4 +1,4 @@
-package network.something.somemagic.spell;
+package network.something.somemagic.magic.spell;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -6,7 +6,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
 import network.something.somemagic.util.SpellColor;
 
 public class Spell {
@@ -58,23 +57,6 @@ public class Spell {
 
     protected HitResult getCasterPOVHitResult() {
         return caster.pick(getCastRange(), 1.0F, getCastHitFluids());
-    }
-
-    private boolean isEntityInConeOfSight(Vec3 relativePos, Vec3 direction, Vec3 rotation, double cosAngle) {
-        // Calculate the dot product between the relative position and the direction vectors
-        double dot = relativePos.normalize().dot(direction);
-
-        // Calculate the dot product between the relative position and the rotation vectors
-        double dotRotation = relativePos.normalize().dot(rotation);
-
-        // Calculate the cosine of the angle between the direction vector and the relative position
-        double cos = dot / relativePos.length();
-
-        // Calculate the cosine of the angle between the rotation vector and the relative position
-        double cosRotation = dotRotation / relativePos.length();
-
-        // Check if the entity is within the cone of sight
-        return cos >= cosAngle && cosRotation >= cosAngle;
     }
 
     public SpellColor getColor() {

@@ -6,8 +6,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import network.something.somemagic.init.EntityInit;
 import network.something.somemagic.init.ItemInit;
+import network.something.somemagic.setup.ModSetup;
 import org.slf4j.Logger;
- 
+
 @Mod(SomeMagic.MOD_ID)
 public class SomeMagic {
     public static final String MOD_ID = "somemagic";
@@ -17,6 +18,9 @@ public class SomeMagic {
         LOGGER.info("Starting SomeMagic...");
 
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        modEventBus.addListener(ModSetup::init);
+
         ItemInit.ITEMS.register(modEventBus);
         EntityInit.ENTITIES.register(modEventBus);
     }

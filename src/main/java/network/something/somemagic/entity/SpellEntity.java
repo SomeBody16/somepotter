@@ -14,9 +14,10 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import network.something.somemagic.init.SpellInit;
-import network.something.somemagic.spell.AvadaKedavraSpell;
-import network.something.somemagic.spell.ProjectileSpell;
+import network.something.somemagic.magic.Spells;
+import network.something.somemagic.magic.spell.ProjectileSpell;
+import network.something.somemagic.magic.spell.UnknownProjectileSpell;
+import network.something.somemagic.magic.spell.UnknownSpell;
 
 public class SpellEntity extends Projectile {
 
@@ -37,16 +38,16 @@ public class SpellEntity extends Projectile {
 
     public ProjectileSpell getSpell() {
         String spellName = this.getEntityData().get(DATA_SPELL);
-        var spell = SpellInit.getSpell(spellName, (LivingEntity) getOwner());
+        var spell = Spells.getSpell(spellName, (LivingEntity) getOwner());
         if (spell instanceof ProjectileSpell projectileSpell) {
             return projectileSpell;
         }
-        return new AvadaKedavraSpell((LivingEntity) getOwner());
+        return new UnknownProjectileSpell((LivingEntity) getOwner());
     }
 
     @Override
     protected void defineSynchedData() {
-        this.getEntityData().define(DATA_SPELL, "accio");
+        this.getEntityData().define(DATA_SPELL, UnknownSpell.ID);
     }
 
     @Override

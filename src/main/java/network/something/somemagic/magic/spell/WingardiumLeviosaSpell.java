@@ -1,4 +1,4 @@
-package network.something.somemagic.spell;
+package network.something.somemagic.magic.spell;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

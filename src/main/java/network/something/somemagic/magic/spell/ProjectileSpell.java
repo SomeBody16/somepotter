@@ -1,4 +1,4 @@
-package network.something.somemagic.spell;
+package network.something.somemagic.magic.spell;
 
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.world.entity.LivingEntity;

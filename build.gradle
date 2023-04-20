@@ -1,11 +1,18 @@
 plugins {
     id 'net.minecraftforge.gradle' version '5.1.+'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
 
 
 group = 'network.something'
 version = '1.18.2-1-ALPHA'
+
+configurations {
+    library
+    shade
+    implementation.extendsFrom(shade)
+}
 
 java {
     archivesBaseName = 'somemagic'
@@ -124,6 +131,15 @@ repositories {
     // flatDir {
     //     dir 'libs'
     // }
+
+    maven {
+        name = "sphinx4"
+        url = "https://oss.sonatype.org/content/repositories/snapshots"
+    }
+    maven { //sphinx4
+        name = "Sonatype"
+        url = "https://oss.sonatype.org/content/repositories/snapshots"
+    }
 }
 
 dependencies {
@@ -143,6 +159,11 @@ dependencies {
     // For more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+    implementation fg.deobf("edu.cmu.sphinx:sphinx4-core:5prealpha-SNAPSHOT")
+    implementation fg.deobf("edu.cmu.sphinx:sphinx4-data:5prealpha-SNAPSHOT")
+    shade fg.deobf("edu.cmu.sphinx:sphinx4-core:5prealpha-SNAPSHOT")
+    shade fg.deobf("edu.cmu.sphinx:sphinx4-data:5prealpha-SNAPSHOT")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
@@ -160,13 +181,28 @@ jar {
     }
 }
 
+shadowJar {
+    configurations = [project.configurations.shade] // <- Tell shadowJar to shade dependencies from 'shade'
+
+    relocate 'edu.cmu.sphinx.sphinx4-core', 'edu.cmu.sphinx.somemagic.sphinx4-core'
+    relocate 'edu.cmu.sphinx.sphinx4-data', 'edu.cmu.sphinx.somemagic.sphinx4-data'
+    finalizedBy 'reobfShadowJar' // <- Finish shading with reobfuscation
+    mergeServiceFiles()
+}
+
+reobf { // <- Add the output of shadowJar to reobfuscation, so shadowed content is reobfuscated
+    shadowJar {}
+}
+
 jar.finalizedBy('reobfJar')
+jar.finalizedBy('shadowJar')
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
 
 task copyJar(type: Copy) {
-    from jar
+    from shadowJar
     into "D:\\Program Files\\Minecraft\\Instances\\SomeMagic\\mods"
 }
+tasks.copyJar.dependsOn(shadowJar)
