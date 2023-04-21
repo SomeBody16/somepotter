@@ -15,7 +15,7 @@ configurations {
 }
 
 java {
-    archivesBaseName = 'somemagic'
+    archivesBaseName = 'somepotter'
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
 
@@ -57,10 +57,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', 'somemagic'
+            property 'forge.enabledGameTestNamespaces', 'somepotter'
 
             mods {
-                somemagic {
+                somepotter {
                     source sourceSets.main
                 }
             }
@@ -73,10 +73,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'somemagic'
+            property 'forge.enabledGameTestNamespaces', 'somepotter'
 
             mods {
-                somemagic {
+                somepotter {
                     source sourceSets.main
                 }
             }
@@ -92,10 +92,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'somemagic'
+            property 'forge.enabledGameTestNamespaces', 'somepotter'
 
             mods {
-                somemagic {
+                somepotter {
                     source sourceSets.main
                 }
             }
@@ -109,10 +109,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'somemagic', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'somepotter', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                somemagic {
+                somepotter {
                     source sourceSets.main
                 }
             }
@@ -170,7 +170,7 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "somemagic",
+                "Specification-Title"     : "somepotter",
                 "Specification-Vendor"    : "SomeBody16",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
@@ -184,8 +184,8 @@ jar {
 shadowJar {
     configurations = [project.configurations.shade] // <- Tell shadowJar to shade dependencies from 'shade'
 
-    relocate 'edu.cmu.sphinx.sphinx4-core', 'edu.cmu.sphinx.somemagic.sphinx4-core'
-    relocate 'edu.cmu.sphinx.sphinx4-data', 'edu.cmu.sphinx.somemagic.sphinx4-data'
+    relocate 'edu.cmu.sphinx.sphinx4-core', 'edu.cmu.sphinx.somepotter.sphinx4-core'
+    relocate 'edu.cmu.sphinx.sphinx4-data', 'edu.cmu.sphinx.somepotter.sphinx4-data'
     finalizedBy 'reobfShadowJar' // <- Finish shading with reobfuscation
     mergeServiceFiles()
 }
