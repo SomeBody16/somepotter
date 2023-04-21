@@ -9,15 +9,12 @@ import network.something.somemagic.util.ParticleUtil;
 
 public class TempestSpellEffect extends AreaOfEffectSpellEffect {
     public TempestSpellEffect(Spell spell, AABB areaOfEffect) {
-        super(spell, areaOfEffect, 20 * 20);
+        super(spell, areaOfEffect, 20 * 10);
     }
-
-    protected int toNextStrike = 0;
 
     @Override
     public void tick() {
-        if (toNextStrike-- <= 0) {
-            toNextStrike = spell.caster.level.random.nextInt(10, 50);
+        if (duration % 20 == 0) {
             strike();
         }
         playParticles();
@@ -32,6 +29,7 @@ public class TempestSpellEffect extends AreaOfEffectSpellEffect {
         if (entities.isEmpty()) {
             return;
         }
+        duration += spell.caster.level.random.nextInt(10, 15 + (entities.size() * 5));
         var entity = entities.get(spell.caster.level.random.nextInt(entities.size()));
 
         var lightingEntity = EntityType.LIGHTNING_BOLT.create(spell.caster.level);
