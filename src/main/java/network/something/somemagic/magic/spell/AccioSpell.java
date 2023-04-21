@@ -6,7 +6,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import network.something.somemagic.entity.SpellEntity;
 import network.something.somemagic.magic.SpellEffectTick;
-import network.something.somemagic.magic.effect.PullSpellEffect;
+import network.something.somemagic.magic.effect.AccioSpellEffect;
+import network.something.somemagic.magic.spell.core.TouchSpell;
 import network.something.somemagic.util.SpellColor;
 
 public class AccioSpell extends TouchSpell {
@@ -30,7 +31,7 @@ public class AccioSpell extends TouchSpell {
     public void onHitEntity(SpellEntity spellEntity, EntityHitResult hitResult) {
         super.onHitEntity(spellEntity, hitResult);
 
-        var pullEffect = new PullSpellEffect(caster, hitResult.getEntity());
+        var pullEffect = new AccioSpellEffect(this, hitResult.getEntity());
         SpellEffectTick.addEffect(pullEffect);
     }
 
@@ -42,7 +43,7 @@ public class AccioSpell extends TouchSpell {
         AABB areaOfEffect = new AABB(blockPos).inflate(3.0);
 
         spellEntity.level.getEntities(caster, areaOfEffect).forEach(entity -> {
-            var pullEffect = new PullSpellEffect(caster, entity);
+            var pullEffect = new AccioSpellEffect(this, entity);
             SpellEffectTick.addEffect(pullEffect);
         });
     }

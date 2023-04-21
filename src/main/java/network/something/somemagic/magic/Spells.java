@@ -3,6 +3,8 @@ package network.something.somemagic.magic;
 import net.minecraft.world.entity.LivingEntity;
 import network.something.somemagic.SomeMagic;
 import network.something.somemagic.magic.spell.*;
+import network.something.somemagic.magic.spell.core.Spell;
+import network.something.somemagic.magic.spell.core.UnknownSpell;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
@@ -23,8 +25,25 @@ public class Spells {
 
     static {
         register(AccioSpell.class);
+        register(AguamentiSpell.class);
+        register(AlarteAscendareSpell.class);
+        register(AlohomoraSpell.class);
+        register(AscendioSpell.class);
         register(AvadaKedavraSpell.class);
         register(BombardaSpell.class);
+        register(CistemAperioSpell.class);
+        register(ColloportusSpell.class);
+        register(ConfringoSpell.class);
+        register(CrucioSpell.class);
+        register(DepulsoSpell.class);
+        register(EpiskeySpell.class);
+        register(FumosSpell.class);
+        register(HerbivicusSpell.class);
+        register(HomenumRevelioSpell.class);
+        register(IncendioSpell.class);
+        register(MeloforsSpell.class);
+        register(StupefySpell.class);
+        register(TempestSpell.class);
         register(WingardiumLeviosaSpell.class);
     }
 

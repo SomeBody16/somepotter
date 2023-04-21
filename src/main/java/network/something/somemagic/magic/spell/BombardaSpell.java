@@ -7,6 +7,7 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import network.something.somemagic.entity.SpellEntity;
+import network.something.somemagic.magic.spell.core.ProjectileSpell;
 import network.something.somemagic.util.SpellColor;
 
 public class BombardaSpell extends ProjectileSpell {

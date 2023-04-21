@@ -8,8 +8,8 @@ import net.minecraftforge.network.NetworkEvent;
 import network.something.somemagic.SomeMagic;
 import network.something.somemagic.init.ItemInit;
 import network.something.somemagic.magic.Spells;
-import network.something.somemagic.magic.spell.Spell;
-import network.something.somemagic.magic.spell.UnknownSpell;
+import network.something.somemagic.magic.spell.core.Spell;
+import network.something.somemagic.magic.spell.core.UnknownSpell;
 
 import java.util.function.Supplier;
 
@@ -51,6 +51,9 @@ public class PacketCastSpell {
             }
 
             if (caster.getUseItem().is(ItemInit.WAND.get())) {
+                var message = new TextComponent("Casting: ");
+                message.append(new TextComponent(spellName).withStyle(ChatFormatting.GREEN));
+                caster.sendMessage(message, NIL_UUID);
                 spell.cast();
             }
         });

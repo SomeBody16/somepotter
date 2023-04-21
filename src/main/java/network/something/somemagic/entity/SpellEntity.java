@@ -15,9 +15,9 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import network.something.somemagic.magic.Spells;
-import network.something.somemagic.magic.spell.ProjectileSpell;
-import network.something.somemagic.magic.spell.UnknownProjectileSpell;
-import network.something.somemagic.magic.spell.UnknownSpell;
+import network.something.somemagic.magic.spell.core.ProjectileSpell;
+import network.something.somemagic.magic.spell.core.UnknownProjectileSpell;
+import network.something.somemagic.magic.spell.core.UnknownSpell;
 
 public class SpellEntity extends Projectile {
 
@@ -88,6 +88,7 @@ public class SpellEntity extends Projectile {
         return true;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void tick() {
         Entity entity = this.getOwner();

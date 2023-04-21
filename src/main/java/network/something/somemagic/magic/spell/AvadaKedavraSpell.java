@@ -1,20 +1,22 @@
 package network.something.somemagic.magic.spell;
 
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import network.something.somemagic.entity.SpellEntity;
+import network.something.somemagic.magic.spell.core.ProjectileSpell;
 import network.something.somemagic.util.DamageSourceUtil;
 import network.something.somemagic.util.SpellColor;
 
 public class AvadaKedavraSpell extends ProjectileSpell {
     public static final String ID = "avada_kedavra";
-    public static final DamageSource DAMAGE_SOURCE = DamageSourceUtil.create("spell." + ID)
-            .setMagic()
-            .setProjectile();
+
+    public DamageSource getDamageSource() {
+        return DamageSourceUtil.indirect("spell." + ID, caster);
+    }
 
     public AvadaKedavraSpell(LivingEntity caster) {
         super(ID, caster);
@@ -28,7 +30,8 @@ public class AvadaKedavraSpell extends ProjectileSpell {
     @Override
     public void onHitEntity(SpellEntity spellEntity, EntityHitResult hitResult) {
         if (hitResult.getEntity() instanceof LivingEntity livingEntity) {
-            livingEntity.hurt(DAMAGE_SOURCE, 9999.0F);
+            livingEntity.hurt(getDamageSource(), 9999.0F);
+            playSound(SoundEvents.WITHER_DEATH, hitResult.getLocation(), SoundSource.PLAYERS);
         }
     }
 
@@ -39,11 +42,6 @@ public class AvadaKedavraSpell extends ProjectileSpell {
     @Override
     public SpellColor getColor() {
         return SpellColor.UNFORGIVEABLE;
-    }
-
-    @Override
-    public SoundEvent getSound() {
-        return SoundEvents.LIGHTNING_BOLT_IMPACT;
     }
 }
 
