@@ -34,7 +34,7 @@ public abstract class Spell {
 
     public void playSound(SoundEvent sound, Vec3 pos, SoundSource soundSource) {
         caster.level.playSound(
-                caster instanceof Player player ? player : null,
+                null,
                 pos.x, pos.y, pos.z,
                 sound, soundSource,
                 1.0F, 10.F
