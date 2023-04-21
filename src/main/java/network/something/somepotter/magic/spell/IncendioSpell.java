@@ -39,6 +39,7 @@ public class IncendioSpell extends ProjectileSpell {
 
         if (blockState.getBlock() instanceof TntBlock) {
             blockState.getBlock().onCaughtFire(blockState, level, blockPos, direction, caster);
+            level.setBlock(blockPos, Blocks.AIR.defaultBlockState(), 11);
 
         } else if (!CampfireBlock.canLight(blockState)
                 && !CandleBlock.canLight(blockState)
