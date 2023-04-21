@@ -15,6 +15,6 @@ public class AccioSpellEffect extends EntitySpellEffect {
         var motion = spell.caster.getEyePosition()
                 .subtract(target.getEyePosition());
 
-        target.setDeltaMovement(motion.normalize().scale(0.1));
+        target.setDeltaMovement(motion.normalize().scale(0.2));
     }
 }
