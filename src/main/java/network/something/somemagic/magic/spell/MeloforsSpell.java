@@ -26,11 +26,15 @@ public class MeloforsSpell extends ProjectileSpell {
     public void onHitEntity(SpellEntity spellEntity, EntityHitResult hitResult) {
         if (hitResult.getEntity() instanceof LivingEntity livingEntity) {
             var helmet = livingEntity.getItemBySlot(EquipmentSlot.HEAD);
+            var pumpkinStack = Items.CARVED_PUMPKIN.getDefaultInstance();
+
             if (helmet.isEmpty()) {
-                var pumpkinStack = Items.CARVED_PUMPKIN.getDefaultInstance();
                 pumpkinStack.enchant(Enchantments.BINDING_CURSE, 1);
-                livingEntity.setItemSlot(EquipmentSlot.HEAD, pumpkinStack);
+            } else {
+                livingEntity.spawnAtLocation(helmet);
             }
+
+            livingEntity.setItemSlot(EquipmentSlot.HEAD, pumpkinStack);
         }
     }
 
