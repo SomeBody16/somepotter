@@ -3,10 +3,7 @@ package network.something.somemagic.magic.spell;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.block.BaseFireBlock;
-import net.minecraft.world.level.block.CampfireBlock;
-import net.minecraft.world.level.block.CandleBlock;
-import net.minecraft.world.level.block.CandleCakeBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
@@ -40,7 +37,10 @@ public class IncendioSpell extends ProjectileSpell {
         var blockState = level.getBlockState(blockPos);
         var direction = hitResult.getDirection();
 
-        if (!CampfireBlock.canLight(blockState)
+        if (blockState.getBlock() instanceof TntBlock) {
+            blockState.getBlock().onCaughtFire(blockState, level, blockPos, direction, caster);
+
+        } else if (!CampfireBlock.canLight(blockState)
                 && !CandleBlock.canLight(blockState)
                 && !CandleCakeBlock.canLight(blockState)
         ) {
