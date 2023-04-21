@@ -36,6 +36,7 @@ public class Spells {
         register(ConfringoSpell.class);
         register(CrucioSpell.class);
         register(DepulsoSpell.class);
+        register(DisillusioSpell.class);
         register(EpiskeySpell.class);
         register(FumosSpell.class);
         register(HerbivicusSpell.class);
