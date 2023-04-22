@@ -8,6 +8,7 @@ public class PushUtil {
 
     public static void fromCaster(LivingEntity caster, Entity target) {
         target.hasImpulse = true;
+        target.hurtMarked = true;
 
         var xRatio = Math.sin(caster.getYRot() * ((float) Math.PI / 180F));
         var zRatio = -Math.cos(caster.getYRot() * ((float) Math.PI / 180F));

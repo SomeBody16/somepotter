@@ -1,10 +1,14 @@
 package network.something.somepotter.magic.spell;
 
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import network.something.somepotter.magic.spell.core.SelfSpell;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
+import network.something.somepotter.entity.SpellEntity;
+import network.something.somepotter.magic.spell.core.ProjectileOrSelfSpell;
 import network.something.somepotter.util.SpellColor;
 
-public class AscendioSpell extends SelfSpell {
+public class AscendioSpell extends ProjectileOrSelfSpell {
     public static final String ID = "ascendio";
 
     public AscendioSpell(LivingEntity caster) {
@@ -23,11 +27,26 @@ public class AscendioSpell extends SelfSpell {
     }
 
     @Override
-    public void onCast() {
-        var motion = caster.getDeltaMovement().add(0, 2, 0);
-        caster.setDeltaMovement(motion);
-        caster.fallDistance = 0;
-        caster.hurtMarked = true;
+    public void onHitEntity(SpellEntity spellEntity, EntityHitResult hitResult) {
+        execute(hitResult.getEntity());
+    }
+
+    @Override
+    public void onHitBlock(SpellEntity spellEntity, BlockHitResult hitResult) {
+    }
+
+    @Override
+    public void onCastSelf() {
+        if (caster.getLookAngle().x < -0.5) {
+            execute(caster);
+        }
+    }
+
+    public static void execute(Entity target) {
+        var motion = target.getDeltaMovement().add(0, 2, 0);
+        target.setDeltaMovement(motion);
+        target.fallDistance = 0;
+        target.hurtMarked = true;
     }
 }
 

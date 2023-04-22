@@ -2,6 +2,10 @@ package network.something.somepotter.magic.spell;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BoneMealItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
@@ -30,6 +34,19 @@ public class HerbivicusSpell extends ProjectileSpell {
         var level = spellEntity.level;
         var blockPos = hitResult.getBlockPos();
         var blockState = level.getBlockState(blockPos);
+
+        var boneMeal = new ItemStack(Items.BONE_MEAL, 64);
+        if (caster instanceof Player player) {
+            if (BoneMealItem.applyBonemeal(boneMeal, level, blockPos, player)) {
+                level.levelEvent(1505, blockPos, 0); // particles
+            } else {
+                var relativePos = blockPos.relative(hitResult.getDirection());
+                var flag = level.getBlockState(blockPos).isFaceSturdy(level, blockPos, hitResult.getDirection());
+                if (flag && BoneMealItem.growWaterPlant(boneMeal, level, relativePos, hitResult.getDirection())) {
+                    level.levelEvent(1505, relativePos, 0); // particles
+                }
+            }
+        }
 
         if (blockState.getBlock() instanceof BonemealableBlock bonemealableBlock
                 && level instanceof ServerLevel serverLevel

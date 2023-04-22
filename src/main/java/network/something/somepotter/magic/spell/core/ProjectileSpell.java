@@ -60,6 +60,9 @@ public abstract class ProjectileSpell extends Spell {
     }
 
     public void playTrailParticles(SpellEntity spellEntity) {
+        if (caster == null) {
+            return;
+        }
         for (int i = 0; i < 1; i++) {
             double deltaX = spellEntity.getX() - spellEntity.xOld;
             double deltaY = spellEntity.getY() - spellEntity.yOld;

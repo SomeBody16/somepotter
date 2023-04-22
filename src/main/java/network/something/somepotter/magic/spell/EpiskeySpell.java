@@ -1,5 +1,7 @@
 package network.something.somepotter.magic.spell;
 
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
@@ -38,7 +40,8 @@ public class EpiskeySpell extends ProjectileOrSelfSpell {
     public void heal(LivingEntity target) {
         var healthRatio = target.getHealth() / target.getMaxHealth();
         if (healthRatio >= 0.7) {
-            target.heal(target.getMaxHealth() - target.getHealth());
+            var effect = new MobEffectInstance(MobEffects.REGENERATION, 20 * 5, 2);
+            target.addEffect(effect);
         }
     }
 

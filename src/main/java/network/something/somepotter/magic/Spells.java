@@ -26,11 +26,11 @@ public class Spells {
     static {
         register(AccioSpell.class);
         register(AguamentiSpell.class);
-        register(AlarteAscendareSpell.class);
         register(AlohomoraSpell.class);
         register(AscendioSpell.class);
         register(AvadaKedavraSpell.class);
         register(BombardaSpell.class);
+        register(BombardaMaximaSpell.class);
         register(CistemAperioSpell.class);
         register(ColloportusSpell.class);
         register(ConfringoSpell.class);
@@ -40,12 +40,12 @@ public class Spells {
         register(EpiskeySpell.class);
         register(FumosSpell.class);
         register(HerbivicusSpell.class);
-        register(HomenumRevelioSpell.class);
         register(IncendioSpell.class);
+        register(Levioso.class);
         register(MeloforsSpell.class);
+        register(RevelioSpell.class);
         register(StupefySpell.class);
         register(TempestSpell.class);
-        register(WingardiumLeviosaSpell.class);
     }
 
     public static Spell getSpell(String spellName, LivingEntity caster) {

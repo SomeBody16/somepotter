@@ -6,10 +6,10 @@ import net.minecraft.world.entity.LivingEntity;
 import network.something.somepotter.magic.spell.core.SelfSpell;
 import network.something.somepotter.util.SpellColor;
 
-public class HomenumRevelioSpell extends SelfSpell {
-    public static final String ID = "homenum_revelio";
+public class RevelioSpell extends SelfSpell {
+    public static final String ID = "revelio";
 
-    public HomenumRevelioSpell(LivingEntity caster) {
+    public RevelioSpell(LivingEntity caster) {
         super(ID, caster);
     }
 

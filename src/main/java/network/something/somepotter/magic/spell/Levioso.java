@@ -8,10 +8,10 @@ import network.something.somepotter.entity.SpellEntity;
 import network.something.somepotter.magic.spell.core.TouchSpell;
 import network.something.somepotter.util.SpellColor;
 
-public class WingardiumLeviosaSpell extends TouchSpell {
-    public static final String ID = "wingardium_leviosa";
+public class Levioso extends TouchSpell {
+    public static final String ID = "levioso";
 
-    public WingardiumLeviosaSpell(LivingEntity caster) {
+    public Levioso(LivingEntity caster) {
         super(ID, caster);
     }
 

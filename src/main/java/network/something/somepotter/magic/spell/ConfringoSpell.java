@@ -15,7 +15,6 @@ import network.something.somepotter.util.ParticleUtil;
 import network.something.somepotter.util.SpellColor;
 
 import java.util.List;
-import java.util.Objects;
 
 public class ConfringoSpell extends ProjectileSpell {
     public static final String ID = "confringo";
@@ -53,11 +52,11 @@ public class ConfringoSpell extends ProjectileSpell {
         }
 
         if (!level.isClientSide) {
-            List<Entity> entities = level.getEntities(caster, areaOfEffect, Objects::nonNull);
+            List<Entity> entities = level.getEntities(null, areaOfEffect);
             entities.forEach(entity -> entity.setRemainingFireTicks(20 * 10));
         }
 
-        level.explode(caster,
+        level.explode(null,
                 pos.x, pos.y, pos.z,
                 2.0f, true, Explosion.BlockInteraction.NONE);
     }

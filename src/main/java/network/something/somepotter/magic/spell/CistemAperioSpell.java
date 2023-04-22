@@ -1,9 +1,10 @@
 package network.something.somepotter.magic.spell;
 
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.ChestBlock;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import network.something.somepotter.entity.SpellEntity;
 import network.something.somepotter.magic.spell.core.TouchSpell;
@@ -24,12 +25,20 @@ public class CistemAperioSpell extends TouchSpell {
     @Override
     public void onHitBlock(SpellEntity spellEntity, BlockHitResult hitResult) {
         var level = spellEntity.level;
-        var blockState = level.getBlockState(hitResult.getBlockPos());
+        var blockPos = hitResult.getBlockPos();
+        var blockState = level.getBlockState(blockPos);
 
-        if (blockState.getBlock() instanceof ChestBlock
-                && caster instanceof Player player
+        if (caster instanceof Player player) {
+            if (blockState.getBlock() instanceof ChestBlock chestBlock) {
+                var menuProvider = chestBlock.getMenuProvider(blockState, level, blockPos);
+                player.openMenu(menuProvider);
+            }
+        }
+
+        if (blockState.getBlock() instanceof DoorBlock doorBlock
+                && blockState.getMaterial() != Material.METAL
         ) {
-            blockState.use(level, player, InteractionHand.MAIN_HAND, hitResult);
+            doorBlock.setOpen(caster, spellEntity.level, blockState, hitResult.getBlockPos(), true);
         }
     }
 

@@ -1,16 +1,13 @@
 package network.something.somepotter.magic.effect;
 
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
-import network.something.somepotter.SomePotter;
 import network.something.somepotter.magic.effect.core.EntitySpellEffect;
-import network.something.somepotter.magic.spell.CrucioSpell;
 import network.something.somepotter.magic.spell.core.Spell;
-import network.something.somepotter.util.DamageSourceUtil;
 
 public class CrucioSpellEffect extends EntitySpellEffect {
 
@@ -25,15 +22,14 @@ public class CrucioSpellEffect extends EntitySpellEffect {
         if (target instanceof LivingEntity livingTarget
                 && age++ % 5 == 0
         ) {
-            SomePotter.LOGGER.info("Triggering CRUCIO");
-            var damageSource = DamageSourceUtil.indirect("spell." + CrucioSpell.ID, spell.caster);
+            var damageSource = DamageSource.indirectMagic(spell.caster, null);
             livingTarget.hurt(damageSource, 0);
 
             var effect = new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 10, true, false, false);
             livingTarget.addEffect(effect);
+            livingTarget.hurtMarked = true;
 
-            var pos = target.getEyePosition();
-            var level = (ServerLevel) spell.caster.level;
+            var pos = livingTarget.getEyePosition();
             level.sendParticles(
                     spell.getColor().getParticle(),
                     pos.x, pos.y, pos.z,
