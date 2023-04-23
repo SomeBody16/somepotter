@@ -9,7 +9,7 @@ public class EpiskeySpell extends AbstractSpell {
     public static final String ID = "episkey";
 
     public static final float HEAL_IF_ABOVE = 0.7f;
-    public static final int HEAL_DURATION = 20 * 5;
+    public static final int HEAL_DURATION = 20 * 6;
     public static final int HEAL_AMPLIFIER = 1;
 
     public static final List<?> init = List.of(

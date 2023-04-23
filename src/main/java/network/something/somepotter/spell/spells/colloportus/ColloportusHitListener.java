@@ -1,10 +1,10 @@
 package network.something.somepotter.spell.spells.colloportus;
 
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.block.DoorBlock;
 import network.something.somepotter.spell.api.event.SpellHitBlockEvent;
 import network.something.somepotter.spell.api.event.SpellHitEntityEvent;
 import network.something.somepotter.spell.api.event.SpellHitListener;
+import network.something.somepotter.util.DoorUtil;
 
 public class ColloportusHitListener extends SpellHitListener {
     public ColloportusHitListener() {
@@ -18,9 +18,6 @@ public class ColloportusHitListener extends SpellHitListener {
     @Override
     public void onHitBlock(ServerLevel level, SpellHitBlockEvent event) {
         var blockState = level.getBlockState(event.getBlockPos());
-
-        if (blockState.getBlock() instanceof DoorBlock doorBlock) {
-            doorBlock.setOpen(event.getCaster(), level, blockState, event.getBlockPos(), false);
-        }
+        DoorUtil.setOpen(level, blockState, event.getBlockPos(), false);
     }
 }

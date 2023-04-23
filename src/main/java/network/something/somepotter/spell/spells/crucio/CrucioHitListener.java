@@ -7,6 +7,7 @@ import network.something.somepotter.spell.api.event.SpellHitBlockEvent;
 import network.something.somepotter.spell.api.event.SpellHitEntityEvent;
 import network.something.somepotter.spell.api.event.SpellHitListener;
 import network.something.somepotter.spell.effect.SpellEffects;
+import network.something.somepotter.spell.tickable.SpellTickables;
 
 public class CrucioHitListener extends SpellHitListener {
     public CrucioHitListener() {
@@ -16,12 +17,13 @@ public class CrucioHitListener extends SpellHitListener {
     @Override
     public void onHitEntity(ServerLevel level, SpellHitEntityEvent event) {
         var crucio = new MobEffectInstance(SpellEffects.CRUCIO.get(), CrucioSpell.REFRESH_DURATION, 10);
-        var crucioApply = new MobEffectInstance(SpellEffects.CRUCIO_APPLY.get(),
-                CrucioSpell.REFRESH_DURATION, 0, true, false, false);
 
         if (event.getEntity() instanceof LivingEntity livingEntity) {
             livingEntity.addEffect(crucio);
-            event.getCaster().addEffect(crucioApply);
+
+            var crucioApplyTickable = new CrucioApplyTickable(event.getCaster(),
+                    CrucioSpell.REFRESH_DURATION, livingEntity);
+            SpellTickables.addTickable(crucioApplyTickable);
         }
     }
 

@@ -6,6 +6,7 @@ import net.minecraft.world.phys.AABB;
 import network.something.somepotter.spell.api.event.SpellHitBlockEvent;
 import network.something.somepotter.spell.api.event.SpellHitEntityEvent;
 import network.something.somepotter.spell.api.event.SpellHitListener;
+import network.something.somepotter.spell.tickable.SpellTickables;
 
 public class AccioHitListener extends SpellHitListener {
     public AccioHitListener() {
@@ -15,7 +16,8 @@ public class AccioHitListener extends SpellHitListener {
     @Override
     public void onHitEntity(ServerLevel level, SpellHitEntityEvent event) {
         if (event.getEntity() instanceof ItemEntity itemEntity) {
-            AccioPullEffect.add(itemEntity, event.getCaster(), AccioSpell.PULL_DURATION);
+            var accioTickable = new AccioSpellTickable(event.getCaster(), AccioSpell.PULL_DURATION, itemEntity);
+            SpellTickables.addTickable(accioTickable);
         }
     }
 
@@ -26,7 +28,8 @@ public class AccioHitListener extends SpellHitListener {
 
         level.getEntities(null, areaOfEffect).forEach(entity -> {
             if (entity instanceof ItemEntity itemEntity) {
-                AccioPullEffect.add(itemEntity, event.getCaster(), AccioSpell.PULL_DURATION);
+                var accioTickable = new AccioSpellTickable(event.getCaster(), AccioSpell.PULL_DURATION, itemEntity);
+                SpellTickables.addTickable(accioTickable);
             }
         });
     }

@@ -50,7 +50,7 @@ public class SpellParticle {
         level.sendParticles(
                 particle,
                 pos.x, pos.y, pos.z,
-                60,
+                50,
                 1, 1, 1,
                 0.01
         );

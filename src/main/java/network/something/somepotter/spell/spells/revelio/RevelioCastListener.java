@@ -17,9 +17,10 @@ public class RevelioCastListener extends SpellCastListener {
         var areaOfEffect = event.getCaster().getBoundingBox()
                 .inflate(RevelioSpell.RANGE);
 
-        var glowingEffect = new MobEffectInstance(MobEffects.GLOWING, RevelioSpell.DURATION);
         for (var entity : event.getCaster().level.getEntities(event.getCaster(), areaOfEffect)) {
             if (entity instanceof LivingEntity livingEntity) {
+                var glowingEffect = new MobEffectInstance(MobEffects.GLOWING, RevelioSpell.DURATION,
+                        0, false, false, false);
                 livingEntity.addEffect(glowingEffect);
             }
         }
