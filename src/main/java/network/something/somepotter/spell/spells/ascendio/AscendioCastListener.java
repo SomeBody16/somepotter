@@ -15,7 +15,9 @@ public class AscendioCastListener extends SpellCastListener {
     @Override
     public void onSpellCast(SpellCastEvent event) {
         SomePotter.LOGGER.info("Caster yRot: {}", event.getCaster().getYRot());
-        if (event.getCaster().getYRot() < -0.75) {
+        SomePotter.LOGGER.info("Caster xRot: {}", event.getCaster().getXRot());
+        SomePotter.LOGGER.info("Caster getLookAngle: {}", event.getCaster().getLookAngle());
+        if (event.getCaster().getXRot() < -0.75) {
             new SelfCast().execute(event.getCaster(), event.getSpellId());
             return;
         }
