@@ -15,6 +15,7 @@ import network.something.somepotter.spell.spells.crucio.CrucioSpell;
 import network.something.somepotter.spell.spells.depulso.DepulsoSpell;
 import network.something.somepotter.spell.spells.disillusio.DisillusioSpell;
 import network.something.somepotter.spell.spells.episkey.EpiskeySpell;
+import network.something.somepotter.spell.spells.expelliarmus.ExpelliarmusSpell;
 import network.something.somepotter.spell.spells.fumos.FumosSpell;
 import network.something.somepotter.spell.spells.herbivicus.HerbivicusSpell;
 import network.something.somepotter.spell.spells.incendio.IncendioSpell;
@@ -45,6 +46,7 @@ public class Spells {
     public static DepulsoSpell DEPULSO = register(new DepulsoSpell());
     public static DisillusioSpell DISILLUSIO = register(new DisillusioSpell());
     public static EpiskeySpell EPISKEY = register(new EpiskeySpell());
+    public static ExpelliarmusSpell EXPELLIARMUS = register(new ExpelliarmusSpell());
     public static FumosSpell FUMOS = register(new FumosSpell());
     public static HerbivicusSpell HERBIVICUS = register(new HerbivicusSpell());
     public static IncendioSpell INCENDIO = register(new IncendioSpell());
