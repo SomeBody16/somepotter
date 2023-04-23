@@ -8,7 +8,7 @@ import java.util.List;
 public class DepulsoSpell extends AbstractSpell {
     public static final String ID = "depulso";
 
-    public static final float STRENGTH = 2.0F;
+    public static final float STRENGTH = 3.0F;
 
     public static final List<?> init = List.of(
             new DepulsoCastListener(),
