@@ -24,10 +24,6 @@ public class SpellHitListener {
         }
 
         var listeners = LISTENERS.getOrDefault(spellId, new ArrayList<>());
-        SomePotter.LOGGER.info("{} hit {} with block {}, sending to {} listeners",
-                event.getCaster().getDisplayName(), event.getLocation(),
-                spellId, listeners.size());
-
         listeners.forEach(listener -> listener.onHitBlock(event.getLevel(), event));
     }
 
@@ -39,10 +35,6 @@ public class SpellHitListener {
         }
 
         var listeners = LISTENERS.getOrDefault(spellId, new ArrayList<>());
-        SomePotter.LOGGER.info("{} hit entity {} with {}, sending to {} listeners",
-                event.getCaster().getDisplayName(), event.getEntity().getDisplayName(),
-                spellId, listeners.size());
-
         listeners.forEach(listener -> listener.onHitEntity(event.getLevel(), event));
     }
 

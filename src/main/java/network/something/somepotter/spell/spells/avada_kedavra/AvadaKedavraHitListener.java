@@ -7,7 +7,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.LevelAccessor;
-import network.something.somepotter.SomePotter;
 import network.something.somepotter.spell.api.event.SpellHitBlockEvent;
 import network.something.somepotter.spell.api.event.SpellHitEntityEvent;
 import network.something.somepotter.spell.api.event.SpellHitListener;
@@ -19,7 +18,6 @@ public class AvadaKedavraHitListener extends SpellHitListener {
 
     @Override
     public void onHitEntity(ServerLevel level, SpellHitEntityEvent event) {
-        SomePotter.LOGGER.info("AvadaKedavra onHitEntity");
         if (event.getEntity() instanceof LivingEntity livingEntity) {
             var damageSource = AvadaKedavraSpell.getDamageSource(event.getCaster());
             livingEntity.hurt(damageSource, 9999.0F);
@@ -29,7 +27,6 @@ public class AvadaKedavraHitListener extends SpellHitListener {
 
     @Override
     public void onHitBlock(ServerLevel level, SpellHitBlockEvent event) {
-        SomePotter.LOGGER.info("AvadaKedavra onHitBlock");
     }
 
     protected void playKillSound(LevelAccessor pLevel, BlockPos pPos) {

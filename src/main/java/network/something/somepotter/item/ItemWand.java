@@ -9,7 +9,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
-import network.something.somepotter.SomePotter;
 import network.something.somepotter.client.speech.SpeechToSpellThread;
 
 public class ItemWand extends Item {
@@ -19,7 +18,6 @@ public class ItemWand extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
-        SomePotter.LOGGER.info("Started using wand");
         player.startUsingItem(usedHand);
 
         if (level.isClientSide) {
@@ -39,7 +37,6 @@ public class ItemWand extends Item {
 
     @Override
     public void releaseUsing(ItemStack wand, Level pLevel, LivingEntity pLivingEntity, int pTimeCharged) {
-        SomePotter.LOGGER.info("Stopped using wand");
         if (pLevel.isClientSide) {
             SpeechToSpellThread.getInstance().pauseRecognition();
         }

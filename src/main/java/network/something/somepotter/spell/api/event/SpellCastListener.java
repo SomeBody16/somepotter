@@ -22,7 +22,7 @@ public class SpellCastListener {
             return;
         }
 
-        SomePotter.LOGGER.info("'{}' casted '{}'", event.getCaster().getDisplayName(), event.getSpellId());
+        SomePotter.LOGGER.info("'{}' casted '{}'", event.getCaster().getDisplayName().getString(), event.getSpellId());
 
         event.getCaster().level.playSound(null, event.getCaster(), event.getSpell().getSound(),
                 SoundSource.PLAYERS, 1, 1);
@@ -35,7 +35,6 @@ public class SpellCastListener {
         var listeners = LISTENERS.getOrDefault(spellId, new ArrayList<>());
         listeners.add(this);
         LISTENERS.put(spellId, listeners);
-        SomePotter.LOGGER.info("Registered listener for {}", spellId);
     }
 
     public SpellCastListener(List<String> spellIds) {

@@ -19,10 +19,6 @@ public class LeviosoTickable extends EntitySpellTickable {
 
     @Override
     public void tick() {
-//        var effect = new MobEffectInstance(MobEffects.LEVITATION,
-//                LeviosoSpell.REFRESH_DURATION, 0);
-//        ((LivingEntity) target).addEffect(effect);
-
         Vec3 originPos = caster.getEyePosition();
         Vec3 lookAngle = caster.getLookAngle();
 

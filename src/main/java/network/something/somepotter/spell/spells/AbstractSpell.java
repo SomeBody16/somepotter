@@ -7,7 +7,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.common.MinecraftForge;
-import network.something.somepotter.SomePotter;
 import network.something.somepotter.spell.api.event.SpellCastEvent;
 import network.something.somepotter.spell.api.event.SpellHitBlockEvent;
 import network.something.somepotter.spell.api.event.SpellHitEntityEvent;
@@ -36,22 +35,17 @@ public abstract class AbstractSpell {
     }
 
     public void cast(LivingEntity caster) {
-        SomePotter.LOGGER.info("Spell(id={})::cast(caster = {})", getId(), caster.getDisplayName());
         var event = new SpellCastEvent(id, caster);
         MinecraftForge.EVENT_BUS.post(event);
 
     }
 
     public void onHitEntity(LivingEntity caster, EntityHitResult hitResult) {
-        SomePotter.LOGGER.info("Spell(id={})::onHitEntity(caster = {}, entity = {})",
-                getId(), caster.getDisplayName(), hitResult.getEntity().getDisplayName());
         var event = new SpellHitEntityEvent(id, caster, hitResult);
         MinecraftForge.EVENT_BUS.post(event);
     }
 
     public void onHitBlock(LivingEntity caster, BlockHitResult hitResult) {
-        SomePotter.LOGGER.info("Spell(id={})::onHitBlock(caster = {}, block = {})",
-                getId(), caster.getDisplayName(), hitResult.getLocation());
         var event = new SpellHitBlockEvent(id, caster, hitResult);
         MinecraftForge.EVENT_BUS.post(event);
     }

@@ -37,10 +37,8 @@ public class SpeechToSpellThread extends Thread {
                 while (!isRecognizing) {
                     Thread.yield();
                 }
-                SomePotter.LOGGER.info("Starting recognition...");
                 var speechResult = recognizer.getResult();
                 if (speechResult == null) {
-                    SomePotter.LOGGER.info("Spell not recognized");
                     continue;
                 }
 

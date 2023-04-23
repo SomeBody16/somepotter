@@ -5,7 +5,6 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
-import network.something.somepotter.SomePotter;
 import network.something.somepotter.init.ItemInit;
 import network.something.somepotter.spell.spells.Spells;
 import network.something.somepotter.spell.spells.UnknownSpell;
@@ -40,7 +39,6 @@ public class PacketCastSpell {
             }
 
             var spellId = spellName.toLowerCase().replaceAll(" ", "_");
-            SomePotter.LOGGER.info("{} is casting {}", caster.getDisplayName(), spellId);
 
             var spell = Spells.get(spellId);
             if (spell instanceof UnknownSpell) {

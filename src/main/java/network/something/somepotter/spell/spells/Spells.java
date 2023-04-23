@@ -61,7 +61,7 @@ public class Spells {
     private static <TSpell extends AbstractSpell> TSpell register(TSpell spell) {
         SPELLS.put(spell.getId(), spell);
         SpellParticle.register(spell.getId(), spell.getParticle());
-        SomePotter.LOGGER.info("Registered new spell: {}", spell.getId());
+        SomePotter.LOGGER.info("Registered spell: {}", spell.getId());
         return spell;
     }
 }
