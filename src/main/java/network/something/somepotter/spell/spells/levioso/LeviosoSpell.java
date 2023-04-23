@@ -8,7 +8,8 @@ import java.util.List;
 public class LeviosoSpell extends AbstractSpell {
     public static final String ID = "levioso";
 
-    public static final int DURATION = 20 * 10;
+    public static final int REFRESH_DURATION = 20 * 3;
+    public static final float PULL_STRENGTH = 0.25f;
 
     public static final List<?> init = List.of(
             new LeviosoCastListener(),

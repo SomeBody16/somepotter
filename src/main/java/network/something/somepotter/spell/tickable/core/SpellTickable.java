@@ -22,4 +22,7 @@ public abstract class SpellTickable {
     public boolean isExpired() {
         return this.duration-- <= 0;
     }
+
+    public void onExpired() {
+    }
 }

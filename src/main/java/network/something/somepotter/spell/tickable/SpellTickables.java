@@ -21,7 +21,13 @@ public class SpellTickables {
     @SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event) {
         TICKABLES.forEach(SpellTickable::tick);
-        TICKABLES.removeIf(SpellTickable::isExpired);
+        TICKABLES.removeIf(spellTickable -> {
+            var isExpired = spellTickable.isExpired();
+            if (isExpired) {
+                spellTickable.onExpired();
+            }
+            return isExpired;
+        });
     }
 
 }
