@@ -24,9 +24,11 @@ public class CrucioApplyTickable extends EntitySpellTickable {
 
     @Override
     public boolean isExpired() {
+        var distance = caster.getEyePosition().distanceTo(target.getEyePosition());
         return !isLookingAtTarget()
                 || !caster.isUsingItem()
-                || !(caster.getUseItem().getItem() instanceof ItemWand);
+                || !(caster.getUseItem().getItem() instanceof ItemWand)
+                || distance > CrucioSpell.RANGE;
     }
 
     private boolean isLookingAtTarget() {
