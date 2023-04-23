@@ -1,4 +1,4 @@
-package network.something.somepotter.spell.util;
+package network.something.somepotter.util;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;

@@ -4,7 +4,7 @@ import net.minecraft.server.level.ServerLevel;
 import network.something.somepotter.spell.api.event.SpellHitBlockEvent;
 import network.something.somepotter.spell.api.event.SpellHitEntityEvent;
 import network.something.somepotter.spell.api.event.SpellHitListener;
-import network.something.somepotter.spell.util.PushUtil;
+import network.something.somepotter.util.PushUtil;
 
 public class DepulsoHitListener extends SpellHitListener {
     public DepulsoHitListener() {
