@@ -1,0 +1,15 @@
+{
+    "name": "Ascendio",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Ascendio\" is a charm that causes the caster or a targeted object to shoot up into the air, reaching heights of up to several stories. This spell can be used for transportation, escape, or simply for the thrill of flying.$(p)To cast the spell, the caster must point their wand upwards and say the incantation \"Ascendio\". If the spell is being used on an object, the caster must point the object with their wand. The spell will then cause the target to shoot up into the air with great force.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Although \"Ascendio\" is a relatively simple spell, it requires caution and skill to use safely. The caster must be able to accurately aim the spell and control their trajectory while in the air. Inexperienced or reckless casters may find themselves in danger of falling or colliding with obstacles.$(p)This spell can be a useful tool for transportation, particularly in areas with limited access or difficult terrain. However, it should be noted that using this spell to enter private or protected areas without permission is illegal and could result in severe consequences.$(p)"
+        }
+    ]
+}

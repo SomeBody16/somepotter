@@ -1,0 +1,15 @@
+{
+    "name": "Levioso",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Levioso\" is a charm that causes an object to levitate in the air. It is a basic spell that is often taught to first-year students at wizard schools.$(p)To perform the spell, the caster must first point their wand at the object they wish to levitate and say \"Levioso\" while flicking their wand upwards. The object will then rise into the air and can be moved around by the caster's wand movements.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "While \"Levioso\" is a simple spell, it can be very useful in certain situations. It can be used to move heavy objects or to levitate oneself and fly short distances. However, it should be noted that the spell has a limited range and can only levitate objects within a certain distance from the caster.$(p)In the wizarding world, \"Levioso\" is used in a variety of ways, such as to levitate objects for cleaning or to move large objects around a room. It is also used in duels as a defensive spell, as the caster can use it to levitate objects to block incoming spells or attacks.$(p)Overall, \"Levioso\" is a useful and versatile spell that is important for young witches and wizards to master.$(p)"
+        }
+    ]
+}

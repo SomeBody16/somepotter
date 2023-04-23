@@ -1,0 +1,15 @@
+{
+    "name": "Colloportus",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Colloportus\" is a spell that can be used to magically lock a door or container, preventing it from being opened by anyone who does not know the correct counter-spell. It is a useful spell for wizards and witches who need to secure a room or object from unauthorized access.$(p)To cast the spell, the caster must point their wand at the door or container they wish to lock and say the incantation \"Colloportus\". The spell will then magically seal the door or container, preventing it from being opened without the correct counter-spell.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "While \"Colloportus\" is a useful spell, it should be used with caution as it can be misused or used to lock someone in a room or container. In addition, the spell may not work on doors or containers that are protected by more powerful spells or enchantments.$(p)This spell is typically taught to young and beginning wizards and witches, as it is a useful spell for everyday use. However, it should be noted that using this spell without proper authorization or in an inappropriate situation could result in severe consequences.$(p)"
+        }
+    ]
+}

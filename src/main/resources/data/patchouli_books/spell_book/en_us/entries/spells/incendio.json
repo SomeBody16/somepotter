@@ -1,0 +1,15 @@
+{
+    "name": "Incendio",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Incendio\" is a spell that creates fire. It is a relatively simple spell that is commonly taught to young wizards and witches.$(p)To perform the spell, the caster must point their wand at the target and say \"Incendio\". The spell will then create a jet of flames that can be used to ignite objects or set things on fire.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "While \"Incendio\" is a useful spell in certain situations, it should be used with caution. Fire can be dangerous and can quickly get out of control if not properly managed. It is important for the caster to be mindful of their surroundings and only use the spell when necessary.$(p)In the wizarding world, \"Incendio\" is often used to start fires for various purposes, such as lighting a fireplace or burning a piece of parchment. It can also be used as a defensive spell, as the flames can be used to deter or distract an opponent.$(p)Overall, \"Incendio\" is a simple yet versatile spell that can be useful in many situations, but it should be used responsibly.$(p)"
+        }
+    ]
+}

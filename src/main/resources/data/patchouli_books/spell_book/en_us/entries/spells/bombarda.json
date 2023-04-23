@@ -1,0 +1,15 @@
+{
+    "name": "Bombarda",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Bombarda\" is a spell that creates a small explosion, capable of breaking apart objects or damaging structures. It can be used for practical purposes, such as opening doors or breaking down barriers, or in combat situations.$(p)To cast the spell, the caster must aim their wand at the target and say the incantation \"Bombarda\". The spell will then create a small explosion that can break apart or damage the target.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Although \"Bombarda\" is a useful spell, it should be used with caution as it can be dangerous to the caster and others nearby. The spell creates a small amount of heat and force, which can cause collateral damage or injury to those within range. In addition, the spell can be difficult to control and may result in unintended consequences if not cast carefully.$(p)This spell is typically taught to young and beginning wizards and witches, as it is a relatively simple spell that can be useful in a variety of situations. However, it should be noted that using this spell without proper supervision or in an inappropriate situation could result in severe consequences.$(p)"
+        }
+    ]
+}

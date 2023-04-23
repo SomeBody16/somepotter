@@ -1,0 +1,15 @@
+{
+    "name": "Stupefy",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Stupefy\" is a spell that is commonly used to stun or knock out an opponent in combat. It is a powerful spell that can render a person unconscious and is often used by Aurors and other magical law enforcement personnel.$(p)To perform the spell, the caster must point their wand at the target and say \"Stupefy\". If the spell is successful, the target will be stunned and may fall to the ground.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "While \"Stupefy\" is a powerful spell, it can be blocked by magical shields and is less effective against opponents who are prepared for it. Additionally, the spell may not work on particularly strong or magically resilient opponents.$(p)Despite these limitations, \"Stupefy\" remains a useful and commonly used spell in combat situations. It is also a popular spell in wizarding duels and competitions.$(p)"
+        }
+    ]
+}

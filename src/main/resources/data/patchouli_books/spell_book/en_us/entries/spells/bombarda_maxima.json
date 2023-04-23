@@ -1,0 +1,15 @@
+{
+    "name": "Bombarda Maxima",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Bombarda Maxima\" is a powerful spell that creates a large explosion, capable of destroying objects and damaging structures. This spell can be used in combat or for more practical purposes, such as demolishing buildings or creating an escape route.$(p)To cast the spell, the caster must aim their wand at the target and say the incantation \"Bombarda Maxima\". The spell will then create a powerful explosion that can cause significant damage to the surrounding area.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Although \"Bombarda Maxima\" is a useful spell, it should be used with caution as it can be dangerous to the caster and others nearby. The spell creates a large amount of heat and force, which can cause collateral damage or injury to those within range. In addition, the spell can be difficult to control and may result in unintended consequences if not cast carefully.$(p)This spell is typically only taught to experienced and skilled wizards and witches, as it requires a high level of magical proficiency and control. Using this spell without proper training or in an inappropriate situation could result in severe consequences.$(p)"
+        }
+    ]
+}

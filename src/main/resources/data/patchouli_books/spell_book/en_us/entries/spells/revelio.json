@@ -1,0 +1,15 @@
+{
+    "name": "Revelio",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Revelio\" is a charm that reveals hidden objects or entrances. It is a useful spell for uncovering secret passageways or hidden objects that may be disguised or protected by enchantments.$(p)To perform the spell, the caster must point their wand at the object or area they wish to reveal and say \"Revelio\". If there is a hidden object or entrance present, it will become visible to the caster. However, the spell may not work on objects that are too well-concealed or protected by powerful enchantments.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "In addition to its practical uses, \"Revelio\" is also commonly used in magical games and competitions. For example, in the Triwizard Tournament, one of the challenges required participants to use the spell to uncover a hidden object.$(p)Overall, \"Revelio\" is a versatile spell that can be used in a variety of situations, making it a valuable tool for any witch or wizard to have in their arsenal.$(p)"
+        }
+    ]
+}

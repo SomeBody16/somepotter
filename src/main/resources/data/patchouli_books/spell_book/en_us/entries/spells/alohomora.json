@@ -1,0 +1,15 @@
+{
+    "name": "Alohomora",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Alohomora\" is a charm that unlocks and opens doors, windows, and other objects that are magically sealed or locked. The spell is particularly useful for breaking into locked rooms or gaining access to hidden areas.$(p)To cast the spell, the caster must point their wand at the locked object and utter the incantation \"Alohomora\". The charm will then cause the object to unlock and open, allowing the caster to enter or access it.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Although \"Alohomora\" is a simple spell, it can be difficult to use in certain situations. If the object is particularly well-protected or enchanted with more advanced magical protections, the charm may not work at all or require a greater amount of magical power to overcome.$(p)This spell is commonly taught to young witches and wizards as it can be useful in a variety of situations. However, it should be noted that using this charm to break into private or protected areas is illegal and could result in severe consequences.$(p)"
+        }
+    ]
+}

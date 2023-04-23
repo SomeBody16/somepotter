@@ -1,0 +1,15 @@
+{
+    "name": "Episkey",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Episkey\" is a healing spell that can be used to heal minor injuries, such as broken noses, split lips, and other small wounds. It is a relatively simple spell that can be used by both experienced and novice wizards and witches.$(p)To perform the spell, the caster must point their wand at the injured area and say \"Episkey\". The spell will then heal the injury, though it may take a few moments for the effects to become noticeable.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "While Episkey is a useful spell, it is not suitable for more serious injuries, such as broken bones or deep wounds. It is also not a substitute for professional medical attention, and any serious injuries should be treated by a qualified Healer.$(p)Despite its limitations, Episkey is a valuable spell to know, as it can be used to quickly and easily heal minor injuries in a variety of situations, from Quidditch matches to everyday life.$(p)"
+        }
+    ]
+}

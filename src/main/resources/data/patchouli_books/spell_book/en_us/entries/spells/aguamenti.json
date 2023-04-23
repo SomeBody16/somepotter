@@ -1,0 +1,15 @@
+{
+    "name": "Aguamenti",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Aguamenti\" is a charm that conjures a jet of water from the tip of the caster's wand. This spell is particularly useful for extinguishing flames or creating a supply of water in a pinch.$(p)To cast the spell, the caster must visualize the stream of water they wish to create and then utter the incantation \"Aguamenti\" while flicking their wand.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "While \"Aguamenti\" is a relatively simple spell, it requires a certain level of precision and focus to perform effectively. The caster must have a clear image of the water they wish to produce and direct the jet towards the intended target with accuracy. This spell is often taught in Wizarding school's students in their early years.$(p)In addition to its practical uses, \"Aguamenti\" can also be used for recreational purposes such as creating a water fountain or spraying a jet of water at a friend in jest.$(p)"
+        }
+    ]
+}

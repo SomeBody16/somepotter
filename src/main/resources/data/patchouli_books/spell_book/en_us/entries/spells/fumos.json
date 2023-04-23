@@ -1,0 +1,15 @@
+{
+    "name": "Fumos",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Fumos\" is a defensive spell that creates a cloud of smoke around the caster, providing cover and concealment. The spell is relatively simple and can be used by both experienced and novice wizards and witches.$(p)To perform the spell, the caster must point their wand in the direction they wish to create the smoke and say \"Fumos\". The smoke will then billow out of the wand and surround the caster, creating a thick cloud that obscures their vision from potential attackers.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "While Fumos is primarily a defensive spell, it can also be used in offensive situations to confuse and disorient opponents. The spell is particularly useful in dueling, where it can provide the caster with cover while they plan their next move.$(p)It is worth noting that Fumos has limitations, and it is not suitable for use in all situations. In large open spaces, for example, the smoke may not provide adequate cover, and in some cases, it may even work against the caster by obstructing their own vision.$(p)Despite its limitations, Fumos is a valuable spell to know, as it can be used to provide cover and concealment in a variety of situations.$(p)"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Depulso",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Depulso\" is a charm that causes the target object to be repelled or pushed away from the caster. It is often used to push away obstacles or enemies, or to launch objects with force.$(p)To cast the spell, the caster must point their wand at the target object and say the incantation \"Depulso\". The object will then be propelled away from the caster with great force, depending on the strength of the spell cast.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "The use of \"Depulso\" requires some level of skill and control, as it can be dangerous if used incorrectly. The caster must be able to aim their wand accurately and judge the amount of force needed for the situation.$(p)The charm is often used in duels or in battle, as it can be used to throw opponents off balance or create a distraction. It is also useful in everyday life, such as when moving heavy objects or clearing a path.$(p)Overall, \"Depulso\" is a versatile and useful spell that can be used in a variety of situations, as long as it is used with caution and skill.$(p)"
+        }
+    ]
+}

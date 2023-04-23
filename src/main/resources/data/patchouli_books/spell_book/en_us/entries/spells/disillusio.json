@@ -1,0 +1,15 @@
+{
+    "name": "Disillusio",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The Disillusionment Charm, also known as \"Disillusio\", is a spell that can be used to hide the appearance of the caster, making them blend into their surroundings like a chameleon. It is commonly used by witches and wizards who need to remain undetected, such as Aurors on missions or thieves on heists.$(p)To cast the spell, the caster must first visualize the effect they want to achieve and then point their wand at themselves while saying the incantation \"Disillusionment Charm\". The charm will then cause the caster to become transparent and take on the colors of their surroundings.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "The Disillusionment Charm can be a complex and difficult spell to cast, requiring a high level of skill and concentration. It is also a temporary charm and requires constant focus to maintain the effect, as even the slightest movement can break the illusion.$(p)Despite its difficulties, the Disillusionment Charm is a valuable tool for those who need to remain hidden or blend into their environment. Its uses range from espionage to sneaking around unnoticed, and it is a valuable skill for any serious witch or wizard to possess.$(p)"
+        }
+    ]
+}

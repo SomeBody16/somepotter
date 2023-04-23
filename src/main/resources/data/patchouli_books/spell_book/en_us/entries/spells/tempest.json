@@ -1,0 +1,15 @@
+{
+    "name": "Tempest Jinx",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The Tempest Jinx, also known simply as \"Tempest\", is a powerful spell that conjures bolts of lightning from the sky to strike at a target. The spell can be used in a variety of situations, from dueling to creating dramatic effects in theatrical productions.$(p)The Tempest Jinx requires a great deal of skill and focus to perform correctly. The caster must first visualize the target and then direct their magical energy towards the clouds. The jinx will cause bolts of lightning to strike at the target, with the intensity of the storm depending on the caster's proficiency.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "The Tempest Jinx can be a dangerous spell if not used properly, as it has the potential to cause significant damage to both living and inanimate objects. Due to its power, the spell is not commonly taught in most magical institutions and is only used by experienced witches and wizards.$(p)Despite its danger, the Tempest Jinx is a popular spell among those who seek to gain an advantage in combat situations. It has been used in a variety of dueling tournaments and is often a crowd favorite due to its impressive visual effects.$(p)Overall, the Tempest Jinx is a formidable spell that should only be used by those with the necessary skill and experience to control it.$(p)"
+        }
+    ]
+}

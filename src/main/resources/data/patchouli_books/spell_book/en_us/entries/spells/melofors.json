@@ -1,0 +1,15 @@
+{
+    "name": "Melofors",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Melofors\" is a charm that transforms the target's head into a pumpkin. It is a relatively uncommon spell and is not taught at schools.$(p)To perform the spell, the caster must first point their wand at the target's head and say \"Melofors\". The target's head will then transform into a pumpkin, leaving them unable to see or speak. The effects of the spell can be reversed with the counter-spell \"Reparifarge\".$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "While \"Melofors\" may seem like a humorous spell, it can be a dangerous one if used maliciously. It is considered a dark spell and is often used by dark wizards and witches in duels or to cause harm to others. It is important for young witches and wizards to understand the consequences of using such spells and to only use them in self-defense or in controlled environments.$(p)Overall, \"Melofors\" is a powerful spell that should be used with caution and only in appropriate situations.$(p)"
+        }
+    ]
+}

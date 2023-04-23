@@ -1,0 +1,15 @@
+{
+    "name": "Confringo",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Confringo\" is a curse that causes the target to explode in flames. It is a powerful and dangerous spell that should be used with caution, as it can cause significant damage and harm to both the target and the caster if not cast correctly.$(p)To cast the spell, the caster must point their wand at the target and say the incantation \"Confringo\". The curse will then cause the target to burst into flames and explode violently.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "While \"Confringo\" can be a useful spell in certain situations, such as in battle or to destroy obstacles, it should be used with great care and only by experienced wizards and witches. The spell can cause unintended harm and damage, and its use is often restricted or prohibited in certain areas.$(p)It should be noted that using this spell without proper authorization or in an inappropriate situation could result in severe consequences, including imprisonment or expulsion from the wizarding community.$(p)"
+        }
+    ]
+}

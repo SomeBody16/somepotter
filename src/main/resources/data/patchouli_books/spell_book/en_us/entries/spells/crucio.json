@@ -1,0 +1,15 @@
+{
+    "name": "Crucio",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Crucio\" is an Unforgivable Curse that inflicts excruciating pain on the target. It is one of the most powerful and cruel spells in the wizarding world, and its use is strictly prohibited by law.$(p)To cast the spell, the caster must point their wand at the target and say the incantation \"Crucio\". The curse will then cause the target to experience intense pain, as if every nerve in their body is being tortured.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "The use of \"Crucio\" is a heinous act and is considered one of the darkest forms of magic. It is often used as a tool of torture and control by those who seek power or revenge. The spell is so powerful that it can cause permanent physical and psychological damage to the target, and its use is punishable by life imprisonment in Azkaban.$(p)It should be noted that using this spell, even under extreme circumstances, is illegal and carries severe consequences. No wizard or witch should ever use this spell, and it should never be used as a means of resolving conflicts or gaining power.$(p)"
+        }
+    ]
+}

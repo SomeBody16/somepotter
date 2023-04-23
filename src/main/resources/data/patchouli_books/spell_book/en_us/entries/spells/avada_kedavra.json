@@ -1,0 +1,15 @@
+{
+    "name": "Avada Kedavra",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Avada Kedavra\" is an Unforgivable Curse that causes instantaneous death to the target. It is one of the most powerful and dangerous spells in the wizarding world, and its use is strictly prohibited by law.$(p)To cast the spell, the caster must point their wand at the target and say the incantation \"Avada Kedavra\". The curse will then cause the target to immediately fall to the ground lifeless, without any physical harm or pain.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "The use of \"Avada Kedavra\" is considered the ultimate act of evil and is strictly forbidden. It is often used as a tool of murder and control by those who seek power or revenge. The spell is so powerful that it cannot be blocked or countered, and its use is punishable by life imprisonment in Azkaban.$(p)It should be noted that using this spell, even under extreme circumstances, is illegal and carries severe consequences. No wizard or witch should ever use this spell, and it should never be used as a means of resolving conflicts or gaining power.$(p)"
+        }
+    ]
+}

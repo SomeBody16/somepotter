@@ -1,0 +1,15 @@
+{
+    "name": "Cistem Aperio",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Cistem Aperio\" is a spell that can be used to unlock or open locked containers, such as chests, trunks, or doors. It is a useful spell for wizards and witches who need to gain access to a locked item or area.$(p)To cast the spell, the caster must point their wand at the locked container and say the incantation \"Cistem Aperio\". The spell will then unlock or open the container, allowing the caster to access its contents or enter the area.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "While \"Cistem Aperio\" is a relatively simple spell, it should be used with caution as it can be misused or used to gain unauthorized access to areas or items. In addition, the spell may not work on containers that are protected by more powerful spells or enchantments.$(p)This spell is typically taught to young and beginning wizards and witches, as it is a useful spell for everyday use. However, it should be noted that using this spell without proper authorization or in an inappropriate situation could result in severe consequences.$(p)"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Herbivicus",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "\"Herbivicus\" is a spell used to promote the growth and health of plants. This spell is commonly used by herbologists and gardeners to maintain and enhance the growth of their plants.$(p)To perform the spell, the caster must point their wand at the plant they wish to affect and say \"Herbivicus\". The spell will then cause the plant to grow faster and become healthier, producing stronger stems and more vibrant leaves.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "While Herbivicus is primarily used to enhance the growth of plants, it can also be used to heal damaged or diseased plants. The spell has been used to revive wilted flowers and restore damaged trees.$(p)It is worth noting that Herbivicus does have its limitations, and it cannot bring back dead plants or instantly transform a plant into a mature and fully grown state. However, with repeated use, the spell can gradually improve the overall health and appearance of a plant.$(p)Herbivicus is a useful spell to know for anyone who works with plants or wishes to cultivate their own garden.$(p)"
+        }
+    ]
+}
