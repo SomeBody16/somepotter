@@ -10,7 +10,7 @@ public class AccioSpell extends AbstractSpell {
 
     public static final int PULL_DURATION = 20 * 5;
     public static final float BLOCK_HIT_RANGE = 3;
-    public static final float PULL_STRENGTH = 0.5f;
+    public static final float PULL_STRENGTH = 0.75f;
 
     public static final List<?> init = List.of(
             new AccioCastListener(),
