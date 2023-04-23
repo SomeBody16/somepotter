@@ -32,4 +32,11 @@ public class SpellColor {
     public DustParticleOptions getParticle() {
         return new DustParticleOptions(color, 1.0F);
     }
+
+    public int getRGB24() {
+        var r = (int) (color.x() * 255.0);
+        var g = (int) (color.y() * 255.0);
+        var b = (int) (color.z() * 255.0);
+        return (r << 16) | (g << 8) | b;
+    }
 }

@@ -1,5 +1,6 @@
 {
-  "itemGroup.somepotter": "Some Potter",
-  "item.somepotter.wand": "Wand",
-  "death.attack.somepotter.avada_kedavra": "%2$s killed %1$s with unforgivable curse"
+    "itemGroup.somepotter": "Some Potter",
+    "item.somepotter.wand": "Wand",
+    "death.attack.somepotter.avada_kedavra": "%2$s killed %1$s with unforgivable curse",
+    "effect.somepotter.crucio": "Crucio"
 }

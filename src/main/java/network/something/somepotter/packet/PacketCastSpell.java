@@ -7,9 +7,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
 import network.something.somepotter.SomePotter;
 import network.something.somepotter.init.ItemInit;
-import network.something.somepotter.magic.Spells;
-import network.something.somepotter.magic.spell.core.Spell;
-import network.something.somepotter.magic.spell.core.UnknownSpell;
+import network.something.somepotter.spell.spells.Spells;
+import network.something.somepotter.spell.spells.UnknownSpell;
 
 import java.util.function.Supplier;
 
@@ -36,26 +35,27 @@ public class PacketCastSpell {
         ctx.enqueueWork(() -> {
             // We are server side
             ServerPlayer caster = ctx.getSender();
-            if (caster == null) {
+            if (caster == null || !caster.getUseItem().is(ItemInit.WAND.get())) {
                 return;
             }
-            SomePotter.LOGGER.info("{} is casting {}", caster.getDisplayName(), spellName);
 
             var spellId = spellName.toLowerCase().replaceAll(" ", "_");
-            Spell spell = Spells.getSpell(spellId, caster);
+            SomePotter.LOGGER.info("{} is casting {}", caster.getDisplayName(), spellId);
+
+            var spell = Spells.get(spellId);
             if (spell instanceof UnknownSpell) {
-                var message = new TextComponent("Unknown spell: ");
-                message.append(new TextComponent(spellName).withStyle(ChatFormatting.RED));
+                var message = new TextComponent(spellName)
+                        .withStyle(ChatFormatting.RED)
+                        .withStyle(ChatFormatting.ITALIC);
                 caster.sendMessage(message, NIL_UUID);
                 return;
             }
 
-            if (caster.getUseItem().is(ItemInit.WAND.get())) {
-                var message = new TextComponent("Casting: ");
-                message.append(new TextComponent(spellName).withStyle(ChatFormatting.GREEN));
-                caster.sendMessage(message, NIL_UUID);
-                spell.cast();
-            }
+            spell.cast(caster);
+            var message = new TextComponent(spellName)
+                    .withStyle(ChatFormatting.GREEN)
+                    .withStyle(ChatFormatting.ITALIC);
+            caster.sendMessage(message, NIL_UUID);
         });
         return true;
     }

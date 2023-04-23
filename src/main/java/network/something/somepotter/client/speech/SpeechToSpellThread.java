@@ -44,15 +44,13 @@ public class SpeechToSpellThread extends Thread {
                     continue;
                 }
 
-                var spellName = speechResult.getHypothesis().toLowerCase();
-                SomePotter.LOGGER.info("Spell is: '{}'", spellName);
-
-                Minecraft.getInstance().execute(() -> {
-                    SomePotter.LOGGER.info("Sending spell: '{}'", spellName);
-                    var packetCastSpell = new PacketCastSpell(spellName);
-                    MessageInit.sendToServer(packetCastSpell);
-                    SomePotter.LOGGER.info("PacketCastSpell sent");
-                });
+                var spellId = speechResult.getHypothesis().toLowerCase();
+                if (!spellId.isEmpty()) {
+                    Minecraft.getInstance().execute(() -> {
+                        var packetCastSpell = new PacketCastSpell(spellId);
+                        MessageInit.sendToServer(packetCastSpell);
+                    });
+                }
             }
         } catch (IOException e) {
             SomePotter.LOGGER.error("Speech Thread failed", e);

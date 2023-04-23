@@ -16,7 +16,8 @@ public class ClientSetup {
 
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
-        EntityRenderers.register(EntityInit.SPELL.get(), SpellRenderer::new);
+        EntityRenderers.register(EntityInit.SPELL_PROJECTILE.get(), SpellRenderer::new);
+        EntityRenderers.register(EntityInit.SPELL_TOUCH.get(), SpellRenderer::new);
         KeyInit.register();
         SpeechToSpellThread.getInstance().start();
     }

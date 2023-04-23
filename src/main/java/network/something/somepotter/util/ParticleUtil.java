@@ -9,7 +9,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class ParticleUtil {
 
-    public static void spawn(Level level, ParticleOptions particle, Vec3 pos, int range, int particlesPerBlock) {
+    public static void spawn(Level level, ParticleOptions particle, Vec3 pos, float range, int particlesPerBlock) {
         var aof = new AABB(new BlockPos(pos)).inflate(range);
         var amount = (int) (aof.getXsize() * aof.getYsize() * aof.getZsize() * particlesPerBlock);
         inAABBOfAmount(level, particle, aof, amount);
