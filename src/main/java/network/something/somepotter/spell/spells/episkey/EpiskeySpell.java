@@ -25,4 +25,9 @@ public class EpiskeySpell extends AbstractSpell {
     public SpellColor getColor() {
         return SpellColor.ESSENTIAL;
     }
+
+    @Override
+    public int getCooldown() {
+        return 20 * 10;
+    }
 }

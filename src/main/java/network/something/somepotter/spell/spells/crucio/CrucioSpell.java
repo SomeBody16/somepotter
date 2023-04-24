@@ -32,4 +32,9 @@ public class CrucioSpell extends AbstractSpell {
     public SpellColor getColor() {
         return SpellColor.UNFORGIVEABLE;
     }
+
+    @Override
+    public int getCooldown() {
+        return 20 * 20;
+    }
 }

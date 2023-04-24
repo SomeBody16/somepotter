@@ -1,9 +1,6 @@
 package network.something.somepotter.spell.spells.bombarda;
 
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
 import network.something.somepotter.spell.spells.AbstractSpell;
-import network.something.somepotter.util.DamageSourceUtil;
 import network.something.somepotter.util.SpellColor;
 
 import java.util.List;
@@ -30,7 +27,9 @@ public class BombardaSpell extends AbstractSpell {
         return SpellColor.DAMAGE;
     }
 
-    public DamageSource getDamageSource(Entity caster) {
-        return DamageSourceUtil.indirect("spell." + getId(), caster).setExplosion();
+    @Override
+    public int getCooldown() {
+        var ratio = explosionSize / 4.0f;
+        return (int) (20 * 10 * ratio);
     }
 }

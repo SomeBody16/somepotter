@@ -23,4 +23,9 @@ public class StupefySpell extends AbstractSpell {
     public SpellColor getColor() {
         return SpellColor.UTILITY;
     }
+
+    @Override
+    public int getCooldown() {
+        return 20 * 2;
+    }
 }

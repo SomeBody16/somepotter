@@ -14,4 +14,11 @@ public class UnknownSpell extends AbstractSpell {
     public SpellColor getColor() {
         return null;
     }
+
+    @Override
+    public int getCooldown() {
+        return 0;
+    }
+
+
 }

@@ -30,4 +30,9 @@ public class ConfringoSpell extends AbstractSpell {
     public SpellColor getColor() {
         return SpellColor.DAMAGE;
     }
+
+    @Override
+    public int getCooldown() {
+        return 20 * 6;
+    }
 }

@@ -23,4 +23,9 @@ public class IncendioSpell extends AbstractSpell {
     public SpellColor getColor() {
         return SpellColor.FORCE;
     }
+
+    @Override
+    public int getCooldown() {
+        return 20 * 3;
+    }
 }

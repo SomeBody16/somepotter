@@ -26,6 +26,8 @@ public abstract class AbstractSpell {
 
     public abstract SpellColor getColor();
 
+    public abstract int getCooldown();
+
     public ParticleOptions getParticle() {
         return getColor().getParticle();
     }

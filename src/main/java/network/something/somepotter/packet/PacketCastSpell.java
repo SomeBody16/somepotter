@@ -50,10 +50,6 @@ public class PacketCastSpell {
             }
 
             spell.cast(caster);
-            var message = new TextComponent(spellName)
-                    .withStyle(ChatFormatting.GREEN)
-                    .withStyle(ChatFormatting.ITALIC);
-            caster.sendMessage(message, NIL_UUID);
         });
         return true;
     }
