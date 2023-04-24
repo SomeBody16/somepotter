@@ -21,7 +21,7 @@ public class CrucioEffect extends MobEffect {
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (!entity.level.isClientSide) {
             var damageSource = CrucioSpell.getDamageSource(entity);
-            entity.hurt(damageSource, 0);
+            entity.hurt(damageSource, 1);
             entity.hurtMarked = true;
             SpellParticle.playTouchParticles(CrucioSpell.ID, (ServerLevel) entity.level, entity.getEyePosition());
         }

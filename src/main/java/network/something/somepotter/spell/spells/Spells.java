@@ -21,12 +21,14 @@ import network.something.somepotter.spell.spells.herbivicus.HerbivicusSpell;
 import network.something.somepotter.spell.spells.incendio.IncendioSpell;
 import network.something.somepotter.spell.spells.levioso.LeviosoSpell;
 import network.something.somepotter.spell.spells.melofors.MeloforsSpell;
+import network.something.somepotter.spell.spells.obscuro.ObscuroSpell;
 import network.something.somepotter.spell.spells.revelio.RevelioSpell;
 import network.something.somepotter.spell.spells.stupefy.StupefySpell;
 import network.something.somepotter.spell.spells.tempest.TempestSpell;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class Spells {
 
@@ -52,6 +54,7 @@ public class Spells {
     public static IncendioSpell INCENDIO = register(new IncendioSpell());
     public static LeviosoSpell LEVIOSO = register(new LeviosoSpell());
     public static MeloforsSpell MELOFORS = register(new MeloforsSpell());
+    public static ObscuroSpell OBSCURO = register(new ObscuroSpell());
     public static RevelioSpell REVELIO = register(new RevelioSpell());
     public static StupefySpell STUPEFY = register(new StupefySpell());
     public static TempestSpell TEMPEST = register(new TempestSpell());
@@ -66,4 +69,9 @@ public class Spells {
         SomePotter.LOGGER.info("Registered spell: {}", spell.getId());
         return spell;
     }
+
+    public static void forEach(Consumer<AbstractSpell> consumer) {
+        SPELLS.forEach((id, spell) -> consumer.accept(spell));
+    }
+
 }
