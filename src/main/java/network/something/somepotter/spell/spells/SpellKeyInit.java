@@ -3,7 +3,7 @@ package network.something.somepotter.spell.spells;
 import net.minecraft.client.KeyMapping;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.ClientRegistry;
-import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import network.something.somepotter.SomePotter;
@@ -28,13 +28,15 @@ public class SpellKeyInit {
     }
 
     @SubscribeEvent
-    public static void onKey(InputEvent.KeyInputEvent event) {
-        SPELLS.forEach(((keyMapping, spell) -> {
-            if (keyMapping.getKey().getValue() == event.getKey()) {
-                var castPacket = new PacketCastSpell(spell.getId());
-                MessageInit.sendToServer(castPacket);
-            }
-        }));
+    public static void playerTick(TickEvent.ClientTickEvent event) {
+        if (event.phase == TickEvent.Phase.END) {
+            SPELLS.forEach(((keyMapping, spell) -> {
+                if (keyMapping.consumeClick()) {
+                    var castPacket = new PacketCastSpell(spell.getId());
+                    MessageInit.sendToServer(castPacket);
+                }
+            }));
+        }
     }
 
 }

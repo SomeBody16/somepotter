@@ -39,7 +39,10 @@ public class LeviosoTickable extends EntitySpellTickable {
 
     @Override
     public boolean isExpired() {
+        var distance = caster.getEyePosition().distanceTo(target.getEyePosition());
         return !caster.isUsingItem()
-                || !(caster.getUseItem().getItem() instanceof ItemWand);
+                || !(caster.getUseItem().getItem() instanceof ItemWand)
+                || distance > LeviosoSpell.RANGE
+                || !caster.hasLineOfSight(target);
     }
 }

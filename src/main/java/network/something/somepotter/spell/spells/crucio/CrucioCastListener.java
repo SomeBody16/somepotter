@@ -13,6 +13,7 @@ public class CrucioCastListener extends SpellCastListener {
     @Override
     public void onSpellCast(SpellCastEvent event) {
         var cast = new TouchCast();
+        cast.setRange(CrucioSpell.RANGE);
         cast.execute(event.getCaster(), event.getSpellId());
     }
 }

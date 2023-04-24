@@ -48,6 +48,7 @@ public class SpeechToSpellThread extends Thread {
                         var packetCastSpell = new PacketCastSpell(spellId);
                         MessageInit.sendToServer(packetCastSpell);
                     });
+                    pauseRecognition();
                 }
             }
         } catch (IOException e) {

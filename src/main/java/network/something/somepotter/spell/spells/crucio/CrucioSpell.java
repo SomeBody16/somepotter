@@ -11,7 +11,7 @@ import java.util.List;
 public class CrucioSpell extends AbstractSpell {
     public static final String ID = "crucio";
 
-    public static final double RANGE = 16;
+    public static final int RANGE = 16;
     public static final double LOOK_THRESHOLD = 0.9;
     public static final int REFRESH_DURATION = 20 * 2;
 

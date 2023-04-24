@@ -8,12 +8,12 @@ import network.something.somepotter.SomePotter;
 public class DamageSourceUtil {
 
     public static DamageSource create(String name) {
-        return new DamageSource("death.attack." + SomePotter.MOD_ID + "." + name);
+        return new DamageSource(SomePotter.MOD_ID + "." + name);
     }
 
     public static DamageSource indirect(String name, Entity source) {
         return new IndirectEntityDamageSource(
-                "death.attack." + SomePotter.MOD_ID + "." + name,
+                SomePotter.MOD_ID + "." + name,
                 source, source
         );
     }

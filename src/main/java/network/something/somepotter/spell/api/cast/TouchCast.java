@@ -7,7 +7,7 @@ import network.something.somepotter.spell.api.util.ProjectileUtil;
 
 public class TouchCast extends AbstractCast {
 
-    protected int range = 64;
+    protected int range = 16;
     protected boolean canHitFluid = false;
 
     @Override

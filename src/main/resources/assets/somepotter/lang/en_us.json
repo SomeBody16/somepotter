@@ -2,6 +2,9 @@
     "itemGroup.somepotter": "Some Potter",
     "item.somepotter.wand": "Wand",
     "death.attack.somepotter.avada_kedavra": "%2$s killed %1$s with unforgivable curse",
+    "death.attack.somepotter.crucio": "%2$s killed %1$s with unforgivable curse",
+    "death.attack.somepotter.imperio": "%2$s killed %1$s with unforgivable curse",
+    "death.attack.somepotter.confringo": "%2$s killed %1$s with Confringo",
     "effect.somepotter.crucio": "Crucio",
     "key.category.somepotter.spell": "SomePotter Spells",
     "key.somepotter.accio": "Accio",
@@ -25,6 +28,7 @@
     "key.somepotter.levioso": "Levioso",
     "key.somepotter.melofors": "Melofors",
     "key.somepotter.obscuro": "Obscuro",
+    "key.somepotter.reparo": "Reparo",
     "key.somepotter.revelio": "Revelio",
     "key.somepotter.stupefy": "Stupefy",
     "key.somepotter.tempest": "Tempest"

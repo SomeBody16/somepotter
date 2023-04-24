@@ -22,6 +22,7 @@ import network.something.somepotter.spell.spells.incendio.IncendioSpell;
 import network.something.somepotter.spell.spells.levioso.LeviosoSpell;
 import network.something.somepotter.spell.spells.melofors.MeloforsSpell;
 import network.something.somepotter.spell.spells.obscuro.ObscuroSpell;
+import network.something.somepotter.spell.spells.reparo.ReparoSpell;
 import network.something.somepotter.spell.spells.revelio.RevelioSpell;
 import network.something.somepotter.spell.spells.stupefy.StupefySpell;
 import network.something.somepotter.spell.spells.tempest.TempestSpell;
@@ -55,6 +56,7 @@ public class Spells {
     public static LeviosoSpell LEVIOSO = register(new LeviosoSpell());
     public static MeloforsSpell MELOFORS = register(new MeloforsSpell());
     public static ObscuroSpell OBSCURO = register(new ObscuroSpell());
+    public static ReparoSpell REPARO = register(new ReparoSpell());
     public static RevelioSpell REVELIO = register(new RevelioSpell());
     public static StupefySpell STUPEFY = register(new StupefySpell());
     public static TempestSpell TEMPEST = register(new TempestSpell());

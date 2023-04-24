@@ -13,6 +13,7 @@ public class LeviosoCastListener extends SpellCastListener {
     @Override
     public void onSpellCast(SpellCastEvent event) {
         var cast = new TouchCast();
+        cast.setRange(LeviosoSpell.RANGE);
         cast.execute(event.getCaster(), event.getSpellId());
     }
 }

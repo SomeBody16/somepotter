@@ -30,6 +30,6 @@ public class BombardaSpell extends AbstractSpell {
     @Override
     public int getCooldown() {
         var ratio = explosionSize / 4.0f;
-        return (int) (20 * 10 * ratio);
+        return (int) (20 * 30 * ratio);
     }
 }
