@@ -1,0 +1,16 @@
+{
+  "category": "patchouli:spell_types",
+  "name": "spell.type.jinx.name",
+  "description": "spell.type.jinx.description",
+  "icon": "spell.type.jinx.icon",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "spell.type.jinx.page.page1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.type.jinx.page.page2"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.expelliarmus.name",
+  "description": "spell.expelliarmus.description",
+  "icon": "spell.expelliarmus.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "expelliarmus",
+      "spell": "spell.expelliarmus",
+      "spell_type": "spell.type.charm",
+      "cast_type": "cast",
+      "description": "spell.expelliarmus.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.expelliarmus.page.page2"
+    }
+  ]
+}

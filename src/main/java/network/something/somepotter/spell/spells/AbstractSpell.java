@@ -10,9 +10,28 @@ import net.minecraftforge.common.MinecraftForge;
 import network.something.somepotter.spell.api.event.SpellCastEvent;
 import network.something.somepotter.spell.api.event.SpellHitBlockEvent;
 import network.something.somepotter.spell.api.event.SpellHitEntityEvent;
+import network.something.somepotter.spell.type.SpellType;
+import network.something.somepotter.spell.type.SpellTypes;
 import network.something.somepotter.util.SpellColor;
 
 public abstract class AbstractSpell {
+
+    public static class Event {
+        public static void cast(AbstractSpell spell, LivingEntity caster) {
+            var event = new SpellCastEvent(spell.id, caster);
+            MinecraftForge.EVENT_BUS.post(event);
+        }
+
+        public static void onHitEntity(AbstractSpell spell, LivingEntity caster, EntityHitResult hitResult) {
+            var event = new SpellHitEntityEvent(spell.id, caster, hitResult);
+            MinecraftForge.EVENT_BUS.post(event);
+        }
+
+        public static void onHitBlock(AbstractSpell spell, LivingEntity caster, BlockHitResult hitResult) {
+            var event = new SpellHitBlockEvent(spell.id, caster, hitResult);
+            MinecraftForge.EVENT_BUS.post(event);
+        }
+    }
 
     private final String id;
 
@@ -28,6 +47,10 @@ public abstract class AbstractSpell {
 
     public abstract int getCooldown();
 
+    public SpellType getType() {
+        return SpellTypes.CHARM;
+    }
+
     public ParticleOptions getParticle() {
         return getColor().getParticle();
     }
@@ -35,21 +58,4 @@ public abstract class AbstractSpell {
     public SoundEvent getSound() {
         return SoundEvents.FIRECHARGE_USE;
     }
-
-    public void cast(LivingEntity caster) {
-        var event = new SpellCastEvent(id, caster);
-        MinecraftForge.EVENT_BUS.post(event);
-
-    }
-
-    public void onHitEntity(LivingEntity caster, EntityHitResult hitResult) {
-        var event = new SpellHitEntityEvent(id, caster, hitResult);
-        MinecraftForge.EVENT_BUS.post(event);
-    }
-
-    public void onHitBlock(LivingEntity caster, BlockHitResult hitResult) {
-        var event = new SpellHitBlockEvent(id, caster, hitResult);
-        MinecraftForge.EVENT_BUS.post(event);
-    }
-
 }

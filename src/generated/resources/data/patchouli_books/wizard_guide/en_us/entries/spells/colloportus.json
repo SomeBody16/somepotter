@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.colloportus.name",
+  "description": "spell.colloportus.description",
+  "icon": "spell.colloportus.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "colloportus",
+      "spell": "spell.colloportus",
+      "spell_type": "spell.type.charm",
+      "cast_type": "cast",
+      "description": "spell.colloportus.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.colloportus.page.page2"
+    }
+  ]
+}

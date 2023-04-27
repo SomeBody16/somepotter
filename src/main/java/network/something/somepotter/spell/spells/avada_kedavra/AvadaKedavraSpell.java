@@ -3,6 +3,8 @@ package network.something.somepotter.spell.spells.avada_kedavra;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import network.something.somepotter.spell.spells.AbstractSpell;
+import network.something.somepotter.spell.type.SpellType;
+import network.something.somepotter.spell.type.SpellTypes;
 import network.something.somepotter.util.DamageSourceUtil;
 import network.something.somepotter.util.SpellColor;
 
@@ -26,12 +28,17 @@ public class AvadaKedavraSpell extends AbstractSpell {
     }
 
     @Override
+    public SpellType getType() {
+        return SpellTypes.CURSE;
+    }
+
+    @Override
     public SpellColor getColor() {
         return SpellColor.UNFORGIVEABLE;
     }
 
     @Override
     public int getCooldown() {
-        return 20 * 30;
+        return 20 * 60 * 2;
     }
 }

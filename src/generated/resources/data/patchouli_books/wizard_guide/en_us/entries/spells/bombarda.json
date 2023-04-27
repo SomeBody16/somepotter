@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.bombarda.name",
+  "description": "spell.bombarda.description",
+  "icon": "spell.bombarda.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "bombarda",
+      "spell": "spell.bombarda",
+      "spell_type": "spell.type.charm",
+      "cast_type": "cast",
+      "description": "spell.bombarda.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.bombarda.page.page2"
+    }
+  ]
+}

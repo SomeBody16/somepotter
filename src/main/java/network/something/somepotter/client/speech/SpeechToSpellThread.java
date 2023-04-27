@@ -8,6 +8,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import network.something.somepotter.SomePotter;
 import network.something.somepotter.init.MessageInit;
 import network.something.somepotter.packet.PacketCastSpell;
+import network.something.somepotter.spell.spells.basic_cast.BasicCastSpell;
 
 import java.io.IOException;
 
@@ -25,6 +26,8 @@ public class SpeechToSpellThread extends Thread {
 
     private volatile boolean isRunning = true;
     private volatile boolean isRecognizing = false;
+    private volatile boolean skipCast = false;
+    private volatile String defaultSpellId = BasicCastSpell.ID;
 
     @Override
     public void run() {
@@ -38,23 +41,34 @@ public class SpeechToSpellThread extends Thread {
                     Thread.yield();
                 }
                 var speechResult = recognizer.getResult();
-                if (speechResult == null) {
+                var spellId = speechResult == null
+                        ? defaultSpellId
+                        : speechResult.getHypothesis().toLowerCase();
+
+                pauseRecognition();
+                if (skipCast) {
+                    skipCast = false;
                     continue;
                 }
 
-                var spellId = speechResult.getHypothesis().toLowerCase();
-                if (!spellId.isEmpty()) {
-                    Minecraft.getInstance().execute(() -> {
-                        var packetCastSpell = new PacketCastSpell(spellId);
-                        MessageInit.sendToServer(packetCastSpell);
-                    });
-                    pauseRecognition();
-                }
+                castSpell(spellId);
+                defaultSpellId = BasicCastSpell.ID;
             }
         } catch (IOException e) {
             SomePotter.LOGGER.error("Speech Thread failed", e);
         }
         SomePotter.LOGGER.info("Speech Thread stopped");
+    }
+
+    public void castSpell(String spellId) {
+        Minecraft.getInstance().execute(() -> {
+            var packetCastSpell = new PacketCastSpell(spellId);
+            MessageInit.sendToServer(packetCastSpell);
+        });
+    }
+
+    public void skip() {
+        skipCast = true;
     }
 
     public void pauseRecognition() {
@@ -68,6 +82,10 @@ public class SpeechToSpellThread extends Thread {
     public void stopRecognition() {
         isRecognizing = false;
         isRunning = false;
+    }
+
+    public void setDefaultSpellId(String defaultSpellId) {
+        this.defaultSpellId = defaultSpellId;
     }
 
     protected Configuration getConfiguration() {

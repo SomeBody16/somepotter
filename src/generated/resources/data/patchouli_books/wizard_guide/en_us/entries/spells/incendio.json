@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.incendio.name",
+  "description": "spell.incendio.description",
+  "icon": "spell.incendio.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "incendio",
+      "spell": "spell.incendio",
+      "spell_type": "spell.type.charm",
+      "cast_type": "cast",
+      "description": "spell.incendio.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.incendio.page.page2"
+    }
+  ]
+}

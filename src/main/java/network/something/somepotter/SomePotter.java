@@ -9,6 +9,7 @@ import network.something.somepotter.init.EntityInit;
 import network.something.somepotter.init.ItemInit;
 import network.something.somepotter.setup.ModSetup;
 import org.slf4j.Logger;
+import software.bernie.geckolib3.GeckoLib;
 
 @Mod(SomePotter.MOD_ID)
 public class SomePotter {
@@ -24,6 +25,8 @@ public class SomePotter {
         ItemInit.ITEMS.register(modEventBus);
         EntityInit.ENTITIES.register(modEventBus);
         EffectInit.register(modEventBus);
+
+        GeckoLib.initialize();
     }
 
 

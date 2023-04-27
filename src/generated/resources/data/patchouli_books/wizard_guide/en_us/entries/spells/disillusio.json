@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.disillusio.name",
+  "description": "spell.disillusio.description",
+  "icon": "spell.disillusio.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "disillusio",
+      "spell": "spell.disillusio",
+      "spell_type": "spell.type.charm",
+      "cast_type": "cast",
+      "description": "spell.disillusio.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.disillusio.page.page2"
+    }
+  ]
+}

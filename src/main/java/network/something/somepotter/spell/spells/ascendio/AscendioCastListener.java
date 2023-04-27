@@ -1,9 +1,9 @@
 package network.something.somepotter.spell.spells.ascendio;
 
-import network.something.somepotter.spell.api.cast.ProjectileCast;
-import network.something.somepotter.spell.api.cast.SelfCast;
 import network.something.somepotter.spell.api.event.SpellCastEvent;
 import network.something.somepotter.spell.api.event.SpellCastListener;
+import network.something.somepotter.spell.cast.projectile.ProjectileCast;
+import network.something.somepotter.spell.cast.self.SelfCast;
 
 public class AscendioCastListener extends SpellCastListener {
 

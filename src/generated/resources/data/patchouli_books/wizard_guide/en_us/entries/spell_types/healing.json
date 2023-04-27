@@ -1,0 +1,16 @@
+{
+  "category": "patchouli:spell_types",
+  "name": "spell.type.healing.name",
+  "description": "spell.type.healing.description",
+  "icon": "spell.type.healing.icon",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "spell.type.healing.page.page1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.type.healing.page.page2"
+    }
+  ]
+}

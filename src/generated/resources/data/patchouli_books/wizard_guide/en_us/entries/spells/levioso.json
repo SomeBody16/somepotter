@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.levioso.name",
+  "description": "spell.levioso.description",
+  "icon": "spell.levioso.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "levioso",
+      "spell": "spell.levioso",
+      "spell_type": "spell.type.charm",
+      "cast_type": "cast",
+      "description": "spell.levioso.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.levioso.page.page2"
+    }
+  ]
+}

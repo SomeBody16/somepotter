@@ -1,6 +1,8 @@
 package network.something.somepotter.spell.spells.episkey;
 
 import network.something.somepotter.spell.spells.AbstractSpell;
+import network.something.somepotter.spell.type.SpellType;
+import network.something.somepotter.spell.type.SpellTypes;
 import network.something.somepotter.util.SpellColor;
 
 import java.util.List;
@@ -19,6 +21,11 @@ public class EpiskeySpell extends AbstractSpell {
 
     public EpiskeySpell() {
         super(ID);
+    }
+
+    @Override
+    public SpellType getType() {
+        return SpellTypes.HEALING;
     }
 
     @Override

@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.alohomora.name",
+  "description": "spell.alohomora.description",
+  "icon": "spell.alohomora.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "alohomora",
+      "spell": "spell.alohomora",
+      "spell_type": "spell.type.charm",
+      "cast_type": "cast",
+      "description": "spell.alohomora.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.alohomora.page.page2"
+    }
+  ]
+}

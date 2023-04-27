@@ -21,7 +21,7 @@ public class SpellKeyInit {
 
     public static void register() {
         Spells.forEach((spell) -> {
-            var spellKey = KeyInit.key(spell.getId(), KeyInit.Category.SPELL, 0);
+            var spellKey = KeyInit.key(spell.getId(), KeyInit.Category.SPELL);
             SPELLS.put(spellKey, spell);
             ClientRegistry.registerKeyBinding(spellKey);
         });

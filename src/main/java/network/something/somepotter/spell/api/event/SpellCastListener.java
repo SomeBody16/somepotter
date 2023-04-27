@@ -1,7 +1,7 @@
 package network.something.somepotter.spell.api.event;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -27,16 +27,22 @@ public class SpellCastListener {
             return;
         }
 
-        SomePotter.LOGGER.info("'{}' casted '{}'", event.getCaster().getDisplayName().getString(), event.getSpellId());
-        var message = new TextComponent(spellId)
+        var message = new TranslatableComponent("spell." + event.getSpellId())
                 .withStyle(ChatFormatting.GREEN)
                 .withStyle(ChatFormatting.ITALIC);
         event.getCaster().sendMessage(message, NIL_UUID);
 
-        event.getCaster().level.playSound(null, event.getCaster(), event.getSpell().getSound(),
-                SoundSource.PLAYERS, 1, 1);
+        var castSound = event.getSpell().getSound();
+        if (castSound != null) {
+            event.getCaster().level.playSound(null, event.getCaster(), castSound,
+                    SoundSource.PLAYERS, 1, 1);
+        }
 
         var listeners = LISTENERS.getOrDefault(spellId, new ArrayList<>());
+        SomePotter.LOGGER.info("'{}' casted '{}', {} listeners",
+                event.getCaster().getDisplayName().getString(), event.getSpellId(),
+                listeners.size());
+
         listeners.forEach(listener -> listener.onSpellCast(event));
     }
 

@@ -1,0 +1,16 @@
+{
+    "name": "Charm",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_types",
+    "pages": [
+        {
+            "type": "patchouli:type_summary",
+            "spell_type": "Charm",
+            "defining_feature": "Alteration of the objects inherent qualities i.e. its behaviour and capabilities."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "When cast by an experienced practitioner, charms appeared to usually have fairly long-lasting effects."
+        }
+    ]
+}

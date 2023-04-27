@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.cistem_aperio.name",
+  "description": "spell.cistem_aperio.description",
+  "icon": "spell.cistem_aperio.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "cistem_aperio",
+      "spell": "spell.cistem_aperio",
+      "spell_type": "spell.type.charm",
+      "cast_type": "cast",
+      "description": "spell.cistem_aperio.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.cistem_aperio.page.page2"
+    }
+  ]
+}

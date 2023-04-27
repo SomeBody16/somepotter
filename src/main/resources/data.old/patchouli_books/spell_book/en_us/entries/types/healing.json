@@ -1,0 +1,16 @@
+{
+    "name": "Healing",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_types",
+    "pages": [
+        {
+            "type": "patchouli:type_summary",
+            "spell_type": "Healing",
+            "defining_feature": "For improving the condition of a living, injured or ill target."
+        },
+        {
+            "type": "patchouli:text",
+            "text": ""
+        }
+    ]
+}

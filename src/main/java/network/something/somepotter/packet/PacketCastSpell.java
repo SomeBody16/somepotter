@@ -6,8 +6,9 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
 import network.something.somepotter.init.ItemInit;
+import network.something.somepotter.spell.spells.AbstractSpell;
 import network.something.somepotter.spell.spells.Spells;
-import network.something.somepotter.spell.spells.UnknownSpell;
+import network.something.somepotter.spell.spells.basic_cast.BasicCastSpell;
 
 import java.util.function.Supplier;
 
@@ -41,15 +42,14 @@ public class PacketCastSpell {
             var spellId = spellName.toLowerCase().replaceAll(" ", "_");
 
             var spell = Spells.get(spellId);
-            if (spell instanceof UnknownSpell) {
+            if (spell instanceof BasicCastSpell && !spellId.isEmpty()) {
                 var message = new TextComponent(spellName)
                         .withStyle(ChatFormatting.RED)
                         .withStyle(ChatFormatting.ITALIC);
                 caster.sendMessage(message, NIL_UUID);
-                return;
             }
 
-            spell.cast(caster);
+            AbstractSpell.Event.cast(spell, caster);
         });
         return true;
     }

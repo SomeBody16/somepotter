@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.basic_cast.name",
+  "description": "spell.basic_cast.description",
+  "icon": "spell.basic_cast.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "basic_cast",
+      "spell": "spell.basic_cast",
+      "spell_type": "spell.type.charm",
+      "cast_type": "cast",
+      "description": "spell.basic_cast.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.basic_cast.page.page2"
+    }
+  ]
+}

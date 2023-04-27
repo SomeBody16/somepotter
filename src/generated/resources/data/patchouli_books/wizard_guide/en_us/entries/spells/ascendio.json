@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.ascendio.name",
+  "description": "spell.ascendio.description",
+  "icon": "spell.ascendio.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "ascendio",
+      "spell": "spell.ascendio",
+      "spell_type": "spell.type.charm",
+      "cast_type": "cast",
+      "description": "spell.ascendio.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.ascendio.page.page2"
+    }
+  ]
+}

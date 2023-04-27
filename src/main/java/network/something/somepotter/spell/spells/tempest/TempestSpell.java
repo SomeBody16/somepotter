@@ -1,6 +1,8 @@
 package network.something.somepotter.spell.spells.tempest;
 
 import network.something.somepotter.spell.spells.AbstractSpell;
+import network.something.somepotter.spell.type.SpellType;
+import network.something.somepotter.spell.type.SpellTypes;
 import network.something.somepotter.util.SpellColor;
 
 import java.util.List;
@@ -15,6 +17,11 @@ public class TempestSpell extends AbstractSpell {
 
     public TempestSpell() {
         super(ID);
+    }
+
+    @Override
+    public SpellType getType() {
+        return SpellTypes.JINX;
     }
 
     @Override

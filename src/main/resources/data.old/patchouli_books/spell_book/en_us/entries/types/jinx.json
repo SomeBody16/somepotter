@@ -1,0 +1,16 @@
+{
+    "name": "Jinx",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_types",
+    "pages": [
+        {
+            "type": "patchouli:type_summary",
+            "spell_type": "Jinx",
+            "defining_feature": "Minor dark magic; spells whose effects were irritating but amusing, almost playful and of minor inconvenience to the target."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Jinxes could only be maintained as long as the caster kept eye contact."
+        }
+    ]
+}

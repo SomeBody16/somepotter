@@ -18,7 +18,7 @@ import net.minecraftforge.common.MinecraftForge;
 import network.something.somepotter.spell.api.event.SpellHitBlockEvent;
 import network.something.somepotter.spell.api.event.SpellHitEntityEvent;
 import network.something.somepotter.spell.api.particle.SpellParticle;
-import network.something.somepotter.spell.spells.UnknownSpell;
+import network.something.somepotter.spell.spells.basic_cast.BasicCastSpell;
 import org.jetbrains.annotations.NotNull;
 
 public class SpellProjectileEntity extends Projectile {
@@ -37,7 +37,7 @@ public class SpellProjectileEntity extends Projectile {
 
     @Override
     protected void defineSynchedData() {
-        this.getEntityData().define(SPELL_ID, UnknownSpell.instance.getId());
+        this.getEntityData().define(SPELL_ID, BasicCastSpell.instance.getId());
     }
 
     public String getSpellId() {

@@ -1,0 +1,16 @@
+{
+  "category": "patchouli:spell_types",
+  "name": "spell.type.transfiguration.name",
+  "description": "spell.type.transfiguration.description",
+  "icon": "spell.type.transfiguration.icon",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "spell.type.transfiguration.page.page1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.type.transfiguration.page.page2"
+    }
+  ]
+}

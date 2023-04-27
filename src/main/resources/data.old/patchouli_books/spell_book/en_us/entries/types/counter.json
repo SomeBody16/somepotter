@@ -1,0 +1,16 @@
+{
+    "name": "Counter",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_types",
+    "pages": [
+        {
+            "type": "patchouli:type_summary",
+            "spell_type": "Counter",
+            "defining_feature": "Inhibition of the effect of another spell."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Counter-spells were used to inhibit or counteract the effects of other spells."
+        }
+    ]
+}

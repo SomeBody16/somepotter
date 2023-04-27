@@ -1,0 +1,16 @@
+{
+  "category": "patchouli:spell_types",
+  "name": "spell.type.charm.name",
+  "description": "spell.type.charm.description",
+  "icon": "spell.type.charm.icon",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "spell.type.charm.page.page1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.type.charm.page.page2"
+    }
+  ]
+}

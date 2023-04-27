@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.stupefy.name",
+  "description": "spell.stupefy.description",
+  "icon": "spell.stupefy.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "stupefy",
+      "spell": "spell.stupefy",
+      "spell_type": "spell.type.charm",
+      "cast_type": "cast",
+      "description": "spell.stupefy.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.stupefy.page.page2"
+    }
+  ]
+}

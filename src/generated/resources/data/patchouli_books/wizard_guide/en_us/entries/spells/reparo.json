@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.reparo.name",
+  "description": "spell.reparo.description",
+  "icon": "spell.reparo.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "reparo",
+      "spell": "spell.reparo",
+      "spell_type": "spell.type.charm",
+      "cast_type": "cast",
+      "description": "spell.reparo.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.reparo.page.page2"
+    }
+  ]
+}

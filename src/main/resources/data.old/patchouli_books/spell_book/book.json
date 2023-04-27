@@ -1,0 +1,19 @@
+{
+    "name": "The Wizard's Guide",
+    "landing_text": "Welcome to the world of magic! Whether you are a witch, wizard, or aspiring spellcaster, \"The Wizard's Guide to Spellcasting\" is the perfect tool for mastering the art of magic. With a comprehensive collection of spells and enchantments from the wizarding world, this book will help you unleash your inner magic and become a skilled spellcaster.$(p)Each spell is carefully crafted and explained in detail, with step-by-step instructions on how to cast them. From the basics of wand movements to the complexities of potion-making, this guide will help you hone your skills and unleash your full magical potential.",
+    "version": 1,
+    "show_toasts": "false",
+    "show_progress": "false",
+    "macros": {
+        "type::transfiguration": "Transfiguration",
+        "type::charm": "Charm",
+        "type::jinx": "Jinx",
+        "type::hex": "Hex",
+        "type::curse": "Curse",
+        "type::counter": "Counter",
+        "type::healing": "Healing",
+        "cast::touch": "Touch",
+        "cast::projectile": "Projectile",
+        "cast::projectile_or_self": "Projectile or Self"
+    }
+}

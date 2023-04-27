@@ -1,8 +1,8 @@
 package network.something.somepotter.spell.spells.fumos;
 
-import network.something.somepotter.spell.api.cast.ProjectileOrSelfCast;
 import network.something.somepotter.spell.api.event.SpellCastEvent;
 import network.something.somepotter.spell.api.event.SpellCastListener;
+import network.something.somepotter.spell.cast.projectile_or_self.ProjectileOrSelfCast;
 
 public class FumosCastListener extends SpellCastListener {
 

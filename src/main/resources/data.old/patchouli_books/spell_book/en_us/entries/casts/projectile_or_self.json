@@ -1,0 +1,11 @@
+{
+    "name": "",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_casts",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": ""
+        }
+    ]
+}

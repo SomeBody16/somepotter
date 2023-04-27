@@ -1,0 +1,12 @@
+{
+    "name": "Hex",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_types",
+    "pages": [
+        {
+            "type": "patchouli:type_summary",
+            "spell_type": "Hex",
+            "defining_feature": "Consistently affected the object in a negative manner; had connotations of dark magic, but more so than a jinx. Major inconvenience to the target."
+        }
+    ]
+}

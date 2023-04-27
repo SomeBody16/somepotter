@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.confringo.name",
+  "description": "spell.confringo.description",
+  "icon": "spell.confringo.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "confringo",
+      "spell": "spell.confringo",
+      "spell_type": "spell.type.curse",
+      "cast_type": "cast",
+      "description": "spell.confringo.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.confringo.page.page2"
+    }
+  ]
+}

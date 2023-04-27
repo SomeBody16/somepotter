@@ -6,7 +6,7 @@ plugins {
 
 
 group = 'network.something'
-version = "${mod_version}"
+version = "pre"
 
 configurations {
     library
@@ -132,21 +132,23 @@ repositories {
     //     dir 'libs'
     // }
 
-    maven {
-        name = "sphinx4"
-        url = "https://oss.sonatype.org/content/repositories/snapshots"
-    }
-    maven { //sphinx4
+    maven { // Sphinx4
         name = "Sonatype"
         url = "https://oss.sonatype.org/content/repositories/snapshots"
     }
     maven { // Patchouli
         url 'https://maven.blamejared.com'
     }
+//    maven { // Cloth Config
+//        url "https://maven.shedaniel.me/"
+//    }
+    maven { // GeckoLib
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+    }
 }
 
 dependencies {
-    // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft' it is assumed
+    // Specify the build_number of Minecraft to use. If this is any group other than 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft "net.minecraftforge:forge:${forge_version}"
@@ -168,8 +170,12 @@ dependencies {
     shade fg.deobf("edu.cmu.sphinx:sphinx4-core:${sphinx4_version}")
     shade fg.deobf("edu.cmu.sphinx:sphinx4-data:${sphinx4_version}")
 
-    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
-    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
+    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.57')
+
+//    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
+//    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
+
+//    implementation fg.deobf("me.shedaniel.cloth:cloth-config-forge:${cloth_version}")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
@@ -178,7 +184,7 @@ jar {
         attributes([
                 "Specification-Title"     : "somepotter",
                 "Specification-Vendor"    : "SomeBody16",
-                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Specification-Version"   : "1", // We are build_number 1 of ourselves
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : "SomeBody16",
@@ -195,20 +201,36 @@ shadowJar {
     finalizedBy 'reobfShadowJar' // <- Finish shading with reobfuscation
     mergeServiceFiles()
 }
+def build_number_file = rootProject.file('build_number')
+def build_number = build_number_file.text.trim()
+shadowJar.archiveName = "somepotter-${mod_version}-${build_number}.jar"
 
 reobf { // <- Add the output of shadowJar to reobfuscation, so shadowed content is reobfuscated
     shadowJar {}
 }
 
-jar.finalizedBy('reobfJar')
-jar.finalizedBy('shadowJar')
-
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+def outputDir = System.getenv("OUTPUT_DIR")
+task deleteOld(type: Delete) {
+    delete fileTree(outputDir) {
+        include '**/somepotter-*.jar'
+    }
 }
 
 task copyJar(type: Copy) {
     from shadowJar
-    into "D:\\Program Files\\Minecraft\\Instances\\SomeMagic\\mods"
+    into outputDir
 }
-tasks.copyJar.dependsOn(shadowJar)
+tasks.copyJar.dependsOn(deleteOld)
+
+task incrementVersion() {
+    build_number_file.write(++build_number)
+}
+
+jar.finalizedBy('reobfJar')
+jar.finalizedBy('shadowJar')
+jar.finalizedBy('incrementVersion')
+jar.finalizedBy('copyJar')
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}

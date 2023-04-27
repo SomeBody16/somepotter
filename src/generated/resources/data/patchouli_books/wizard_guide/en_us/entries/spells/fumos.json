@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.fumos.name",
+  "description": "spell.fumos.description",
+  "icon": "spell.fumos.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "fumos",
+      "spell": "spell.fumos",
+      "spell_type": "spell.type.charm",
+      "cast_type": "cast",
+      "description": "spell.fumos.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.fumos.page.page2"
+    }
+  ]
+}

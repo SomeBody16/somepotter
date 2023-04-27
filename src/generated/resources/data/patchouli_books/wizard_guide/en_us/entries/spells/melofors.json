@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.melofors.name",
+  "description": "spell.melofors.description",
+  "icon": "spell.melofors.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "melofors",
+      "spell": "spell.melofors",
+      "spell_type": "spell.type.jinx",
+      "cast_type": "cast",
+      "description": "spell.melofors.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.melofors.page.page2"
+    }
+  ]
+}

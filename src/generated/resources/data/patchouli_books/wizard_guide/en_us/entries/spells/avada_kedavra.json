@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.avada_kedavra.name",
+  "description": "spell.avada_kedavra.description",
+  "icon": "spell.avada_kedavra.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "avada_kedavra",
+      "spell": "spell.avada_kedavra",
+      "spell_type": "spell.type.curse",
+      "cast_type": "cast",
+      "description": "spell.avada_kedavra.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.avada_kedavra.page.page2"
+    }
+  ]
+}

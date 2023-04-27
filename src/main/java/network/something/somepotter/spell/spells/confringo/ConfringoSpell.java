@@ -3,6 +3,8 @@ package network.something.somepotter.spell.spells.confringo;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import network.something.somepotter.spell.spells.AbstractSpell;
+import network.something.somepotter.spell.type.SpellType;
+import network.something.somepotter.spell.type.SpellTypes;
 import network.something.somepotter.util.DamageSourceUtil;
 import network.something.somepotter.util.SpellColor;
 
@@ -24,6 +26,11 @@ public class ConfringoSpell extends AbstractSpell {
 
     public ConfringoSpell() {
         super(ID);
+    }
+
+    @Override
+    public SpellType getType() {
+        return SpellTypes.CURSE;
     }
 
     @Override

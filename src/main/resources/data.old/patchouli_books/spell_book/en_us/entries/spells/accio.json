@@ -1,0 +1,24 @@
+{
+    "name": "Accio",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_spells",
+    "pages": [
+        {
+            "type": "patchouli:spell_summary",
+            "spell_id": "accio",
+            "spell": "Accio",
+            "spell_type": "<utility>",
+            "cast_type": "<touch>",
+            "description": "Pull items to player inventory",
+            "button": "$(c:/trigger) Select $(/c)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "\"Accio\" is a charm that summons an object to the caster. The charm can be used to summon objects from a distance, making it a useful tool for wizards and witches.$(p)To perform the spell, the caster must first visualize the object they wish to summon and then point their wand in the direction of the object. The caster then says \"Accio\" and the object will fly towards them at a high speed.$(p)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "While \"Accio\" is a relatively simple spell, it requires a certain level of skill and concentration to perform correctly. The caster must be able to focus their mind on the object they wish to summon and channel their magical energy through their wand in a precise manner.$(p)In the wizarding world, \"Accio\" is a commonly used spell and can be found in many magical textbooks. It has been used in a variety of situations, from summoning brooms for Quidditch matches to retrieving important objects from a distance.$(p)"
+        }
+    ]
+}

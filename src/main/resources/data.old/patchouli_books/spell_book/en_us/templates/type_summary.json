@@ -1,0 +1,19 @@
+{
+    "components": [
+        {
+            "type": "patchouli:header",
+            "text": "#spell_type#",
+            "centered": false
+        },
+        {
+            "type": "patchouli:text",
+            "text": "$(bold)Defining Feature:",
+            "y": 16
+        },
+        {
+            "type": "patchouli:text",
+            "text": "#defining_feature#",
+            "y": 30
+        }
+    ]
+}

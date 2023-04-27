@@ -1,0 +1,16 @@
+{
+  "category": "patchouli:spell_types",
+  "name": "spell.type.curse.name",
+  "description": "spell.type.curse.description",
+  "icon": "spell.type.curse.icon",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "spell.type.curse.page.page1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.type.curse.page.page2"
+    }
+  ]
+}

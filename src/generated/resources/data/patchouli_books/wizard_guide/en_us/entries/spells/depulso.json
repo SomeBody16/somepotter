@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.depulso.name",
+  "description": "spell.depulso.description",
+  "icon": "spell.depulso.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "depulso",
+      "spell": "spell.depulso",
+      "spell_type": "spell.type.charm",
+      "cast_type": "cast",
+      "description": "spell.depulso.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.depulso.page.page2"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+    "name": "Casts",
+    "description": "Spell cast defines how it will act in world after pronunciation and who or what will be affected by it",
+    "icon": "somepotter:wand"
+}

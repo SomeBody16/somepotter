@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.bombarda_maxima.name",
+  "description": "spell.bombarda_maxima.description",
+  "icon": "spell.bombarda_maxima.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "bombarda_maxima",
+      "spell": "spell.bombarda_maxima",
+      "spell_type": "spell.type.charm",
+      "cast_type": "cast",
+      "description": "spell.bombarda_maxima.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.bombarda_maxima.page.page2"
+    }
+  ]
+}

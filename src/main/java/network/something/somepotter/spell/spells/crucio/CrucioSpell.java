@@ -3,6 +3,8 @@ package network.something.somepotter.spell.spells.crucio;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import network.something.somepotter.spell.spells.AbstractSpell;
+import network.something.somepotter.spell.type.SpellType;
+import network.something.somepotter.spell.type.SpellTypes;
 import network.something.somepotter.util.DamageSourceUtil;
 import network.something.somepotter.util.SpellColor;
 
@@ -26,6 +28,11 @@ public class CrucioSpell extends AbstractSpell {
 
     public CrucioSpell() {
         super(ID);
+    }
+
+    @Override
+    public SpellType getType() {
+        return SpellTypes.CURSE;
     }
 
     @Override

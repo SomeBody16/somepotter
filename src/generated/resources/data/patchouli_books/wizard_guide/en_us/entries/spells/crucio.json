@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.crucio.name",
+  "description": "spell.crucio.description",
+  "icon": "spell.crucio.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "crucio",
+      "spell": "spell.crucio",
+      "spell_type": "spell.type.curse",
+      "cast_type": "cast",
+      "description": "spell.crucio.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.crucio.page.page2"
+    }
+  ]
+}

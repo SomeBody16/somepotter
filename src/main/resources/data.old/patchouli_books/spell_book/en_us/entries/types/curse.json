@@ -1,0 +1,12 @@
+{
+    "name": "Curse",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_types",
+    "pages": [
+        {
+            "type": "patchouli:type_summary",
+            "spell_type": "Curse",
+            "defining_feature": "The worst kind of dark magic, intended to affect the target in a strongly negative manner."
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.episkey.name",
+  "description": "spell.episkey.description",
+  "icon": "spell.episkey.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "episkey",
+      "spell": "spell.episkey",
+      "spell_type": "spell.type.healing",
+      "cast_type": "cast",
+      "description": "spell.episkey.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.episkey.page.page2"
+    }
+  ]
+}

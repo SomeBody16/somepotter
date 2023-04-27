@@ -10,6 +10,9 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import network.something.somepotter.client.speech.SpeechToSpellThread;
+import network.something.somepotter.spell.spells.AbstractSpell;
+import network.something.somepotter.spell.spells.Spells;
+import org.jetbrains.annotations.NotNull;
 
 public class ItemWand extends Item {
     public ItemWand() {
@@ -18,21 +21,20 @@ public class ItemWand extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
-        player.startUsingItem(usedHand);
+        if (player.isCrouching()) {
+            if (!level.isClientSide) {
+                AbstractSpell.Event.cast(Spells.BASIC_CAST, player);
+            }
+            return InteractionResultHolder.consume(player.getItemInHand(usedHand));
+        }
 
+        player.startUsingItem(usedHand);
         if (level.isClientSide) {
             SpeechToSpellThread.getInstance().resumeRecognition();
             return InteractionResultHolder.success(player.getItemInHand(usedHand));
         }
 
         return InteractionResultHolder.consume(player.getItemInHand(usedHand));
-
-
-//        Spell spell = getSpell(player, usedHand);
-//        spell.cast();
-//
-//        player.swing(usedHand, true);
-//        return InteractionResultHolder.pass(player.getItemInHand(usedHand));
     }
 
     @Override
@@ -43,7 +45,7 @@ public class ItemWand extends Item {
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack pStack) {
+    public @NotNull UseAnim getUseAnimation(ItemStack pStack) {
         return UseAnim.BLOCK;
     }
 

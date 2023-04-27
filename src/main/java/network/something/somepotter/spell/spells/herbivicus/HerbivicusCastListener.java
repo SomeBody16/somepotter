@@ -1,8 +1,8 @@
 package network.something.somepotter.spell.spells.herbivicus;
 
-import network.something.somepotter.spell.api.cast.ProjectileCast;
 import network.something.somepotter.spell.api.event.SpellCastEvent;
 import network.something.somepotter.spell.api.event.SpellCastListener;
+import network.something.somepotter.spell.cast.projectile.ProjectileCast;
 
 public class HerbivicusCastListener extends SpellCastListener {
 

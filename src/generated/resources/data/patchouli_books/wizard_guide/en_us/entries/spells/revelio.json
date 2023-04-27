@@ -1,0 +1,20 @@
+{
+  "category": "patchouli:spells",
+  "name": "spell.revelio.name",
+  "description": "spell.revelio.description",
+  "icon": "spell.revelio.icon",
+  "pages": [
+    {
+      "type": "patchouli:spell_summary",
+      "spell_id": "revelio",
+      "spell": "spell.revelio",
+      "spell_type": "spell.type.charm",
+      "cast_type": "cast",
+      "description": "spell.revelio.description"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.revelio.page.page2"
+    }
+  ]
+}

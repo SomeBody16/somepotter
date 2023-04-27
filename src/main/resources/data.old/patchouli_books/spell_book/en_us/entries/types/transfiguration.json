@@ -1,0 +1,16 @@
+{
+    "name": "Transfiguration",
+    "icon": "somepotter:wand",
+    "category": "patchouli:category_types",
+    "pages": [
+        {
+            "type": "patchouli:type_summary",
+            "spell_type": "Transfiguration",
+            "defining_feature": "Alteration of the object's form or appearance."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Spells of this group may be separated into true transfiguration spells (where an existing object was altered) and conjurations, where the desired object was seemingly transfigured out of thin air."
+        }
+    ]
+}

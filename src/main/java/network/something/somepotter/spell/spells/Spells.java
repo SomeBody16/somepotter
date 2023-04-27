@@ -7,6 +7,7 @@ import network.something.somepotter.spell.spells.aguamenti.AguamentiSpell;
 import network.something.somepotter.spell.spells.alohomora.AlohomoraSpell;
 import network.something.somepotter.spell.spells.ascendio.AscendioSpell;
 import network.something.somepotter.spell.spells.avada_kedavra.AvadaKedavraSpell;
+import network.something.somepotter.spell.spells.basic_cast.BasicCastSpell;
 import network.something.somepotter.spell.spells.bombarda.BombardaSpell;
 import network.something.somepotter.spell.spells.cistem_aperio.CistemAperioSpell;
 import network.something.somepotter.spell.spells.colloportus.ColloportusSpell;
@@ -21,13 +22,16 @@ import network.something.somepotter.spell.spells.herbivicus.HerbivicusSpell;
 import network.something.somepotter.spell.spells.incendio.IncendioSpell;
 import network.something.somepotter.spell.spells.levioso.LeviosoSpell;
 import network.something.somepotter.spell.spells.melofors.MeloforsSpell;
+import network.something.somepotter.spell.spells.morsmordre.MorsmordreSpell;
 import network.something.somepotter.spell.spells.obscuro.ObscuroSpell;
 import network.something.somepotter.spell.spells.reparo.ReparoSpell;
 import network.something.somepotter.spell.spells.revelio.RevelioSpell;
 import network.something.somepotter.spell.spells.stupefy.StupefySpell;
 import network.something.somepotter.spell.spells.tempest.TempestSpell;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -40,6 +44,7 @@ public class Spells {
     public static AlohomoraSpell ALOHOMORA = register(new AlohomoraSpell());
     public static AscendioSpell ASCENDIO = register(new AscendioSpell());
     public static AvadaKedavraSpell AVADA_KEDAVRA = register(new AvadaKedavraSpell());
+    public static BasicCastSpell BASIC_CAST = register(new BasicCastSpell());
     public static BombardaSpell BOMBARDA = register(BombardaSpell.BOMBARDA);
     public static BombardaSpell BOMBARDA_MAXIMA = register(BombardaSpell.BOMBARDA_MAXIMA);
     public static CistemAperioSpell CISTEM_APERIO = register(new CistemAperioSpell());
@@ -55,6 +60,7 @@ public class Spells {
     public static IncendioSpell INCENDIO = register(new IncendioSpell());
     public static LeviosoSpell LEVIOSO = register(new LeviosoSpell());
     public static MeloforsSpell MELOFORS = register(new MeloforsSpell());
+    public static MorsmordreSpell MORSMORDRE = register(new MorsmordreSpell());
     public static ObscuroSpell OBSCURO = register(new ObscuroSpell());
     public static ReparoSpell REPARO = register(new ReparoSpell());
     public static RevelioSpell REVELIO = register(new RevelioSpell());
@@ -62,7 +68,7 @@ public class Spells {
     public static TempestSpell TEMPEST = register(new TempestSpell());
 
     public static AbstractSpell get(String spellId) {
-        return SPELLS.getOrDefault(spellId, UnknownSpell.instance);
+        return SPELLS.getOrDefault(spellId, BasicCastSpell.instance);
     }
 
     private static <TSpell extends AbstractSpell> TSpell register(TSpell spell) {
@@ -74,6 +80,10 @@ public class Spells {
 
     public static void forEach(Consumer<AbstractSpell> consumer) {
         SPELLS.forEach((id, spell) -> consumer.accept(spell));
+    }
+
+    public static List<AbstractSpell> asList() {
+        return new ArrayList<>(SPELLS.values());
     }
 
 }
