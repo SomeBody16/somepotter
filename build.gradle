@@ -1,9 +1,4 @@
 buildscript {
-    repositories {
-        // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
-        maven { url = 'https://maven.minecraftforge.net' }
-        mavenCentral()
-    }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
     }
@@ -13,8 +8,10 @@ plugins {
     id 'eclipse'
     id 'maven-publish'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
-apply plugin: 'net.minecraftforge.gradle'
+//apply plugin: 'net.minecraftforge.gradle'
 
 configurations {
     shade
@@ -43,7 +40,9 @@ minecraft {
     //
     // Use non-default mappings at your own risk. They may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'official', version: '1.18.2'
+//    mappings channel: 'official', version: '1.18.2'
+
+    mappings channel: 'parchment', version: '2022.11.06-1.18.2'
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
 
@@ -67,6 +66,8 @@ minecraft {
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', 'somepotter'
+
+            args '--username', 'SomeBody16'
 
             mods {
                 somepotter {
@@ -151,8 +152,9 @@ repositories {
     //     dir 'libs'
     // }
 
-    maven { url 'https://maven.parchmentmc.org' }
     maven { url 'https://cursemaven.com' }
+    maven { url 'https://maven.lukegrahamlandry.ca' }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -173,9 +175,11 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-    implementation "curse.maven:the_vault-${the_vault_id_project}:${the_vault_id_file}"
+//    implementation "curse.maven:the_vault-${the_vault_id_project}:${the_vault_id_file}"
+//    implementation fg.deobf(group: 'ca.lukegrahamlandry.lib', name: 'WrapperLib-1.18-Forge', version: '1.1.0') { transitive false }
 
-    shade 'com.google.cloud:google-cloud-speech:4.27.0'
+    shade 'com.github.cluelab:dollar-recognizers-java:79105ed0fc'
+    minecraftLibrary 'com.github.cluelab:dollar-recognizers-java:79105ed0fc'
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
@@ -198,10 +202,7 @@ jar.finalizedBy('reobfJar')
 shadowJar {
     archiveClassifier = ''
     configurations = [project.configurations.shade]
-    relocate 'com.google', 'somepotter.google'
-    relocate 'org.apache.http', 'somepotter.apache.http'
-    relocate 'org.apache.commons.codec', 'somepotter.apache.commons.codec'
-    relocate 'org.apache.commons.logging', 'somepotter.apache.commons.logging'
+    relocate 'com.github.cluelab', 'network.something.cluelab'
     finalizedBy 'reobfShadowJar'
 }
 assemble.dependsOn shadowJar
