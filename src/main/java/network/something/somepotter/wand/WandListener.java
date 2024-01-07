@@ -1,74 +1,34 @@
 package network.something.somepotter.wand;
 
-import ca.lukegrahamlandry.lib.keybind.KeybindWrapper;
-import com.mojang.blaze3d.platform.InputConstants;
-import net.minecraft.client.Minecraft;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import network.something.somepotter.SomePotter;
 
-@Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class WandListener {
 
-    public static KeybindWrapper SPELL_CAST_KEY;
+    @SubscribeEvent
+    public static void onWandUse(PlayerInteractEvent.RightClickItem event) {
+        if (event.getSide().isClient()) return;
 
-    public static void registerKeys() {
-        SPELL_CAST_KEY = KeybindWrapper.of("spell_cast", SomePotter.MOD_ID, InputConstants.KEY_GRAVE)
-                .onHeldTick(WandListener::onSpellCastHeld)
-                .onPress(WandListener::onSpellCastPress)
-                .onRelease(WandListener::onSpellCastRelease);
+        var item = event.getItemStack();
+        if (!isItemWand(item)) return;
+
+        var player = (ServerPlayer) event.getPlayer();
+        ChosenSpells.castChosenSpell(player);
     }
 
-    public static void onSpellCastPress(Player player) {
+    public static boolean isPlayerHoldingWand(Player player) {
         var mainHand = player.getMainHandItem();
         var offHand = player.getOffhandItem();
-        var playerHoldingWand = isItemWand(mainHand) || isItemWand(offHand);
-
-        var mc = Minecraft.getInstance();
-        var thereIsNoScreenOpen = mc.screen == null;
-
-        if (playerHoldingWand && thereIsNoScreenOpen) {
-            mc.setScreen(new GestureScreen());
-//            mc.mouseHandler.releaseMouse();
-
-//            GestureHandler.INSTANCE.startRecording();
-        }
+        return isItemWand(mainHand) || isItemWand(offHand);
     }
 
-    protected static boolean wasMouseDown = false;
-
-    public static void onSpellCastHeld(Player player) {
-        var mc = Minecraft.getInstance();
-        var xPos = (float) mc.mouseHandler.xpos();
-        var yPos = (float) mc.mouseHandler.ypos();
-
-        var isMouseDown = mc.mouseHandler.isRightPressed();
-
-        if (isMouseDown && !wasMouseDown) {
-            SomePotter.LOGGER.info("New stroke");
-//            GestureHandler.INSTANCE.nextStroke();
-        }
-        if (isMouseDown) {
-            wasMouseDown = true;
-//            GestureHandler.INSTANCE.recordPoint(xPos, yPos);
-        }
-        if (!isMouseDown && wasMouseDown) {
-            wasMouseDown = false;
-        }
-    }
-
-    public static void onSpellCastRelease(Player player) {
-//        var mc = Minecraft.getInstance();
-//        mc.mouseHandler.grabMouse();
-//        mc.setScreen(null);
-
-//        GestureHandler.INSTANCE.stopRecordingAndRecognize();
-    }
-
-    protected static boolean isItemWand(ItemStack item) {
+    public static boolean isItemWand(ItemStack item) {
         return true;
     }
-
 }

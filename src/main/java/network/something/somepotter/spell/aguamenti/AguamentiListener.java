@@ -1,21 +1,20 @@
 package network.something.somepotter.spell.aguamenti;
 
 import net.minecraft.network.chat.TextComponent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import network.something.somepotter.SomePotter;
+import network.something.somepotter.cast.touch.TouchCast;
 import network.something.somepotter.event.SpellCastEvent;
+import network.something.somepotter.spell.SpellListener;
 
-@Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class AguamentiListener {
+public class AguamentiListener extends SpellListener<AguamentiSpell> {
 
-    @SubscribeEvent
-    public static void onSpellCast(SpellCastEvent.Post<AguamentiSpell> event) {
-        if (!event.is(AguamentiSpell.ID)) return;
-
+    @Override
+    public void onSpellCast(SpellCastEvent.Post<AguamentiSpell> event) {
         var text = new TextComponent("AGUAMENTI!");
-        event.player.sendMessage(text, event.player.getUUID());
+        event.caster.sendMessage(text, event.caster.getUUID());
         SomePotter.LOGGER.info("AGUAMENTI! {}", event.spell.getId());
+
+        new TouchCast(event).execute();
     }
 
 }
