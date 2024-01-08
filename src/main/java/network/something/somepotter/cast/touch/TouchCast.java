@@ -1,15 +1,24 @@
 package network.something.somepotter.cast.touch;
 
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.Arrow;
-import net.minecraft.world.entity.projectile.ProjectileUtil;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraft.world.phys.Vec3;
 import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.spell.Spell;
 
 public class TouchCast {
+
+    public static void playParticles(ParticleOptions particle, ServerLevel level, Vec3 pos) {
+        level.sendParticles(
+                particle,
+                pos.x, pos.y, pos.z,
+                40,
+                1, 1, 1,
+                0.01
+        );
+    }
 
     public LivingEntity caster;
     public ServerLevel level;
@@ -17,9 +26,8 @@ public class TouchCast {
 
     public int abilityPower;
     public float areaOfEffect;
-    public float inaccuracy = 1.0F;
-    public float velocity = 32F;
-
+    public int range = 32;
+    public boolean canHitFluid = false;
 
     public TouchCast(SpellCastEvent<?> event) {
         this.caster = event.caster;
@@ -30,31 +38,22 @@ public class TouchCast {
     }
 
     public void execute() {
-        var entity = new Arrow(level, caster);
-        entity.shootFromRotation(caster,
-                caster.getXRot(), caster.getYRot(), 0.0F, velocity, inaccuracy);
-        var result = ProjectileUtil.getHitResult(entity, (e) -> true);
+        var result = caster.pick(range, 1.0F, canHitFluid);
 
-        var spellHitEventPre = new SpellHitEvent.Pre<>();
-        spellHitEventPre.spell = spell;
-        spellHitEventPre.caster = caster;
-        spellHitEventPre.level = level;
-        spellHitEventPre.abilityPower = abilityPower;
-        spellHitEventPre.areaOfEffect = areaOfEffect;
-        spellHitEventPre.hitResult = result;
+        var cancelled = SpellHitEvent.publish(spell, caster, level, abilityPower, areaOfEffect, result);
+        if (!cancelled) {
+            playParticles(spell.getParticle(), level, result.getLocation());
+        }
+    }
 
-        var cancelled = MinecraftForge.EVENT_BUS.post(spellHitEventPre);
-        if (cancelled) return;
+    public TouchCast setRange(int range) {
+        this.range = range;
+        return this;
+    }
 
-        var spellHitEventPost = new SpellHitEvent.Post<>();
-        spellHitEventPost.spell = spellHitEventPre.spell;
-        spellHitEventPost.caster = spellHitEventPre.caster;
-        spellHitEventPost.level = spellHitEventPre.level;
-        spellHitEventPost.abilityPower = spellHitEventPre.abilityPower;
-        spellHitEventPost.areaOfEffect = spellHitEventPre.areaOfEffect;
-        spellHitEventPost.hitResult = spellHitEventPre.hitResult;
-        MinecraftForge.EVENT_BUS.post(spellHitEventPost);
-
+    public TouchCast canHitFluid() {
+        this.canHitFluid = true;
+        return this;
     }
 
 }

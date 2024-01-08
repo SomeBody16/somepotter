@@ -1,6 +1,7 @@
 package network.something.somepotter.spell;
 
 import com.github.cluelab.dollar.Point;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -13,9 +14,11 @@ import net.minecraftforge.common.MinecraftForge;
 import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.util.AbilityPowerUtil;
+import network.something.somepotter.util.ColorUtil;
 import network.something.somepotter.util.ResourceUtil;
 import network.something.somepotter.wand.GestureHandler;
 
+@SuppressWarnings({"rawtypes", "unchecked"})
 public abstract class Spell {
 
     abstract public String getId();
@@ -26,25 +29,20 @@ public abstract class Spell {
         return 0;
     }
 
+    public ColorUtil getColor() {
+        return new ColorUtil(0, 0, 0);
+    }
+
+    public ParticleOptions getParticle() {
+        return getColor().getParticle();
+    }
+
 
     public void cast(LivingEntity caster) {
-        var spellCastEventPre = new SpellCastEvent.Pre<>();
-        spellCastEventPre.caster = caster;
-        spellCastEventPre.level = (ServerLevel) caster.getLevel();
-        spellCastEventPre.spell = this;
-        spellCastEventPre.abilityPower = AbilityPowerUtil.get(caster);
-        spellCastEventPre.areaOfEffect = getAreaOfEffect();
-
-        var cancelled = MinecraftForge.EVENT_BUS.post(spellCastEventPre);
-        if (cancelled) return;
-
-        var spellCastEventPost = new SpellCastEvent.Post<>();
-        spellCastEventPost.caster = spellCastEventPre.caster;
-        spellCastEventPost.level = spellCastEventPre.level;
-        spellCastEventPost.spell = spellCastEventPre.spell;
-        spellCastEventPost.abilityPower = spellCastEventPre.abilityPower;
-        spellCastEventPost.areaOfEffect = spellCastEventPre.areaOfEffect;
-        MinecraftForge.EVENT_BUS.post(spellCastEventPost);
+        var level = (ServerLevel) caster.getLevel();
+        var abilityPower = AbilityPowerUtil.get(caster);
+        var areaOfEffect = getAreaOfEffect();
+        SpellCastEvent.publish(this, caster, level, abilityPower, areaOfEffect);
     }
 
 

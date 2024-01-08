@@ -2,7 +2,7 @@ package network.something.somepotter.spell.basic_cast;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.phys.EntityHitResult;
-import network.something.somepotter.cast.touch.TouchCast;
+import network.something.somepotter.cast.projectile.ProjectileCast;
 import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.spell.SpellListener;
@@ -12,7 +12,8 @@ public class BasicCastListener extends SpellListener<BasicCastSpell> {
 
     @Override
     public void onSpellCast(SpellCastEvent.Post<BasicCastSpell> event) {
-        new TouchCast(event).execute();
+        new ProjectileCast(event)
+                .execute();
     }
 
     @Override

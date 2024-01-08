@@ -4,6 +4,7 @@ import ca.lukegrahamlandry.lib.config.ConfigWrapper;
 import network.something.somepotter.SomePotter;
 import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.SpellListener;
+import network.something.somepotter.util.ColorUtil;
 
 import java.util.function.Supplier;
 
@@ -17,6 +18,11 @@ public class BasicCastSpell extends Spell {
     @Override
     public String getId() {
         return ID;
+    }
+
+    @Override
+    public ColorUtil getColor() {
+        return new ColorUtil(0x8C2020);
     }
 
     @Override
