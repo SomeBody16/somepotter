@@ -18,6 +18,7 @@ public class TouchCast {
     public int abilityPower;
     public float areaOfEffect;
     public float inaccuracy = 1.0F;
+    public float velocity = 32F;
 
 
     public TouchCast(SpellCastEvent<?> event) {
@@ -31,7 +32,7 @@ public class TouchCast {
     public void execute() {
         var entity = new Arrow(level, caster);
         entity.shootFromRotation(caster,
-                caster.getXRot(), caster.getYRot(), 0.0F, abilityPower, inaccuracy);
+                caster.getXRot(), caster.getYRot(), 0.0F, velocity, inaccuracy);
         var result = ProjectileUtil.getHitResult(entity, (e) -> true);
 
         var spellHitEventPre = new SpellHitEvent.Pre<>();

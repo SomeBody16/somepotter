@@ -1,7 +1,6 @@
 package network.something.somepotter.init;
 
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.gui.OverlayRegistry;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -10,7 +9,6 @@ import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.accio.AccioSpell;
 import network.something.somepotter.spell.aguamenti.AguamentiSpell;
 import network.something.somepotter.spell.basic_cast.BasicCastSpell;
-import network.something.somepotter.wand.GestureHud;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,9 +45,6 @@ public class SpellInit {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         allSpells().forEach(Spell::register);
-
-        // Register HUD
-        OverlayRegistry.registerOverlayTop("Spell Gesture HUD", GestureHud::render);
     }
 
 }

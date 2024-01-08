@@ -144,6 +144,9 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    flatDir {
+        dirs '/libs'
+    }
     maven { url 'https://cursemaven.com' }
     maven { url 'https://maven.lukegrahamlandry.ca' }
     maven { url 'https://jitpack.io' }
@@ -153,6 +156,8 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.2.9'
 
 //    implementation fg.deobf("curse.maven:the_vault-${the_vault_id_project}:${the_vault_id_file}")
+//    implementation fg.deobf("iskallia.vault.the_vault:the_vault:3.11.0.2853")
+    implementation fg.deobf(files('libs/the_vault-1.18.2-3.11.0.2853.jar'))
     implementation fg.deobf(group: 'ca.lukegrahamlandry.lib', name: 'WrapperLib-1.18-Forge', version: '1.1.0') { transitive false }
 
     shade 'com.github.cluelab:dollar-recognizers-java:79105ed0fc'

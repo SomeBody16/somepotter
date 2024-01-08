@@ -2,6 +2,7 @@ package network.something.somepotter.spell;
 
 import com.github.cluelab.dollar.Point;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -11,6 +12,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.common.MinecraftForge;
 import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
+import network.something.somepotter.util.AbilityPowerUtil;
 import network.something.somepotter.util.ResourceUtil;
 import network.something.somepotter.wand.GestureHandler;
 
@@ -19,10 +21,6 @@ public abstract class Spell {
     abstract public String getId();
 
     abstract public SpellListener getListener();
-
-    public int getAbilityPower() {
-        return 0;
-    }
 
     public float getAreaOfEffect() {
         return 0;
@@ -34,7 +32,7 @@ public abstract class Spell {
         spellCastEventPre.caster = caster;
         spellCastEventPre.level = (ServerLevel) caster.getLevel();
         spellCastEventPre.spell = this;
-        spellCastEventPre.abilityPower = getAbilityPower();
+        spellCastEventPre.abilityPower = AbilityPowerUtil.get(caster);
         spellCastEventPre.areaOfEffect = getAreaOfEffect();
 
         var cancelled = MinecraftForge.EVENT_BUS.post(spellCastEventPre);
@@ -73,7 +71,12 @@ public abstract class Spell {
                 getListener().preSpellHitBlock(event, (BlockHitResult) event.hitResult);
             }
             if (event.hitResult.getType() == HitResult.Type.ENTITY) {
-                getListener().preSpellHitEntity(event, (EntityHitResult) event.hitResult);
+                var entity = ((EntityHitResult) event.hitResult).getEntity();
+                if (entity instanceof ServerPlayer player) {
+                    getListener().preSpellHitPlayer(event, (EntityHitResult) event.hitResult, player);
+                } else {
+                    getListener().preSpellHitEntity(event, (EntityHitResult) event.hitResult);
+                }
             }
         });
         MinecraftForge.EVENT_BUS.addListener((SpellHitEvent.Post<?> event) -> {
@@ -82,7 +85,12 @@ public abstract class Spell {
                 getListener().onSpellHitBlock(event, (BlockHitResult) event.hitResult);
             }
             if (event.hitResult.getType() == HitResult.Type.ENTITY) {
-                getListener().onSpellHitEntity(event, (EntityHitResult) event.hitResult);
+                var entity = ((EntityHitResult) event.hitResult).getEntity();
+                if (entity instanceof ServerPlayer player) {
+                    getListener().onSpellHitPlayer(event, (EntityHitResult) event.hitResult, player);
+                } else {
+                    getListener().onSpellHitEntity(event, (EntityHitResult) event.hitResult);
+                }
             }
         });
     }
@@ -105,9 +113,15 @@ public abstract class Spell {
     }
 
     public DamageSource getDamageSource(LivingEntity caster) {
+        DamageSource result;
         if (caster instanceof Player player) {
-            return DamageSource.playerAttack(player);
+            result = DamageSource.playerAttack(player);
+        } else {
+            result = DamageSource.mobAttack(caster);
         }
-        return DamageSource.mobAttack(caster);
+
+        return result
+                .setProjectile()
+                .setMagic();
     }
 }
