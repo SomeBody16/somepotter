@@ -80,7 +80,6 @@ public class GestureListener {
         if (gestureHandler.isRecording()
                 && event.getButton() == GLFW.GLFW_MOUSE_BUTTON_LEFT
                 && event.getAction() == GLFW.GLFW_PRESS) {
-            SomePotter.LOGGER.info("Mouse event canceled");
             event.setCanceled(true);
             isMouseDown = true;
         }

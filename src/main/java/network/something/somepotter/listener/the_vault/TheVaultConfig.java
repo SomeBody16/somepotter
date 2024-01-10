@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 
 public class TheVaultConfig {
 
-    protected static final Supplier<TheVaultConfig> CONFIG = ConfigUtil.wrap(TheVaultConfig.class, "the_vault");
+    protected static final Supplier<TheVaultConfig> CONFIG = ConfigUtil.server(TheVaultConfig.class, "the_vault");
 
     public static TheVaultConfig get() {
         return CONFIG.get();

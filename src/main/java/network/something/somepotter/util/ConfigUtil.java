@@ -8,9 +8,9 @@ import java.util.function.Supplier;
 
 public class ConfigUtil {
 
-    public static <T> Supplier<T> wrap(@NotNull Class<T> clazz, String name) {
+    public static <T> Supplier<T> server(@NotNull Class<T> clazz, String name) {
         return ConfigWrapper
-                .synced(clazz)
+                .server(clazz)
                 .dir(SomePotter.MOD_ID)
                 .named(name);
     }

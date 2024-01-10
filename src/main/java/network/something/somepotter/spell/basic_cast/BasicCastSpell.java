@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 public class BasicCastSpell extends Spell {
 
     public static final String ID = "basic_cast";
-    public static final Supplier<BasicCastConfig> CONFIG = ConfigUtil.wrap(BasicCastConfig.class, ID);
+    public static final Supplier<BasicCastConfig> CONFIG = ConfigUtil.server(BasicCastConfig.class, ID);
 
     @Override
     public String getId() {

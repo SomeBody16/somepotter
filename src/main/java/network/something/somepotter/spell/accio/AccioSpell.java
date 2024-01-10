@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 public class AccioSpell extends Spell {
 
     public static final String ID = "accio";
-    public static final Supplier<AccioConfig> CONFIG = ConfigUtil.wrap(AccioConfig.class, ID);
+    public static final Supplier<AccioConfig> CONFIG = ConfigUtil.server(AccioConfig.class, ID);
 
     @Override
     public String getId() {

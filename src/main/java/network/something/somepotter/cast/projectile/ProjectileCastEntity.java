@@ -104,11 +104,8 @@ public class ProjectileCastEntity extends Projectile {
     protected void onHit(@NotNull HitResult hitResult) {
         super.onHit(hitResult);
         if (!level.isClientSide) {
-            SomePotter.LOGGER.info("ProjectileCastEntity#onHit: {}", hitResult.getType());
-            SomePotter.LOGGER.info("ProjectileCastEntity#onHit: {}", hitResult.getLocation());
-
             var level = (ServerLevel) this.level;
-            var cancelled = SpellHitEvent.publish(getSpell(), getCaster(), level, getAbilityPower(), getAreaOfEffect(), hitResult);
+            SpellHitEvent.publish(getSpell(), getCaster(), level, getAbilityPower(), getAreaOfEffect(), hitResult);
             discard();
         }
     }
