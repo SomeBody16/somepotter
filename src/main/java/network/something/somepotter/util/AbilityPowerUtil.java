@@ -45,6 +45,14 @@ public class AbilityPowerUtil {
         return Math.round(scale(abilityPower, (float) minValue, (float) maxValue));
     }
 
+    public static float scale(int abilityPower, float value) {
+        return value * getMultiplier(abilityPower);
+    }
+
+    public static int scale(int abilityPower, int value) {
+        return Math.round(scale(abilityPower, (float) value));
+    }
+
     public static float getMultiplier(int abilityPower) {
         return abilityPower / (float) getPeakAbilityPower();
     }

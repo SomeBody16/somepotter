@@ -3,6 +3,8 @@ package network.something.somepotter.spell;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -36,6 +38,22 @@ public abstract class Spell {
 
     public ParticleOptions getParticle() {
         return getColor().getParticle();
+    }
+
+    public void playCastSound(SpellCastEvent.Post<Spell> event) {
+        var sound = SoundEvents.ENCHANTMENT_TABLE_USE;
+        var pitch = event.level.random.nextFloat(0.1F, 1F);
+        var pos = event.caster.getEyePosition();
+        event.level.playSound(
+                null,
+                pos.x, pos.y, pos.z,
+                sound,
+                SoundSource.PLAYERS,
+                1.0F, pitch
+        );
+    }
+
+    public void playHitSound(SpellHitEvent.Post<Spell> event) {
     }
 
 

@@ -1,10 +1,9 @@
 package network.something.somepotter.spell.accio;
 
-import ca.lukegrahamlandry.lib.config.ConfigWrapper;
-import network.something.somepotter.SomePotter;
 import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.SpellListener;
 import network.something.somepotter.util.ColorUtil;
+import network.something.somepotter.util.ConfigUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
@@ -17,9 +16,7 @@ import java.util.function.Supplier;
 public class AccioSpell extends Spell {
 
     public static final String ID = "accio";
-    public static final Supplier<AccioConfig> CONFIG = ConfigWrapper.server(AccioConfig.class)
-            .dir(SomePotter.MOD_ID)
-            .named(ID);
+    public static final Supplier<AccioConfig> CONFIG = ConfigUtil.wrap(AccioConfig.class, ID);
 
     @Override
     public String getId() {

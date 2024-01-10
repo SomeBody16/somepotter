@@ -1,8 +1,5 @@
 package network.something.somepotter.spell.avada_kedavra;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.EntityHitResult;
@@ -23,10 +20,6 @@ public class AvadaKedavraListener extends SpellListener<AvadaKedavraSpell> {
         if (entity instanceof LivingEntity livingEntity) {
             var damageSource = event.spell.getDamageSource(event.caster);
             livingEntity.hurt(damageSource, Float.MAX_VALUE);
-
-            var soundEvent = SoundEvents.WITHER_DEATH;
-            var pos = new BlockPos(livingEntity.position());
-            event.level.playSound(null, pos, soundEvent, SoundSource.PLAYERS, 1.0F, 1.0F);
         }
     }
 }

@@ -1,4 +1,4 @@
-package network.something.somepotter.the_vault;
+package network.something.somepotter.listener.the_vault;
 
 import iskallia.vault.util.calc.AreaOfEffectHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

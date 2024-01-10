@@ -4,8 +4,12 @@ import net.minecraftforge.fml.ModList;
 
 public class IntegrationUtil {
 
+    public static boolean theVault() {
+        return ModList.get().isLoaded("the_vault");
+    }
+
     public static void theVault(Runnable callback) {
-        if (ModList.get().isLoaded("the_vault")) {
+        if (theVault()) {
             callback.run();
         }
     }
