@@ -15,6 +15,8 @@ import network.something.somepotter.spell.SpellListener;
 import network.something.somepotter.tickable.Tickables;
 import network.something.somepotter.util.AbilityPowerUtil;
 
+import java.util.stream.Stream;
+
 public class AccioListener extends SpellListener<AccioSpell> {
 
     @Override
@@ -25,7 +27,11 @@ public class AccioListener extends SpellListener<AccioSpell> {
     @Override
     public void onSpellHitBlock(SpellHitEvent.Post<AccioSpell> event, BlockHitResult hitResult) {
         var area = new AABB(hitResult.getBlockPos()).deflate(1).inflate(event.areaOfEffect * 1.5);
-        var entities = event.level.getEntities(EntityType.ITEM, area, entity -> true);
+
+        var entities = Stream.concat(
+                event.level.getEntities(EntityType.ITEM, area, entity -> true).stream(),
+                event.level.getEntities(EntityType.EXPERIENCE_ORB, area, entity -> true).stream()
+        ).toList();
 
         var config = AccioSpell.CONFIG.get();
         var duration = AbilityPowerUtil.scale(event.abilityPower, config.durationMin, config.durationMax);

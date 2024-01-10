@@ -4,8 +4,8 @@ import ca.lukegrahamlandry.lib.config.Comment;
 import network.something.somepotter.spell.alarte_ascendare.AlarteAscendareSpell;
 import network.something.somepotter.spell.alohomora.AlohomoraSpell;
 import network.something.somepotter.spell.avada_kedavra.AvadaKedavraSpell;
-import network.something.somepotter.spell.bombarda.BombardaMaximaSpell;
 import network.something.somepotter.spell.bombarda.BombardaSpell;
+import network.something.somepotter.spell.bombarda_maxima.BombardaMaximaSpell;
 import network.something.somepotter.util.ConfigUtil;
 
 import java.util.Map;

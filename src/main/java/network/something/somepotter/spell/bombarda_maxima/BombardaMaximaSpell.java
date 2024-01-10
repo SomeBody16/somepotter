@@ -1,6 +1,7 @@
-package network.something.somepotter.spell.bombarda;
+package network.something.somepotter.spell.bombarda_maxima;
 
 import net.minecraft.world.level.Explosion;
+import network.something.somepotter.spell.bombarda.BombardaSpell;
 
 /**
  * Explodes the target (large explosion)

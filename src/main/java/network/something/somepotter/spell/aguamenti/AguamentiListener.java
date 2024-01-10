@@ -5,7 +5,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlockContainer;
 import net.minecraft.world.level.material.Fluids;
@@ -15,7 +14,6 @@ import network.something.somepotter.cast.projectile_or_self.ProjectileOrSelfCast
 import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.spell.SpellListener;
-import network.something.somepotter.tickable.Tickables;
 
 public class AguamentiListener extends SpellListener<AguamentiSpell> {
 
@@ -42,12 +40,12 @@ public class AguamentiListener extends SpellListener<AguamentiSpell> {
         var blockPos = hitResult.getBlockPos();
         var blockState = event.level.getBlockState(blockPos);
 
-        // Extinguish fire
-        if (blockState.getBlock() instanceof BaseFireBlock) {
-            var tickable = new ExtinguishFireTickable(event.level, blockPos, event.abilityPower, (int) event.areaOfEffect);
-            Tickables.add(tickable);
-            return;
-        }
+        // TODO: Extinguish fire
+//        if (blockState.getBlock() instanceof BaseFireBlock) {
+//            var tickable = new ExtinguishFireTickable(event.level, blockPos, event.abilityPower, (int) event.areaOfEffect);
+//            Tickables.add(tickable);
+//            return;
+//        }
 
         // If block can be waterlogged
         if (blockState.getBlock() instanceof LiquidBlockContainer liquidBlockContainer

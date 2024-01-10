@@ -14,8 +14,8 @@ import network.something.somepotter.spell.arresto_momentum.ArrestoMomentumSpell;
 import network.something.somepotter.spell.ascendio.AscendioSpell;
 import network.something.somepotter.spell.avada_kedavra.AvadaKedavraSpell;
 import network.something.somepotter.spell.basic_cast.BasicCastSpell;
-import network.something.somepotter.spell.bombarda.BombardaMaximaSpell;
 import network.something.somepotter.spell.bombarda.BombardaSpell;
+import network.something.somepotter.spell.bombarda_maxima.BombardaMaximaSpell;
 
 import java.util.ArrayList;
 import java.util.HashMap;
