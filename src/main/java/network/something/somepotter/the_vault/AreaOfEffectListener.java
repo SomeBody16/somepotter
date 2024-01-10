@@ -13,10 +13,7 @@ public class AreaOfEffectListener {
     @SubscribeEvent
     public static void onSpellCast(SpellCastEvent.Pre<?> event) {
         IntegrationUtil.theVault(() -> {
-            var oldAreaOfEffect = event.areaOfEffect;
             event.areaOfEffect = AreaOfEffectHelper.adjustAreaOfEffect(event.caster, event.areaOfEffect);
-
-            SomePotter.LOGGER.info("Area of Effect: {} -> {}", oldAreaOfEffect, event.areaOfEffect);
         });
     }
 

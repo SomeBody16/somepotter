@@ -8,7 +8,14 @@ import network.something.somepotter.SomePotter;
 import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.accio.AccioSpell;
 import network.something.somepotter.spell.aguamenti.AguamentiSpell;
+import network.something.somepotter.spell.alarte_ascendare.AlarteAscendareSpell;
+import network.something.somepotter.spell.alohomora.AlohomoraSpell;
+import network.something.somepotter.spell.arresto_momentum.ArrestoMomentumSpell;
+import network.something.somepotter.spell.ascendio.AscendioSpell;
+import network.something.somepotter.spell.avada_kedavra.AvadaKedavraSpell;
 import network.something.somepotter.spell.basic_cast.BasicCastSpell;
+import network.something.somepotter.spell.bombarda.BombardaMaximaSpell;
+import network.something.somepotter.spell.bombarda.BombardaSpell;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,9 +28,16 @@ public class SpellInit {
     protected static Map<String, Spell> SPELLS = new HashMap<>();
 
     static {
-        registerSpell(BasicCastSpell.ID, new BasicCastSpell());
         registerSpell(AccioSpell.ID, new AccioSpell());
         registerSpell(AguamentiSpell.ID, new AguamentiSpell());
+        registerSpell(AlarteAscendareSpell.ID, new AlarteAscendareSpell());
+        registerSpell(AlohomoraSpell.ID, new AlohomoraSpell());
+        registerSpell(ArrestoMomentumSpell.ID, new ArrestoMomentumSpell());
+        registerSpell(AscendioSpell.ID, new AscendioSpell());
+        registerSpell(AvadaKedavraSpell.ID, new AvadaKedavraSpell());
+        registerSpell(BasicCastSpell.ID, new BasicCastSpell());
+        registerSpell(BombardaSpell.ID, new BombardaSpell());
+        registerSpell(BombardaMaximaSpell.ID, new BombardaMaximaSpell());
     }
 
     protected static void registerSpell(String id, Spell spell) {

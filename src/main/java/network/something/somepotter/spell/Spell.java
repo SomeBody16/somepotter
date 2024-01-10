@@ -1,6 +1,5 @@
 package network.something.somepotter.spell;
 
-import com.github.cluelab.dollar.Point;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -17,12 +16,14 @@ import network.something.somepotter.util.AbilityPowerUtil;
 import network.something.somepotter.util.ColorUtil;
 import network.something.somepotter.util.ResourceUtil;
 import network.something.somepotter.wand.GestureHandler;
+import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
 public abstract class Spell {
 
     abstract public String getId();
 
+    @NotNull()
     abstract public SpellListener getListener();
 
     public float getAreaOfEffect() {
@@ -69,11 +70,12 @@ public abstract class Spell {
                 getListener().preSpellHitBlock(event, (BlockHitResult) event.hitResult);
             }
             if (event.hitResult.getType() == HitResult.Type.ENTITY) {
-                var entity = ((EntityHitResult) event.hitResult).getEntity();
+                var result = (EntityHitResult) event.hitResult;
+                var entity = result.getEntity();
                 if (entity instanceof ServerPlayer player) {
-                    getListener().preSpellHitPlayer(event, (EntityHitResult) event.hitResult, player);
+                    getListener().preSpellHitPlayer(event, result, player);
                 } else {
-                    getListener().preSpellHitEntity(event, (EntityHitResult) event.hitResult);
+                    getListener().preSpellHitEntity(event, result, result.getEntity());
                 }
             }
         });
@@ -83,31 +85,20 @@ public abstract class Spell {
                 getListener().onSpellHitBlock(event, (BlockHitResult) event.hitResult);
             }
             if (event.hitResult.getType() == HitResult.Type.ENTITY) {
-                var entity = ((EntityHitResult) event.hitResult).getEntity();
+                var result = (EntityHitResult) event.hitResult;
+                var entity = result.getEntity();
                 if (entity instanceof ServerPlayer player) {
-                    getListener().onSpellHitPlayer(event, (EntityHitResult) event.hitResult, player);
+                    getListener().onSpellHitPlayer(event, result, player);
                 } else {
-                    getListener().onSpellHitEntity(event, (EntityHitResult) event.hitResult);
+                    getListener().onSpellHitEntity(event, result, entity);
                 }
             }
         });
     }
 
     protected void registerGesture() {
-        var gesture = ResourceUtil.loadJson("gestures/" + getId() + ".json");
-        var name = gesture.get("name").getAsString();
-        var points = gesture.getAsJsonArray("points");
-
-        var pointArray = new Point[points.size()];
-        for (int i = 0; i < points.size(); i++) {
-            var point = points.get(i).getAsJsonObject();
-            var x = point.get("x").getAsFloat();
-            var y = point.get("y").getAsFloat();
-            var strokeId = point.get("strokeId").getAsInt();
-            pointArray[i] = new Point(x, y, strokeId);
-        }
-
-        GestureHandler.registerGesture(name, pointArray);
+        var gesture = ResourceUtil.loadGesture(getId());
+        GestureHandler.registerGesture(gesture.name, gesture.points);
     }
 
     public DamageSource getDamageSource(LivingEntity caster) {

@@ -19,11 +19,10 @@ public class ChosenSpells {
         chosenSpells.put(player.getUUID(), spell);
     }
 
-    public static void castChosenSpell(ServerPlayer player) {
+    public static Spell getChosenSpell(ServerPlayer player) {
         var spell = chosenSpells.getOrDefault(player.getUUID(), SpellInit.getSpell(BasicCastSpell.ID));
         chosenSpells.remove(player.getUUID());
-
-        spell.cast(player);
+        return spell;
     }
 
 }

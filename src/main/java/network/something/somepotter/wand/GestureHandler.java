@@ -29,7 +29,6 @@ public class GestureHandler {
     }
 
     public void initRecording() {
-        SomePotter.LOGGER.info("Started recording");
         recordedPoints.clear();
         strokeId = 0;
         recording = false;
@@ -39,13 +38,12 @@ public class GestureHandler {
         recording = true;
     }
 
-    public void pauseRecording() {
-        recording = false;
+    public boolean isRecording() {
+        return recording;
     }
 
     public void recordPoint(float x, float y) {
         if (recording) {
-            SomePotter.LOGGER.info("Recording point: ({}, {})", x, y);
             var lastPoint = getLastPoint();
             if (lastPoint.X == x && lastPoint.Y == y) return;
 
@@ -56,7 +54,6 @@ public class GestureHandler {
 
     public void stopRecordingAndRecognize() {
         if (!recording) return;
-        SomePotter.LOGGER.info("Stopped recording");
 
         try {
             recording = false;
@@ -67,7 +64,6 @@ public class GestureHandler {
 //        var spell = PointCloudRecognizerPlus.Classify(candidate, getTrainingSet());
 //        var spell = QPointCloudRecognizer.Classify(candidate, getTrainingSet());
 
-            SomePotter.LOGGER.info("Sending spell packet: " + spell);
             var packet = new SpellChosenPacket(spell);
             packet.sendToServer();
         } catch (Exception e) {
@@ -80,7 +76,6 @@ public class GestureHandler {
     }
 
     public void nextStroke() {
-        SomePotter.LOGGER.info("Next stroke");
         strokeId++;
     }
 

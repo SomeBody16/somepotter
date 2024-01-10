@@ -4,7 +4,6 @@ import iskallia.vault.util.calc.AbilityPowerHelper;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.fml.ModList;
-import network.something.somepotter.SomePotter;
 
 public class AbilityPowerUtil {
 
@@ -21,13 +20,9 @@ public class AbilityPowerUtil {
         }
 
         if (ModList.get().isLoaded("the_vault")) {
-            SomePotter.LOGGER.info("Mod is loaded");
-            var result = AbilityPowerHelper.getAbilityPower(player);
-            SomePotter.LOGGER.info("Ability Power: {}", result);
-            return (int) result;
+            return (int) AbilityPowerHelper.getAbilityPower(player);
         }
 
-        SomePotter.LOGGER.info("Mod is not loaded");
         return 600;
     }
 
@@ -37,7 +32,6 @@ public class AbilityPowerUtil {
         }
 
         if (entity instanceof ServerPlayer player) {
-            SomePotter.LOGGER.info("Entity is player");
             return get(player);
         }
         return 0;

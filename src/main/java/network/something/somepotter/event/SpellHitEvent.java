@@ -11,18 +11,11 @@ public class SpellHitEvent<T extends Spell> extends SpellEvent<T> {
 
     public HitResult hitResult;
 
-    private SpellHitEvent() {
-    }
-
     @Cancelable
     public static class Pre<T extends Spell> extends SpellHitEvent<T> {
-        private Pre() {
-        }
     }
 
     public static class Post<T extends Spell> extends SpellHitEvent<T> {
-        private Post() {
-        }
     }
 
     /**

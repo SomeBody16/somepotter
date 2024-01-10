@@ -4,6 +4,8 @@ import ca.lukegrahamlandry.lib.config.ConfigWrapper;
 import network.something.somepotter.SomePotter;
 import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.SpellListener;
+import network.something.somepotter.util.ColorUtil;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -30,7 +32,12 @@ public class AccioSpell extends Spell {
     }
 
     @Override
-    public SpellListener<AccioSpell> getListener() {
+    public ColorUtil getColor() {
+        return ColorUtil.UTILITY;
+    }
+
+    @Override
+    public @NotNull SpellListener<AccioSpell> getListener() {
         return new AccioListener();
     }
 }

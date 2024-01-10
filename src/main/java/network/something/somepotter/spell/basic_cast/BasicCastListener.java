@@ -1,7 +1,9 @@
 package network.something.somepotter.spell.basic_cast;
 
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.EntityHitResult;
+import network.something.somepotter.SomePotter;
 import network.something.somepotter.cast.projectile.ProjectileCast;
 import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
@@ -12,14 +14,14 @@ public class BasicCastListener extends SpellListener<BasicCastSpell> {
 
     @Override
     public void onSpellCast(SpellCastEvent.Post<BasicCastSpell> event) {
+        SomePotter.LOGGER.info("[BASIC_CAST] Casting {}", event);
         new ProjectileCast(event)
                 .execute();
     }
 
     @Override
-    public void onSpellHitEntity(SpellHitEvent.Post<BasicCastSpell> event, EntityHitResult hitResult) {
+    public void onSpellHitEntity(SpellHitEvent.Post<BasicCastSpell> event, EntityHitResult hitResult, Entity entity) {
         var config = BasicCastSpell.CONFIG.get();
-        var entity = hitResult.getEntity();
         var damageSource = event.spell.getDamageSource(event.caster);
         var damage = Math.max(config.damageMin, event.abilityPower * config.mobDamageMultiplier);
         entity.hurt(damageSource, damage);

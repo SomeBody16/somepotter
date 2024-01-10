@@ -4,22 +4,16 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.Cancelable;
+import network.something.somepotter.SomePotter;
 import network.something.somepotter.spell.Spell;
 
 public class SpellCastEvent<T extends Spell> extends SpellEvent<T> {
 
-    private SpellCastEvent() {
-    }
-
     @Cancelable
     public static class Pre<T extends Spell> extends SpellCastEvent<T> {
-        private Pre() {
-        }
     }
 
     public static class Post<T extends Spell> extends SpellCastEvent<T> {
-        private Post() {
-        }
     }
 
     /**
@@ -28,6 +22,8 @@ public class SpellCastEvent<T extends Spell> extends SpellEvent<T> {
      * @return true if cancelled
      */
     public static boolean publish(Spell spell, LivingEntity caster, ServerLevel level, int abilityPower, float areaOfEffect) {
+        SomePotter.LOGGER.info("Casting {}, power-{}, aoe-{} | by {}", spell.getId(), abilityPower, areaOfEffect, caster.getDisplayName().getString());
+
         var spellCastEventPre = new SpellCastEvent.Pre<>();
         spellCastEventPre.spell = spell;
         spellCastEventPre.caster = caster;

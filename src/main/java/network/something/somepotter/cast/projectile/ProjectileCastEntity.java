@@ -1,5 +1,8 @@
 package network.something.somepotter.cast.projectile;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Vec3i;
+import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -11,11 +14,13 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.network.NetworkHooks;
 import network.something.somepotter.SomePotter;
 import network.something.somepotter.cast.touch.TouchCast;
 import network.something.somepotter.event.SpellHitEvent;
@@ -24,7 +29,7 @@ import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.basic_cast.BasicCastSpell;
 import org.jetbrains.annotations.NotNull;
 
-@Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ProjectileCastEntity extends Projectile {
 
     public static final String ID = "spell_projectile_cast";
@@ -33,6 +38,8 @@ public class ProjectileCastEntity extends Projectile {
     public static final EntityDataAccessor<String> SPELL_ID = SynchedEntityData.defineId(ProjectileCastEntity.class, EntityDataSerializers.STRING);
     public static final EntityDataAccessor<Integer> ABILITY_POWER = SynchedEntityData.defineId(ProjectileCastEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Float> AREA_OF_EFFECT = SynchedEntityData.defineId(ProjectileCastEntity.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<BlockPos> ORIGIN = SynchedEntityData.defineId(ProjectileCastEntity.class, EntityDataSerializers.BLOCK_POS);
+    public static final EntityDataAccessor<Integer> RANGE = SynchedEntityData.defineId(ProjectileCastEntity.class, EntityDataSerializers.INT);
 
 
     @SuppressWarnings("unchecked")
@@ -57,12 +64,15 @@ public class ProjectileCastEntity extends Projectile {
 
     public ProjectileCastEntity(EntityType<? extends Projectile> pEntityType,
                                 ServerLevel level, LivingEntity caster,
-                                String spellId, int abilityPower, float areaOfEffect) {
+                                String spellId, int abilityPower, float areaOfEffect,
+                                int range) {
         super(pEntityType, level);
         setOwner(caster);
         getEntityData().set(SPELL_ID, spellId);
         getEntityData().set(ABILITY_POWER, abilityPower);
         getEntityData().set(AREA_OF_EFFECT, areaOfEffect);
+        getEntityData().set(ORIGIN, caster.blockPosition());
+        getEntityData().set(RANGE, range);
     }
 
     @Override
@@ -70,6 +80,8 @@ public class ProjectileCastEntity extends Projectile {
         getEntityData().define(SPELL_ID, BasicCastSpell.ID);
         getEntityData().define(ABILITY_POWER, 0);
         getEntityData().define(AREA_OF_EFFECT, 0.0F);
+        getEntityData().define(ORIGIN, BlockPos.ZERO);
+        getEntityData().define(RANGE, 0);
     }
 
     public LivingEntity getCaster() {
@@ -92,12 +104,21 @@ public class ProjectileCastEntity extends Projectile {
     protected void onHit(@NotNull HitResult hitResult) {
         super.onHit(hitResult);
         if (!level.isClientSide) {
+            SomePotter.LOGGER.info("ProjectileCastEntity#onHit: {}", hitResult.getType());
+            SomePotter.LOGGER.info("ProjectileCastEntity#onHit: {}", hitResult.getLocation());
+
             var level = (ServerLevel) this.level;
             var cancelled = SpellHitEvent.publish(getSpell(), getCaster(), level, getAbilityPower(), getAreaOfEffect(), hitResult);
-            if (!cancelled) {
-                TouchCast.playParticles(getSpell().getParticle(), level, hitResult.getLocation());
-            }
+            discard();
         }
+    }
+
+    @Override
+    public void remove(RemovalReason pReason) {
+        if (level instanceof ServerLevel serverLevel) {
+            TouchCast.playParticles(getSpell().getParticle(), serverLevel, position());
+        }
+        super.remove(pReason);
     }
 
     @Override
@@ -110,15 +131,21 @@ public class ProjectileCastEntity extends Projectile {
         return true;
     }
 
+    @Override
+    public @NotNull Packet<?> getAddEntityPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
+
     @SuppressWarnings("deprecation")
     @Override
     public void tick() {
         var entity = getOwner();
         if (level.isClientSide || (entity == null || !entity.isRemoved()) && level.hasChunkAt(blockPosition())) {
             super.tick();
+            tickRange();
 
             var hitResult = ProjectileUtil.getHitResult(this, this::canHitEntity);
-            if (hitResult.getType() != HitResult.Type.MISS && ForgeEventFactory.onProjectileImpact(this, hitResult)) {
+            if (hitResult.getType() != HitResult.Type.MISS && !ForgeEventFactory.onProjectileImpact(this, hitResult)) {
                 onHit(hitResult);
             }
 
@@ -135,23 +162,38 @@ public class ProjectileCastEntity extends Projectile {
         }
     }
 
+    protected void tickRange() {
+        var origin = getEntityData().get(ORIGIN);
+        var range = getEntityData().get(RANGE);
+        var position = new Vec3i(getX(), getY(), getZ());
+
+        if (!origin.closerThan(position, range)) {
+            var hitResult = new BlockHitResult(
+                    position(),
+                    getDirection(),
+                    new BlockPos(position()),
+                    true
+            );
+            onHit(hitResult);
+            discard();
+        }
+    }
+
     protected void playTrailParticles() {
-        var particle = getSpell().getParticle();
+        var color = getSpell().getColor();
+        var rgb24 = color.getRGB24();
+        var particle = color.getParticle();
 
-        var deltaX = getX() - xOld;
-        var deltaY = getY() - yOld;
-        var deltaZ = getZ() - zOld;
-        var dist = Math.ceil(Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ));
+        double d0 = (double) (rgb24 >> 16 & 255) / 255.0D;
+        double d1 = (double) (rgb24 >> 8 & 255) / 255.0D;
+        double d2 = (double) (rgb24 >> 0 & 255) / 255.0D;
 
-        for (var i = 0; i < dist; i++) {
-            var coeff = i / dist;
+        for (int j = 0; j < 2; ++j) {
             level.addParticle(particle,
-                    (float) (xo + deltaX + coeff),
-                    (float) (yo + deltaY + coeff),
-                    (float) (zo + deltaZ + coeff),
-                    0.0125F * (level.random.nextFloat() - 0.5F),
-                    0.0125F * (level.random.nextFloat() - 0.5F),
-                    0.0125F * (level.random.nextFloat() - 0.5F)
+                    getRandomX(0.5D),
+                    getRandomY(),
+                    getRandomZ(0.5D),
+                    d0, d1, d2
             );
         }
     }

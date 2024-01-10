@@ -17,7 +17,7 @@ public class ProjectileCast {
     protected float areaOfEffect;
     protected int range = 32;
     protected boolean canHitFluid = false;
-    protected float velocity = 3F;
+    protected float velocity = 1.5F;
 
 
     public ProjectileCast(SpellCastEvent<?> event) {
@@ -30,10 +30,10 @@ public class ProjectileCast {
 
     public void execute() {
         var projectile = new ProjectileCastEntity(ProjectileCastEntity.TYPE,
-                level, caster, spell.getId(), abilityPower, areaOfEffect);
+                level, caster, spell.getId(), abilityPower, areaOfEffect, range);
 
         var handPos = new Vec3(
-                caster.getX() - 0.25,
+                caster.getX(),
                 caster.getY() + (caster.getEyeHeight() * 0.65),
                 caster.getZ()
         );
@@ -66,9 +66,13 @@ public class ProjectileCast {
         return this;
     }
 
-    public ProjectileCast canHitFluid() {
-        this.canHitFluid = true;
+    public ProjectileCast canHitFluid(boolean canHitFluid) {
+        this.canHitFluid = canHitFluid;
         return this;
+    }
+
+    public ProjectileCast canHitFluid() {
+        return canHitFluid(true);
     }
 
 }

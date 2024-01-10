@@ -2,6 +2,8 @@ package network.something.somepotter.spell.aguamenti;
 
 import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.SpellListener;
+import network.something.somepotter.util.ColorUtil;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Creates a jet of water from the caster's wand
@@ -19,7 +21,17 @@ public class AguamentiSpell extends Spell {
     }
 
     @Override
-    public SpellListener<AguamentiSpell> getListener() {
+    public float getAreaOfEffect() {
+        return 2F;
+    }
+
+    @Override
+    public ColorUtil getColor() {
+        return ColorUtil.UTILITY;
+    }
+
+    @Override
+    public @NotNull SpellListener<AguamentiSpell> getListener() {
         return new AguamentiListener();
     }
 }
