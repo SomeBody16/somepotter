@@ -29,7 +29,7 @@ public class CooldownListener {
             event.level.playSound(null, event.caster, getCooldownSound(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
             if (event.caster instanceof ServerPlayer player) {
-                var seconds = Math.ceil(remainingTicks / 20.0);
+                var seconds = (int) Math.ceil(remainingTicks / 20.0);
                 var text = new TextComponent(seconds + "s remaining").withStyle(ChatFormatting.RED);
                 player.sendMessage(text, ChatType.GAME_INFO, NIL_UUID);
             }
