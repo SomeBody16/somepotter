@@ -1,4 +1,4 @@
-package network.something.somepotter.listener.the_vault;
+package network.something.somepotter.listener.the_vault.mana_cost;
 
 import iskallia.vault.init.ModSounds;
 import iskallia.vault.mana.Mana;
@@ -8,6 +8,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import network.something.somepotter.SomePotter;
 import network.something.somepotter.event.SpellCastEvent;
+import network.something.somepotter.listener.the_vault.TheVaultConfig;
 import network.something.somepotter.util.AbilityPowerUtil;
 import network.something.somepotter.util.IntegrationUtil;
 
@@ -19,7 +20,8 @@ public class ManaCostListener {
         IntegrationUtil.theVault(() -> {
             if (event.caster instanceof ServerPlayer player) {
 
-                var manaCostPercent = TheVaultConfig.get().manaCosts.getOrDefault(event.spell.getId(), 0F);
+                var config = TheVaultConfig.get();
+                var manaCostPercent = config.manaCosts.getOrDefault(event.spell.getId(), config.manaCostDefault);
                 manaCostPercent += AbilityPowerUtil.scale(event.abilityPower, manaCostPercent);
                 manaCostPercent = Math.min(manaCostPercent, 1F);
 
