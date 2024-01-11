@@ -1,0 +1,13 @@
+{
+  "components": [
+    {
+      "type": "patchouli:frame"
+    },
+    {
+      "type": "patchouli:custom",
+      "class": "network.something.somepotter.patchouli.WandMovementComponent",
+      "x": 10,
+      "y": 10
+    }
+  ]
+}

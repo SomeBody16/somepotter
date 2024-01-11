@@ -5,7 +5,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.EntityHitResult;
-import network.something.somepotter.cast.projectile.ProjectileCast;
+import network.something.somepotter.cast.projectile_or_self.ProjectileOrSelfCast;
 import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.spell.SpellListener;
@@ -15,7 +15,7 @@ public class ArrestoMomentumListener extends SpellListener<ArrestoMomentumSpell>
 
     @Override
     public void onSpellCast(SpellCastEvent.Post<ArrestoMomentumSpell> event) {
-        new ProjectileCast(event).execute();
+        new ProjectileOrSelfCast(event).execute();
     }
 
     @Override
@@ -27,7 +27,7 @@ public class ArrestoMomentumListener extends SpellListener<ArrestoMomentumSpell>
 
             var slowness = new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, amplifier);
             var slowFalling = new MobEffectInstance(MobEffects.SLOW_FALLING, duration, amplifier);
-            
+
             livingEntity.addEffect(slowness);
             livingEntity.addEffect(slowFalling);
         }

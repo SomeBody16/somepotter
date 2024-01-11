@@ -1,0 +1,36 @@
+{
+  "components": [
+    {
+      "type": "patchouli:header",
+      "text": "#spell#",
+      "centered": false
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Type:",
+      "y": 12
+    },
+    {
+      "type": "patchouli:text",
+      "text": "#spell_type#",
+      "y": 12,
+      "x": 30
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Cast:",
+      "y": 24
+    },
+    {
+      "type": "patchouli:text",
+      "text": "#cast_type#",
+      "y": 24,
+      "x": 30
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)   #description#",
+      "y": 40
+    }
+  ]
+}

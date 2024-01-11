@@ -52,6 +52,10 @@ public class SpellInit {
         }
     }
 
+    public static boolean hasSpell(String id) {
+        return SPELLS.containsKey(id);
+    }
+
     public static List<Spell> allSpells() {
         return new ArrayList<>(SPELLS.values());
     }

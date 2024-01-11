@@ -1,0 +1,19 @@
+{
+  "name": "spell.arresto_momentum",
+  "icon": "minecraft:writable_book",
+  "category": "somepotter:spells",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "arresto_momentum",
+      "spell": "spell.arresto_momentum",
+      "spell_type": "spell.type.charm",
+      "cast_type": "spell.cast.projectile_or_self",
+      "description": "spell.arresto_momentum.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "arresto_momentum"
+    }
+  ]
+}

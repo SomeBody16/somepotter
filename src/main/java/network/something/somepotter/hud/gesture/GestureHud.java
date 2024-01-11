@@ -24,7 +24,7 @@ import java.util.stream.Stream;
 @Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class GestureHud {
 
-    protected static final List<Integer> LINE_COLORS = ImmutableList.of(
+    public static final List<Integer> LINE_COLORS = ImmutableList.of(
             0xFFFFD700, // Gold
             0xFF99ff00, // Lime
             0xFFff00ff, // Magenta

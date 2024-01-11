@@ -67,7 +67,8 @@ minecraft {
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', 'somepotter'
 
-            args '--username', 'SomeBody16'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
                 somepotter {
@@ -150,6 +151,7 @@ repositories {
     maven { url 'https://cursemaven.com' }
     maven { url 'https://maven.lukegrahamlandry.ca' }
     maven { url 'https://jitpack.io' }
+    maven { url 'https://maven.blamejared.com' }
 }
 
 dependencies {
@@ -157,11 +159,14 @@ dependencies {
 
 //    implementation fg.deobf("curse.maven:the_vault-${the_vault_id_project}:${the_vault_id_file}")
 //    implementation fg.deobf("iskallia.vault.the_vault:the_vault:3.11.0.2853")
-    implementation fg.deobf(files('libs/the_vault-1.18.2-3.11.0.2853.jar'))
+    compileOnly fg.deobf(files('libs/the_vault-1.18.2-3.11.0.2853.jar'))
     implementation fg.deobf(group: 'ca.lukegrahamlandry.lib', name: 'WrapperLib-1.18-Forge', version: '1.1.0') { transitive false }
 
     shade 'com.github.cluelab:dollar-recognizers-java:79105ed0fc'
     minecraftLibrary 'com.github.cluelab:dollar-recognizers-java:79105ed0fc'
+
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1")
 }
 
 jar {

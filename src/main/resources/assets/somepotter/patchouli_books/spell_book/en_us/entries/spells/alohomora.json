@@ -1,0 +1,19 @@
+{
+  "name": "spell.alohomora",
+  "icon": "minecraft:writable_book",
+  "category": "somepotter:spells",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "alohomora",
+      "spell": "spell.alohomora",
+      "spell_type": "spell.type.charm",
+      "cast_type": "spell.cast.touch",
+      "description": "spell.alohomora.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "alohomora"
+    }
+  ]
+}
