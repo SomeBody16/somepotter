@@ -3,17 +3,10 @@ package network.something.somepotter.spell.bombarda;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
-import network.something.somepotter.cast.projectile.ProjectileCast;
-import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.spell.SpellListener;
 
 public class BombardaListener extends SpellListener<BombardaSpell> {
-
-    @Override
-    public void onSpellCast(SpellCastEvent.Post<BombardaSpell> event) {
-        new ProjectileCast(event).execute();
-    }
 
     @Override
     public void onSpellHitBlock(SpellHitEvent.Post<BombardaSpell> event, BlockHitResult hitResult) {

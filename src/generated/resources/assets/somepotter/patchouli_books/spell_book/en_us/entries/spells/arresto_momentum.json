@@ -1,0 +1,23 @@
+{
+  "category": "somepotter:spells",
+  "name": "spell.arresto_momentum",
+  "description": "spell.arresto_momentum.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "arresto_momentum",
+      "spell": "spell.arresto_momentum",
+      "cast_type": "spell.cast.projectile_or_self",
+      "description": "spell.arresto_momentum.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "arresto_momentum"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.arresto_momentum.page.page2"
+    }
+  ]
+}

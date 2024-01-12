@@ -8,8 +8,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
-import network.something.somepotter.cast.touch.TouchCast;
-import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.spell.SpellListener;
 import network.something.somepotter.tickable.Tickables;
@@ -18,11 +16,6 @@ import network.something.somepotter.util.AbilityPowerUtil;
 import java.util.stream.Stream;
 
 public class AccioListener extends SpellListener<AccioSpell> {
-
-    @Override
-    public void onSpellCast(SpellCastEvent.Post<AccioSpell> event) {
-        new TouchCast(event).execute();
-    }
 
     @Override
     public void onSpellHitBlock(SpellHitEvent.Post<AccioSpell> event, BlockHitResult hitResult) {

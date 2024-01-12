@@ -1,0 +1,23 @@
+{
+  "category": "somepotter:spells",
+  "name": "spell.alohomora",
+  "description": "spell.alohomora.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "alohomora",
+      "spell": "spell.alohomora",
+      "cast_type": "spell.cast.touch",
+      "description": "spell.alohomora.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "alohomora"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.alohomora.page.page2"
+    }
+  ]
+}

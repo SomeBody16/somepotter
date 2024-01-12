@@ -1,0 +1,23 @@
+{
+  "category": "somepotter:spells",
+  "name": "spell.alarte_ascendare",
+  "description": "spell.alarte_ascendare.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "alarte_ascendare",
+      "spell": "spell.alarte_ascendare",
+      "cast_type": "spell.cast.projectile",
+      "description": "spell.alarte_ascendare.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "alarte_ascendare"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.alarte_ascendare.page.page2"
+    }
+  ]
+}

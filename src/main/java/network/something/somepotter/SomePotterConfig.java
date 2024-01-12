@@ -7,6 +7,6 @@ import java.util.List;
 public class SomePotterConfig {
 
     @Comment("The list of wands ids that can be used to cast spells")
-    public List<String> wandItems = List.of("the_vault:wand");
+    public List<String> wandItems = List.of("somepotter:wand", "the_vault:wand");
 
 }

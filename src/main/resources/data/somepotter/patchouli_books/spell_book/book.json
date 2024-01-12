@@ -1,9 +1,0 @@
-{
-  "name": "spell_book.name",
-  "landing_text": "spell_book.landing_text",
-  "version": 1,
-  "show_progress": false,
-  "show_toasts": false,
-  "i18n": true,
-  "use_resource_pack": true
-}

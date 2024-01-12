@@ -1,0 +1,23 @@
+{
+  "category": "somepotter:spells",
+  "name": "spell.avada_kedavra",
+  "description": "spell.avada_kedavra.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "avada_kedavra",
+      "spell": "spell.avada_kedavra",
+      "cast_type": "spell.cast.projectile",
+      "description": "spell.avada_kedavra.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "avada_kedavra"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.avada_kedavra.page.page2"
+    }
+  ]
+}

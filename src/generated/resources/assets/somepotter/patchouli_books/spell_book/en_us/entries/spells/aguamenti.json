@@ -1,0 +1,23 @@
+{
+  "category": "somepotter:spells",
+  "name": "spell.aguamenti",
+  "description": "spell.aguamenti.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "aguamenti",
+      "spell": "spell.aguamenti",
+      "cast_type": "spell.cast.projectile_or_self",
+      "description": "spell.aguamenti.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "aguamenti"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.aguamenti.page.page2"
+    }
+  ]
+}

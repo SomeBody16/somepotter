@@ -1,0 +1,23 @@
+{
+  "category": "somepotter:spells",
+  "name": "spell.circumrota",
+  "description": "spell.circumrota.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "circumrota",
+      "spell": "spell.circumrota",
+      "cast_type": "spell.cast.projectile",
+      "description": "spell.circumrota.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "circumrota"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.circumrota.page.page2"
+    }
+  ]
+}

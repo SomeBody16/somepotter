@@ -13,6 +13,9 @@ public abstract class SpellListener<T extends Spell> {
     }
 
     public void onSpellCast(SpellCastEvent.Post<T> event) {
+        event.spell.getCast()
+                .populate(event)
+                .execute();
     }
 
     public void preSpellHitBlock(SpellHitEvent.Pre<T> event, BlockHitResult hitResult) {

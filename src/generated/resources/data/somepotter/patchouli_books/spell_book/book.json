@@ -1,0 +1,10 @@
+{
+  "name": "spell_book.name",
+  "landing_text": "spell_book.landing_text",
+  "version": 1,
+  "show_progress": false,
+  "show_toasts": false,
+  "i18n": true,
+  "creative_tab": "minecraft:tools_and_utilities",
+  "use_resource_pack": true
+}

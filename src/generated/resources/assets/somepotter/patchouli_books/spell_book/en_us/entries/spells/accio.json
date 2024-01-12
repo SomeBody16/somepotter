@@ -1,0 +1,23 @@
+{
+  "category": "somepotter:spells",
+  "name": "spell.accio",
+  "description": "spell.accio.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "accio",
+      "spell": "spell.accio",
+      "cast_type": "spell.cast.touch",
+      "description": "spell.accio.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "accio"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.accio.page.page2"
+    }
+  ]
+}

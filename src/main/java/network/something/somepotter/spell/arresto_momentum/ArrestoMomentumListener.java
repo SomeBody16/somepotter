@@ -5,18 +5,11 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.EntityHitResult;
-import network.something.somepotter.cast.projectile_or_self.ProjectileOrSelfCast;
-import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.spell.SpellListener;
 import network.something.somepotter.util.AbilityPowerUtil;
 
 public class ArrestoMomentumListener extends SpellListener<ArrestoMomentumSpell> {
-
-    @Override
-    public void onSpellCast(SpellCastEvent.Post<ArrestoMomentumSpell> event) {
-        new ProjectileOrSelfCast(event).execute();
-    }
 
     @Override
     public void onSpellHitEntity(SpellHitEvent.Post<ArrestoMomentumSpell> event, EntityHitResult hitResult, Entity entity) {

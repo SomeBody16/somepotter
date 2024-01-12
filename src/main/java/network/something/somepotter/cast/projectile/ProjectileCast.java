@@ -1,33 +1,22 @@
 package network.something.somepotter.cast.projectile;
 
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import network.something.somepotter.event.SpellCastEvent;
-import network.something.somepotter.spell.Spell;
+import network.something.somepotter.cast.Cast;
 
-public class ProjectileCast {
+public class ProjectileCast extends Cast {
+    public static final String ID = "projectile";
 
-    public LivingEntity caster;
-    public ServerLevel level;
-    public Spell spell;
-
-    protected int abilityPower;
-    protected float areaOfEffect;
     protected int range = 32;
     protected boolean canHitFluid = false;
     protected float velocity = 1.5F;
 
-
-    public ProjectileCast(SpellCastEvent<?> event) {
-        this.caster = event.caster;
-        this.level = event.level;
-        this.spell = event.spell;
-        this.abilityPower = event.abilityPower;
-        this.areaOfEffect = event.areaOfEffect;
+    @Override
+    public String getId() {
+        return ID;
     }
 
+    @Override
     public void execute() {
         var projectile = new ProjectileCastEntity(ProjectileCastEntity.TYPE,
                 level, caster, spell.getId(), abilityPower, areaOfEffect, range);

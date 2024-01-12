@@ -1,5 +1,7 @@
 package network.something.somepotter.spell.alohomora;
 
+import network.something.somepotter.cast.Cast;
+import network.something.somepotter.cast.touch.TouchCast;
 import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.SpellListener;
 import network.something.somepotter.util.ColorUtil;
@@ -22,6 +24,12 @@ public class AlohomoraSpell extends Spell {
     @Override
     public @NotNull SpellListener<AlohomoraSpell> getListener() {
         return new AlohomoraListener();
+    }
+
+    @Override
+    public @NotNull Cast getCast() {
+        return new TouchCast()
+                .setRange(3);
     }
 
     @Override

@@ -10,8 +10,6 @@ import net.minecraft.world.level.block.LiquidBlockContainer;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
-import network.something.somepotter.cast.projectile_or_self.ProjectileOrSelfCast;
-import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.spell.SpellListener;
 
@@ -20,12 +18,6 @@ public class AguamentiListener extends SpellListener<AguamentiSpell> {
     public static void playEmptySound(ServerLevel level, BlockPos pos) {
         var soundEvent = SoundEvents.BUCKET_EMPTY;
         level.playSound(null, pos, soundEvent, SoundSource.BLOCKS, 1.0F, 1.0F);
-    }
-
-
-    @Override
-    public void onSpellCast(SpellCastEvent.Post<AguamentiSpell> event) {
-        new ProjectileOrSelfCast(event).execute();
     }
 
     @Override

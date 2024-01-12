@@ -1,5 +1,7 @@
 package network.something.somepotter.spell.alarte_ascendare;
 
+import network.something.somepotter.cast.Cast;
+import network.something.somepotter.cast.projectile.ProjectileCast;
 import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.SpellListener;
 import network.something.somepotter.util.ColorUtil;
@@ -19,6 +21,11 @@ public class AlarteAscendareSpell extends Spell {
     @Override
     public @NotNull SpellListener<AlarteAscendareSpell> getListener() {
         return new AlarteAscendareListener();
+    }
+
+    @Override
+    public @NotNull Cast getCast() {
+        return new ProjectileCast();
     }
 
     @Override

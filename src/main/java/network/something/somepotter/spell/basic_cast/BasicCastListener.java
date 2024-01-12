@@ -3,19 +3,11 @@ package network.something.somepotter.spell.basic_cast;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.EntityHitResult;
-import network.something.somepotter.cast.projectile.ProjectileCast;
-import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.spell.SpellListener;
 import network.something.somepotter.util.AbilityPowerUtil;
 
 public class BasicCastListener extends SpellListener<BasicCastSpell> {
-
-    @Override
-    public void onSpellCast(SpellCastEvent.Post<BasicCastSpell> event) {
-        new ProjectileCast(event)
-                .execute();
-    }
 
     @Override
     public void onSpellHitEntity(SpellHitEvent.Post<BasicCastSpell> event, EntityHitResult hitResult, Entity entity) {

@@ -1,5 +1,7 @@
 package network.something.somepotter.spell.basic_cast;
 
+import network.something.somepotter.cast.Cast;
+import network.something.somepotter.cast.projectile.ProjectileCast;
 import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.SpellListener;
 import network.something.somepotter.util.ColorUtil;
@@ -26,6 +28,11 @@ public class BasicCastSpell extends Spell {
     @Override
     public @NotNull SpellListener<BasicCastSpell> getListener() {
         return new BasicCastListener();
+    }
+
+    @Override
+    public @NotNull Cast getCast() {
+        return new ProjectileCast();
     }
 
     @Override

@@ -2,13 +2,12 @@ package network.something.somepotter.cast.touch;
 
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
-import network.something.somepotter.event.SpellCastEvent;
+import network.something.somepotter.cast.Cast;
 import network.something.somepotter.event.SpellHitEvent;
-import network.something.somepotter.spell.Spell;
 
-public class TouchCast {
+public class TouchCast extends Cast {
+    public static final String ID = "touch";
 
     public static void playParticles(ParticleOptions particle, ServerLevel level, Vec3 pos) {
         level.sendParticles(
@@ -20,23 +19,15 @@ public class TouchCast {
         );
     }
 
-    public LivingEntity caster;
-    public ServerLevel level;
-    public Spell spell;
-
-    public int abilityPower;
-    public float areaOfEffect;
     public int range = 32;
     public boolean canHitFluid = false;
 
-    public TouchCast(SpellCastEvent<?> event) {
-        this.caster = event.caster;
-        this.level = event.level;
-        this.spell = event.spell;
-        this.abilityPower = event.abilityPower;
-        this.areaOfEffect = event.areaOfEffect;
+    @Override
+    public String getId() {
+        return ID;
     }
 
+    @Override
     public void execute() {
         var result = caster.pick(range, 1.0F, canHitFluid);
 
@@ -51,9 +42,13 @@ public class TouchCast {
         return this;
     }
 
-    public TouchCast canHitFluid() {
-        this.canHitFluid = true;
+    public TouchCast canHitFluid(boolean canHitFluid) {
+        this.canHitFluid = canHitFluid;
         return this;
+    }
+
+    public TouchCast canHitFluid() {
+        return canHitFluid(true);
     }
 
 }

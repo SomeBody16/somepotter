@@ -2,7 +2,7 @@ package network.something.somepotter.wand;
 
 import ca.lukegrahamlandry.lib.network.ServerSideHandler;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import network.something.somepotter.init.SpellInit;
 
@@ -19,7 +19,7 @@ public class SpellChosenPacket implements ServerSideHandler {
     @Override
     public void handle(ServerPlayer serverPlayer) {
         var spell = SpellInit.getSpell(spellId);
-        var text = new TextComponent(spell.getId())
+        var text = new TranslatableComponent("spell." + spell.getId())
                 .withStyle(style -> style.withColor(spell.getColor().getRGB24()));
 
         serverPlayer.sendMessage(text, ChatType.GAME_INFO, NIL_UUID);

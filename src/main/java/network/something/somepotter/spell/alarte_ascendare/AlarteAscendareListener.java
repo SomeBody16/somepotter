@@ -2,8 +2,6 @@ package network.something.somepotter.spell.alarte_ascendare;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.EntityHitResult;
-import network.something.somepotter.cast.projectile.ProjectileCast;
-import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.spell.SpellListener;
 import network.something.somepotter.util.AbilityPowerUtil;
@@ -16,12 +14,6 @@ public class AlarteAscendareListener extends SpellListener<AlarteAscendareSpell>
         entity.setDeltaMovement(motion);
         entity.fallDistance = 0;
         entity.hurtMarked = true;
-    }
-
-
-    @Override
-    public void onSpellCast(SpellCastEvent.Post<AlarteAscendareSpell> event) {
-        new ProjectileCast(event).execute();
     }
 
     @Override

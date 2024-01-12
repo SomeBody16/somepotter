@@ -12,6 +12,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.common.MinecraftForge;
+import network.something.somepotter.cast.Cast;
 import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.util.AbilityPowerUtil;
@@ -25,8 +26,11 @@ public abstract class Spell {
 
     abstract public String getId();
 
-    @NotNull()
+    @NotNull
     abstract public SpellListener getListener();
+
+    @NotNull
+    abstract public Cast getCast();
 
     public float getAreaOfEffect() {
         return 0;

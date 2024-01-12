@@ -16,6 +16,7 @@ import network.something.somepotter.spell.avada_kedavra.AvadaKedavraSpell;
 import network.something.somepotter.spell.basic_cast.BasicCastSpell;
 import network.something.somepotter.spell.bombarda.BombardaSpell;
 import network.something.somepotter.spell.bombarda_maxima.BombardaMaximaSpell;
+import network.something.somepotter.spell.circumrota.CircumrotaSpell;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +39,7 @@ public class SpellInit {
         registerSpell(BasicCastSpell.ID, new BasicCastSpell());
         registerSpell(BombardaSpell.ID, new BombardaSpell());
         registerSpell(BombardaMaximaSpell.ID, new BombardaMaximaSpell());
+        registerSpell(CircumrotaSpell.ID, new CircumrotaSpell());
     }
 
     protected static void registerSpell(String id, Spell spell) {

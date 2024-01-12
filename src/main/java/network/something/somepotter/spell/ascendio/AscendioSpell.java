@@ -1,5 +1,7 @@
 package network.something.somepotter.spell.ascendio;
 
+import network.something.somepotter.cast.Cast;
+import network.something.somepotter.cast.self.SelfCast;
 import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.SpellListener;
 import network.something.somepotter.util.ColorUtil;
@@ -20,6 +22,11 @@ public class AscendioSpell extends Spell {
     @Override
     public @NotNull SpellListener<AscendioSpell> getListener() {
         return new AscendioListener();
+    }
+
+    @Override
+    public @NotNull Cast getCast() {
+        return new SelfCast();
     }
 
     @Override

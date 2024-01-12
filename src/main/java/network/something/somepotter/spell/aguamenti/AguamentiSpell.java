@@ -1,5 +1,7 @@
 package network.something.somepotter.spell.aguamenti;
 
+import network.something.somepotter.cast.Cast;
+import network.something.somepotter.cast.projectile_or_self.ProjectileOrSelfCast;
 import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.SpellListener;
 import network.something.somepotter.util.ColorUtil;
@@ -23,6 +25,11 @@ public class AguamentiSpell extends Spell {
     @Override
     public float getAreaOfEffect() {
         return 2F;
+    }
+
+    @Override
+    public @NotNull Cast getCast() {
+        return new ProjectileOrSelfCast();
     }
 
     @Override

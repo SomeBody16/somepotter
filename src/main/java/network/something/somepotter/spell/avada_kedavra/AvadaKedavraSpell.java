@@ -2,6 +2,8 @@ package network.something.somepotter.spell.avada_kedavra;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import network.something.somepotter.cast.Cast;
+import network.something.somepotter.cast.projectile.ProjectileCast;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.SpellListener;
@@ -23,6 +25,11 @@ public class AvadaKedavraSpell extends Spell {
     @Override
     public @NotNull() SpellListener<AvadaKedavraSpell> getListener() {
         return new AvadaKedavraListener();
+    }
+
+    @Override
+    public @NotNull Cast getCast() {
+        return new ProjectileCast();
     }
 
     @Override

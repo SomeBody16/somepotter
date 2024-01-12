@@ -1,5 +1,7 @@
 package network.something.somepotter.spell.accio;
 
+import network.something.somepotter.cast.Cast;
+import network.something.somepotter.cast.touch.TouchCast;
 import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.SpellListener;
 import network.something.somepotter.util.ColorUtil;
@@ -26,6 +28,11 @@ public class AccioSpell extends Spell {
     @Override
     public float getAreaOfEffect() {
         return 1.0F;
+    }
+
+    @Override
+    public @NotNull Cast getCast() {
+        return new TouchCast();
     }
 
     @Override
