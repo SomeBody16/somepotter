@@ -17,6 +17,7 @@ import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.gesture.SpellGesture;
 import network.something.somepotter.init.SoundInit;
+import network.something.somepotter.spell_type.SpellType;
 import network.something.somepotter.util.AbilityPowerUtil;
 import network.something.somepotter.util.ColorUtil;
 import org.jetbrains.annotations.NotNull;
@@ -35,6 +36,9 @@ public abstract class Spell {
     abstract public Cast getCast();
 
     @NotNull
+    abstract public SpellType getType();
+
+    @NotNull
     abstract public List<SpellGesture> getGestures();
 
     @NotNull
@@ -45,7 +49,7 @@ public abstract class Spell {
     }
 
     public ColorUtil getColor() {
-        return new ColorUtil(0, 0, 0);
+        return getType().getColor();
     }
 
     public ParticleOptions getParticle() {

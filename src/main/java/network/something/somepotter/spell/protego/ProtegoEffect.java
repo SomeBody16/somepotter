@@ -13,6 +13,7 @@ import network.something.somepotter.cast.touch.TouchCast;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.init.EffectInit;
 import network.something.somepotter.init.SpellInit;
+import network.something.somepotter.spell_type.curse.CurseType;
 import network.something.somepotter.util.AbilityPowerUtil;
 
 @Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -37,9 +38,13 @@ public class ProtegoEffect extends MobEffect {
 
             if (casterPower < targetPower * 2) {
                 event.setCanceled(true);
-                livingEntity.removeEffect(EffectInit.PROTEGO.get());
             }
 
+            if (event.spell.getType() instanceof CurseType) {
+                event.setCanceled(false);
+            }
+
+            livingEntity.removeEffect(EffectInit.PROTEGO.get());
             TouchCast.playParticles(
                     SpellInit.get(ProtegoSpell.ID).getParticle(),
                     (ServerLevel) livingEntity.level,
@@ -51,9 +56,14 @@ public class ProtegoEffect extends MobEffect {
     @SubscribeEvent
     public static void entityHurt(LivingHurtEvent event) {
         if (event.getEntityLiving().hasEffect(EffectInit.PROTEGO.get())) {
-            event.setCanceled(true);
-            event.getEntityLiving().removeEffect(EffectInit.PROTEGO.get());
+            var damage = event.getAmount();
+            var maxDamage = event.getEntityLiving().getMaxHealth() / 2;
 
+            if (damage < maxDamage) {
+                event.setCanceled(true);
+            }
+
+            event.getEntityLiving().removeEffect(EffectInit.PROTEGO.get());
             TouchCast.playParticles(
                     SpellInit.get(ProtegoSpell.ID).getParticle(),
                     (ServerLevel) event.getEntityLiving().level,

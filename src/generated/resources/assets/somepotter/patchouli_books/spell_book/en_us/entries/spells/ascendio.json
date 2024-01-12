@@ -8,6 +8,7 @@
       "type": "somepotter:spell_summary",
       "spell_id": "ascendio",
       "spell": "spell.ascendio",
+      "spell_type": "spell.type.charm",
       "cast_type": "spell.cast.self",
       "description": "spell.ascendio.description"
     },

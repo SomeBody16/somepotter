@@ -20,6 +20,7 @@ import network.something.somepotter.spell.bombarda_maxima.BombardaMaximaSpell;
 import network.something.somepotter.spell.circumrota.CircumrotaSpell;
 import network.something.somepotter.spell.confringo.ConfringoSpell;
 import network.something.somepotter.spell.depulso.DepulsoSpell;
+import network.something.somepotter.spell.disillusio.DisillusioSpell;
 import network.something.somepotter.spell.engorgio.EngorgioSpell;
 import network.something.somepotter.spell.protego.ProtegoSpell;
 import network.something.somepotter.spell.protego_maxima.ProtegoMaximaSpell;
@@ -54,7 +55,7 @@ public class SpellInit {
 //        register(new CrucioSpell());
         register(new DepulsoSpell());
 //        register(new DescendoSpell());
-//        register(new DisillusioSpell());
+        register(new DisillusioSpell());
         registerIfLoaded("pehkui", new EngorgioSpell());
 //        register(new EpiskeySpell());
 //        register(new ExpelliarmusSpell());

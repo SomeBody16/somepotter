@@ -8,6 +8,7 @@
       "type": "somepotter:spell_summary",
       "spell_id": "confringo",
       "spell": "spell.confringo",
+      "spell_type": "spell.type.charm",
       "cast_type": "spell.cast.projectile",
       "description": "spell.confringo.description"
     },

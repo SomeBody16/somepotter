@@ -8,6 +8,7 @@
       "type": "somepotter:spell_summary",
       "spell_id": "bombarda_maxima",
       "spell": "spell.bombarda_maxima",
+      "spell_type": "spell.type.charm",
       "cast_type": "spell.cast.projectile",
       "description": "spell.bombarda_maxima.description"
     },

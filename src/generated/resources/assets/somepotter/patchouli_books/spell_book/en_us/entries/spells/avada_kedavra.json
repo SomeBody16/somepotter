@@ -8,6 +8,7 @@
       "type": "somepotter:spell_summary",
       "spell_id": "avada_kedavra",
       "spell": "spell.avada_kedavra",
+      "spell_type": "spell.type.curse",
       "cast_type": "spell.cast.projectile",
       "description": "spell.avada_kedavra.description"
     },

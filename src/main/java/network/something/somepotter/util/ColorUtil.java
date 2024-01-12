@@ -7,13 +7,15 @@ import net.minecraft.world.phys.Vec3;
 
 public class ColorUtil {
 
-    public static final ColorUtil FORCE = new ColorUtil(123, 93, 167);
-    public static final ColorUtil DAMAGE = new ColorUtil(128, 27, 4);
+    public static final ColorUtil TRANSFIGURATION = new ColorUtil(0x7D5BA6);
+    public static final ColorUtil CONJURATION = new ColorUtil(0x003366);
+    public static final ColorUtil CHARM = new ColorUtil(0xFFC0CB);
+    public static final ColorUtil JINX = new ColorUtil(0xFF8C00);
+    public static final ColorUtil HEX = new ColorUtil(0x8B0000);
+    public static final ColorUtil CURSE = new ColorUtil(0x4B0082);
+    public static final ColorUtil COUNTER_SPELL = new ColorUtil(0x808080);
+    public static final ColorUtil HEALING = new ColorUtil(0x98FB98);
     public static final ColorUtil UNFORGIVEABLE = new ColorUtil(57, 155, 130);
-    public static final ColorUtil ESSENTIAL = new ColorUtil(50, 46, 43);
-    public static final ColorUtil TRANSFIGURATION = new ColorUtil(0x69FF7D);
-    public static final ColorUtil UTILITY = new ColorUtil(132, 159, 173);
-    public static final ColorUtil CONTROL = new ColorUtil(171, 146, 34);
 
 
     protected Vector3f color;

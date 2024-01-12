@@ -8,6 +8,7 @@
       "type": "somepotter:spell_summary",
       "spell_id": "aguamenti",
       "spell": "spell.aguamenti",
+      "spell_type": "spell.type.conjuration",
       "cast_type": "spell.cast.projectile_or_self",
       "description": "spell.aguamenti.description"
     },

@@ -8,6 +8,7 @@
       "type": "somepotter:spell_summary",
       "spell_id": "protego",
       "spell": "spell.protego",
+      "spell_type": "spell.type.charm",
       "cast_type": "spell.cast.self",
       "description": "spell.protego.description"
     },

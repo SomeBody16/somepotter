@@ -8,6 +8,7 @@
       "type": "somepotter:spell_summary",
       "spell_id": "alohomora",
       "spell": "spell.alohomora",
+      "spell_type": "spell.type.charm",
       "cast_type": "spell.cast.touch",
       "description": "spell.alohomora.description"
     },

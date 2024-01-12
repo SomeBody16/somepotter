@@ -6,8 +6,11 @@ import network.something.somepotter.cast.Cast;
 import network.something.somepotter.cast.projectile.ProjectileCast;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.gesture.SpellGesture;
+import network.something.somepotter.init.SpellTypeInit;
 import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.SpellListener;
+import network.something.somepotter.spell_type.SpellType;
+import network.something.somepotter.spell_type.curse.CurseType;
 import network.something.somepotter.util.ColorUtil;
 import org.jetbrains.annotations.NotNull;
 
@@ -54,6 +57,11 @@ public class AvadaKedavraSpell extends Spell {
     @Override
     public ColorUtil getColor() {
         return ColorUtil.UNFORGIVEABLE;
+    }
+
+    @Override
+    public @NotNull SpellType getType() {
+        return SpellTypeInit.get(CurseType.ID);
     }
 
     @Override

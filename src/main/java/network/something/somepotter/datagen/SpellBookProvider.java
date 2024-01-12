@@ -64,7 +64,7 @@ public class SpellBookProvider implements DataProvider {
             summary.addProperty("type", "somepotter:spell_summary");
             summary.addProperty("spell_id", spellId);
             summary.addProperty("spell", "spell." + spellId);
-//            summary.addProperty("spell_type", "spell.type." + spell.getType().getId());
+            summary.addProperty("spell_type", "spell.type." + spell.getType().getId());
             summary.addProperty("cast_type", "spell.cast." + spell.getCast().getId());
             summary.addProperty("description", "spell." + spellId + ".description");
             entry.addPage(summary);

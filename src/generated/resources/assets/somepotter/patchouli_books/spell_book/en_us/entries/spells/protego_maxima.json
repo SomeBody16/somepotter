@@ -8,6 +8,7 @@
       "type": "somepotter:spell_summary",
       "spell_id": "protego_maxima",
       "spell": "spell.protego_maxima",
+      "spell_type": "spell.type.charm",
       "cast_type": "spell.cast.projectile",
       "description": "spell.protego_maxima.description"
     },

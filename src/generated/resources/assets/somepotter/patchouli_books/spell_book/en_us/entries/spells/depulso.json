@@ -8,6 +8,7 @@
       "type": "somepotter:spell_summary",
       "spell_id": "depulso",
       "spell": "spell.depulso",
+      "spell_type": "spell.type.charm",
       "cast_type": "spell.cast.projectile",
       "description": "spell.depulso.description"
     },

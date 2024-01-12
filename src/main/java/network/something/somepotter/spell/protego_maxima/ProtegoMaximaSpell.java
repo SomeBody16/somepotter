@@ -3,8 +3,12 @@ package network.something.somepotter.spell.protego_maxima;
 import network.something.somepotter.cast.Cast;
 import network.something.somepotter.cast.projectile.ProjectileCast;
 import network.something.somepotter.gesture.SpellGesture;
+import network.something.somepotter.init.SpellTypeInit;
 import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.SpellListener;
+import network.something.somepotter.spell_type.SpellType;
+import network.something.somepotter.spell_type.charm.CharmType;
+import network.something.somepotter.util.ColorUtil;
 import network.something.somepotter.util.ConfigUtil;
 import org.jetbrains.annotations.NotNull;
 
@@ -54,5 +58,15 @@ public class ProtegoMaximaSpell extends Spell {
     @Override
     public void register() {
         super.register();
+    }
+
+    @Override
+    public @NotNull SpellType getType() {
+        return SpellTypeInit.get(CharmType.ID);
+    }
+
+    @Override
+    public ColorUtil getColor() {
+        return new ColorUtil(0xFF00FF);
     }
 }
