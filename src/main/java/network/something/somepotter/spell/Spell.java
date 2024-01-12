@@ -15,6 +15,7 @@ import net.minecraftforge.common.MinecraftForge;
 import network.something.somepotter.cast.Cast;
 import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
+import network.something.somepotter.init.SoundInit;
 import network.something.somepotter.util.AbilityPowerUtil;
 import network.something.somepotter.util.ColorUtil;
 import network.something.somepotter.util.ResourceUtil;
@@ -45,8 +46,8 @@ public abstract class Spell {
     }
 
     public void playCastSound(SpellCastEvent.Post<Spell> event) {
-        var sound = SoundEvents.ENCHANTMENT_TABLE_USE;
-        var pitch = event.level.random.nextFloat(0.1F, 1F);
+        var sound = SoundInit.CAST.get();
+        var pitch = 1F;
         var pos = event.caster.getEyePosition();
         event.level.playSound(
                 null,
@@ -58,6 +59,16 @@ public abstract class Spell {
     }
 
     public void playHitSound(SpellHitEvent.Post<Spell> event) {
+        var sound = SoundEvents.ENCHANTMENT_TABLE_USE;
+        var pitch = event.level.random.nextFloat(0.1F, 1F);
+        var pos = event.hitResult.getLocation();
+        event.level.playSound(
+                null,
+                pos.x, pos.y, pos.z,
+                sound,
+                SoundSource.PLAYERS,
+                1.0F, pitch
+        );
     }
 
 

@@ -16,7 +16,9 @@ public class CommandInit {
     public static void registerCommands(RegisterCommandsEvent event) {
         var dispatcher = event.getDispatcher();
 
-        ArgumentTypes.register("spell", SpellArgument.class, new EmptyArgumentSerializer<>(SpellArgument::spell));
+        if (!ArgumentTypes.isTypeRegistered(SpellArgument.spell())) {
+            ArgumentTypes.register("spell", SpellArgument.class, new EmptyArgumentSerializer<>(SpellArgument::spell));
+        }
 
         SpellCommand.register(dispatcher);
     }

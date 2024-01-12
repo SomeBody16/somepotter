@@ -1,0 +1,12 @@
+{
+  "cast": {
+    "subtitle": "sounds.somepotter.cast",
+    "sounds": [
+      "somepotter:cast1",
+      "somepotter:cast2",
+      "somepotter:cast3",
+      "somepotter:cast4",
+      "somepotter:cast5"
+    ]
+  }
+}
