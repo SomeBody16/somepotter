@@ -15,12 +15,13 @@ import net.minecraftforge.common.MinecraftForge;
 import network.something.somepotter.cast.Cast;
 import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
+import network.something.somepotter.gesture.SpellGesture;
 import network.something.somepotter.init.SoundInit;
 import network.something.somepotter.util.AbilityPowerUtil;
 import network.something.somepotter.util.ColorUtil;
-import network.something.somepotter.util.ResourceUtil;
-import network.something.somepotter.wand.GestureHandler;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
 public abstract class Spell {
@@ -32,6 +33,12 @@ public abstract class Spell {
 
     @NotNull
     abstract public Cast getCast();
+
+    @NotNull
+    abstract public List<SpellGesture> getGestures();
+
+    @NotNull
+    abstract public List<SpellGesture> getMistakes();
 
     public float getAreaOfEffect() {
         return 0;
@@ -81,7 +88,6 @@ public abstract class Spell {
 
 
     public void register() {
-        registerGesture();
         registerListener();
     }
 
@@ -127,11 +133,6 @@ public abstract class Spell {
                 }
             }
         });
-    }
-
-    protected void registerGesture() {
-        var gesture = ResourceUtil.loadGesture(getId());
-        GestureHandler.registerGesture(gesture.name, gesture.points);
     }
 
     public DamageSource getDamageSource(LivingEntity caster) {

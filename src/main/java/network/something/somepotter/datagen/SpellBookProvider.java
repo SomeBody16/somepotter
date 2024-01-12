@@ -48,25 +48,30 @@ public class SpellBookProvider implements DataProvider {
         var category = BookCategory.translated("spells", "spell_book.category")
                 .setIcon("minecraft:enchanted_book");
 
-        for (var spell : SpellInit.allSpells()) {
-            var id = spell.getId();
-            if (Objects.equals(id, BasicCastSpell.ID)) continue;
+        for (var spellId : SpellInit.allForDocs().keySet()) {
+            if (Objects.equals(spellId, BasicCastSpell.ID)) continue;
+            var spell = SpellInit.get(spellId);
 
-            var entry = BookEntry.translated(id, category, "spell")
+            var entry = BookEntry.translated(spellId, category, "spell")
                     .setIcon("minecraft:enchanted_book");
+
+            var entryProperties = SpellInit.allForDocs().get(spellId);
+            for (var property : entryProperties.keySet()) {
+                entry.addProperty(property, entryProperties.get(property));
+            }
 
             var summary = new BookPage();
             summary.addProperty("type", "somepotter:spell_summary");
-            summary.addProperty("spell_id", id);
-            summary.addProperty("spell", "spell." + id);
+            summary.addProperty("spell_id", spellId);
+            summary.addProperty("spell", "spell." + spellId);
 //            summary.addProperty("spell_type", "spell.type." + spell.getType().getId());
             summary.addProperty("cast_type", "spell.cast." + spell.getCast().getId());
-            summary.addProperty("description", "spell." + id + ".description");
+            summary.addProperty("description", "spell." + spellId + ".description");
             entry.addPage(summary);
 
             var wandMovement = new BookPage();
             wandMovement.addProperty("type", "somepotter:wand_movement");
-            wandMovement.addProperty("spell_id", id);
+            wandMovement.addProperty("spell_id", spellId);
             entry.addPage(wandMovement);
 
             entry.addPage(BookPage.translated(entry, "spell", "page2"));

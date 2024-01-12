@@ -3,7 +3,6 @@ package network.something.somepotter.patchouli;
 import com.github.cluelab.dollar.Point;
 import com.mojang.blaze3d.vertex.PoseStack;
 import network.something.somepotter.init.SpellInit;
-import network.something.somepotter.util.ResourceUtil;
 import network.something.somepotter.util.ScreenUtil;
 import org.jetbrains.annotations.NotNull;
 import vazkii.patchouli.api.IComponentRenderContext;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
-import static network.something.somepotter.hud.gesture.GestureHud.LINE_COLORS;
+import static network.something.somepotter.gesture.hud.GestureHud.LINE_COLORS;
 
 public class WandMovementComponent implements ICustomComponent {
 
@@ -33,7 +32,7 @@ public class WandMovementComponent implements ICustomComponent {
 
     @Override
     public void render(PoseStack ms, IComponentRenderContext context, float ticks, int mouseX, int mouseY) {
-        if (!SpellInit.hasSpell(spellId)) return;
+        if (!SpellInit.has(spellId)) return;
 
 //        GuiComponent.fill(ms, startX, startY, endX, endY, 0xFF00FFFF);
 
@@ -116,11 +115,9 @@ public class WandMovementComponent implements ICustomComponent {
     @Override
     public void onVariablesAvailable(@NotNull UnaryOperator<IVariable> lookup) {
         spellId = lookup.apply(IVariable.wrap("#spell_id#")).asString();
-        var gesture = ResourceUtil.loadGesture(spellId);
+        var spell = SpellInit.get(spellId);
+        var gesture = spell.getGestures().get(0);
 
-        var centerX = (endX - startX) / 2;
-        var centerY = (endY - startY) / 2;
-//        points = getTransformedPoints(gesture.points, centerX, centerY);
-        points = List.of(gesture.points);
+        points = gesture.getPoints();
     }
 }

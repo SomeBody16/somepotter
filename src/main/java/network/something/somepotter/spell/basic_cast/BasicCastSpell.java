@@ -2,12 +2,16 @@ package network.something.somepotter.spell.basic_cast;
 
 import network.something.somepotter.cast.Cast;
 import network.something.somepotter.cast.projectile.ProjectileCast;
+import network.something.somepotter.gesture.SpellGesture;
+import network.something.somepotter.init.SpellInit;
 import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.SpellListener;
 import network.something.somepotter.util.ColorUtil;
 import network.something.somepotter.util.ConfigUtil;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class BasicCastSpell extends Spell {
@@ -36,12 +40,22 @@ public class BasicCastSpell extends Spell {
     }
 
     @Override
-    protected void registerGesture() {
-//        var alternatives = 3;
-//
-//        for (var i = 1; i <= alternatives; i++) {
-//            var gesture = ResourceUtil.loadGesture(getId() + i);
-//            GestureHandler.registerGesture(gesture.name, gesture.points);
-//        }
+    public @NotNull List<SpellGesture> getGestures() {
+        var result = new ArrayList<SpellGesture>();
+
+        for (var spell : SpellInit.all()) {
+            if (spell.getId().equals(ID)) {
+                continue;
+            }
+            result.addAll(spell.getGestures());
+        }
+
+        return result;
     }
+
+    @Override
+    public @NotNull List<SpellGesture> getMistakes() {
+        return List.of();
+    }
+
 }

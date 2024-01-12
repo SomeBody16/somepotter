@@ -1,0 +1,23 @@
+{
+  "category": "somepotter:spells",
+  "name": "spell.engorgio",
+  "description": "spell.engorgio.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "engorgio",
+      "spell": "spell.engorgio",
+      "cast_type": "spell.cast.projectile_or_self",
+      "description": "spell.engorgio.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "engorgio"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.engorgio.page.page2"
+    }
+  ]
+}

@@ -11,7 +11,7 @@ public class BombardaListener extends SpellListener<BombardaSpell> {
     @Override
     public void onSpellHitBlock(SpellHitEvent.Post<BombardaSpell> event, BlockHitResult hitResult) {
         event.level.explode(
-                null,
+                event.caster,
                 event.spell.getDamageSource(event.caster),
                 null,
                 hitResult.getLocation().x, hitResult.getLocation().y, hitResult.getLocation().z,
@@ -22,7 +22,7 @@ public class BombardaListener extends SpellListener<BombardaSpell> {
     @Override
     public void onSpellHitEntity(SpellHitEvent.Post<BombardaSpell> event, EntityHitResult hitResult, Entity entity) {
         event.level.explode(
-                null,
+                event.caster,
                 event.spell.getDamageSource(event.caster),
                 null,
                 hitResult.getLocation().x, hitResult.getLocation().y, hitResult.getLocation().z,

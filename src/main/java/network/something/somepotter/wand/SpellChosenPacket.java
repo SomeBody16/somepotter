@@ -18,7 +18,7 @@ public class SpellChosenPacket implements ServerSideHandler {
 
     @Override
     public void handle(ServerPlayer serverPlayer) {
-        var spell = SpellInit.getSpell(spellId);
+        var spell = SpellInit.get(spellId);
         var text = new TranslatableComponent("spell." + spell.getId())
                 .withStyle(style -> style.withColor(spell.getColor().getRGB24()));
 

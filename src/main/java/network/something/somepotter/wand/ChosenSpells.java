@@ -15,12 +15,12 @@ public class ChosenSpells {
     protected static final Map<UUID, Spell> chosenSpells = new HashMap<>();
 
     public static void setChosenSpell(ServerPlayer player, String spellId) {
-        var spell = SpellInit.getSpell(spellId);
+        var spell = SpellInit.get(spellId);
         chosenSpells.put(player.getUUID(), spell);
     }
 
     public static Spell getChosenSpell(ServerPlayer player) {
-        var spell = chosenSpells.getOrDefault(player.getUUID(), SpellInit.getSpell(BasicCastSpell.ID));
+        var spell = chosenSpells.getOrDefault(player.getUUID(), SpellInit.get(BasicCastSpell.ID));
         chosenSpells.remove(player.getUUID());
         return spell;
     }

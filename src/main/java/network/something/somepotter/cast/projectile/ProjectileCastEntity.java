@@ -89,7 +89,7 @@ public class ProjectileCastEntity extends Projectile {
     }
 
     public Spell getSpell() {
-        return SpellInit.getSpell(getEntityData().get(SPELL_ID));
+        return SpellInit.get(getEntityData().get(SPELL_ID));
     }
 
     public int getAbilityPower() {

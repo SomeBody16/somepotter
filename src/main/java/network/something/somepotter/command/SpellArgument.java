@@ -42,8 +42,8 @@ public class SpellArgument implements ArgumentType<Spell> {
     public Spell parse(StringReader reader) throws CommandSyntaxException {
         var str = reader.readUnquotedString();
 
-        if (SpellInit.hasSpell(str)) {
-            return SpellInit.getSpell(str);
+        if (SpellInit.has(str)) {
+            return SpellInit.get(str);
         } else {
             throw ERROR_INVALID_VALUE.create(str);
         }
@@ -52,7 +52,7 @@ public class SpellArgument implements ArgumentType<Spell> {
     @Override
     public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder) {
         List<String> spellIds = new ArrayList<>();
-        for (var spell : SpellInit.allSpells()) {
+        for (var spell : SpellInit.all()) {
             spellIds.add(spell.getId());
         }
 

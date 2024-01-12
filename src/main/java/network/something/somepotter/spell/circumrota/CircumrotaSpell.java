@@ -2,9 +2,12 @@ package network.something.somepotter.spell.circumrota;
 
 import network.something.somepotter.cast.Cast;
 import network.something.somepotter.cast.projectile.ProjectileCast;
+import network.something.somepotter.gesture.SpellGesture;
 import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.SpellListener;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 /**
  * Rotates the target
@@ -29,5 +32,21 @@ public class CircumrotaSpell extends Spell {
     @Override
     public @NotNull Cast getCast() {
         return new ProjectileCast();
+    }
+
+    @Override
+    public @NotNull List<SpellGesture> getGestures() {
+        var gesture = new SpellGesture(ID);
+
+        gesture.draw.line(35, 90, 35, 20);
+        gesture.draw.bezierCurve(35, 20, 35, 10, 42, 10, 50, 10);
+        gesture.draw.bezierCurve(50, 10, 62, 10, 65, 20, 45, 30);
+
+        return List.of(gesture);
+    }
+
+    @Override
+    public @NotNull List<SpellGesture> getMistakes() {
+        return List.of();
     }
 }

@@ -2,9 +2,12 @@ package network.something.somepotter.spell.arresto_momentum;
 
 import network.something.somepotter.cast.Cast;
 import network.something.somepotter.cast.projectile_or_self.ProjectileOrSelfCast;
+import network.something.somepotter.gesture.SpellGesture;
 import network.something.somepotter.spell.Spell;
 import network.something.somepotter.spell.SpellListener;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 /**
  * Slows the target's momentum
@@ -28,5 +31,22 @@ public class ArrestoMomentumSpell extends Spell {
     @Override
     public @NotNull Cast getCast() {
         return new ProjectileOrSelfCast();
+    }
+
+    @Override
+    public @NotNull List<SpellGesture> getGestures() {
+        var gesture = new SpellGesture(ID);
+
+        gesture.draw.line(10, 90, 30, 10);
+        gesture.draw.line(30, 10, 50, 90);
+        gesture.draw.line(50, 90, 70, 10);
+        gesture.draw.line(70, 10, 90, 90);
+
+        return List.of(gesture);
+    }
+
+    @Override
+    public @NotNull List<SpellGesture> getMistakes() {
+        return List.of();
     }
 }

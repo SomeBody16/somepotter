@@ -1,0 +1,23 @@
+{
+  "category": "somepotter:spells",
+  "name": "spell.protego",
+  "description": "spell.protego.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "protego",
+      "spell": "spell.protego",
+      "cast_type": "spell.cast.self",
+      "description": "spell.protego.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "protego"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.protego.page.page2"
+    }
+  ]
+}

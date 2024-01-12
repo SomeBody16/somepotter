@@ -3,6 +3,7 @@ package network.something.somepotter.cast.projectile_or_self;
 import network.something.somepotter.cast.Cast;
 import network.something.somepotter.cast.projectile.ProjectileCast;
 import network.something.somepotter.cast.self.SelfCast;
+import network.something.somepotter.event.SpellCastEvent;
 
 public class ProjectileOrSelfCast extends Cast {
     public static final String ID = "projectile_or_self";
@@ -23,6 +24,14 @@ public class ProjectileOrSelfCast extends Cast {
         }
 
         projectileCast.execute();
+    }
+
+    @Override
+    public Cast populate(SpellCastEvent.Post<?> event) {
+        super.populate(event);
+        selfCast.populate(event);
+        projectileCast.populate(event);
+        return this;
     }
 
     public ProjectileOrSelfCast setRange(int range) {

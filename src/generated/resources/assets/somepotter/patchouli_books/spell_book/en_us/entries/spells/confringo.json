@@ -1,0 +1,23 @@
+{
+  "category": "somepotter:spells",
+  "name": "spell.confringo",
+  "description": "spell.confringo.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "confringo",
+      "spell": "spell.confringo",
+      "cast_type": "spell.cast.projectile",
+      "description": "spell.confringo.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "confringo"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.confringo.page.page2"
+    }
+  ]
+}

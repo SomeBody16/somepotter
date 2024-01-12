@@ -1,0 +1,23 @@
+{
+  "category": "somepotter:spells",
+  "name": "spell.depulso",
+  "description": "spell.depulso.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "depulso",
+      "spell": "spell.depulso",
+      "cast_type": "spell.cast.projectile",
+      "description": "spell.depulso.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "depulso"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.depulso.page.page2"
+    }
+  ]
+}
