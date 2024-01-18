@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:charm",
+  "name": "spell.arresto_momentum",
+  "description": "spell.arresto_momentum.description",
+  "icon": "minecraft:feather",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "arresto_momentum",
+      "spell": "spell.arresto_momentum",
+      "spell_type": "spell.type.charm",
+      "cast_type": "spell.cast.projectile_or_self",
+      "description": "spell.arresto_momentum.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "arresto_momentum",
+      "advancement": "somepotter:spell/arresto_momentum"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.arresto_momentum.page.page2",
+      "advancement": "somepotter:spell/arresto_momentum"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "arresto_momentum"
+    }
+  ]
+}

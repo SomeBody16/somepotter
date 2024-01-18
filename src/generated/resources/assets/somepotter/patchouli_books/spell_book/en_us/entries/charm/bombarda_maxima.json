@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:charm",
+  "name": "spell.bombarda_maxima",
+  "description": "spell.bombarda_maxima.description",
+  "icon": "minecraft:tnt{Enchantments:[{id:\"minecraft:power\",lvl:1s}]}",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "bombarda_maxima",
+      "spell": "spell.bombarda_maxima",
+      "spell_type": "spell.type.charm",
+      "cast_type": "spell.cast.projectile",
+      "description": "spell.bombarda_maxima.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "bombarda_maxima",
+      "advancement": "somepotter:spell/bombarda_maxima"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.bombarda_maxima.page.page2",
+      "advancement": "somepotter:spell/bombarda_maxima"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "bombarda_maxima"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "root": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "root"
+    ]
+  ]
+}

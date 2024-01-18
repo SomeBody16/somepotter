@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:charm",
+  "name": "spell.confringo",
+  "description": "spell.confringo.description",
+  "icon": "minecraft:fire_charge",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "confringo",
+      "spell": "spell.confringo",
+      "spell_type": "spell.type.charm",
+      "cast_type": "spell.cast.projectile",
+      "description": "spell.confringo.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "confringo",
+      "advancement": "somepotter:spell/confringo"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.confringo.page.page2",
+      "advancement": "somepotter:spell/confringo"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "confringo"
+    }
+  ]
+}

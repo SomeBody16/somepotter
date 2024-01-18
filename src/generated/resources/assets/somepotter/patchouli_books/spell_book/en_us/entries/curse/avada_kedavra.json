@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:curse",
+  "name": "spell.avada_kedavra",
+  "description": "spell.avada_kedavra.description",
+  "icon": "minecraft:wither_skeleton_skull",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "avada_kedavra",
+      "spell": "spell.avada_kedavra",
+      "spell_type": "spell.type.curse",
+      "cast_type": "spell.cast.projectile",
+      "description": "spell.avada_kedavra.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "avada_kedavra",
+      "advancement": "somepotter:spell/avada_kedavra"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.avada_kedavra.page.page2",
+      "advancement": "somepotter:spell/avada_kedavra"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "avada_kedavra"
+    }
+  ]
+}

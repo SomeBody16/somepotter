@@ -1,0 +1,6 @@
+{
+  "name": "spell.type.counter_spell",
+  "description": "spell.type.counter_spell.description",
+  "parent": "somepotter:spells",
+  "icon": "minecraft:shield{Damage:0}"
+}

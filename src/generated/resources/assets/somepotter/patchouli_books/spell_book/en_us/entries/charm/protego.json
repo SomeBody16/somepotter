@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:charm",
+  "name": "spell.protego",
+  "description": "spell.protego.description",
+  "icon": "minecraft:shield{Damage:0}",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "protego",
+      "spell": "spell.protego",
+      "spell_type": "spell.type.charm",
+      "cast_type": "spell.cast.self",
+      "description": "spell.protego.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "protego",
+      "advancement": "somepotter:spell/protego"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.protego.page.page2",
+      "advancement": "somepotter:spell/protego"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "protego"
+    }
+  ]
+}

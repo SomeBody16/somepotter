@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:charm",
+  "name": "spell.alohomora",
+  "description": "spell.alohomora.description",
+  "icon": "minecraft:tripwire_hook",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "alohomora",
+      "spell": "spell.alohomora",
+      "spell_type": "spell.type.charm",
+      "cast_type": "spell.cast.touch",
+      "description": "spell.alohomora.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "alohomora",
+      "advancement": "somepotter:spell/alohomora"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.alohomora.page.page2",
+      "advancement": "somepotter:spell/alohomora"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "alohomora"
+    }
+  ]
+}

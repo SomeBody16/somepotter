@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:charm",
+  "name": "spell.depulso",
+  "description": "spell.depulso.description",
+  "icon": "minecraft:piston",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "depulso",
+      "spell": "spell.depulso",
+      "spell_type": "spell.type.charm",
+      "cast_type": "spell.cast.projectile",
+      "description": "spell.depulso.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "depulso",
+      "advancement": "somepotter:spell/depulso"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.depulso.page.page2",
+      "advancement": "somepotter:spell/depulso"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "depulso"
+    }
+  ]
+}

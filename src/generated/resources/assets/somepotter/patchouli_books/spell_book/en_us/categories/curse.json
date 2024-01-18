@@ -1,0 +1,6 @@
+{
+  "name": "spell.type.curse",
+  "description": "spell.type.curse.description",
+  "parent": "somepotter:spells",
+  "icon": "minecraft:wither_rose"
+}

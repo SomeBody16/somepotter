@@ -1,0 +1,8 @@
+{
+  "components": [
+    {
+      "type": "patchouli:custom",
+      "class": "network.something.somepotter.integration.patchouli.SpellRequirementsComponent"
+    }
+  ]
+}

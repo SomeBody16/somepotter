@@ -1,0 +1,6 @@
+{
+  "name": "spell.type.transfiguration",
+  "description": "spell.type.transfiguration.description",
+  "parent": "somepotter:spells",
+  "icon": "minecraft:crafting_table"
+}

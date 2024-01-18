@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:charm",
+  "name": "spell.reducio",
+  "description": "spell.reducio.description",
+  "icon": "minecraft:red_mushroom",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "reducio",
+      "spell": "spell.reducio",
+      "spell_type": "spell.type.charm",
+      "cast_type": "spell.cast.projectile_or_self",
+      "description": "spell.reducio.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "reducio",
+      "advancement": "somepotter:spell/reducio"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.reducio.page.page2",
+      "advancement": "somepotter:spell/reducio"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "reducio"
+    }
+  ]
+}

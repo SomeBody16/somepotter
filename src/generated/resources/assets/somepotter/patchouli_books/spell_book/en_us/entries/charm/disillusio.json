@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:charm",
+  "name": "spell.disillusio",
+  "description": "spell.disillusio.description",
+  "icon": "minecraft:potion{Potion:\"minecraft:invisibility\"}",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "disillusio",
+      "spell": "spell.disillusio",
+      "spell_type": "spell.type.charm",
+      "cast_type": "spell.cast.projectile_or_self",
+      "description": "spell.disillusio.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "disillusio",
+      "advancement": "somepotter:spell/disillusio"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.disillusio.page.page2",
+      "advancement": "somepotter:spell/disillusio"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "disillusio"
+    }
+  ]
+}

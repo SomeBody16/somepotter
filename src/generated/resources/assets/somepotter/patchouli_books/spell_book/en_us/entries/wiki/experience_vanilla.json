@@ -1,0 +1,18 @@
+{
+  "category": "somepotter:wiki",
+  "name": "spell_book.wiki.experience_vanilla",
+  "description": "spell_book.wiki.experience_vanilla.description",
+  "icon": "minecraft:experience_bottle",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "spell_book.wiki.experience_vanilla.page1",
+      "flag": "!mod:the_vault"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell_book.wiki.experience_vanilla.page2",
+      "flag": "mod:the_vault"
+    }
+  ]
+}

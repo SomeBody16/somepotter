@@ -1,0 +1,6 @@
+{
+  "name": "spell.type.hex",
+  "description": "spell.type.hex.description",
+  "parent": "somepotter:spells",
+  "icon": "minecraft:potion{Potion:\"minecraft:weakness\"}"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "spell.type.healing",
+  "description": "spell.type.healing.description",
+  "parent": "somepotter:spells",
+  "icon": "minecraft:potion{Potion:\"minecraft:healing\"}"
+}

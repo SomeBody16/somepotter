@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:charm",
+  "name": "spell.accio",
+  "description": "spell.accio.description",
+  "icon": "minecraft:fishing_rod{Damage:0}",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "accio",
+      "spell": "spell.accio",
+      "spell_type": "spell.type.charm",
+      "cast_type": "spell.cast.touch",
+      "description": "spell.accio.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "accio",
+      "advancement": "somepotter:spell/accio"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.accio.page.page2",
+      "advancement": "somepotter:spell/accio"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "accio"
+    }
+  ]
+}

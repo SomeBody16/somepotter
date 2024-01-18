@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:charm",
+  "name": "spell.ascendio",
+  "description": "spell.ascendio.description",
+  "icon": "minecraft:elytra{Damage:0}",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "ascendio",
+      "spell": "spell.ascendio",
+      "spell_type": "spell.type.charm",
+      "cast_type": "spell.cast.self",
+      "description": "spell.ascendio.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "ascendio",
+      "advancement": "somepotter:spell/ascendio"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.ascendio.page.page2",
+      "advancement": "somepotter:spell/ascendio"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "ascendio"
+    }
+  ]
+}

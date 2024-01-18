@@ -1,0 +1,6 @@
+{
+  "name": "spell.type.charm",
+  "description": "spell.type.charm.description",
+  "parent": "somepotter:spells",
+  "icon": "minecraft:enchanted_book"
+}

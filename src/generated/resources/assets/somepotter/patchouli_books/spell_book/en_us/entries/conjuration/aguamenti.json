@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:conjuration",
+  "name": "spell.aguamenti",
+  "description": "spell.aguamenti.description",
+  "icon": "minecraft:water_bucket",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "aguamenti",
+      "spell": "spell.aguamenti",
+      "spell_type": "spell.type.conjuration",
+      "cast_type": "spell.cast.projectile_or_self",
+      "description": "spell.aguamenti.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "aguamenti",
+      "advancement": "somepotter:spell/aguamenti"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.aguamenti.page.page2",
+      "advancement": "somepotter:spell/aguamenti"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "aguamenti"
+    }
+  ]
+}

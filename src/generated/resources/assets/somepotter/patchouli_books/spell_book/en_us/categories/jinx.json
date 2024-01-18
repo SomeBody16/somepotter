@@ -1,0 +1,6 @@
+{
+  "name": "spell.type.jinx",
+  "description": "spell.type.jinx.description",
+  "parent": "somepotter:spells",
+  "icon": "minecraft:poisonous_potato"
+}

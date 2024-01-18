@@ -1,0 +1,6 @@
+{
+  "name": "spell.type.conjuration",
+  "description": "spell.type.conjuration.description",
+  "parent": "somepotter:spells",
+  "icon": "minecraft:parrot_spawn_egg"
+}
