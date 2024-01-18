@@ -6,8 +6,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import network.something.somepotter.SomePotter;
-import network.something.somepotter.spell.protego.ProtegoEffect;
-import network.something.somepotter.spell.protego.ProtegoSpell;
+import network.something.somepotter.spells.spell.protego.ProtegoEffect;
+import network.something.somepotter.spells.spell.protego.ProtegoSpell;
 
 public class EffectInit {
 

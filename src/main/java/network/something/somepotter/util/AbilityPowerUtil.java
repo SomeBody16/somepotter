@@ -23,7 +23,8 @@ public class AbilityPowerUtil {
             return (int) AbilityPowerHelper.getAbilityPower(player);
         }
 
-        return 600;
+        var howCloseTo100 = player.experienceLevel / 100F;
+        return Math.round(getPeakAbilityPower() * howCloseTo100);
     }
 
     public static int get(LivingEntity entity) {

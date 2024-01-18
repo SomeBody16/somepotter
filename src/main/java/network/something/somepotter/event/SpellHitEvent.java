@@ -5,7 +5,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.Cancelable;
-import network.something.somepotter.spell.Spell;
+import network.something.somepotter.spells.spell.Spell;
 
 public class SpellHitEvent<T extends Spell> extends SpellEvent<T> {
 

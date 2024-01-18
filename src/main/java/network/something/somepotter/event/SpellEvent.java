@@ -3,7 +3,7 @@ package network.something.somepotter.event;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.eventbus.api.Event;
-import network.something.somepotter.spell.Spell;
+import network.something.somepotter.spells.spell.Spell;
 
 public abstract class SpellEvent<T extends Spell> extends Event {
 

@@ -3,7 +3,8 @@ package network.something.somepotter.datagen.patchouli;
 import com.google.common.hash.HashFunction;
 import com.google.gson.JsonArray;
 import net.minecraft.data.HashCache;
-import network.something.somepotter.SomePotter;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -35,8 +36,18 @@ public class BookEntry extends BookObject {
         return this;
     }
 
+    public BookEntry setIcon(ItemStack icon) {
+        var str = icon.getItem().getRegistryName().toString();
+        str += icon.hasTag() ? icon.getTag().toString() : "";
+        addProperty("icon", str);
+        return this;
+    }
+
+    public BookEntry setIcon(Item item) {
+        return setIcon(new ItemStack(item));
+    }
+
     void save(Path entriesPath, HashCache cache, HashFunction hash) throws IOException {
-        SomePotter.LOGGER.info("Saving {} entry", id);
         json.add("pages", pages);
         Path entryPath = entriesPath.resolve(id + ".json");
         write(cache, hash, entryPath, json);

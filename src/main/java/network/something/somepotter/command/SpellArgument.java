@@ -11,10 +11,10 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.network.chat.TextComponent;
 import network.something.somepotter.init.SpellInit;
-import network.something.somepotter.spell.Spell;
-import network.something.somepotter.spell.accio.AccioSpell;
-import network.something.somepotter.spell.avada_kedavra.AvadaKedavraSpell;
-import network.something.somepotter.spell.basic_cast.BasicCastSpell;
+import network.something.somepotter.spells.spell.Spell;
+import network.something.somepotter.spells.spell.accio.AccioSpell;
+import network.something.somepotter.spells.spell.avada_kedavra.AvadaKedavraSpell;
+import network.something.somepotter.spells.spell.basic_cast.BasicCastSpell;
 
 import java.util.ArrayList;
 import java.util.Arrays;

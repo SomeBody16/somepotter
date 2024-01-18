@@ -43,12 +43,10 @@ public class BookGenerator extends BookObject {
                 .resolve("patchouli_books")
                 .resolve(id);
 
-        SomePotter.LOGGER.info("Saving {} categories", categories.size());
         for (var category : categories) {
             category.save(bookAssetPath, cache, hash);
         }
 
-        SomePotter.LOGGER.info("Saving {} templates", templates.size());
         for (var template : templates) {
             template.save(bookAssetPath, cache, hash);
         }

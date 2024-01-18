@@ -166,23 +166,29 @@ repositories {
     maven { url 'https://maven.lukegrahamlandry.ca' }
     maven { url 'https://jitpack.io' }
     maven { url 'https://maven.blamejared.com' }
+    maven { url 'https://maven.theillusivec4.top/' }
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.2.9'
+    minecraft "net.minecraftforge:forge:${forge_version}"
 
-//    implementation fg.deobf("curse.maven:the_vault-${the_vault_id_project}:${the_vault_id_file}")
-//    implementation fg.deobf("iskallia.vault.the_vault:the_vault:3.11.0.2853")
-    compileOnly fg.deobf(files('libs/the_vault-1.18.2-3.11.0.2853.jar'))
-    implementation fg.deobf(group: 'ca.lukegrahamlandry.lib', name: 'WrapperLib-1.18-Forge', version: '1.1.0') { transitive false }
+    compileOnly fg.deobf(files("libs/the_vault-${the_vault_version}.jar"))
+    implementation fg.deobf(group: 'ca.lukegrahamlandry.lib', name: 'WrapperLib-1.18-Forge', version: "${wrapperlib_version}") { transitive false }
 
-    shade 'com.github.cluelab:dollar-recognizers-java:79105ed0fc'
-    minecraftLibrary 'com.github.cluelab:dollar-recognizers-java:79105ed0fc'
+    shade "com.github.cluelab:dollar-recognizers-java:${dollar_recognizers_version}"
+    minecraftLibrary "com.github.cluelab:dollar-recognizers-java:${dollar_recognizers_version}"
 
-    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1:api")
-    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1")
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
 
-    implementation fg.deobf("com.github.Virtuoel:Pehkui:3.7.11-1.18.2-forge")
+//    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
+
+    implementation fg.deobf("com.github.Virtuoel:Pehkui:${pehkui_version}")
+
+    implementation(fg.deobf("curse.maven:blockui-${blockui_version}")) {
+        transitive = false
+    }
 }
 
 jar {

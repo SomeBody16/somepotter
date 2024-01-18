@@ -12,8 +12,10 @@ public class DataGenerators {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
+        var fileHelper = event.getExistingFileHelper();
 
         generator.addProvider(new SpellBookProvider(generator));
+        generator.addProvider(new SpellAdvancementProvider(generator, fileHelper));
     }
 
 }

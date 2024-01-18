@@ -1,13 +1,14 @@
 package network.something.somepotter.init;
 
-import network.something.somepotter.spell_type.SpellType;
-import network.something.somepotter.spell_type.charm.CharmType;
-import network.something.somepotter.spell_type.conjuration.ConjurationType;
-import network.something.somepotter.spell_type.counter_spell.CounterSpellType;
-import network.something.somepotter.spell_type.curse.CurseType;
-import network.something.somepotter.spell_type.healing.HealingType;
-import network.something.somepotter.spell_type.jinx.JinxType;
-import network.something.somepotter.spell_type.transfiguration.TransfigurationType;
+import network.something.somepotter.spells.spell_type.SpellType;
+import network.something.somepotter.spells.spell_type.charm.CharmType;
+import network.something.somepotter.spells.spell_type.conjuration.ConjurationType;
+import network.something.somepotter.spells.spell_type.counter_spell.CounterSpellType;
+import network.something.somepotter.spells.spell_type.curse.CurseType;
+import network.something.somepotter.spells.spell_type.healing.HealingType;
+import network.something.somepotter.spells.spell_type.hex.HexType;
+import network.something.somepotter.spells.spell_type.jinx.JinxType;
+import network.something.somepotter.spells.spell_type.transfiguration.TransfigurationType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ public class SpellTypeInit {
         register(new CurseType());
         register(new HealingType());
         register(new JinxType());
+        register(new HexType());
         register(new TransfigurationType());
     }
 

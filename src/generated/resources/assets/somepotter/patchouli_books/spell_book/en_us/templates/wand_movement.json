@@ -5,7 +5,7 @@
     },
     {
       "type": "patchouli:custom",
-      "class": "network.something.somepotter.patchouli.WandMovementComponent"
+      "class": "network.something.somepotter.integration.patchouli.WandMovementComponent"
     }
   ]
 }

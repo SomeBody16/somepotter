@@ -44,4 +44,16 @@ public class ColorUtil {
         return (r << 16) | (g << 8) | b;
     }
 
+    public int getRGBA24(float alpha) {
+        var r = (int) (color.x() * 255F);
+        var g = (int) (color.y() * 255F);
+        var b = (int) (color.z() * 255F);
+        var a = (int) (alpha * 255F);
+        return (a << 24) | (r << 16) | (g << 8) | b;
+    }
+
+    public int getRGBA24() {
+        return getRGBA24(1F);
+    }
+
 }
