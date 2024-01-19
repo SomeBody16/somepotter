@@ -191,7 +191,8 @@ dependencies {
     minecraft "net.minecraftforge:forge:${forge_version}"
 
     compileOnly fg.deobf(files("libs/the_vault-${the_vault_version}.jar"))
-    implementation fg.deobf(group: 'ca.lukegrahamlandry.lib', name: 'WrapperLib-1.18-Forge', version: "${wrapperlib_version}") { transitive false }
+//    implementation fg.deobf(group: 'ca.lukegrahamlandry.lib', name: 'WrapperLib-1.18-Forge', version: "${wrapperlib_version}") { transitive false }
+    implementation fg.deobf(files('libs/WrapperLib-1.18-1.1.5.jar'))
 
     shade "com.github.cluelab:dollar-recognizers-java:${dollar_recognizers_version}"
     minecraftLibrary "com.github.cluelab:dollar-recognizers-java:${dollar_recognizers_version}"
