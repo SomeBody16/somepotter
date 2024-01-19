@@ -23,9 +23,27 @@ configurations {
     implementation.extendsFrom shade
 }
 
-version = project.mod_version
 group = project.maven_group
 archivesBaseName = project.archives_base_name
+
+def setVersionWithCommitCount(versionString) {
+    if (versionString.contains("COMMIT_COUNT")) {
+        try {
+            def cmd = "git rev-list --count HEAD"
+            def proc = cmd.execute()
+            proc.waitFor()
+            def commitCount = proc.in.text.trim()
+            return versionString.replace("COMMIT_COUNT", commitCount)
+        } catch (Exception e) {
+            e.printStackTrace()
+            return "0"
+        }
+    }
+    return versionString
+}
+
+version = setVersionWithCommitCount(project.mod_version)
+
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)

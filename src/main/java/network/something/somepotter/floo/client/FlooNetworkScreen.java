@@ -6,8 +6,9 @@ import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.widget.ExtendedButton;
-import network.something.somepotter.SomePotter;
 import network.something.somepotter.floo.network.FlooNode;
 import network.something.somepotter.floo.packet.ChangeFlooNodeNamePacket;
 import network.something.somepotter.floo.packet.TeleportToNodePacket;
@@ -16,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.function.Function;
 
+@OnlyIn(Dist.CLIENT)
 public class FlooNetworkScreen extends Screen {
 
     protected FlooNode origin;
@@ -93,9 +95,7 @@ public class FlooNetworkScreen extends Screen {
 
     @Override
     public void onClose() {
-        SomePotter.LOGGER.info("name: {} | origin: {}", nameEdit.getValue(), origin.name);
         if (!nameEdit.getValue().equals(origin.name)) {
-            SomePotter.LOGGER.info("sending packet");
             new ChangeFlooNodeNamePacket(origin, nameEdit.getValue()).sendToServer();
         }
         DisableFlooNetworkScreen.disableForPosition(origin.getPos());

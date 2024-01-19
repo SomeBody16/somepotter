@@ -6,10 +6,12 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import network.something.somepotter.floo.network.FlooNetworkManager;
 import network.something.somepotter.init.BlockInit;
 import network.something.somepotter.init.ItemInit;
+import network.something.somepotter.integration.Integrations;
 import network.something.somepotter.spells.cast.touch.TouchCast;
 import network.something.somepotter.util.ColorUtil;
 
@@ -30,6 +32,14 @@ public class FlooPowderItem extends Item {
         if (DamageSource.IN_FIRE.equals(damageSource)
                 && itemEntity.level instanceof ServerLevel level
                 && !level.getBlockState(pos.below()).isAir()) {
+
+            if (Integrations.THE_VAULT.isLoaded()) {
+                if (level.dimension() != Level.OVERWORLD
+                        && level.dimension() != Level.NETHER
+                        && level.dimension() != Level.END) {
+                    return;
+                }
+            }
 
             FlooNetworkManager.addNode(level, pos);
             level.setBlockAndUpdate(pos, BlockInit.FLOO_FIRE.get().defaultBlockState());

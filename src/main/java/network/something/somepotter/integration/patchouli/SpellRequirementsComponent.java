@@ -7,6 +7,8 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.widget.ExtendedButton;
 import network.something.somepotter.init.SpellInit;
 import network.something.somepotter.mechanics.spell_learn.SpellLearnClient;
@@ -18,6 +20,7 @@ import vazkii.patchouli.api.IVariable;
 
 import java.util.function.UnaryOperator;
 
+@OnlyIn(Dist.CLIENT)
 public class SpellRequirementsComponent implements ICustomComponent {
 
     public transient String spellId = "";

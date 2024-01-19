@@ -2,7 +2,10 @@ package network.something.somepotter.util;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class ScreenUtil {
 
     public static void drawLine(PoseStack stack, int x1, int y1, int x2, int y2, int color) {
