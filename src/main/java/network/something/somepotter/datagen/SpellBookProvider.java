@@ -115,17 +115,16 @@ public class SpellBookProvider implements DataProvider {
         // Experience Vanilla
         var experienceVanilla = BookEntry.translated("experience_vanilla", root, "spell_book.wiki")
                 .setIcon(Items.EXPERIENCE_BOTTLE);
+        experienceVanilla.addProperty("flag", "!mod:the_vault");
 
         var pageVanilla1 = BookPage.translated(experienceVanilla, "spell_book.wiki", "experience_vanilla");
         pageVanilla1.addProperty("type", "patchouli:text");
         pageVanilla1.addProperty("text", "spell_book.wiki.experience_vanilla.page1");
-        pageVanilla1.addProperty("flag", "!mod:the_vault");
         experienceVanilla.addPage(pageVanilla1);
 
         var pageVanilla2 = BookPage.translated(experienceVanilla, "spell_book.wiki", "experience_vanilla");
         pageVanilla2.addProperty("type", "patchouli:text");
         pageVanilla2.addProperty("text", "spell_book.wiki.experience_vanilla.page2");
-        pageVanilla2.addProperty("flag", "mod:the_vault");
         experienceVanilla.addPage(pageVanilla2);
 
         root.addEntry(experienceVanilla);
@@ -133,20 +132,27 @@ public class SpellBookProvider implements DataProvider {
         // Experience The Vault
         var experienceTheVault = BookEntry.translated("experience_the_vault", root, "spell_book.wiki")
                 .setIcon(Items.EXPERIENCE_BOTTLE);
+        experienceTheVault.addProperty("flag", "mod:the_vault");
 
-        var pageTheVault1 = BookPage.translated(experienceTheVault, "spell_book.wiki", "experience_vanilla");
-        pageTheVault1.addProperty("type", "patchouli:text");
-        pageTheVault1.addProperty("text", "spell_book.wiki.experience_the_vault.page1");
-        pageTheVault1.addProperty("flag", "!mod:the_vault");
+        var pageTheVault1 = BookPage.translated(experienceTheVault, "spell_book.wiki", ".experience_the_vault.page1");
         experienceTheVault.addPage(pageTheVault1);
 
-        var pageTheVault2 = BookPage.translated(experienceTheVault, "spell_book.wiki", "experience_vanilla");
-        pageTheVault2.addProperty("type", "patchouli:text");
-        pageTheVault2.addProperty("text", "spell_book.wiki.experience_the_vault.page2");
-        pageTheVault2.addProperty("flag", "mod:the_vault");
+        var pageTheVault2 = BookPage.translated(experienceTheVault, "spell_book.wiki", "experience_the_vault.page2");
         experienceTheVault.addPage(pageTheVault2);
 
         root.addEntry(experienceTheVault);
+
+        // Floo Network
+        var flooNetwork = BookEntry.translated("floo_network", root, "spell_book.wiki")
+                .setIcon(ItemInit.FLOO_POWDER.get());
+
+        var floo1 = BookPage.translated(flooNetwork, "spell_book.wiki", "1");
+        flooNetwork.addPage(floo1);
+
+        var floo2 = BookPage.translated(flooNetwork, "spell_book.wiki", "2");
+        flooNetwork.addPage(floo2);
+
+        root.addEntry(flooNetwork);
 
 
         book.addCategory(root);

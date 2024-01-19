@@ -1,4 +1,4 @@
-package network.something.somepotter.floo.minecraft;
+package network.something.somepotter.floo.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.components.Button;
@@ -8,7 +8,6 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraftforge.client.gui.widget.ExtendedButton;
 import network.something.somepotter.SomePotter;
-import network.something.somepotter.floo.client.DisableFlooNetworkScreen;
 import network.something.somepotter.floo.network.FlooNode;
 import network.something.somepotter.floo.packet.ChangeFlooNodeNamePacket;
 import network.something.somepotter.floo.packet.TeleportToNodePacket;
@@ -18,7 +17,6 @@ import java.util.List;
 import java.util.function.Function;
 
 public class FlooNetworkScreen extends Screen {
-    protected static final int PER_PAGE = 5;
 
     protected FlooNode origin;
     protected List<FlooNode> nodes;
@@ -44,7 +42,9 @@ public class FlooNetworkScreen extends Screen {
         var x = (width / 2) - 100;
         var y = 50;
 
-        for (var i = page * PER_PAGE; i < (page + 1) * PER_PAGE; i++) {
+        var perPage = (height / 2) / 22;
+
+        for (var i = page * perPage; i < (page + 1) * perPage; i++) {
             if (i >= nodes.size()) break;
             var node = nodes.get(i);
 
@@ -59,11 +59,11 @@ public class FlooNetworkScreen extends Screen {
             y += 22;
         }
 
-        y = 50 + (PER_PAGE * 22) + 10;
+        y = 50 + (perPage * 22) + 10;
         Function<Integer, Button.OnPress> getChangePage = (i) -> (btn) -> {
             page += i;
             page = Math.max(page, 0);
-            page = Math.min(page, nodes.size() / PER_PAGE);
+            page = Math.min(page, nodes.size() / perPage);
             initButtons();
         };
         var prevDisplay = new TranslatableComponent("spectatorMenu.previous_page");
@@ -73,7 +73,7 @@ public class FlooNetworkScreen extends Screen {
 
         var nextDisplay = new TranslatableComponent("spectatorMenu.next_page");
         var nextBtn = new ExtendedButton(x + 105, y, 95, 20, nextDisplay, getChangePage.apply(1));
-        nextBtn.active = page < nodes.size() / PER_PAGE;
+        nextBtn.active = page < nodes.size() / perPage;
         addRenderableWidget(nextBtn);
 
 
@@ -83,7 +83,6 @@ public class FlooNetworkScreen extends Screen {
             nameEdit = new EditBox(font, x + 1, y, 200 - 2, 20, nameEditDisplay);
             nameEdit.setValue(origin.name);
         }
-        nameEdit.setVisible(page == 0);
         addRenderableWidget(nameEdit);
     }
 

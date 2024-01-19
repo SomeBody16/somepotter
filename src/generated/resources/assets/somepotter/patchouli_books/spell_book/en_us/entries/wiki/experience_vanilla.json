@@ -3,16 +3,15 @@
   "name": "spell_book.wiki.experience_vanilla",
   "description": "spell_book.wiki.experience_vanilla.description",
   "icon": "minecraft:experience_bottle",
+  "flag": "!mod:the_vault",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "spell_book.wiki.experience_vanilla.page1",
-      "flag": "!mod:the_vault"
+      "text": "spell_book.wiki.experience_vanilla.page1"
     },
     {
       "type": "patchouli:text",
-      "text": "spell_book.wiki.experience_vanilla.page2",
-      "flag": "mod:the_vault"
+      "text": "spell_book.wiki.experience_vanilla.page2"
     }
   ]
 }

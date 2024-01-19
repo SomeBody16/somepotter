@@ -3,7 +3,7 @@ package network.something.somepotter.floo.packet;
 import ca.lukegrahamlandry.lib.network.ClientSideHandler;
 import net.minecraft.client.Minecraft;
 import network.something.somepotter.floo.client.DisableFlooNetworkScreen;
-import network.something.somepotter.floo.minecraft.FlooNetworkScreen;
+import network.something.somepotter.floo.client.FlooNetworkScreen;
 import network.something.somepotter.floo.network.FlooNode;
 
 import java.util.List;

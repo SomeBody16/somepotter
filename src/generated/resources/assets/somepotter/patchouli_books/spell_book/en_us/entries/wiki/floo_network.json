@@ -1,0 +1,16 @@
+{
+  "category": "somepotter:wiki",
+  "name": "spell_book.wiki.floo_network",
+  "description": "spell_book.wiki.floo_network.description",
+  "icon": "somepotter:floo_powder",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "spell_book.wiki.floo_network.page.1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell_book.wiki.floo_network.page.2"
+    }
+  ]
+}
