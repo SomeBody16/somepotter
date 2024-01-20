@@ -2,10 +2,10 @@ package network.something.somepotter.floo.minecraft;
 
 import iskallia.vault.init.ModConfigs;
 import iskallia.vault.world.data.PlayerResearchesData;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -36,6 +36,8 @@ import network.something.somepotter.init.BlockInit;
 import network.something.somepotter.integration.Integrations;
 import network.something.somepotter.spells.cast.touch.TouchCast;
 import network.something.somepotter.util.ColorUtil;
+
+import static net.minecraft.Util.NIL_UUID;
 
 @Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class FlooFireBlock extends Block {
@@ -82,7 +84,7 @@ public class FlooFireBlock extends Block {
                     var name = new TextComponent(research.getName());
                     name.setStyle(Style.EMPTY.withColor(-203978));
                     var msg = new TranslatableComponent("overlay.requires_research.interact_block", name);
-                    Minecraft.getInstance().player.displayClientMessage(msg, false);
+                    player.sendMessage(msg, ChatType.GAME_INFO, NIL_UUID);
                     return;
                 }
             }
