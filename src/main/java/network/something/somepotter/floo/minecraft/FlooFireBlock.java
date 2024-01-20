@@ -37,6 +37,8 @@ import network.something.somepotter.integration.Integrations;
 import network.something.somepotter.spells.cast.touch.TouchCast;
 import network.something.somepotter.util.ColorUtil;
 
+import java.util.List;
+
 import static net.minecraft.Util.NIL_UUID;
 
 @Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -76,13 +78,16 @@ public class FlooFireBlock extends Block {
 
             // Check for research
             if (Integrations.THE_VAULT.isLoaded()) {
-                SomePotter.LOGGER.info("The Vault is loaded");
+                var allowedDims = List.of(Level.OVERWORLD, Level.NETHER, Level.END);
+                if (!allowedDims.contains(serverLevel.dimension())) {
+                    player.setSecondsOnFire(8);
+                    return;
+                }
+
                 var researchData = PlayerResearchesData.get(serverLevel);
                 var tree = researchData.getResearches(player);
                 var research = ModConfigs.RESEARCHES.getByName("Floo Network");
-                SomePotter.LOGGER.info("Research: {}", research == null ? "NULL" : research.getName());
                 if (research == null || !tree.isResearched(research)) {
-                    SomePotter.LOGGER.info("Player does not have research");
                     var name = new TextComponent("Floo Network");
                     name.setStyle(Style.EMPTY.withColor(-203978));
                     var msg = new TranslatableComponent("overlay.requires_research.interact_block", name);
