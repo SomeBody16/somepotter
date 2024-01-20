@@ -78,10 +78,9 @@ public class FlooFireBlock extends Block {
             if (Integrations.THE_VAULT.isLoaded()) {
                 var researchData = PlayerResearchesData.get(serverLevel);
                 var tree = researchData.getResearches(player);
-                var research = ModConfigs.RESEARCHES.getByName("Waystones");
-                if (research == null) return;
-                if (!tree.isResearched(research)) {
-                    var name = new TextComponent(research.getName());
+                var research = ModConfigs.RESEARCHES.getByName("Floo Network");
+                if (research == null || !tree.isResearched(research)) {
+                    var name = new TextComponent("Floo Network");
                     name.setStyle(Style.EMPTY.withColor(-203978));
                     var msg = new TranslatableComponent("overlay.requires_research.interact_block", name);
                     player.sendMessage(msg, ChatType.GAME_INFO, NIL_UUID);
