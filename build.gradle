@@ -192,7 +192,7 @@ dependencies {
 
     compileOnly fg.deobf(files("libs/the_vault-${the_vault_version}.jar"))
 //    implementation fg.deobf(group: 'ca.lukegrahamlandry.lib', name: 'WrapperLib-1.18-Forge', version: "${wrapperlib_version}") { transitive false }
-    implementation fg.deobf(files('libs/WrapperLib-1.18-1.1.5.jar'))
+    shade fg.deobf(files('libs/WrapperLib-1.18-1.1.5.jar'))
 
     shade "com.github.cluelab:dollar-recognizers-java:${dollar_recognizers_version}"
     minecraftLibrary "com.github.cluelab:dollar-recognizers-java:${dollar_recognizers_version}"
@@ -256,30 +256,25 @@ tasks.withType(JavaCompile).configureEach {
 
 tasks.register('copyAfterBuild') {
     doFirst {
-        // Check if the property is set
-        if (project.hasProperty('copy_after_build')) {
-            def targetDir = project.property('copy_after_build')
-            targetDir = new File(targetDir).getAbsolutePath()
+        def targetDir = System.getenv("OUTPUT_DIR")
+        targetDir = new File(targetDir).getAbsolutePath()
 
-            def jarFile = "${buildDir}/libs/${archives_base_name}-${version}.jar"
+        def jarFile = "${buildDir}/libs/${archives_base_name}-${version}.jar"
 
-            // Delete files starting with "somepotter" in the target directory
-            file(targetDir).listFiles().findAll {
-                it.name.startsWith("${archives_base_name}")
-            }.each {
-                it.delete()
-            }
-
-            // Copy the built jar to the target directory
-            copy {
-                from jarFile
-                into targetDir
-            }
-
-            logger.lifecycle("Copied ${jarFile} to ${targetDir}")
-        } else {
-            logger.lifecycle("copy_after_build property is not set. Skipping copyAfterBuild task.")
+        // Delete files starting with "somepotter" in the target directory
+        file(targetDir).listFiles().findAll {
+            it.name.startsWith("${archives_base_name}")
+        }.each {
+            it.delete()
         }
+
+        // Copy the built jar to the target directory
+        copy {
+            from jarFile
+            into targetDir
+        }
+
+        logger.lifecycle("Copied ${jarFile} to ${targetDir}")
     }
 }
 build.finalizedBy(copyAfterBuild)
