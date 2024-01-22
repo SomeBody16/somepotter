@@ -1,5 +1,5 @@
 {
-  "name": "spell_book.category.spells",
-  "description": "spell_book.category.spells.description",
+  "name": "spell_book.spells",
+  "description": "spell_book.spells.description",
   "icon": "somepotter:wand"
 }

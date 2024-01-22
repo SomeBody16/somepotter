@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "spell.protego_maxima.page.page2",
+      "text": "spell.protego_maxima.page2",
       "advancement": "somepotter:spell/protego_maxima"
     },
     {

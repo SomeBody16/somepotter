@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "spell.ascendio.page.page2",
+      "text": "spell.ascendio.page2",
       "advancement": "somepotter:spell/ascendio"
     },
     {

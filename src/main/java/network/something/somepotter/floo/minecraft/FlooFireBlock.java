@@ -81,7 +81,7 @@ public class FlooFireBlock extends Block {
                 var research = ModConfigs.RESEARCHES.getByName("Floo Network");
                 if (research == null || !tree.isResearched(research)) {
                     var name = new TextComponent("Floo Network");
-                    name.setStyle(Style.EMPTY.withColor(-203978));
+                    name.setStyle(Style.EMPTY.withColor(0xFFFF00));
                     var msg = new TranslatableComponent("overlay.requires_research.interact_block", name);
                     player.sendMessage(msg, ChatType.GAME_INFO, NIL_UUID);
                     return;
@@ -89,16 +89,7 @@ public class FlooFireBlock extends Block {
             }
 
             // Open GUI
-            var nodes = FlooNetworkManager.all((ServerLevel) level);
-            nodes = nodes.stream()
-                    .filter(node -> !node.is((ServerLevel) level, pos))
-                    .sorted((a, b) -> {
-                        var aDist = FlooNetworkManager.playerDistanceTo(player, a.getPos());
-                        var bDist = FlooNetworkManager.playerDistanceTo(player, b.getPos());
-                        return Float.compare(aDist, bDist);
-                    })
-                    .toList();
-
+            var nodes = FlooNetworkManager.listFor(serverLevel, player, pos);
             new OpenFlooNetworkScreenPacket(origin, nodes).sendToClient(player);
             return;
         }

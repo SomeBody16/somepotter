@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "spell.reducio.page.page2",
+      "text": "spell.reducio.page2",
       "advancement": "somepotter:spell/reducio"
     },
     {

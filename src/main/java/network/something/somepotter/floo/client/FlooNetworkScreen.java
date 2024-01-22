@@ -1,6 +1,7 @@
 package network.something.somepotter.floo.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
@@ -30,6 +31,12 @@ public class FlooNetworkScreen extends Screen {
         super(new TextComponent("Floo Network"));
         this.origin = origin;
         this.nodes = nodes;
+    }
+
+    public void tryOpen() {
+        var mc = Minecraft.getInstance();
+        var shouldNotOpen = DisableFlooNetworkScreen.isDisabled();
+        if (mc.screen == null && !shouldNotOpen) mc.setScreen(this);
     }
 
     @Override
@@ -86,6 +93,9 @@ public class FlooNetworkScreen extends Screen {
             nameEdit.setValue(origin.name);
         }
         addRenderableWidget(nameEdit);
+        nameEdit.visible = origin.allowedPlayers.isEmpty() || origin.allowedPlayers.contains(
+                Minecraft.getInstance().player.getName().getString()
+        );
     }
 
     @Override

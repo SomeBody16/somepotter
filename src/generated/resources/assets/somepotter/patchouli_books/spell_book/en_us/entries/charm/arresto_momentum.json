@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "spell.arresto_momentum.page.page2",
+      "text": "spell.arresto_momentum.page2",
       "advancement": "somepotter:spell/arresto_momentum"
     },
     {

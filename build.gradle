@@ -178,7 +178,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     flatDir {
-        dirs '/libs'
+        dirs 'libs'
     }
     maven { url 'https://cursemaven.com' }
     maven { url 'https://maven.lukegrahamlandry.ca' }
@@ -190,24 +190,33 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${forge_version}"
 
-    compileOnly fg.deobf(files("libs/the_vault-${the_vault_version}.jar"))
-//    implementation fg.deobf(group: 'ca.lukegrahamlandry.lib', name: 'WrapperLib-1.18-Forge', version: "${wrapperlib_version}") { transitive false }
-    shade fg.deobf(files('libs/WrapperLib-1.18-1.1.5.jar'))
+    // The Vault
+    compileOnly fg.deobf("iskallia.vault:the_vault:${the_vault_version}")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
 
-    shade "com.github.cluelab:dollar-recognizers-java:${dollar_recognizers_version}"
-    minecraftLibrary "com.github.cluelab:dollar-recognizers-java:${dollar_recognizers_version}"
-
+    // Patchouli
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
 
-//    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
-
+    // Pehkui
     implementation fg.deobf("com.github.Virtuoel:Pehkui:${pehkui_version}")
 
-    implementation(fg.deobf("curse.maven:blockui-${blockui_version}")) {
-        transitive = false
-    }
+    // Libraries
+    implementation fg.deobf('ca.lukegrahamlandry.lib:WrapperLib:1.18-1.1.5-Forge')
+    shade "com.github.cluelab:dollar-recognizers-java:${dollar_recognizers_version}"
+    minecraftLibrary "com.github.cluelab:dollar-recognizers-java:${dollar_recognizers_version}"
+
+    // The Vault Runtime
+    runtimeOnly fg.deobf("iskallia.vault:the_vault:${the_vault_version}")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+    runtimeOnly fg.deobf("com.github.alexthe666.citadel:citadel:1.11.3-1.18.2")
+    runtimeOnly fg.deobf("com.github.alexthe666.alexsmobs:alexsmobs:1.18.6")
+    runtimeOnly fg.deobf("software.bernie.geckolib3:geckolib-forge:1.18-3.0.57")
+    runtimeOnly fg.deobf("vazkii.quark:Quark:3.2-358")
+    runtimeOnly fg.deobf("vazkii.arl:AutoRegLib:1.7-53")
+    runtimeOnly fg.deobf("net.p3pp3rf1y.sophisticatedbackpacks:sophisticatedbackpacks:1.18.2-3.19.5.990")
+    runtimeOnly fg.deobf("net.p3pp3rf1y.sophisticatedbackpacksvh:sophisticatedbackpacksvh:1.18.2-1.0.6.14")
+    runtimeOnly fg.deobf("net.p3pp3rf1y.sophisticatedcore:sophisticatedcore:1.18.2-0.5.111.526")
 }
 
 jar {

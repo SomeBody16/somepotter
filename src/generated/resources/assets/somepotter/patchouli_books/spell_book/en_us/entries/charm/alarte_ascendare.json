@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "spell.alarte_ascendare.page.page2",
+      "text": "spell.alarte_ascendare.page2",
       "advancement": "somepotter:spell/alarte_ascendare"
     },
     {

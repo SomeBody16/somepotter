@@ -6,11 +6,17 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "spell_book.wiki.floo_network.page.1"
+      "text": "spell_book.wiki.floo_network.intro"
     },
     {
       "type": "patchouli:text",
-      "text": "spell_book.wiki.floo_network.page.2"
+      "text": "spell_book.wiki.floo_network.how_to_setup",
+      "title": "spell_book.wiki.floo_network.how_to_setup.title"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell_book.wiki.floo_network.privacy",
+      "title": "spell_book.wiki.floo_network.privacy.title"
     }
   ]
 }

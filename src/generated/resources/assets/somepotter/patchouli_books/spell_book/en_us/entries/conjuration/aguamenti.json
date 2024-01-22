@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "spell.aguamenti.page.page2",
+      "text": "spell.aguamenti.page2",
       "advancement": "somepotter:spell/aguamenti"
     },
     {

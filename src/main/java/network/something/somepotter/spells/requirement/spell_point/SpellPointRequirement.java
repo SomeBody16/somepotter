@@ -1,6 +1,8 @@
 package network.something.somepotter.spells.requirement.spell_point;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import network.something.somepotter.integration.Integrations;
@@ -31,7 +33,17 @@ public class SpellPointRequirement extends Requirement {
 
     @Override
     public Component getText() {
-        return new TranslatableComponent("spell.requirement.skill_point", cost);
+        try {
+            var available = Minecraft.getInstance().player.experienceLevel;
+            var displayCost = cost;
+            if (Integrations.THE_VAULT.isLoaded()) {
+                displayCost /= 10;
+                available = SpellPointData.get(Minecraft.getInstance().player);
+            }
+            return new TranslatableComponent("spell.requirement.skill_point", available, displayCost);
+        } catch (Exception e) {
+            return new TextComponent("ERROR");
+        }
     }
 
     @Override

@@ -7,11 +7,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "spell_book.wiki.experience_the_vault.page..experience_the_vault.page1"
+      "text": "spell_book.wiki.experience_the_vault.page1"
     },
     {
       "type": "patchouli:text",
-      "text": "spell_book.wiki.experience_the_vault.page.experience_the_vault.page2"
+      "text": "spell_book.wiki.experience_the_vault.page2"
     }
   ]
 }

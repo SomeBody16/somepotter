@@ -16,7 +16,8 @@ public class AlohomoraListener extends SpellListener<AlohomoraSpell> {
         var blockState = event.level.getBlockState(blockPos);
 
         if (Integrations.THE_VAULT.isLoaded()) {
-            if (blockState.is(ModBlocks.TREASURE_DOOR)) {
+            if (blockState.getBlock().getRegistryName()
+                    .equals(ModBlocks.TREASURE_DOOR.getRegistryName())) {
                 return;
             }
         }

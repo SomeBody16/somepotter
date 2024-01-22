@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "spell.depulso.page.page2",
+      "text": "spell.depulso.page2",
       "advancement": "somepotter:spell/depulso"
     },
     {

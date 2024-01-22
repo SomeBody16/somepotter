@@ -1,0 +1,22 @@
+{
+  "category": "somepotter:wiki",
+  "name": "spell_book.wiki.protego_maxima",
+  "description": "spell_book.wiki.protego_maxima.description",
+  "icon": "minecraft:shield{Damage:0,Enchantments:[{id:\"minecraft:power\",lvl:1s}]}",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "spell_book.wiki.protego_maxima.intro"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell_book.wiki.protego_maxima.claiming",
+      "title": "spell_book.wiki.protego_maxima.claiming.title"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell_book.wiki.protego_maxima.whitelist",
+      "title": "spell_book.wiki.protego_maxima.whitelist.title"
+    }
+  ]
+}

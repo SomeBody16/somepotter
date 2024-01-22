@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "spell.protego.page.page2",
+      "text": "spell.protego.page2",
       "advancement": "somepotter:spell/protego"
     },
     {

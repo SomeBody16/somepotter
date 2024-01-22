@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "spell.accio.page.page2",
+      "text": "spell.accio.page2",
       "advancement": "somepotter:spell/accio"
     },
     {

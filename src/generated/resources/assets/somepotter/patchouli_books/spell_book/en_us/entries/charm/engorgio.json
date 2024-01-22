@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "spell.engorgio.page.page2",
+      "text": "spell.engorgio.page2",
       "advancement": "somepotter:spell/engorgio"
     },
     {

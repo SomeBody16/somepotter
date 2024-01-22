@@ -5,10 +5,15 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import network.something.somepotter.SomePotter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FlooNode {
     public String name;
     public int x, y, z;
     public String dimension;
+
+    public List<String> allowedPlayers = new ArrayList<>();
 
     public FlooNode(String name, BlockPos pos, String dimension) {
         this.name = name;

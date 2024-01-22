@@ -1,5 +1,5 @@
 {
-  "name": "spell_book.category.wiki",
-  "description": "spell_book.category.wiki.description",
+  "name": "spell_book.wiki",
+  "description": "spell_book.wiki.description",
   "icon": "minecraft:knowledge_book"
 }

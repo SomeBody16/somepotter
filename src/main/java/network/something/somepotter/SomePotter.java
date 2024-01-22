@@ -15,7 +15,10 @@ public class SomePotter {
     public static final String MOD_ID = "somepotter";
 
     public static final Logger LOGGER = LogUtils.getLogger();
-    public static final Supplier<SomePotterConfig> CONFIG = ConfigWrapper.synced(SomePotterConfig.class);
+    public static final Supplier<SomePotterConfig> CONFIG = ConfigWrapper
+            .synced(SomePotterConfig.class)
+            .dir(MOD_ID)
+            .named(MOD_ID);
 
     public SomePotter() {
         var bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -27,5 +30,6 @@ public class SomePotter {
 
         Integrations.init();
         DataInit.init();
+        SpellInit.init();
     }
 }

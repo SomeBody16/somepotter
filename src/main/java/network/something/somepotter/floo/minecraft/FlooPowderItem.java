@@ -41,11 +41,15 @@ public class FlooPowderItem extends Item {
                 }
             }
 
-            FlooNetworkManager.addNode(level, pos);
+            var node = FlooNetworkManager.addNode(level, pos);
             level.setBlockAndUpdate(pos, BlockInit.FLOO_FIRE.get().defaultBlockState());
 
-            level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1, 1);
+            if (itemEntity.getItem().hasCustomHoverName()) {
+                var name = itemEntity.getItem().getHoverName().getString();
+                FlooNetworkManager.addPrivateAccess(node, name);
+            }
 
+            level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1, 1);
             var particle = new ColorUtil(0x00AA00).getParticle();
             TouchCast.playParticles(particle, level, new Vec3(pos.getX(), pos.getY(), pos.getZ()));
         }

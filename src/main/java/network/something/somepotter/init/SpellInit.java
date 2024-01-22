@@ -1,10 +1,8 @@
 package network.something.somepotter.init;
 
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import network.something.somepotter.SomePotter;
 import network.something.somepotter.spells.spell.Spell;
 import network.something.somepotter.spells.spell.accio.AccioSpell;
@@ -116,8 +114,7 @@ public class SpellInit {
         return SPELLS_FOR_DOCS;
     }
 
-    @SubscribeEvent
-    public static void onClientSetup(FMLClientSetupEvent event) {
+    public static void init() {
         all().forEach(Spell::register);
     }
 

@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "spell.bombarda.page.page2",
+      "text": "spell.bombarda.page2",
       "advancement": "somepotter:spell/bombarda"
     },
     {

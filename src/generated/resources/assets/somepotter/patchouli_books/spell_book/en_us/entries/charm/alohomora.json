@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "spell.alohomora.page.page2",
+      "text": "spell.alohomora.page2",
       "advancement": "somepotter:spell/alohomora"
     },
     {

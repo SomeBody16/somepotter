@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "spell.avada_kedavra.page.page2",
+      "text": "spell.avada_kedavra.page2",
       "advancement": "somepotter:spell/avada_kedavra"
     },
     {

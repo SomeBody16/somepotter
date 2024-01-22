@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "spell.bombarda_maxima.page.page2",
+      "text": "spell.bombarda_maxima.page2",
       "advancement": "somepotter:spell/bombarda_maxima"
     },
     {

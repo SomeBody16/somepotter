@@ -38,6 +38,11 @@ public class ReducioSpell extends Spell {
     }
 
     @Override
+    public int getSkillPointCost() {
+        return 5;
+    }
+
+    @Override
     public @NotNull List<SpellGesture> getGestures() {
         var gesture = new SpellGesture(ID);
 

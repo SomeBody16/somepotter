@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "spell.circumrota.page.page2",
+      "text": "spell.circumrota.page2",
       "advancement": "somepotter:spell/circumrota"
     },
     {
