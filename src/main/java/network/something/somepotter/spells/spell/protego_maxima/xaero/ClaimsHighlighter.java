@@ -6,6 +6,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 import network.something.somepotter.spells.spell.protego_maxima.claim.Claim;
+import network.something.somepotter.spells.spell.protego_maxima.claim.ClaimClient;
 import xaero.map.highlight.ChunkHighlighter;
 
 import java.util.List;

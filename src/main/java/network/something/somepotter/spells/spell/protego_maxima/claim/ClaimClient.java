@@ -1,12 +1,12 @@
-package network.something.somepotter.spells.spell.protego_maxima.xaero;
+package network.something.somepotter.spells.spell.protego_maxima.claim;
 
 import ca.lukegrahamlandry.lib.network.ClientSideHandler;
 import ca.lukegrahamlandry.lib.network.ServerSideHandler;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import network.something.somepotter.spells.spell.protego_maxima.claim.Claim;
 
 import javax.annotation.Nullable;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,11 +14,17 @@ import static net.minecraft.Util.NIL_UUID;
 
 public class ClaimClient {
 
+    protected static LocalTime lastUpdated = LocalTime.now();
+
+
     // chunkX -> chunkZ -> Claim
     protected static Map<Integer, Map<Integer, Claim>> cache = new HashMap<>();
 
     protected static void sync() {
-        new ClaimSyncPacket().sendToServer();
+        if (lastUpdated.plusSeconds(30).isBefore(LocalTime.now())) {
+            lastUpdated = LocalTime.now();
+            new ClaimSyncPacket().sendToServer();
+        }
     }
 
     public static void update(Map<Integer, Map<Integer, Claim>> cache) {

@@ -2,7 +2,8 @@ package network.something.somepotter.util;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import network.something.somepotter.SomePotter;
+
+import java.util.List;
 
 public class WandUtil {
 
@@ -14,6 +15,6 @@ public class WandUtil {
 
     public static boolean isItemWand(ItemStack item) {
         var itemId = item.getItem().getRegistryName().toString();
-        return SomePotter.CONFIG.get().wandItems.contains(itemId);
+        return List.of("somepotter:wand", "the_vault:wand").contains(itemId);
     }
 }
