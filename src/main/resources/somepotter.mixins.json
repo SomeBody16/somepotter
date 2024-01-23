@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "network.something.somepotter.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "somepotter.refmap.json",
+  "mixins": [
+    "InjectHighlighterMixin"
+  ],
+  "client": [
+  ],
+  "minVersion": "0.8"
+}

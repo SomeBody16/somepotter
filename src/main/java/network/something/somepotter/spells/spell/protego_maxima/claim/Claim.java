@@ -6,14 +6,15 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.ChunkPos;
 import network.something.somepotter.SomePotter;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 public class Claim {
 
-    protected ChunkPos pos;
-    protected UUID owner;
+    public ChunkPos pos;
+    public UUID owner;
 
 
     public static boolean exists(ServerLevel level, ChunkPos pos) {
@@ -26,6 +27,11 @@ public class Claim {
         claim.owner = player.getUUID();
         Data.get(level).put(claim.pos, claim);
         Data.set(level, pos, claim);
+    }
+
+    @Nullable
+    public static Claim get(ServerLevel level, ChunkPos pos) {
+        return Data.get(level).getOrDefault(pos, null);
     }
 
     public static void remove(ServerLevel level, ChunkPos pos) {
@@ -88,5 +94,4 @@ public class Claim {
             DATA.setDirty(level);
         }
     }
-
 }
