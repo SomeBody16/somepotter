@@ -1,14 +1,8 @@
 package network.something.somepotter.floo.minecraft;
 
-import iskallia.vault.init.ModConfigs;
-import iskallia.vault.world.data.PlayerResearchesData;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -36,8 +30,6 @@ import network.something.somepotter.init.BlockInit;
 import network.something.somepotter.integration.Integrations;
 import network.something.somepotter.spells.cast.touch.TouchCast;
 import network.something.somepotter.util.ColorUtil;
-
-import static net.minecraft.Util.NIL_UUID;
 
 @Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class FlooFireBlock extends Block {
@@ -75,17 +67,8 @@ public class FlooFireBlock extends Block {
             }
 
             // Check for research
-            if (Integrations.THE_VAULT.isLoaded()) {
-                var researchData = PlayerResearchesData.get(serverLevel);
-                var tree = researchData.getResearches(player);
-                var research = ModConfigs.RESEARCHES.getByName("Floo Network");
-                if (research == null || !tree.isResearched(research)) {
-                    var name = new TextComponent("Floo Network");
-                    name.setStyle(Style.EMPTY.withColor(0xFFFF00));
-                    var msg = new TranslatableComponent("overlay.requires_research.interact_block", name);
-                    player.sendMessage(msg, ChatType.GAME_INFO, NIL_UUID);
-                    return;
-                }
+            if (!Integrations.THE_VAULT.loadedAndHasResearch(serverLevel, player, "Floo Network")) {
+                return;
             }
 
             // Open GUI

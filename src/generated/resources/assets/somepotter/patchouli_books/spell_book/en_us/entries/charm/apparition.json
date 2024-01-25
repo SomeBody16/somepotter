@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:charm",
+  "name": "spell.apparition",
+  "description": "spell.apparition.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "apparition",
+      "spell": "spell.apparition",
+      "spell_type": "spell.type.charm",
+      "cast_type": "spell.cast.self",
+      "description": "spell.apparition.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "apparition",
+      "advancement": "somepotter:spell/apparition"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.apparition.page2",
+      "advancement": "somepotter:spell/apparition"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "apparition"
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import network.something.somepotter.spells.spell.accio.AccioSpell;
 import network.something.somepotter.spells.spell.aguamenti.AguamentiSpell;
 import network.something.somepotter.spells.spell.alarte_ascendare.AlarteAscendareSpell;
 import network.something.somepotter.spells.spell.alohomora.AlohomoraSpell;
+import network.something.somepotter.spells.spell.apparition.ApparitionSpell;
 import network.something.somepotter.spells.spell.arresto_momentum.ArrestoMomentumSpell;
 import network.something.somepotter.spells.spell.ascendio.AscendioSpell;
 import network.something.somepotter.spells.spell.avada_kedavra.AvadaKedavraSpell;
@@ -40,6 +41,7 @@ public class SpellInit {
         register(new AguamentiSpell());
         register(new AlarteAscendareSpell());
         register(new AlohomoraSpell());
+        register(new ApparitionSpell());
         register(new ArrestoMomentumSpell());
         register(new AscendioSpell());
         register(new AvadaKedavraSpell());

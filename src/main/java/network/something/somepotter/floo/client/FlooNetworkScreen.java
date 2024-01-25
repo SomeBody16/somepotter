@@ -14,6 +14,7 @@ import network.something.somepotter.floo.network.FlooNode;
 import network.something.somepotter.floo.packet.ChangeFlooNodeNamePacket;
 import network.something.somepotter.floo.packet.TeleportToNodePacket;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.function.Function;
@@ -21,13 +22,14 @@ import java.util.function.Function;
 @OnlyIn(Dist.CLIENT)
 public class FlooNetworkScreen extends Screen {
 
+    @Nullable
     protected FlooNode origin;
     protected List<FlooNode> nodes;
     protected int page = 0;
 
     protected EditBox nameEdit;
 
-    public FlooNetworkScreen(FlooNode origin, List<FlooNode> nodes) {
+    public FlooNetworkScreen(@Nullable FlooNode origin, List<FlooNode> nodes) {
         super(new TextComponent("Floo Network"));
         this.origin = origin;
         this.nodes = nodes;
@@ -90,12 +92,13 @@ public class FlooNetworkScreen extends Screen {
         if (nameEdit == null) {
             var nameEditDisplay = new TranslatableComponent("floo_network.name_edit");
             nameEdit = new EditBox(font, x + 1, y, 200 - 2, 20, nameEditDisplay);
-            nameEdit.setValue(origin.name);
+            nameEdit.setValue(origin == null ? "" : origin.name);
         }
         addRenderableWidget(nameEdit);
-        nameEdit.visible = origin.allowedPlayers.isEmpty() || origin.allowedPlayers.contains(
+
+        nameEdit.visible = origin != null && (origin.allowedPlayers.isEmpty() || origin.allowedPlayers.contains(
                 Minecraft.getInstance().player.getName().getString()
-        );
+        ));
     }
 
     @Override
@@ -105,10 +108,12 @@ public class FlooNetworkScreen extends Screen {
 
     @Override
     public void onClose() {
-        if (!nameEdit.getValue().equals(origin.name)) {
-            new ChangeFlooNodeNamePacket(origin, nameEdit.getValue()).sendToServer();
+        if (origin != null) {
+            if (!nameEdit.getValue().equals(origin.name)) {
+                new ChangeFlooNodeNamePacket(origin, nameEdit.getValue()).sendToServer();
+            }
+            DisableFlooNetworkScreen.disableForPosition(origin.getPos());
         }
-        DisableFlooNetworkScreen.disableForPosition(origin.getPos());
         super.onClose();
     }
 

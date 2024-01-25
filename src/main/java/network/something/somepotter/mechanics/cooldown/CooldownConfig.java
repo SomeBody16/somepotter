@@ -3,6 +3,7 @@ package network.something.somepotter.mechanics.cooldown;
 import ca.lukegrahamlandry.lib.config.Comment;
 import network.something.somepotter.spells.spell.alarte_ascendare.AlarteAscendareSpell;
 import network.something.somepotter.spells.spell.alohomora.AlohomoraSpell;
+import network.something.somepotter.spells.spell.apparition.ApparitionSpell;
 import network.something.somepotter.spells.spell.avada_kedavra.AvadaKedavraSpell;
 import network.something.somepotter.spells.spell.bombarda.BombardaSpell;
 import network.something.somepotter.spells.spell.bombarda_maxima.BombardaMaximaSpell;
@@ -28,6 +29,7 @@ public class CooldownConfig {
             AlarteAscendareSpell.ID, 20 * 10,
             AlohomoraSpell.ID, 20 * 60,
             BombardaSpell.ID, 20 * 20,
-            BombardaMaximaSpell.ID, 20 * 40
+            BombardaMaximaSpell.ID, 20 * 40,
+            ApparitionSpell.ID, 20 * 60 * 3
     );
 }

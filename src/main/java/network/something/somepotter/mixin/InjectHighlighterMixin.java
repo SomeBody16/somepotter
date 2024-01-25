@@ -1,6 +1,5 @@
 package network.something.somepotter.mixin;
 
-import network.something.somepotter.SomePotter;
 import network.something.somepotter.spells.spell.protego_maxima.xaero.ClaimsHighlighter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -24,7 +23,6 @@ public class InjectHighlighterMixin {
             remap = false
     )
     private void end(CallbackInfo ci) {
-        SomePotter.LOGGER.info("Injecting ClaimsHighlighter");
         var highlighter = new ClaimsHighlighter();
         highlighters.add(highlighter);
     }

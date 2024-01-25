@@ -3,8 +3,8 @@ package network.something.somepotter.floo.network;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
-import network.something.somepotter.SomePotter;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +23,9 @@ public class FlooNode {
         this.dimension = dimension;
     }
 
-    public boolean is(ServerLevel level, BlockPos pos) {
-        return dimension.equals(level.dimension().getRegistryName().toString())
+    public boolean is(ServerLevel level, @Nullable BlockPos pos) {
+        return pos != null
+                && dimension.equals(level.dimension().getRegistryName().toString())
                 && x == pos.getX()
                 && y == pos.getY()
                 && z == pos.getZ();
@@ -44,7 +45,6 @@ public class FlooNode {
     }
 
     public boolean equals(FlooNode other) {
-        SomePotter.LOGGER.info("Comparing nodes: " + other + " " + this);
         if (other == null) return false;
         return other.x == x && other.y == y && other.z == z && other.dimension.equals(dimension);
     }

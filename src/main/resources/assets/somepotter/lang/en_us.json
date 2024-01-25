@@ -157,5 +157,7 @@
   "spell_book.wiki.protego_maxima.claiming": "To claim a chunk, cast Protego Maxima on the desired area. The chunk where the spell hits becomes claimed and is recognized as your territory. If you crouch while casting, the spell unclaims the chunk instead.",
   "spell_book.wiki.protego_maxima.claiming.title": "Claiming",
   "spell_book.wiki.protego_maxima.whitelist": "Casting Protego Maxima on another player adds them to your claim's whitelist, granting them access. If you are crouching while casting, it removes the player from your whitelist, revoking their access.",
-  "spell_book.wiki.protego_maxima.whitelist.title": "Whitelist"
+  "spell_book.wiki.protego_maxima.whitelist.title": "Whitelist",
+  "spell.apparition": "Apparition",
+  "spell.apparition.description": "$(italic)allows players to teleport directly to any Floo Network fireplace"
 }

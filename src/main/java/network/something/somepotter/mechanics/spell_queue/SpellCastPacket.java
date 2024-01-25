@@ -2,7 +2,6 @@ package network.something.somepotter.mechanics.spell_queue;
 
 import ca.lukegrahamlandry.lib.network.ServerSideHandler;
 import net.minecraft.server.level.ServerPlayer;
-import network.something.somepotter.SomePotter;
 import network.something.somepotter.init.SpellInit;
 import network.something.somepotter.util.WandUtil;
 
@@ -12,7 +11,6 @@ public class SpellCastPacket implements ServerSideHandler {
 
     public SpellCastPacket(String spellId) {
         this.spellId = spellId;
-        SomePotter.LOGGER.info("Casting spell: " + spellId);
     }
 
     @Override

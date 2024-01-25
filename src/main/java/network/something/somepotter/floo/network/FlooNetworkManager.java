@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
-import network.something.somepotter.SomePotter;
 import network.something.somepotter.init.BlockInit;
 
 import javax.annotation.Nullable;
@@ -17,7 +16,6 @@ public class FlooNetworkManager {
         if (existing != null) return existing;
         var name = "[%s %s %s]".formatted(pos.getX(), pos.getY(), pos.getZ());
         var node = new FlooNode(name, pos, level.dimension().getRegistryName().toString());
-        SomePotter.LOGGER.info("Adding node: " + node.name);
         FlooNetworkData.get().add(node);
         FlooNetworkData.setDirty();
         return node;
@@ -26,7 +24,6 @@ public class FlooNetworkManager {
     public static void updateNodeName(FlooNode nodePredicate, String newName) {
         for (var node : FlooNetworkData.get()) {
             if (node.equals(nodePredicate)) {
-                SomePotter.LOGGER.info("Updating node name: " + nodePredicate.name + " -> " + newName);
                 node.name = newName;
                 FlooNetworkData.setDirty();
                 return;
@@ -37,7 +34,6 @@ public class FlooNetworkManager {
     public static void addPrivateAccess(FlooNode nodePredicate, String name) {
         for (var node : FlooNetworkData.get()) {
             if (node.equals(nodePredicate)) {
-                SomePotter.LOGGER.info("Adding private access to node: " + nodePredicate.name + " for " + name);
                 node.allowedPlayers.add(name);
                 FlooNetworkData.setDirty();
                 return;
@@ -58,7 +54,7 @@ public class FlooNetworkManager {
         return FlooNetworkData.get();
     }
 
-    public static List<FlooNode> listFor(ServerLevel level, ServerPlayer player, BlockPos pos) {
+    public static List<FlooNode> listFor(ServerLevel level, ServerPlayer player, @Nullable BlockPos pos) {
         var playerName = player.getName().getString();
         return FlooNetworkManager.all(level)
                 .stream()

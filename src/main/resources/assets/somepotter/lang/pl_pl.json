@@ -157,5 +157,7 @@
   "spell_book.wiki.protego_maxima.claiming": "Aby rościć prawo do kawałka ziemi, rzuć Protego Maxima na wybrany obszar. Kawałek, w który trafia zaklęcie, staje się roszczonym i jest uznawany za twoje terytorium. Jeśli kucając rzucisz zaklęcie, wówczas kawałek zostaje odwołany.",
   "spell_book.wiki.protego_maxima.claiming.title": "Roszczenie",
   "spell_book.wiki.protego_maxima.whitelist": "Rzucenie Protego Maxima na innego gracza dodaje go do białej listy twojego roszczenia, udzielając mu dostępu. Jeśli kucając rzucisz zaklęcie, usuwa to gracza z twojej białej listy, odbierając mu dostęp.",
-  "spell_book.wiki.protego_maxima.whitelist.title": "Biała lista"
+  "spell_book.wiki.protego_maxima.whitelist.title": "Biała lista",
+  "spell.apparition": "Apparition",
+  "spell.apparition.description": "$(italic)Czar wygody i zręczności, Apparition pozwala graczom na teleportację bezpośrednio do każdego kominka Sieci Floo"
 }

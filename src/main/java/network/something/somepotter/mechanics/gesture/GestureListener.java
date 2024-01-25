@@ -67,7 +67,6 @@ public class GestureListener {
         }
 
         if (SPELL_CAST_KEY.isDown() && !wasSpellCastDown) {
-            SomePotter.LOGGER.info("Casting spell");
             var spellId = SpellQueueManager.shift().getId();
             new SpellCastPacket(spellId).sendToServer();
             GestureHud.shuffleColors();

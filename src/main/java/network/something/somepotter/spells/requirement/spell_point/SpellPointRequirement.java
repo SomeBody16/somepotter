@@ -37,8 +37,8 @@ public class SpellPointRequirement extends Requirement {
             var available = Minecraft.getInstance().player.experienceLevel;
             var displayCost = cost;
             if (Integrations.THE_VAULT.isLoaded()) {
-                displayCost /= 10;
-                available = SpellPointData.get(Minecraft.getInstance().player);
+                displayCost = (int) Math.floor(displayCost / 10F);
+                available = (int) Math.floor(SpellPointData.get(Minecraft.getInstance().player) / 10F);
             }
             return new TranslatableComponent("spell.requirement.skill_point", available, displayCost);
         } catch (Exception e) {

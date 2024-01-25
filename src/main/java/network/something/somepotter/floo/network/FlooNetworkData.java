@@ -10,7 +10,6 @@ public class FlooNetworkData {
     protected static GlobalDataWrapper<FlooNetworkData> DATA;
 
     public static void init() {
-        SomePotter.LOGGER.info("FlooNetworkManager init");
         DATA = new GlobalDataWrapper<>(FlooNetworkData.class)
                 .dir(SomePotter.MOD_ID)
                 .named("floo_network")
