@@ -15,7 +15,7 @@ public class FlooNetworkManager {
         var existing = getNode(level, pos);
         if (existing != null) return existing;
         var name = "[%s %s %s]".formatted(pos.getX(), pos.getY(), pos.getZ());
-        var node = new FlooNode(name, pos, level.dimension().getRegistryName().toString());
+        var node = new FlooNode(name, pos, level.dimension().location().toString());
         FlooNetworkData.get().add(node);
         FlooNetworkData.setDirty();
         return node;
@@ -71,12 +71,12 @@ public class FlooNetworkManager {
                 .toList();
     }
 
-    public static void clean(ServerLevel level) {
+    public static void clean(ServerLevel currLevel) {
         FlooNetworkData.get().removeIf(node -> {
-            var dimension = level.dimension().getRegistryName().toString();
+            var dimension = currLevel.dimension().location().toString();
             if (!node.dimension.equals(dimension)) return false;
 
-            var state = level.getBlockState(node.getPos());
+            var state = currLevel.getBlockState(node.getPos());
             return !state.is(BlockInit.FLOO_FIRE.get());
         });
         FlooNetworkData.setDirty();

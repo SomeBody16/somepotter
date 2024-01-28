@@ -25,7 +25,7 @@ public class FlooNode {
 
     public boolean is(ServerLevel level, @Nullable BlockPos pos) {
         return pos != null
-                && dimension.equals(level.dimension().getRegistryName().toString())
+                && dimension.equals(level.dimension().location().toString())
                 && x == pos.getX()
                 && y == pos.getY()
                 && z == pos.getZ();
@@ -37,7 +37,7 @@ public class FlooNode {
 
     public ServerLevel getLevel(MinecraftServer server) {
         for (var levelKey : server.levelKeys()) {
-            if (levelKey.getRegistryName().toString().equals(dimension)) {
+            if (levelKey.location().toString().equals(dimension)) {
                 return server.getLevel(levelKey);
             }
         }
