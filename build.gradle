@@ -298,7 +298,6 @@ tasks.register('copyAfterBuild') {
         logger.lifecycle("Copied ${jarFile} to ${targetDir}")
     }
 }
-build.finalizedBy(copyAfterBuild)
 
 tasks.register('summary') {
     doLast {
