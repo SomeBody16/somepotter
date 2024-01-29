@@ -36,18 +36,18 @@ public class VaultCompletedListener {
         return Map.of(
                 // Difficulty: Easy
                 MonolithObjective.class, 1,
-                CakeObjective.class, 1,
+                CakeObjective.class, 2,
 
                 // Difficulty: Medium
-                KillBossObjective.class, 2,
-                ElixirObjective.class, 2,
-                ParadoxObjective.class, 2,
+                KillBossObjective.class, 3,
+                ElixirObjective.class, 3,
+                ParadoxObjective.class, 3,
 
                 // Difficulty: Hard
-                ScavengerObjective.class, 3,
+                ScavengerObjective.class, 4,
 
                 // End game
-                HeraldObjective.class, 10
+                HeraldObjective.class, 20
         );
     }
 

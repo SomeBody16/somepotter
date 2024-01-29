@@ -5,6 +5,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import network.something.somepotter.integration.Integrations;
 import network.something.somepotter.mechanics.spell_point.SpellPointData;
 import network.something.somepotter.spells.requirement.Requirement;
@@ -13,11 +14,7 @@ public class SpellPointRequirement extends Requirement {
     public static final String ID = "skill_point";
 
     public static SpellPointRequirement of(int cost) {
-        if (Integrations.THE_VAULT.isLoaded()) {
-            cost *= 10;
-        }
-
-        return new SpellPointRequirement(cost);
+        return new SpellPointRequirement(cost * 10);
     }
 
     protected int cost;
@@ -34,13 +31,8 @@ public class SpellPointRequirement extends Requirement {
     @Override
     public Component getText() {
         try {
-            var available = Minecraft.getInstance().player.experienceLevel;
-            var displayCost = cost;
-            if (Integrations.THE_VAULT.isLoaded()) {
-                displayCost = (int) Math.floor(displayCost / 10F);
-                available = (int) Math.floor(SpellPointData.get(Minecraft.getInstance().player) / 10F);
-            }
-            return new TranslatableComponent("spell.requirement.skill_point", available, displayCost);
+            var available = getAvailablePoints(Minecraft.getInstance().player);
+            return new TranslatableComponent("spell.requirement.skill_point", available, cost);
         } catch (Exception e) {
             return new TextComponent("ERROR");
         }
@@ -48,11 +40,8 @@ public class SpellPointRequirement extends Requirement {
 
     @Override
     public boolean isMet(ServerPlayer player) {
-        if (Integrations.THE_VAULT.isLoaded()) {
-            return SpellPointData.get(player) >= cost;
-        }
-
-        return player.experienceLevel >= (cost * 10);
+        var available = getAvailablePoints(Minecraft.getInstance().player);
+        return available >= cost;
     }
 
     @Override
@@ -63,6 +52,13 @@ public class SpellPointRequirement extends Requirement {
             return;
         }
 
-        player.giveExperienceLevels(-(cost * 10));
+        player.giveExperienceLevels(-cost);
+    }
+
+    protected int getAvailablePoints(Player player) {
+        if (Integrations.THE_VAULT.isLoaded()) {
+            return SpellPointData.get(player);
+        }
+        return player.experienceLevel;
     }
 }

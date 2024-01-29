@@ -146,7 +146,7 @@
   "spell_book.wiki.experience_vanilla.page2": "",
   "spell_book.wiki.experience_the_vault": "Learning spells",
   "spell_book.wiki.experience_the_vault.page1": "You can learn spells using this book, be aware that some spells have additional requirements that you have met at time of learning.<br><br>Completing vault gives you spell experience<br>10 experience is equal to one spell point.",
-  "spell_book.wiki.experience_the_vault.page2": "$(li) Monolith: 1$(li) Cake: 1$(li) Kill The Boss: 2$(li) Elixir: 2$(li) Paradox: 2$(li) Scavenger: 3$(li) Herald: 10",
+  "spell_book.wiki.experience_the_vault.page2": "$(li) Monolith: 1$(li) Cake: 2$(li) Kill The Boss: 3$(li) Elixir: 3$(li) Paradox: 3$(li) Scavenger: 4$(li) Herald: 20",
   "spell_book.wiki.floo_network.intro": "The Floo Network is a magical transportation system in Minecraft, allowing instant travel between linked fireplaces. Inspired by wizarding lore, it transforms fireplaces into portals for quick and mystical travel.",
   "spell_book.wiki.floo_network.how_to_setup": "To set up the Floo Network, throw Floo Powder into a fire to convert it into a 'Floo Fireplace.' This links the fireplace to the network, enabling magical travel to and from that location.",
   "spell_book.wiki.floo_network.how_to_setup.title": "How to set up",

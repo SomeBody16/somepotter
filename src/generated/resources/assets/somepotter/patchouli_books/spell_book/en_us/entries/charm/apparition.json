@@ -2,7 +2,7 @@
   "category": "somepotter:charm",
   "name": "spell.apparition",
   "description": "spell.apparition.description",
-  "icon": "minecraft:enchanted_book",
+  "icon": "minecraft:ender_pearl",
   "pages": [
     {
       "type": "somepotter:spell_summary",
