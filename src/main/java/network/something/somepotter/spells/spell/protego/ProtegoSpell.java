@@ -45,6 +45,11 @@ public class ProtegoSpell extends Spell {
     }
 
     @Override
+    public int getSkillPointCost() {
+        return 1;
+    }
+
+    @Override
     public @NotNull List<SpellGesture> getGestures() {
         var gesture = new SpellGesture(ID);
 

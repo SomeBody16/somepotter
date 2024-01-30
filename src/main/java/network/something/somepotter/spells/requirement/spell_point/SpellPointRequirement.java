@@ -5,7 +5,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import network.something.somepotter.integration.Integrations;
 import network.something.somepotter.mechanics.spell_point.SpellPointData;
 import network.something.somepotter.spells.requirement.Requirement;
@@ -29,9 +30,13 @@ public class SpellPointRequirement extends Requirement {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     public Component getText() {
         try {
-            var available = getAvailablePoints(Minecraft.getInstance().player);
+            var available = Minecraft.getInstance().player.experienceLevel;
+            if (Integrations.THE_VAULT.isLoaded()) {
+                available = SpellPointData.get(Minecraft.getInstance().player);
+            }
             return new TranslatableComponent("spell.requirement.skill_point", available, cost);
         } catch (Exception e) {
             return new TextComponent("ERROR");
@@ -40,7 +45,10 @@ public class SpellPointRequirement extends Requirement {
 
     @Override
     public boolean isMet(ServerPlayer player) {
-        var available = getAvailablePoints(Minecraft.getInstance().player);
+        var available = player.experienceLevel;
+        if (Integrations.THE_VAULT.isLoaded()) {
+            available = SpellPointData.get(player);
+        }
         return available >= cost;
     }
 
@@ -53,12 +61,5 @@ public class SpellPointRequirement extends Requirement {
         }
 
         player.giveExperienceLevels(-cost);
-    }
-
-    protected int getAvailablePoints(Player player) {
-        if (Integrations.THE_VAULT.isLoaded()) {
-            return SpellPointData.get(player);
-        }
-        return player.experienceLevel;
     }
 }

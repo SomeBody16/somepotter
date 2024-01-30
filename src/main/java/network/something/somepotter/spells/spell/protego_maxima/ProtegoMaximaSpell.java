@@ -46,7 +46,7 @@ public class ProtegoMaximaSpell extends Spell {
 
     @Override
     public int getSkillPointCost() {
-        return 5;
+        return 1;
     }
 
     @Override

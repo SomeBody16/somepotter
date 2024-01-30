@@ -51,7 +51,9 @@ public abstract class Spell {
 
     public List<Requirement> getRequirements() {
         var result = new ArrayList<Requirement>();
-        result.add(SpellPointRequirement.of(getSkillPointCost()));
+        var pointCost = getSkillPointCost();
+        var pointRequirement = SpellPointRequirement.of(pointCost);
+        result.add(pointRequirement);
         return result;
     }
 

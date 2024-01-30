@@ -4,6 +4,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.EntityHitResult;
 import network.something.somepotter.event.SpellHitEvent;
+import network.something.somepotter.mechanics.spell_point.SpellPointData;
 import network.something.somepotter.spells.spell.SpellListener;
 import network.something.somepotter.util.AbilityPowerUtil;
 
@@ -15,6 +16,8 @@ public class BasicCastListener extends SpellListener<BasicCastSpell> {
         var damageSource = event.spell.getDamageSource(event.caster);
         var damage = Math.max(config.damageMin, event.abilityPower * config.mobDamageMultiplier);
         entity.hurt(damageSource, damage);
+
+        SpellPointData.add((ServerPlayer) event.caster, 3);
     }
 
     @Override

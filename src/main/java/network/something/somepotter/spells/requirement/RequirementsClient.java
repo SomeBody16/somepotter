@@ -3,11 +3,14 @@ package network.something.somepotter.spells.requirement;
 import ca.lukegrahamlandry.lib.network.ClientSideHandler;
 import ca.lukegrahamlandry.lib.network.ServerSideHandler;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import network.something.somepotter.init.SpellInit;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@OnlyIn(Dist.CLIENT)
 public class RequirementsClient {
 
     // spellId -> requirementId -> isMet
