@@ -2,7 +2,7 @@ package network.something.somepotter.mechanics.gesture;
 
 import com.github.cluelab.dollar.Gesture;
 import com.github.cluelab.dollar.Point;
-import com.github.cluelab.dollar.PointCloudRecognizer;
+import com.github.cluelab.dollar.PointCloudRecognizerPlus;
 import network.something.somepotter.init.SpellInit;
 import network.something.somepotter.mechanics.spell_queue.SpellQueueManager;
 import network.something.somepotter.spells.spell.basic_cast.BasicCastSpell;
@@ -53,9 +53,9 @@ public class GestureHandler {
 
             var candidate = new Gesture(getRecordedPoints());
 
-            var spellId = PointCloudRecognizer.Classify(candidate, getTrainingSet());
-//        var spell = PointCloudRecognizerPlus.Classify(candidate, getTrainingSet());
-//        var spell = QPointCloudRecognizer.Classify(candidate, getTrainingSet());
+//            var spellId = PointCloudRecognizer.Classify(candidate, getTrainingSet());
+            var spellId = PointCloudRecognizerPlus.Classify(candidate, getTrainingSet());
+//          var spell = QPointCloudRecognizer.Classify(candidate, getTrainingSet());
 
             SpellQueueManager.add(spellId);
         } catch (Exception e) {
