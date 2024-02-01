@@ -2,6 +2,7 @@ package network.something.somepotter.spells.cast.self;
 
 import net.minecraft.world.phys.EntityHitResult;
 import network.something.somepotter.event.SpellHitEvent;
+import network.something.somepotter.particle.ParticleEffects;
 import network.something.somepotter.spells.cast.Cast;
 
 public class SelfCast extends Cast {
@@ -15,6 +16,9 @@ public class SelfCast extends Cast {
     @Override
     public void execute() {
         var hitResult = new EntityHitResult(caster);
-        SpellHitEvent.publish(spell, caster, level, abilityPower, areaOfEffect, hitResult);
+        var cancelled = SpellHitEvent.publish(spell, caster, level, abilityPower, areaOfEffect, hitResult);
+        if (!cancelled) {
+            ParticleEffects.touch(level, caster.getEyePosition(), spell.getColor());
+        }
     }
 }

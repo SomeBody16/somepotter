@@ -5,7 +5,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import network.something.somepotter.spells.spell_type.SpellType;
-import network.something.somepotter.util.ColorUtil;
+
+import java.awt.*;
 
 public class HealingType extends SpellType {
     public static String ID = "healing";
@@ -16,8 +17,8 @@ public class HealingType extends SpellType {
     }
 
     @Override
-    public ColorUtil getColor() {
-        return ColorUtil.HEALING;
+    public Color getColor() {
+        return new Color(0x98FB98);
     }
 
     @Override

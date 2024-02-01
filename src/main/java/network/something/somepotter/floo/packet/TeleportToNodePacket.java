@@ -9,24 +9,21 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.phys.Vec3;
 import network.something.somepotter.floo.network.FlooNetworkManager;
 import network.something.somepotter.floo.network.FlooNode;
-import network.something.somepotter.spells.cast.touch.TouchCast;
-import network.something.somepotter.util.ColorUtil;
+import network.something.somepotter.particle.ParticleEffects;
 
 public class TeleportToNodePacket implements ServerSideHandler {
 
+    protected Vec3 origin;
     protected FlooNode node;
 
-    public TeleportToNodePacket(FlooNode node) {
+    public TeleportToNodePacket(Vec3 origin, FlooNode node) {
+        this.origin = origin;
         this.node = node;
     }
 
     @Override
     public void handle(ServerPlayer serverPlayer) {
         var level = serverPlayer.getLevel();
-        var particle = new ColorUtil(0x00AA00).getParticle();
-
-        playTeleportSound(level, serverPlayer.blockPosition());
-        TouchCast.playParticles(particle, level, serverPlayer.getEyePosition());
 
         if (!node.exists(serverPlayer.server)) {
             var nodeLevel = node.getLevel(serverPlayer.server);
@@ -41,8 +38,11 @@ public class TeleportToNodePacket implements ServerSideHandler {
                 serverPlayer.getYRot(), serverPlayer.getXRot()
         );
 
+        playTeleportSound(level, new BlockPos(origin));
         playTeleportSound(level, node.getPos());
-        TouchCast.playParticles(particle, level, new Vec3(node.x, node.y, node.z));
+
+        ParticleEffects.teleport(level, origin);
+        ParticleEffects.teleport(level, Vec3.atCenterOf(node.getPos()));
     }
 
     protected void playTeleportSound(ServerLevel level, BlockPos pos) {

@@ -1,7 +1,8 @@
 package network.something.somepotter.spells.spell_type.charm;
 
 import network.something.somepotter.spells.spell_type.SpellType;
-import network.something.somepotter.util.ColorUtil;
+
+import java.awt.*;
 
 public class CharmType extends SpellType {
 
@@ -13,8 +14,8 @@ public class CharmType extends SpellType {
     }
 
     @Override
-    public ColorUtil getColor() {
-        return ColorUtil.CHARM;
+    public Color getColor() {
+        return new Color(0xFFC0CB);
     }
 
     @Override

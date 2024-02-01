@@ -3,7 +3,8 @@ package network.something.somepotter.spells.spell_type.conjuration;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import network.something.somepotter.spells.spell_type.SpellType;
-import network.something.somepotter.util.ColorUtil;
+
+import java.awt.*;
 
 public class ConjurationType extends SpellType {
     public static String ID = "conjuration";
@@ -14,8 +15,8 @@ public class ConjurationType extends SpellType {
     }
 
     @Override
-    public ColorUtil getColor() {
-        return ColorUtil.CONJURATION;
+    public Color getColor() {
+        return new Color(0x003366);
     }
 
     @Override

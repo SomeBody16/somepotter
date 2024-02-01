@@ -16,9 +16,9 @@ import network.something.somepotter.spells.spell.Spell;
 import network.something.somepotter.spells.spell.SpellListener;
 import network.something.somepotter.spells.spell_type.SpellType;
 import network.something.somepotter.spells.spell_type.curse.CurseType;
-import network.something.somepotter.util.ColorUtil;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -65,8 +65,8 @@ public class AvadaKedavraSpell extends Spell {
     }
 
     @Override
-    public ColorUtil getColor() {
-        return ColorUtil.UNFORGIVEABLE;
+    public Color getColor() {
+        return new Color(57, 155, 130);
     }
 
     @Override

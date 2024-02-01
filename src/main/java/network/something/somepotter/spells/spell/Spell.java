@@ -1,6 +1,5 @@
 package network.something.somepotter.spells.spell;
 
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -23,9 +22,9 @@ import network.something.somepotter.spells.requirement.Requirement;
 import network.something.somepotter.spells.requirement.spell_point.SpellPointRequirement;
 import network.something.somepotter.spells.spell_type.SpellType;
 import network.something.somepotter.util.AbilityPowerUtil;
-import network.something.somepotter.util.ColorUtil;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,12 +64,8 @@ public abstract class Spell {
         return 0;
     }
 
-    public ColorUtil getColor() {
+    public Color getColor() {
         return getType().getColor();
-    }
-
-    public ParticleOptions getParticle() {
-        return getColor().getParticle();
     }
 
     public ItemStack getIcon() {

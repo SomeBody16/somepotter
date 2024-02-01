@@ -24,7 +24,7 @@ import net.minecraftforge.network.NetworkHooks;
 import network.something.somepotter.SomePotter;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.init.SpellInit;
-import network.something.somepotter.spells.cast.touch.TouchCast;
+import network.something.somepotter.particle.ParticleEffects;
 import network.something.somepotter.spells.spell.Spell;
 import network.something.somepotter.spells.spell.basic_cast.BasicCastSpell;
 import org.jetbrains.annotations.NotNull;
@@ -112,8 +112,8 @@ public class ProjectileCastEntity extends Projectile {
 
     @Override
     public void remove(RemovalReason pReason) {
-        if (level instanceof ServerLevel serverLevel) {
-            TouchCast.playParticles(getSpell().getParticle(), serverLevel, position());
+        if (!level.isClientSide) {
+            ParticleEffects.touch(level, position(), getSpell().getColor());
         }
         super.remove(pReason);
     }
@@ -178,20 +178,6 @@ public class ProjectileCastEntity extends Projectile {
 
     protected void playTrailParticles() {
         var color = getSpell().getColor();
-        var rgb24 = color.getRGB24();
-        var particle = color.getParticle();
-
-        double d0 = (double) (rgb24 >> 16 & 255) / 255.0D;
-        double d1 = (double) (rgb24 >> 8 & 255) / 255.0D;
-        double d2 = (double) (rgb24 >> 0 & 255) / 255.0D;
-
-        for (int j = 0; j < 2; ++j) {
-            level.addParticle(particle,
-                    getRandomX(0.5D),
-                    getRandomY(),
-                    getRandomZ(0.5D),
-                    d0, d1, d2
-            );
-        }
+        ParticleEffects.trail(level, position(), color);
     }
 }

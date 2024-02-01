@@ -39,7 +39,7 @@ public class SpellQueueHud {
         var queue = SpellQueueManager.get();
 
         for (var spell : queue) {
-            var color = spell.getColor().getRGBA24();
+            var color = spell.getColor().getRGB();
             GuiComponent.fill(stack, x, y, x + 18, y + 2, color);
             y -= 3;
         }

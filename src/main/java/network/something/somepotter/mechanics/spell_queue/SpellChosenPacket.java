@@ -30,7 +30,7 @@ public class SpellChosenPacket implements ServerSideHandler, ClientSideHandler {
 
         var spell = SpellInit.get(spellId);
         var text = new TranslatableComponent("spell." + spell.getId())
-                .withStyle(style -> style.withColor(spell.getColor().getRGB24()));
+                .withStyle(style -> style.withColor(spell.getColor().getRGB()));
         serverPlayer.sendMessage(text, ChatType.GAME_INFO, NIL_UUID);
     }
 

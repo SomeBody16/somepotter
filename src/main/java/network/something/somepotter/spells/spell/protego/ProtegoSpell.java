@@ -10,9 +10,9 @@ import network.something.somepotter.spells.spell.Spell;
 import network.something.somepotter.spells.spell.SpellListener;
 import network.something.somepotter.spells.spell_type.SpellType;
 import network.something.somepotter.spells.spell_type.charm.CharmType;
-import network.something.somepotter.util.ColorUtil;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -64,8 +64,8 @@ public class ProtegoSpell extends Spell {
     }
 
     @Override
-    public ColorUtil getColor() {
-        return new ColorUtil(0x00FFFF);
+    public Color getColor() {
+        return new Color(0x00FFFF);
     }
 
     @Override

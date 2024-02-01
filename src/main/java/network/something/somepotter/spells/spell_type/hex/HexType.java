@@ -5,7 +5,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import network.something.somepotter.spells.spell_type.SpellType;
-import network.something.somepotter.util.ColorUtil;
+
+import java.awt.*;
 
 public class HexType extends SpellType {
     public static String ID = "hex";
@@ -16,8 +17,8 @@ public class HexType extends SpellType {
     }
 
     @Override
-    public ColorUtil getColor() {
-        return ColorUtil.HEX;
+    public Color getColor() {
+        return new Color(0x8B0000);
     }
 
     @Override

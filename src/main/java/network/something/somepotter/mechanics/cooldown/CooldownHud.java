@@ -56,7 +56,7 @@ public class CooldownHud {
 
             var remainingX = x + font.width(colored);
 
-            font.draw(stack, colored, x, y, spell.getColor().getRGB24());
+            font.draw(stack, colored, x, y, spell.getColor().getRGB());
             font.draw(stack, remaining, remainingX, y, 0x000000);
             y -= font.lineHeight + 2;
         }

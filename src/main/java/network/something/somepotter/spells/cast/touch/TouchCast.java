@@ -4,6 +4,7 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.phys.Vec3;
 import network.something.somepotter.event.SpellHitEvent;
+import network.something.somepotter.particle.ParticleEffects;
 import network.something.somepotter.spells.cast.Cast;
 
 public class TouchCast extends Cast {
@@ -33,7 +34,7 @@ public class TouchCast extends Cast {
 
         var cancelled = SpellHitEvent.publish(spell, caster, level, abilityPower, areaOfEffect, result);
         if (!cancelled) {
-            playParticles(spell.getParticle(), level, result.getLocation());
+            ParticleEffects.touch(level, result.getLocation(), spell.getColor());
         }
     }
 

@@ -17,7 +17,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import network.something.somepotter.SomePotter;
 import network.something.somepotter.event.SpellHitEvent;
-import network.something.somepotter.spells.cast.touch.TouchCast;
+import network.something.somepotter.init.SpellInit;
+import network.something.somepotter.particle.ParticleEffects;
 import network.something.somepotter.spells.spell.protego_maxima.ProtegoMaximaSpell;
 
 import java.util.List;
@@ -33,11 +34,8 @@ public class ClaimListener {
                 .withStyle(ChatFormatting.RED);
         player.sendMessage(message, ChatType.GAME_INFO, NIL_UUID);
 
-        TouchCast.playParticles(
-                new ProtegoMaximaSpell().getParticle(),
-                player.getLevel(),
-                pos
-        );
+        var color = SpellInit.get(ProtegoMaximaSpell.ID).getColor();
+        ParticleEffects.touch(player.level, pos, color);
     }
 
     public static void denyAccess(ServerPlayer player, BlockPos pos) {
@@ -103,11 +101,9 @@ public class ClaimListener {
             );
             if (Claim.exists(serverLevel, chunkPos)) {
                 event.setCanceled(true);
-                TouchCast.playParticles(
-                        new ProtegoMaximaSpell().getParticle(),
-                        serverLevel,
-                        event.getExplosion().getPosition()
-                );
+
+                var color = SpellInit.get(ProtegoMaximaSpell.ID).getColor();
+                ParticleEffects.touch(serverLevel, event.getExplosion().getPosition(), color);
 
                 var hitEvent = new SpellHitEvent.Post<>();
                 hitEvent.level = serverLevel;

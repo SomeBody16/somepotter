@@ -3,7 +3,8 @@ package network.something.somepotter.spells.spell_type.counter_spell;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import network.something.somepotter.spells.spell_type.SpellType;
-import network.something.somepotter.util.ColorUtil;
+
+import java.awt.*;
 
 public class CounterSpellType extends SpellType {
     public static String ID = "counter_spell";
@@ -14,8 +15,8 @@ public class CounterSpellType extends SpellType {
     }
 
     @Override
-    public ColorUtil getColor() {
-        return ColorUtil.COUNTER_SPELL;
+    public Color getColor() {
+        return new Color(0x808080);
     }
 
     @Override

@@ -7,6 +7,7 @@ import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.widget.ExtendedButton;
@@ -70,7 +71,8 @@ public class FlooNetworkScreen extends Screen {
             Button.OnPress handler = btn -> {
                 onClose();
                 DisableFlooNetworkScreen.disableForPosition(node.getPos());
-                new TeleportToNodePacket(node).sendToServer();
+                var originPos = origin == null ? Minecraft.getInstance().player.position() : Vec3.atCenterOf(origin.getPos());
+                new TeleportToNodePacket(originPos, node).sendToServer();
             };
             var btn = new ExtendedButton(x, y, 200, 20, display, handler);
             btn.active = origin == null || !origin.equals(node);

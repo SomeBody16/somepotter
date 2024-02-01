@@ -11,10 +11,10 @@ import network.something.somepotter.spells.spell.Spell;
 import network.something.somepotter.spells.spell.SpellListener;
 import network.something.somepotter.spells.spell_type.SpellType;
 import network.something.somepotter.spells.spell_type.charm.CharmType;
-import network.something.somepotter.util.ColorUtil;
 import network.something.somepotter.util.ConfigUtil;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -30,8 +30,8 @@ public class BasicCastSpell extends Spell {
     }
 
     @Override
-    public ColorUtil getColor() {
-        return new ColorUtil(0xFF0000);
+    public Color getColor() {
+        return new Color(0xFF0000);
     }
 
     @Override

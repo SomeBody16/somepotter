@@ -1,6 +1,5 @@
 package network.something.somepotter.spells.spell.protego;
 
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -12,14 +11,14 @@ import network.something.somepotter.SomePotter;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.init.EffectInit;
 import network.something.somepotter.init.SpellInit;
-import network.something.somepotter.spells.cast.touch.TouchCast;
+import network.something.somepotter.particle.ParticleEffects;
 import network.something.somepotter.spells.spell_type.curse.CurseType;
 import network.something.somepotter.util.AbilityPowerUtil;
 
 @Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ProtegoEffect extends MobEffect {
     public ProtegoEffect() {
-        super(MobEffectCategory.BENEFICIAL, SpellInit.get(ProtegoSpell.ID).getColor().getRGB24());
+        super(MobEffectCategory.BENEFICIAL, SpellInit.get(ProtegoSpell.ID).getColor().getRGB());
     }
 
     @Override
@@ -45,11 +44,8 @@ public class ProtegoEffect extends MobEffect {
             }
 
             livingEntity.removeEffect(EffectInit.PROTEGO.get());
-            TouchCast.playParticles(
-                    SpellInit.get(ProtegoSpell.ID).getParticle(),
-                    (ServerLevel) livingEntity.level,
-                    livingEntity.position()
-            );
+            var color = SpellInit.get(ProtegoSpell.ID).getColor();
+            ParticleEffects.touch(livingEntity.level, livingEntity.getEyePosition(), color);
         }
     }
 
@@ -64,11 +60,8 @@ public class ProtegoEffect extends MobEffect {
             }
 
             event.getEntityLiving().removeEffect(EffectInit.PROTEGO.get());
-            TouchCast.playParticles(
-                    SpellInit.get(ProtegoSpell.ID).getParticle(),
-                    (ServerLevel) event.getEntityLiving().level,
-                    event.getEntityLiving().position()
-            );
+            var color = SpellInit.get(ProtegoSpell.ID).getColor();
+            ParticleEffects.touch(event.getEntityLiving().level, event.getEntityLiving().getEyePosition(), color);
         }
     }
 }
