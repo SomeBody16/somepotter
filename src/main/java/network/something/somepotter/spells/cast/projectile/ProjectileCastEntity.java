@@ -153,7 +153,10 @@ public class ProjectileCastEntity extends Projectile {
             var d2 = getZ() + vec3.z;
             setPos(d0, d1, d2);
 
-            playTrailParticles();
+            if (level.isClientSide) {
+                var color = getSpell().getColor();
+                ParticleEffects.trail(level, position(), color);
+            }
         } else {
             discard();
         }
@@ -174,10 +177,5 @@ public class ProjectileCastEntity extends Projectile {
             onHit(hitResult);
             discard();
         }
-    }
-
-    protected void playTrailParticles() {
-        var color = getSpell().getColor();
-        ParticleEffects.trail(level, position(), color);
     }
 }

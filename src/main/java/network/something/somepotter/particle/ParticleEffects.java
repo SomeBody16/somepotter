@@ -20,7 +20,6 @@ import team.lodestar.lodestone.systems.particle.data.SpinParticleData;
 
 import java.awt.*;
 
-@OnlyIn(Dist.CLIENT)
 public class ParticleEffects {
 
     public static void chunkHighlight(Level level, ChunkPos chunkPos, int y, Color color) {
@@ -33,7 +32,11 @@ public class ParticleEffects {
             new ChunkHighlightParticlePacket(chunkPos, y, startColor, endColor).sendToTrackingClients(serverLevel, pos);
             return;
         }
+        clientChunkHighlight(level, pos, startColor, endColor);
+    }
 
+    @OnlyIn(Dist.CLIENT)
+    protected static void clientChunkHighlight(Level level, BlockPos pos, Color startColor, Color endColor) {
         WorldParticleBuilder.create(LodestoneParticleRegistry.SMOKE_PARTICLE)
                 .setTransparencyData(GenericParticleData.create(0.02f, 0.6f, 0).setCoefficient(0.8f).setEasing(Easing.QUINTIC_OUT, Easing.SINE_IN).build())
                 .setSpinData(SpinParticleData.create(0.1f).build())
@@ -56,7 +59,11 @@ public class ParticleEffects {
             new TouchParticlePacket(pos, startColor, endColor).sendToTrackingClients(serverLevel, blockPos);
             return;
         }
+        clientTouch(level, pos, startColor, endColor);
+    }
 
+    @OnlyIn(Dist.CLIENT)
+    protected static void clientTouch(Level level, Vec3 pos, Color startColor, Color endColor) {
         WorldParticleBuilder.create(LodestoneParticleRegistry.SMOKE_PARTICLE)
                 .setTransparencyData(GenericParticleData.create(0.02f, 0.2f, 0).setCoefficient(0.8f).setEasing(Easing.QUINTIC_OUT, Easing.SINE_IN).build())
                 .setSpinData(SpinParticleData.create(0.1f).build())
@@ -69,10 +76,12 @@ public class ParticleEffects {
                 .repeat(level, pos.x, pos.y, pos.z, 64);
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static void trail(Level level, Vec3 pos, Color color) {
         trail(level, pos, color.darker().darker(), color);
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static void trail(Level level, Vec3 pos, Color startColor, Color endColor) {
         WorldParticleBuilder.create(LodestoneParticleRegistry.WISP_PARTICLE)
                 .setTransparencyData(GenericParticleData.create(0.12f, 0.16f, 0).setCoefficient(0.8f).setEasing(Easing.QUINTIC_OUT, Easing.SINE_IN).build())
@@ -96,7 +105,11 @@ public class ParticleEffects {
             new TeleportParticlePacket(pos, startColor, endColor).sendToTrackingClients(serverLevel, new BlockPos(pos));
             return;
         }
+        clientTeleport(level, pos, startColor, endColor);
+    }
 
+    @OnlyIn(Dist.CLIENT)
+    public static void clientTeleport(Level level, Vec3 pos, Color startColor, Color endColor) {
         WorldParticleBuilder.create(LodestoneParticleRegistry.WISP_PARTICLE)
                 .setTransparencyData(GenericParticleData.create(0.12f, 0.16f, 0).setCoefficient(0.8f).setEasing(Easing.QUINTIC_OUT, Easing.SINE_IN).build())
                 .setSpinData(SpinParticleData.create(0.2f).build())
