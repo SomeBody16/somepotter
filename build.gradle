@@ -212,6 +212,7 @@ dependencies {
     runtimeOnly fg.deobf("net.p3pp3rf1y.sophisticatedbackpacks:sophisticatedbackpacks:1.18.2-3.19.5.990")
     runtimeOnly fg.deobf("net.p3pp3rf1y.sophisticatedbackpacksvh:sophisticatedbackpacksvh:1.18.2-1.0.6.14")
     runtimeOnly fg.deobf("net.p3pp3rf1y.sophisticatedcore:sophisticatedcore:1.18.2-0.5.111.526")
+    runtimeOnly fg.deobf("com.simibubi.create:create:1.18.2-0.5.1.f")
 }
 
 mixin {
