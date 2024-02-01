@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
-import network.something.somepotter.init.BlockInit;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -49,14 +48,13 @@ public class FlooNetworkManager {
                 .orElse(null);
     }
 
-    public static List<FlooNode> all(ServerLevel level) {
-        clean(level);
+    public static List<FlooNode> all() {
         return FlooNetworkData.get();
     }
 
     public static List<FlooNode> listFor(ServerLevel level, ServerPlayer player, @Nullable BlockPos pos) {
         var playerName = player.getName().getString();
-        return FlooNetworkManager.all(level)
+        return FlooNetworkManager.all()
                 .stream()
                 // don't show the current node
                 .filter(node -> !node.is(level, pos))
@@ -71,14 +69,8 @@ public class FlooNetworkManager {
                 .toList();
     }
 
-    public static void clean(ServerLevel currLevel) {
-        FlooNetworkData.get().removeIf(node -> {
-            var dimension = currLevel.dimension().location().toString();
-            if (!node.dimension.equals(dimension)) return false;
-
-            var state = currLevel.getBlockState(node.getPos());
-            return !state.is(BlockInit.FLOO_FIRE.get());
-        });
+    public static void removeNode(ServerLevel level, BlockPos pos) {
+        FlooNetworkData.get().removeIf(node -> node.is(level, pos));
         FlooNetworkData.setDirty();
     }
 
