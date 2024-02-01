@@ -20,6 +20,7 @@ public class Tickables {
 
     @SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
         TICKABLES.forEach(Tickable::tick);
         TICKABLES.removeIf(tickable -> {
             var isExpired = tickable.isExpired();
