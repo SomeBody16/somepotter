@@ -41,7 +41,8 @@ public class ClaimFriends {
         }
 
         public static List<UUID> get(ServerPlayer player) {
-            return DATA.get(player).friends.getOrDefault(player.getUUID(), new ArrayList<>());
+            DATA.get(player).friends.putIfAbsent(player.getUUID(), new ArrayList<>());
+            return DATA.get(player).friends.get(player.getUUID());
         }
 
         public static void setDirty(ServerPlayer player) {
