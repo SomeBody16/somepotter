@@ -26,7 +26,7 @@ public class ApparitionListener extends SpellListener<ApparitionSpell> {
         }
 
         // Open GUI
-        var nodes = FlooNetworkManager.listFor(event.level, player, null);
+        var nodes = FlooNetworkManager.listFor(player);
         new OpenFlooNetworkScreenPacket(null, nodes).sendToClient(player);
     }
 }

@@ -23,6 +23,7 @@ public class SomePotter {
 
         Integrations.init();
         DataInit.init();
+        ConfigInit.init();
         SpellInit.init();
     }
 }

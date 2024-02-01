@@ -12,6 +12,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.widget.ExtendedButton;
 import network.something.somepotter.floo.network.FlooNode;
 import network.something.somepotter.floo.packet.ChangeFlooNodeNamePacket;
+import network.something.somepotter.floo.packet.SortNodePacket;
 import network.something.somepotter.floo.packet.TeleportToNodePacket;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -41,6 +42,11 @@ public class FlooNetworkScreen extends Screen {
         if (mc.screen == null && !shouldNotOpen) mc.setScreen(this);
     }
 
+    public void updateNodes(List<FlooNode> nodes) {
+        this.nodes = nodes;
+        initButtons();
+    }
+
     @Override
     protected void init() {
         initButtons();
@@ -59,6 +65,7 @@ public class FlooNetworkScreen extends Screen {
             if (i >= nodes.size()) break;
             var node = nodes.get(i);
 
+            // Teleport button
             var display = new TextComponent(node.name);
             Button.OnPress handler = btn -> {
                 onClose();
@@ -66,7 +73,38 @@ public class FlooNetworkScreen extends Screen {
                 new TeleportToNodePacket(node).sendToServer();
             };
             var btn = new ExtendedButton(x, y, 200, 20, display, handler);
+            btn.active = origin == null || !origin.equals(node);
             addRenderableWidget(btn);
+
+            // Sort buttons
+            Button.OnPress upHandler = upBtn -> {
+                var newNodes = nodes.subList(0, nodes.size());
+                var prevNodeIndex = newNodes.indexOf(node);
+                newNodes.remove(node);
+                newNodes.add(prevNodeIndex - 1, node);
+                updateNodes(newNodes);
+                new SortNodePacket(newNodes).sendToServer();
+            };
+            Button.OnPress downHandler = upBtn -> {
+                var newNodes = nodes.subList(0, nodes.size());
+                var prevNodeIndex = newNodes.indexOf(node);
+                newNodes.remove(node);
+                newNodes.add(prevNodeIndex + 1, node);
+                updateNodes(newNodes);
+                new SortNodePacket(newNodes).sendToServer();
+            };
+
+            var upDisplay = new TextComponent("↑");
+            var downDisplay = new TextComponent("↓");
+
+            var upBtn = new ExtendedButton(x + 200, y, 10, 10, upDisplay, upHandler);
+            upBtn.active = i > 0;
+            addRenderableWidget(upBtn);
+
+            var downBtn = new ExtendedButton(x + 200, y + 10, 10, 10, downDisplay, downHandler);
+            downBtn.active = i < nodes.size() - 1;
+            addRenderableWidget(downBtn);
+
             y += 22;
         }
 

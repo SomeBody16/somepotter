@@ -72,7 +72,7 @@ public class FlooFireBlock extends Block {
             }
 
             // Open GUI
-            var nodes = FlooNetworkManager.listFor(serverLevel, player, pos);
+            var nodes = FlooNetworkManager.listFor(player);
             new OpenFlooNetworkScreenPacket(origin, nodes).sendToClient(player);
             return;
         }

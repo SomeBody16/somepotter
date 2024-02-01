@@ -15,4 +15,11 @@ public class ConfigUtil {
                 .named(name);
     }
 
+    public static <T> Supplier<T> client(@NotNull Class<T> clazz, String name) {
+        return ConfigWrapper
+                .client(clazz)
+                .dir(SomePotter.MOD_ID)
+                .named(name);
+    }
+
 }

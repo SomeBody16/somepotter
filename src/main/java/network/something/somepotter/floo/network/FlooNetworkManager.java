@@ -52,19 +52,21 @@ public class FlooNetworkManager {
         return FlooNetworkData.get();
     }
 
-    public static List<FlooNode> listFor(ServerLevel level, ServerPlayer player, @Nullable BlockPos pos) {
+    public static List<FlooNode> listFor(ServerPlayer player) {
         var playerName = player.getName().getString();
+        var sortedNames = FlooSortData.get(player);
+
         return FlooNetworkManager.all()
                 .stream()
-                // don't show the current node
-                .filter(node -> !node.is(level, pos))
                 // don't show nodes that the player doesn't have access to
                 .filter(node -> node.allowedPlayers.isEmpty() || node.allowedPlayers.contains(playerName))
-                // sort by distance
-                .sorted((a, b) -> {
-                    var aDist = FlooNetworkManager.playerDistanceTo(player, a.getPos());
-                    var bDist = FlooNetworkManager.playerDistanceTo(player, b.getPos());
-                    return Float.compare(aDist, bDist);
+                // sort the nodes
+                .sorted((node1, node2) -> {
+                    var index1 = sortedNames.indexOf(node1.name);
+                    var index2 = sortedNames.indexOf(node2.name);
+                    if (index1 == -1) return 1;
+                    if (index2 == -1) return -1;
+                    return Integer.compare(index1, index2);
                 })
                 .toList();
     }

@@ -2,6 +2,7 @@ package network.something.somepotter.spells.spell.bombarda_maxima;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Explosion;
 import network.something.somepotter.mechanics.gesture.SpellGesture;
 import network.something.somepotter.spells.requirement.Requirement;
 import network.something.somepotter.spells.requirement.near_explosions.NearExplosionsRequirement;
@@ -29,6 +30,11 @@ public class BombardaMaximaSpell extends BombardaSpell {
     @Override
     public float getAreaOfEffect() {
         return 6.0F;
+    }
+
+    @Override
+    public Explosion.BlockInteraction getBlockInteraction() {
+        return Explosion.BlockInteraction.DESTROY;
     }
 
     @Override
