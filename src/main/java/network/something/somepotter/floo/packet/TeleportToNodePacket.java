@@ -9,7 +9,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.phys.Vec3;
 import network.something.somepotter.floo.network.FlooNetworkManager;
 import network.something.somepotter.floo.network.FlooNode;
-import network.something.somepotter.init.BlockInit;
 import network.something.somepotter.spells.cast.touch.TouchCast;
 import network.something.somepotter.util.ColorUtil;
 
@@ -29,8 +28,9 @@ public class TeleportToNodePacket implements ServerSideHandler {
         playTeleportSound(level, serverPlayer.blockPosition());
         TouchCast.playParticles(particle, level, serverPlayer.getEyePosition());
 
-        if (!level.getBlockState(node.getPos()).is(BlockInit.FLOO_FIRE.get())) {
-            FlooNetworkManager.removeNode(level, node.getPos());
+        if (!node.exists(serverPlayer.server)) {
+            var nodeLevel = node.getLevel(serverPlayer.server);
+            FlooNetworkManager.removeNode(nodeLevel, node.getPos());
             return;
         }
 

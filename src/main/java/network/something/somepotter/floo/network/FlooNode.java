@@ -3,6 +3,7 @@ package network.something.somepotter.floo.network;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import network.something.somepotter.init.BlockInit;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -42,6 +43,11 @@ public class FlooNode {
             }
         }
         return server.getLevel(ServerLevel.OVERWORLD);
+    }
+
+    public boolean exists(MinecraftServer server) {
+        var level = getLevel(server);
+        return level.getBlockState(getPos()).is(BlockInit.FLOO_FIRE.get());
     }
 
     public boolean equals(FlooNode other) {
