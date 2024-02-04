@@ -21,6 +21,7 @@ import network.something.somepotter.spells.spell.confringo.ConfringoSpell;
 import network.something.somepotter.spells.spell.depulso.DepulsoSpell;
 import network.something.somepotter.spells.spell.disillusio.DisillusioSpell;
 import network.something.somepotter.spells.spell.engorgio.EngorgioSpell;
+import network.something.somepotter.spells.spell.incarcerous_captura.IncarcerousCapturaSpell;
 import network.something.somepotter.spells.spell.protego.ProtegoSpell;
 import network.something.somepotter.spells.spell.protego_maxima.ProtegoMaximaSpell;
 import network.something.somepotter.spells.spell.reducio.ReducioSpell;
@@ -62,6 +63,7 @@ public class SpellInit {
 //        register(new FumosSpell());
 //        register(new GlaciusSpell());
 //        register(new HerbivicusSpell());
+        registerIfLoaded("the_vault", new IncarcerousCapturaSpell());
 //        register(new IncendioSpell());
 //        register(new LeviosoSpell());
 //        register(new LumosSpell());

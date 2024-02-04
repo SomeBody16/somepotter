@@ -6,12 +6,22 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import network.something.somepotter.particle.packet.ChunkHighlightParticlePacket;
+import network.something.somepotter.particle.packet.IncarcerousCapturaParticlePacket;
 import network.something.somepotter.particle.packet.TeleportParticlePacket;
 import network.something.somepotter.particle.packet.TouchParticlePacket;
 
 import java.awt.*;
 
 public class ParticleEffects {
+
+    public static void incarcerousCaptura(Level level, Vec3 caster, Vec3 target, Color color) {
+        if (level instanceof ServerLevel serverLevel) {
+            new IncarcerousCapturaParticlePacket(caster, target, color)
+                    .sendToTrackingClients(serverLevel, new BlockPos(target));
+            return;
+        }
+        ParticleEffectsClient.incarcerousCaptura(level, caster, target, color);
+    }
 
     public static void chunkHighlight(Level level, ChunkPos chunkPos, int y, Color color) {
         chunkHighlight(level, chunkPos, y, color, color.darker());

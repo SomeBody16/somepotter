@@ -3,6 +3,7 @@ package network.something.somepotter.particle;
 import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -13,6 +14,10 @@ import java.awt.*;
 
 @OnlyIn(Dist.CLIENT)
 class ParticleEffectsClient {
+
+    public static void incarcerousCaptura(Level level, Vec3 caster, Vec3 target, Color color) {
+        spawnParticles(level, target, color, color.darker(), 10, 0.5, 1);
+    }
 
     public static void chunkHighlight(Level level, BlockPos pos, Color startColor, Color endColor) {
         final int maxYDifference = 2; // Max height difference to consider a block as a surface
@@ -56,8 +61,7 @@ class ParticleEffectsClient {
             int g = (int) (startColor.getGreen() * (1 - factor) + endColor.getGreen() * factor);
             int b = (int) (startColor.getBlue() * (1 - factor) + endColor.getBlue() * factor);
 
-            var particleColorVec = new Vector3f(r / 255F, g / 255F, b / 255F);
-            var particleOptions = new DustParticleOptions(particleColorVec, 1F);
+            var particleOptions = getParticle(new Color(r, g, b));
 
             // Randomize the velocity for each particle to spread them out in different directions
             double velX = (Math.random() - 0.5) * velocityMultiplier;
@@ -72,6 +76,11 @@ class ParticleEffectsClient {
             // Add the particle to the world
             level.addParticle(particleOptions, true, offsetX, offsetY, offsetZ, velX, velY, velZ);
         }
+    }
+
+    protected static ParticleOptions getParticle(Color color) {
+        var particleColorVec = new Vector3f(color.getRed() / 255F, color.getGreen() / 255F, color.getBlue() / 255F);
+        return new DustParticleOptions(particleColorVec, 1F);
     }
 
 }

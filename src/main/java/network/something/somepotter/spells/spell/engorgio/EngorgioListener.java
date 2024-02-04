@@ -34,8 +34,5 @@ public class EngorgioListener extends SpellListener<EngorgioSpell> {
         }
 
         scaleData.setTargetScale(newScale);
-
-        var duration = AbilityPowerUtil.scale(event.abilityPower, 20 * 60, 20 * 60 * 10);
-        RestoreSizeTickable.refresh(entity, duration);
     }
 }

@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:charm",
+  "name": "spell.incarcerous_captura",
+  "description": "spell.incarcerous_captura.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "incarcerous_captura",
+      "spell": "spell.incarcerous_captura",
+      "spell_type": "spell.type.charm",
+      "cast_type": "spell.cast.touch",
+      "description": "spell.incarcerous_captura.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "incarcerous_captura",
+      "advancement": "somepotter:spell/incarcerous_captura"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.incarcerous_captura.page2",
+      "advancement": "somepotter:spell/incarcerous_captura"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "incarcerous_captura"
+    }
+  ]
+}

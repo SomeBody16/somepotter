@@ -8,7 +8,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.EntityHitResult;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.spells.spell.SpellListener;
-import network.something.somepotter.spells.spell.engorgio.RestoreSizeTickable;
 import network.something.somepotter.util.AbilityPowerUtil;
 import virtuoel.pehkui.api.ScaleTypes;
 
@@ -36,9 +35,6 @@ public class ReducioListener extends SpellListener<ReducioSpell> {
         }
 
         scaleData.setTargetScale(newScale);
-
-        var duration = AbilityPowerUtil.scale(event.abilityPower, 20 * 60, 20 * 60 * 10);
-        RestoreSizeTickable.refresh(entity, duration);
     }
 
 }

@@ -8,7 +8,6 @@ import network.something.somepotter.SomePotter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 @Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.DEDICATED_SERVER)
 public class Tickables {
@@ -17,10 +16,6 @@ public class Tickables {
 
     public static void add(Tickable tickable) {
         TICKABLES.add(tickable);
-    }
-
-    public static void removeIf(Predicate<? super Tickable> filter) {
-        TICKABLES.removeIf(filter);
     }
 
     @SubscribeEvent
