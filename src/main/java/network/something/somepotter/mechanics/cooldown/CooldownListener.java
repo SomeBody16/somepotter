@@ -1,6 +1,7 @@
 package network.something.somepotter.mechanics.cooldown;
 
 import iskallia.vault.init.ModSounds;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -16,6 +17,8 @@ public class CooldownListener {
 
     @SubscribeEvent
     public static void onSpellCast(SpellCastEvent.Pre<Spell> event) {
+        if (event.caster instanceof ServerPlayer player && player.isCreative()) return;
+
         var remainingTicks = CooldownManager.getRemainingTicks(event.caster.getUUID(), event.spell.getId());
         if (remainingTicks > 0) {
             event.setCanceled(true);

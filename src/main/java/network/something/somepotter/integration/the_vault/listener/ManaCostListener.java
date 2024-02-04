@@ -18,7 +18,7 @@ public class ManaCostListener {
     @SubscribeEvent
     public static void onSpellCast(SpellCastEvent.Pre<?> event) {
         IntegrationUtil.theVault(() -> {
-            if (event.caster instanceof ServerPlayer player) {
+            if (event.caster instanceof ServerPlayer player && !player.isCreative()) {
 
                 var config = TheVaultConfig.get();
                 var manaCostPercent = config.manaCosts.getOrDefault(event.spell.getId(), config.manaCostDefault);
