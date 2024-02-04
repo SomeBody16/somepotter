@@ -1,7 +1,9 @@
 package network.something.somepotter.spells.cast.projectile;
 
+import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -28,6 +30,8 @@ import network.something.somepotter.particle.ParticleEffects;
 import network.something.somepotter.spells.spell.Spell;
 import network.something.somepotter.spells.spell.basic_cast.BasicCastSpell;
 import org.jetbrains.annotations.NotNull;
+
+import java.awt.*;
 
 @Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ProjectileCastEntity extends Projectile {
@@ -153,10 +157,7 @@ public class ProjectileCastEntity extends Projectile {
             var d2 = getZ() + vec3.z;
             setPos(d0, d1, d2);
 
-            if (level.isClientSide) {
-                var color = getSpell().getColor();
-                ParticleEffects.trail(level, position(), color);
-            }
+            spawnTrailParticles();
         } else {
             discard();
         }
@@ -176,6 +177,36 @@ public class ProjectileCastEntity extends Projectile {
             );
             onHit(hitResult);
             discard();
+        }
+    }
+
+    protected void spawnTrailParticles() {
+        var color = getSpell().getColor();
+        spawnTrailParticles(color);
+        spawnTrailParticles(color.darker());
+    }
+
+    protected void spawnTrailParticles(Color color) {
+        var rgb24 = color.getRGB();
+
+        var r = color.getRed();
+        var g = color.getGreen();
+        var b = color.getBlue();
+
+        var particleColorVec = new Vector3f(r / 255F, g / 255F, b / 255F);
+        var particle = new DustParticleOptions(particleColorVec, 1F);
+
+        double d0 = (double) (rgb24 >> 16 & 255) / 255.0D;
+        double d1 = (double) (rgb24 >> 8 & 255) / 255.0D;
+        double d2 = (double) (rgb24 >> 0 & 255) / 255.0D;
+
+        for (int j = 0; j < 2; ++j) {
+            level.addParticle(particle,
+                    getRandomX(0.5D),
+                    getRandomY(),
+                    getRandomZ(0.5D),
+                    d0, d1, d2
+            );
         }
     }
 }
