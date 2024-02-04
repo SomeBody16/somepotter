@@ -1,6 +1,6 @@
 package network.something.somepotter.spells.spell.protego_maxima.claim;
 
-import ca.lukegrahamlandry.lib.data.impl.PlayerDataWrapper;
+import ca.lukegrahamlandry.lib.data.impl.GlobalDataWrapper;
 import net.minecraft.server.level.ServerPlayer;
 import network.something.somepotter.SomePotter;
 
@@ -15,13 +15,13 @@ public class ClaimFriends {
 
     public static void add(ServerPlayer player, ServerPlayer friend) {
         Data.get(player).add(friend.getUUID());
-        Data.setDirty(player);
+        Data.setDirty();
     }
 
     public static void remove(ServerPlayer player, ServerPlayer friend) {
         Data.get(player).remove(friend.getUUID());
         Data.get(friend).remove(player.getUUID());
-        Data.setDirty(player);
+        Data.setDirty();
     }
 
 
@@ -31,22 +31,22 @@ public class ClaimFriends {
         public Data() {
         }
 
-        private static PlayerDataWrapper<ClaimFriends.Data> DATA;
+        private static GlobalDataWrapper<Data> DATA;
 
         public static void init() {
-            DATA = new PlayerDataWrapper<>(ClaimFriends.Data.class)
+            DATA = new GlobalDataWrapper<>(ClaimFriends.Data.class)
                     .dir(SomePotter.MOD_ID)
                     .named("protego_maxima.friends")
                     .saved();
         }
 
         public static List<UUID> get(ServerPlayer player) {
-            DATA.get(player).friends.putIfAbsent(player.getUUID(), new ArrayList<>());
-            return DATA.get(player).friends.get(player.getUUID());
+            DATA.get().friends.putIfAbsent(player.getUUID(), new ArrayList<>());
+            return DATA.get().friends.get(player.getUUID());
         }
 
-        public static void setDirty(ServerPlayer player) {
-            DATA.setDirty(player);
+        public static void setDirty() {
+            DATA.setDirty();
         }
     }
 

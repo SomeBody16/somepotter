@@ -35,7 +35,9 @@ public class ClaimListener {
         player.sendMessage(message, ChatType.GAME_INFO, NIL_UUID);
 
         var color = SpellInit.get(ProtegoMaximaSpell.ID).getColor();
-        ParticleEffects.touch(player.level, pos, color);
+        
+        var centerPos = Vec3.atCenterOf(new BlockPos(pos));
+        ParticleEffects.touch(player.level, centerPos, color);
     }
 
     public static void denyAccess(ServerPlayer player, BlockPos pos) {
