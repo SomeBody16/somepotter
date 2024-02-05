@@ -18,11 +18,6 @@
       "advancement": "somepotter:spell/arresto_momentum"
     },
     {
-      "type": "patchouli:text",
-      "text": "spell.arresto_momentum.page2",
-      "advancement": "somepotter:spell/arresto_momentum"
-    },
-    {
       "type": "somepotter:spell_requirements",
       "spell_id": "arresto_momentum"
     }

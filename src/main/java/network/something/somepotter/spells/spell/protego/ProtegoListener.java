@@ -13,7 +13,7 @@ public class ProtegoListener extends SpellListener<ProtegoSpell> {
     @Override
     public void onSpellHitEntity(SpellHitEvent.Post<ProtegoSpell> event, EntityHitResult hitResult, Entity entity) {
         if (entity instanceof LivingEntity livingEntity) {
-            var effect = new MobEffectInstance(EffectInit.PROTEGO.get(), 20 * 5, 0);
+            var effect = new MobEffectInstance(EffectInit.PROTEGO.get(), 20 * 10, 0);
             livingEntity.addEffect(effect);
         }
     }

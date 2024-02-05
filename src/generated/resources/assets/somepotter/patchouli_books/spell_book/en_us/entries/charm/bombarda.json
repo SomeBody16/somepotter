@@ -18,11 +18,6 @@
       "advancement": "somepotter:spell/bombarda"
     },
     {
-      "type": "patchouli:text",
-      "text": "spell.bombarda.page2",
-      "advancement": "somepotter:spell/bombarda"
-    },
-    {
       "type": "somepotter:spell_requirements",
       "spell_id": "bombarda"
     }

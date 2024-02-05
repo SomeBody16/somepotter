@@ -9,17 +9,12 @@
       "spell_id": "incarcerous_captura",
       "spell": "spell.incarcerous_captura",
       "spell_type": "spell.type.charm",
-      "cast_type": "spell.cast.touch",
+      "cast_type": "spell.cast.projectile",
       "description": "spell.incarcerous_captura.description"
     },
     {
       "type": "somepotter:wand_movement",
       "spell_id": "incarcerous_captura",
-      "advancement": "somepotter:spell/incarcerous_captura"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "spell.incarcerous_captura.page2",
       "advancement": "somepotter:spell/incarcerous_captura"
     },
     {

@@ -21,6 +21,7 @@ public class ProtegoMaximaConfig {
             "cryo_chamber",
             "button",
             "chest",
+            "door",
             "crate",
             "shulker",
             "cabinet",

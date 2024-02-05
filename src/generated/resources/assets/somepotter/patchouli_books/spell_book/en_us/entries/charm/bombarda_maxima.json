@@ -18,11 +18,6 @@
       "advancement": "somepotter:spell/bombarda_maxima"
     },
     {
-      "type": "patchouli:text",
-      "text": "spell.bombarda_maxima.page2",
-      "advancement": "somepotter:spell/bombarda_maxima"
-    },
-    {
       "type": "somepotter:spell_requirements",
       "spell_id": "bombarda_maxima"
     }

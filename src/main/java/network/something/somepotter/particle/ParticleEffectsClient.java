@@ -16,7 +16,7 @@ import java.awt.*;
 class ParticleEffectsClient {
 
     public static void incarcerousCaptura(Level level, Vec3 caster, Vec3 target, Color color) {
-        spawnParticles(level, target, color, color.darker(), 10, 0.5, 1);
+        spawnParticles(level, target, color, color.darker(), 5, 0.5, 1);
     }
 
     public static void chunkHighlight(Level level, BlockPos pos, Color startColor, Color endColor) {

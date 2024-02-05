@@ -1,19 +1,15 @@
 package network.something.somepotter.spells.spell.incarcerous_captura;
 
-import iskallia.vault.init.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
-import network.something.somepotter.SomePotter;
 import network.something.somepotter.particle.ParticleEffects;
 import network.something.somepotter.spells.tickable.Tickable;
-import network.something.somepotter.spells.tickable.Tickables;
 import network.something.somepotter.util.AbilityPowerUtil;
+import virtuoel.pehkui.api.ScaleTypes;
 
 import java.awt.*;
 
@@ -36,9 +32,6 @@ public class CapturingProcessTickable extends Tickable {
         this.abilityPower = abilityPower;
         this.caster = caster;
         this.target = target;
-
-        SomePotter.LOGGER.info("{} trying to capture {} | duration: {}",
-                caster.getDisplayName().getString(), target.getDisplayName().getString(), this.duration);
     }
 
     @Override
@@ -56,6 +49,9 @@ public class CapturingProcessTickable extends Tickable {
             target.hurt(damageSource, 1);
         }
 
+        var targetScale = Mth.lerp(getProgress(), 0.1F, 1);
+        ScaleTypes.BASE.getScaleData(target).setScale(targetScale);
+
         ParticleEffects.incarcerousCaptura(caster.level, caster.getEyePosition(), target.getEyePosition(), getColor());
     }
 
@@ -63,23 +59,17 @@ public class CapturingProcessTickable extends Tickable {
     public void onExpired() {
         if (isSomethingWrong()) {
             captured = false;
+            if (target.isAlive()) {
+                ScaleTypes.BASE.getScaleData(target).setTargetScale(1);
+            }
         }
 
         sendFinishMessage();
+        ParticleEffects.touch(caster.level, target.getEyePosition(), spell.getColor());
         if (!captured) return;
 
-        var jar = new ItemStack(ModItems.ANIMAL_JAR);
-        var nbt = jar.getOrCreateTag();
-        nbt.putString("entity", EntityType.getKey(target.getType()).toString());
-        nbt.putInt("count", 1);
-        target.save(nbt);
-
-        ParticleEffects.touch(caster.level, target.getEyePosition(), spell.getColor());
-        target.remove(Entity.RemovalReason.KILLED);
-
-        var holdingDuration = AbilityPowerUtil.scale(abilityPower, 20 * 5, 20 * 20);
-        var holdingTickable = new HoldingProcessTickable(holdingDuration, caster, target);
-        Tickables.add(holdingTickable);
+        var holdingDuration = AbilityPowerUtil.scale(abilityPower, 20 * 30, 20 * 60 * 10);
+        IncarcerousCapturaEffect.captureEntity(caster, target, holdingDuration);
     }
 
     protected boolean isSomethingWrong() {
@@ -100,9 +90,13 @@ public class CapturingProcessTickable extends Tickable {
     }
 
     protected Color getColor() {
-        var progress = (float) duration / (float) howLongToCapture(target);
+        var progress = getProgress();
         var r = (int) (progress * 255);
         var g = (int) ((1 - progress) * 255);
         return new Color(r, g, 0);
+    }
+
+    protected float getProgress() {
+        return (float) duration / (float) howLongToCapture(target);
     }
 }

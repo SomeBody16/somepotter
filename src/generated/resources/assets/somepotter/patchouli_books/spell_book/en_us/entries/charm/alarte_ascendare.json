@@ -18,11 +18,6 @@
       "advancement": "somepotter:spell/alarte_ascendare"
     },
     {
-      "type": "patchouli:text",
-      "text": "spell.alarte_ascendare.page2",
-      "advancement": "somepotter:spell/alarte_ascendare"
-    },
-    {
       "type": "somepotter:spell_requirements",
       "spell_id": "alarte_ascendare"
     }

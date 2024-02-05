@@ -18,11 +18,6 @@
       "advancement": "somepotter:spell/disillusio"
     },
     {
-      "type": "patchouli:text",
-      "text": "spell.disillusio.page2",
-      "advancement": "somepotter:spell/disillusio"
-    },
-    {
       "type": "somepotter:spell_requirements",
       "spell_id": "disillusio"
     }
