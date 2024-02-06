@@ -11,6 +11,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+/**
+ * After period of time, captures target entity
+ */
 public class IncarcerousCapturaSpell extends Spell {
 
     public static final String ID = "incarcerous_captura";

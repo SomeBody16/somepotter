@@ -3,14 +3,20 @@ package network.something.somepotter.spells.spell.liberate_specimen;
 import network.something.somepotter.mechanics.gesture.SpellGesture;
 import network.something.somepotter.spells.cast.Cast;
 import network.something.somepotter.spells.cast.projectile.ProjectileCast;
+import network.something.somepotter.spells.requirement.Requirement;
+import network.something.somepotter.spells.requirement.spell_learned.SpellLearnedRequirement;
 import network.something.somepotter.spells.spell.Spell;
 import network.something.somepotter.spells.spell.SpellListener;
+import network.something.somepotter.spells.spell.incarcerous_captura.IncarcerousCapturaSpell;
 import network.something.somepotter.spells.spell_type.SpellType;
 import network.something.somepotter.spells.spell_type.charm.CharmType;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+/**
+ * Clears Incarcerous Captura effect and releases the specimen
+ */
 public class LiberateSpecimenSpell extends Spell {
     public static final String ID = "liberate_specimen";
 
@@ -56,5 +62,12 @@ public class LiberateSpecimenSpell extends Spell {
     @Override
     public @NotNull List<SpellGesture> getMistakes() {
         return List.of();
+    }
+
+    @Override
+    public List<Requirement> getRequirements() {
+        var result = super.getRequirements();
+        result.add(SpellLearnedRequirement.of(IncarcerousCapturaSpell.ID));
+        return result;
     }
 }

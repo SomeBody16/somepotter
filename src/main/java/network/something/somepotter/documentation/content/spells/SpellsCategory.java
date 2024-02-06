@@ -3,6 +3,7 @@ package network.something.somepotter.documentation.content.spells;
 import network.something.somepotter.documentation.helper.patchouli.BookCategory;
 import network.something.somepotter.documentation.helper.patchouli.BookEntry;
 import network.something.somepotter.documentation.helper.patchouli.BookGenerator;
+import network.something.somepotter.documentation.helper.patchouli.BookPage;
 import network.something.somepotter.documentation.template.requirements.RequirementsTemplate;
 import network.something.somepotter.documentation.template.spell_summary.SpellSummaryTemplate;
 import network.something.somepotter.documentation.template.wand_movement.WandMovementTemplate;
@@ -54,9 +55,9 @@ public class SpellsCategory extends BookCategory {
                 wandMovement.addProperty("advancement", SpellLearnManager.getAdvancementId(spell).toString());
                 entry.addPage(wandMovement);
 
-//                var page2 = BookPage.translated(entry, "spell", "page2");
-//                page2.addProperty("advancement", SpellLearnManager.getAdvancementId(spell).toString());
-//                entry.addPage(page2);
+                var page2 = BookPage.translated(entry, "spell", "page2");
+                page2.addProperty("advancement", SpellLearnManager.getAdvancementId(spell).toString());
+                entry.addPage(page2);
 
                 var requirements = RequirementsTemplate.create(spell);
                 entry.addPage(requirements);
