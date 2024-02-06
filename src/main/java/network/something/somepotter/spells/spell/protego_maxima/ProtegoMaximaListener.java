@@ -66,8 +66,8 @@ public class ProtegoMaximaListener extends SpellListener<ProtegoMaximaSpell> {
 
             if (event.caster.isCrouching()) { // Remove friend
 
-                if (ClaimFriends.has(caster, target)) {
-                    ClaimFriends.remove(caster, target);
+                if (ClaimFriends.has(caster.getUUID(), target.getUUID())) {
+                    ClaimFriends.remove(caster.getUUID(), target.getUUID());
                     message = new TranslatableComponent("spell.protego_maxima.friend.removed")
                             .withStyle(ChatFormatting.GREEN);
                 } else {
@@ -77,11 +77,11 @@ public class ProtegoMaximaListener extends SpellListener<ProtegoMaximaSpell> {
 
             } else { // Add friend
 
-                if (ClaimFriends.has(caster, target)) {
+                if (ClaimFriends.has(caster.getUUID(), target.getUUID())) {
                     message = new TranslatableComponent("spell.protego_maxima.friend.already_added")
                             .withStyle(ChatFormatting.RED);
                 } else {
-                    ClaimFriends.add(caster, target);
+                    ClaimFriends.add(caster.getUUID(), target.getUUID());
                     message = new TranslatableComponent("spell.protego_maxima.friend.added")
                             .withStyle(ChatFormatting.GREEN);
                 }

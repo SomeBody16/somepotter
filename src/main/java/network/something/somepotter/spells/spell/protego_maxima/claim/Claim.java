@@ -45,9 +45,7 @@ public class Claim {
         var claim = Data.get(level).get(chunkPos);
         if (claim.owner.equals(player.getUUID())) return true;
 
-        var owner = level.getServer().getPlayerList().getPlayer(claim.owner);
-        if (owner == null) return false;
-        return ClaimFriends.has(owner, player);
+        return ClaimFriends.has(claim.owner, player.getUUID());
     }
 
 

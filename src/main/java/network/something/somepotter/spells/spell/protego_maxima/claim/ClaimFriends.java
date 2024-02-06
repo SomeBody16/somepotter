@@ -1,7 +1,6 @@
 package network.something.somepotter.spells.spell.protego_maxima.claim;
 
 import ca.lukegrahamlandry.lib.data.impl.GlobalDataWrapper;
-import net.minecraft.server.level.ServerPlayer;
 import network.something.somepotter.SomePotter;
 
 import java.util.*;
@@ -9,18 +8,22 @@ import java.util.*;
 public class ClaimFriends {
 
 
-    public static boolean has(ServerPlayer player, ServerPlayer friend) {
-        return Data.get(player).contains(friend.getUUID());
+    public static boolean has(UUID owner, UUID friend) {
+        return Data.get(owner).contains(friend);
     }
 
-    public static void add(ServerPlayer player, ServerPlayer friend) {
-        Data.get(player).add(friend.getUUID());
+    public static List<UUID> list(UUID owner) {
+        return Data.get(owner);
+    }
+
+    public static void add(UUID owner, UUID friend) {
+        Data.get(owner).add(friend);
         Data.setDirty();
     }
 
-    public static void remove(ServerPlayer player, ServerPlayer friend) {
-        Data.get(player).remove(friend.getUUID());
-        Data.get(friend).remove(player.getUUID());
+    public static void remove(UUID owner, UUID friend) {
+        Data.get(owner).remove(friend);
+        Data.get(friend).remove(owner);
         Data.setDirty();
     }
 
@@ -40,9 +43,9 @@ public class ClaimFriends {
                     .saved();
         }
 
-        public static List<UUID> get(ServerPlayer player) {
-            DATA.get().friends.putIfAbsent(player.getUUID(), new ArrayList<>());
-            return DATA.get().friends.get(player.getUUID());
+        public static List<UUID> get(UUID player) {
+            DATA.get().friends.putIfAbsent(player, new ArrayList<>());
+            return DATA.get().friends.get(player);
         }
 
         public static void setDirty() {

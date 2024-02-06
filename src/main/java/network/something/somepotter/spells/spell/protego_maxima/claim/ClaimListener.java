@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.ChatType;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -16,11 +17,15 @@ import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import network.something.somepotter.SomePotter;
+import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.init.SpellInit;
 import network.something.somepotter.particle.ParticleEffects;
+import network.something.somepotter.spells.spell.Spell;
+import network.something.somepotter.spells.spell.basic_cast.BasicCastSpell;
 import network.something.somepotter.spells.spell.protego_maxima.ProtegoMaximaSpell;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -35,7 +40,7 @@ public class ClaimListener {
         player.sendMessage(message, ChatType.GAME_INFO, NIL_UUID);
 
         var color = SpellInit.get(ProtegoMaximaSpell.ID).getColor();
-        
+
         var centerPos = Vec3.atCenterOf(new BlockPos(pos));
         ParticleEffects.touch(player.level, centerPos, color);
     }
@@ -116,6 +121,41 @@ public class ClaimListener {
                         false
                 );
                 new ProtegoMaximaSpell().playHitSound(hitEvent);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onSpellCast(SpellCastEvent.Post<Spell> event) {
+        if (event.caster instanceof ServerPlayer serverPlayer
+                && !event.spell.getId().equals(BasicCastSpell.ID)) {
+            var claim = Claim.get(event.level, new ChunkPos(serverPlayer.blockPosition()));
+            if (claim == null) return;
+
+            var toNotify = new ArrayList<ServerPlayer>();
+
+            var owner = serverPlayer.server.getPlayerList().getPlayer(claim.owner);
+            if (owner != null) toNotify.add(owner);
+
+            var friends = ClaimFriends.list(claim.owner);
+            for (var friend : friends) {
+                var player = serverPlayer.server.getPlayerList().getPlayer(friend);
+                if (player != null) toNotify.add(player);
+            }
+
+            var msg = new TextComponent("");
+            msg.append(new TextComponent(serverPlayer.getDisplayName().getString()).withStyle(ChatFormatting.RED));
+            msg.append(new TextComponent(" cast "));
+            msg.append(new TranslatableComponent("spell." + event.spell.getId()).withStyle(ChatFormatting.GOLD));
+            msg.append(new TextComponent(" in your claim "));
+            msg.append(new TextComponent("[%d, %d, %d]".formatted(
+                    (int) serverPlayer.getEyePosition().x,
+                    (int) serverPlayer.getEyePosition().y,
+                    (int) serverPlayer.getEyePosition().z
+            )).withStyle(ChatFormatting.GREEN));
+
+            for (var player : toNotify) {
+                player.sendMessage(msg, ChatType.CHAT, serverPlayer.getUUID());
             }
         }
     }
