@@ -1,6 +1,7 @@
 package network.something.somepotter.spells.spell.disillusio;
 
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.EntityHitResult;
@@ -16,8 +17,11 @@ public class DisillusioListener extends SpellListener<DisillusioSpell> {
         if (entity instanceof LivingEntity livingEntity) {
 
             var duration = AbilityPowerUtil.scale(event.abilityPower, 20 * 10, 20 * 60 * 2);
-            var effectInstance = new MobEffectInstance(EffectInit.DISILLUSIO.get(), duration, 0, false, false, true);
-            event.addEffect(livingEntity, effectInstance);
+            var disillusio = new MobEffectInstance(EffectInit.DISILLUSIO.get(), duration, 0, false, false, true);
+            var invisibility = new MobEffectInstance(MobEffects.INVISIBILITY, duration, 0, false, false, false);
+
+            event.addEffect(livingEntity, disillusio);
+            event.addEffect(livingEntity, invisibility);
         }
     }
 }

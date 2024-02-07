@@ -153,7 +153,7 @@
   "spell_book.wiki.experience_vanilla.page2": "",
   "spell_book.wiki.experience_the_vault": "Uczenie się zaklęć",
   "spell_book.wiki.experience_the_vault.page1": "Możesz nauczyć się zaklęć za pomocą tej księgi, pamiętaj, że niektóre zaklęcia mają dodatkowe wymagania, które musisz spełnić w momencie nauki.<br><br>Ukończenie lochu daje doświadczenie zaklęć<br>10 doświadczeń równa się jednemu punktowi zaklęć.",
-  "spell_book.wiki.experience_the_vault.page2": "$(li) Monolit: 2$(li) Ciasto: 2$(li) Zabij Bossa: 3$(li) Elixir: 3$(li) Paradoks: 3$(li) Szperacz: 4$(li) Herold: 20",
+  "spell_book.wiki.experience_the_vault.page2": "$(li) Brazier: 2$(li) Ciasto: 2$(li) Zabij Bossa: 3$(li) Elixir: 3$(li) Paradoks: 3$(li) Szperacz: 4$(li) Herold: 20",
   "spell_book.wiki.floo_network.intro": "Sieć Floo to magiczny system transportowy w Minecraft, umożliwiający natychmiastowe podróże między połączonymi kominkami. Inspirowany czarodziejską tradycją, przekształca kominki w portale do szybkich i mistycznych podróży.",
   "spell_book.wiki.floo_network.how_to_setup": "Aby skonfigurować Sieć Floo, wrzuć Proszek Floo do ognia, aby przekształcić go w 'Kominek Floo'. Łączy to kominek z siecią, umożliwiając magiczną podróż do i z tej lokalizacji.",
   "spell_book.wiki.floo_network.how_to_setup.title": "Jak skonfigurować",
@@ -166,5 +166,7 @@
   "spell_book.wiki.protego_maxima.whitelist": "Rzucenie Protego Maxima na innego gracza dodaje go do białej listy twojego roszczenia, udzielając mu dostępu. Jeśli kucając rzucisz zaklęcie, usuwa to gracza z twojej białej listy, odbierając mu dostęp.",
   "spell_book.wiki.protego_maxima.whitelist.title": "Biała lista",
   "spell.apparition": "Apparition",
-  "spell.apparition.description": "$(italic)Czar wygody i zręczności, Apparition pozwala graczom na teleportację bezpośrednio do każdego kominka Sieci Floo"
+  "spell.apparition.description": "$(italic)Czar wygody i zręczności, Apparition pozwala graczom na teleportację bezpośrednio do każdego kominka Sieci Floo",
+  "spell.protego_diabolica.not_claimed": "Możesz rzucić Protego Diabolica tylko na swoje terytorium",
+  "death.attack.avada_kedavra": "%2$s rzucił klątwę §2Avada Kedavra §fna %1$s"
 }

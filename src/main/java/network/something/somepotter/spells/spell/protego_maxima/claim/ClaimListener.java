@@ -4,28 +4,24 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.ExplosionEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import network.something.somepotter.SomePotter;
-import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.init.SpellInit;
 import network.something.somepotter.particle.ParticleEffects;
-import network.something.somepotter.spells.spell.Spell;
-import network.something.somepotter.spells.spell.basic_cast.BasicCastSpell;
 import network.something.somepotter.spells.spell.protego_maxima.ProtegoMaximaSpell;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -52,13 +48,10 @@ public class ClaimListener {
     @SubscribeEvent
     public static void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         if (event.getPlayer().getLevel() instanceof ServerLevel serverLevel
-                && event.getPlayer() instanceof ServerPlayer serverPlayer) {
-
-            if (!Claim.exists(serverLevel, new ChunkPos(event.getPos()))
-                    || Claim.hasAccess(serverLevel, new ChunkPos(event.getPos()), serverPlayer)) {
-                return;
-            }
-
+                && event.getPlayer() instanceof ServerPlayer serverPlayer
+                && ClaimManager.exists(serverLevel, event.getPos())
+                && !ClaimManager.hasAccess(serverLevel, serverPlayer, event.getPos())
+        ) {
             if (isPublic(serverLevel, event.getPos())) {
                 return;
             }
@@ -73,13 +66,10 @@ public class ClaimListener {
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
         if (event.getWorld() instanceof ServerLevel serverLevel
-                && event.getPlayer() instanceof ServerPlayer serverPlayer) {
-
-            var chunkPos = new ChunkPos(event.getPos());
-            if (Claim.hasAccess(serverLevel, chunkPos, serverPlayer)) {
-                return;
-            }
-
+                && event.getPlayer() instanceof ServerPlayer serverPlayer
+                && ClaimManager.exists(serverLevel, event.getPos())
+                && !ClaimManager.hasAccess(serverLevel, serverPlayer, event.getPos())
+        ) {
             event.setCanceled(true);
             denyAccess(serverPlayer, event.getPos());
         }
@@ -88,13 +78,10 @@ public class ClaimListener {
     @SubscribeEvent
     public static void onBlockPlace(BlockEvent.EntityPlaceEvent event) {
         if (event.getWorld() instanceof ServerLevel serverLevel
-                && event.getEntity() instanceof ServerPlayer serverPlayer) {
-
-            var chunkPos = new ChunkPos(event.getPos());
-            if (Claim.hasAccess(serverLevel, chunkPos, serverPlayer)) {
-                return;
-            }
-
+                && event.getEntity() instanceof ServerPlayer serverPlayer
+                && ClaimManager.exists(serverLevel, event.getPos())
+                && !ClaimManager.hasAccess(serverLevel, serverPlayer, event.getPos())
+        ) {
             event.setCanceled(true);
             denyAccess(serverPlayer, event.getPos());
         }
@@ -102,61 +89,32 @@ public class ClaimListener {
 
     @SubscribeEvent
     public static void onExplode(ExplosionEvent.Start event) {
-        if (event.getWorld() instanceof ServerLevel serverLevel) {
-            var chunkPos = new ChunkPos(
-                    new BlockPos(event.getExplosion().getPosition())
+        var pos = event.getExplosion().getPosition();
+
+        if (event.getWorld() instanceof ServerLevel serverLevel
+                && ClaimManager.exists(serverLevel, pos)
+        ) {
+            event.setCanceled(true);
+
+            var color = SpellInit.get(ProtegoMaximaSpell.ID).getColor();
+            ParticleEffects.touch(serverLevel, event.getExplosion().getPosition(), color);
+
+            var hitEvent = new SpellHitEvent.Post<>();
+            hitEvent.level = serverLevel;
+            hitEvent.hitResult = new BlockHitResult(
+                    event.getExplosion().getPosition(),
+                    Direction.DOWN,
+                    new BlockPos(event.getExplosion().getPosition()),
+                    false
             );
-            if (Claim.exists(serverLevel, chunkPos)) {
-                event.setCanceled(true);
-
-                var color = SpellInit.get(ProtegoMaximaSpell.ID).getColor();
-                ParticleEffects.touch(serverLevel, event.getExplosion().getPosition(), color);
-
-                var hitEvent = new SpellHitEvent.Post<>();
-                hitEvent.level = serverLevel;
-                hitEvent.hitResult = new BlockHitResult(
-                        event.getExplosion().getPosition(),
-                        Direction.DOWN,
-                        new BlockPos(event.getExplosion().getPosition()),
-                        false
-                );
-                new ProtegoMaximaSpell().playHitSound(hitEvent);
-            }
+            new ProtegoMaximaSpell().playHitSound(hitEvent);
         }
     }
 
-    @SubscribeEvent
-    public static void onSpellCast(SpellCastEvent.Post<Spell> event) {
-        if (event.caster instanceof ServerPlayer serverPlayer
-                && !event.spell.getId().equals(BasicCastSpell.ID)) {
-            var claim = Claim.get(event.level, new ChunkPos(serverPlayer.blockPosition()));
-            if (claim == null) return;
-
-            var toNotify = new ArrayList<ServerPlayer>();
-
-            var owner = serverPlayer.server.getPlayerList().getPlayer(claim.owner);
-            if (owner != null) toNotify.add(owner);
-
-            var friends = ClaimFriends.list(claim.owner);
-            for (var friend : friends) {
-                var player = serverPlayer.server.getPlayerList().getPlayer(friend);
-                if (player != null) toNotify.add(player);
-            }
-
-            var msg = new TextComponent("");
-            msg.append(new TextComponent(serverPlayer.getDisplayName().getString()).withStyle(ChatFormatting.RED));
-            msg.append(new TextComponent(" cast "));
-            msg.append(new TranslatableComponent("spell." + event.spell.getId()).withStyle(ChatFormatting.GOLD));
-            msg.append(new TextComponent(" in your claim "));
-            msg.append(new TextComponent("[%d, %d, %d]".formatted(
-                    (int) serverPlayer.getEyePosition().x,
-                    (int) serverPlayer.getEyePosition().y,
-                    (int) serverPlayer.getEyePosition().z
-            )).withStyle(ChatFormatting.GREEN));
-
-            for (var player : toNotify) {
-                player.sendMessage(msg, ChatType.CHAT, serverPlayer.getUUID());
-            }
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
+        if (event.getPlayer() instanceof ServerPlayer serverPlayer) {
+            ClaimManager.sync(serverPlayer.level);
         }
     }
 

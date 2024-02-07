@@ -12,8 +12,7 @@ import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.init.SpellInit;
 import network.something.somepotter.particle.ParticleEffects;
 import network.something.somepotter.spells.spell.SpellListener;
-import network.something.somepotter.spells.spell.protego_maxima.claim.Claim;
-import network.something.somepotter.spells.spell.protego_maxima.claim.ClaimFriends;
+import network.something.somepotter.spells.spell.protego_maxima.claim.ClaimManager;
 
 import static net.minecraft.Util.NIL_UUID;
 
@@ -23,29 +22,28 @@ public class ProtegoMaximaListener extends SpellListener<ProtegoMaximaSpell> {
     public void onSpellHitBlock(SpellHitEvent.Post<ProtegoMaximaSpell> event, BlockHitResult hitResult) {
         if (event.caster instanceof ServerPlayer caster) {
             Component message;
-            var level = event.level;
             var pos = new ChunkPos(hitResult.getBlockPos());
 
             if (caster.isCrouching()) { // Remove claim
-                if (!Claim.exists(level, pos)) {
+                if (!ClaimManager.exists(event.level, pos)) {
                     message = new TranslatableComponent("spell.protego_maxima.claim.not_exists")
                             .withStyle(ChatFormatting.RED);
-                } else if (!Claim.hasAccess(level, pos, caster)) {
+                } else if (!ClaimManager.hasAccess(event.level, caster, pos)) {
                     message = new TranslatableComponent("spell.protego_maxima.claim.access_denied")
                             .withStyle(ChatFormatting.RED);
                 } else {
-                    Claim.remove(level, pos);
+                    ClaimManager.remove(event.level, pos);
                     message = new TranslatableComponent("spell.protego_maxima.claim.removed")
                             .withStyle(ChatFormatting.GREEN);
                 }
 
             } else { // Add claim
 
-                if (Claim.exists(level, pos)) {
+                if (ClaimManager.exists(event.level, pos)) {
                     message = new TranslatableComponent("spell.protego_maxima.claim.already_exists")
                             .withStyle(ChatFormatting.RED);
                 } else {
-                    Claim.add(level, pos, caster);
+                    ClaimManager.add(event.level, pos, caster);
                     message = new TranslatableComponent("spell.protego_maxima.claim.added")
                             .withStyle(ChatFormatting.GREEN);
                 }
@@ -53,7 +51,7 @@ public class ProtegoMaximaListener extends SpellListener<ProtegoMaximaSpell> {
             }
 
             var color = SpellInit.get(ProtegoMaximaSpell.ID).getColor();
-            ParticleEffects.chunkHighlight(level, pos, hitResult.getBlockPos().getY(), color);
+            ParticleEffects.chunkHighlight(event.level, pos, hitResult.getBlockPos().getY(), color);
 
             caster.sendMessage(message, ChatType.GAME_INFO, NIL_UUID);
         }
@@ -66,25 +64,15 @@ public class ProtegoMaximaListener extends SpellListener<ProtegoMaximaSpell> {
 
             if (event.caster.isCrouching()) { // Remove friend
 
-                if (ClaimFriends.has(caster.getUUID(), target.getUUID())) {
-                    ClaimFriends.remove(caster.getUUID(), target.getUUID());
-                    message = new TranslatableComponent("spell.protego_maxima.friend.removed")
-                            .withStyle(ChatFormatting.GREEN);
-                } else {
-                    message = new TranslatableComponent("spell.protego_maxima.friend.not_removed")
-                            .withStyle(ChatFormatting.RED);
-                }
+                ClaimManager.removeFriend(event.level, caster, target);
+                message = new TranslatableComponent("spell.protego_maxima.friend.removed")
+                        .withStyle(ChatFormatting.GREEN);
 
             } else { // Add friend
 
-                if (ClaimFriends.has(caster.getUUID(), target.getUUID())) {
-                    message = new TranslatableComponent("spell.protego_maxima.friend.already_added")
-                            .withStyle(ChatFormatting.RED);
-                } else {
-                    ClaimFriends.add(caster.getUUID(), target.getUUID());
-                    message = new TranslatableComponent("spell.protego_maxima.friend.added")
-                            .withStyle(ChatFormatting.GREEN);
-                }
+                ClaimManager.addFriend(event.level, caster, target);
+                message = new TranslatableComponent("spell.protego_maxima.friend.added")
+                        .withStyle(ChatFormatting.GREEN);
 
             }
 

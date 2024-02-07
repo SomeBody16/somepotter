@@ -35,7 +35,7 @@ public class VaultCompletedListener {
     protected static Map<Class<? extends Objective>, Integer> getObjectiveExperienceMap() {
         return Map.of(
                 // Difficulty: Easy
-                MonolithObjective.class, 1,
+                MonolithObjective.class, 2,
                 CakeObjective.class, 2,
 
                 // Difficulty: Medium

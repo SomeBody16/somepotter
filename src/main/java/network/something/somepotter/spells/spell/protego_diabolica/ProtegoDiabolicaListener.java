@@ -14,7 +14,7 @@ import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.init.BlockInit;
 import network.something.somepotter.spells.spell.SpellListener;
 import network.something.somepotter.spells.spell.basic_cast.BasicCastSpell;
-import network.something.somepotter.spells.spell.protego_maxima.claim.Claim;
+import network.something.somepotter.spells.spell.protego_maxima.claim.ClaimManager;
 import network.something.somepotter.spells.tickable.Tickables;
 
 import java.util.ArrayList;
@@ -65,7 +65,7 @@ public class ProtegoDiabolicaListener extends SpellListener<ProtegoDiabolicaSpel
         if (!event.is(BasicCastSpell.ID)) return;
 
         if (event.caster instanceof ServerPlayer serverPlayer) {
-            if (!Claim.hasAccess(event.level, event.hitResult.getLocation(), serverPlayer)) return;
+            if (!ClaimManager.hasAccess(event.level, serverPlayer, event.hitResult.getLocation())) return;
             if (event.hitResult instanceof BlockHitResult blockHitResult) {
                 var blockState = event.level.getBlockState(blockHitResult.getBlockPos());
                 if (!blockState.is(BlockInit.PROTEGO_DIABOLICA.get())) return;
@@ -82,18 +82,22 @@ public class ProtegoDiabolicaListener extends SpellListener<ProtegoDiabolicaSpel
         var block = event.level.getBlockState(hitResult.getBlockPos()).getBlock();
         if (block == Blocks.AIR || block == BlockInit.PROTEGO_DIABOLICA.get()) return;
 
-        var blocks = listBlocksOfType(event.level, hitResult.getBlockPos(), 64, block);
+        if (event.caster instanceof ServerPlayer serverPlayer) {
 
-        var canPutShield = blocks.stream().allMatch(pos -> Claim.exists(event.level, pos));
-        if (!canPutShield) {
-            if (event.caster instanceof ServerPlayer player) {
-                var msg = new TranslatableComponent("spell.protego_diabolica.not_claimed");
-                player.sendMessage(msg, NIL_UUID);
+            var blocks = listBlocksOfType(event.level, hitResult.getBlockPos(), 64, block);
+
+            var canPutShield = blocks.stream().allMatch(pos ->
+                    ClaimManager.exists(event.level, pos) && ClaimManager.hasAccess(event.level, serverPlayer, pos));
+            if (!canPutShield) {
+                if (event.caster instanceof ServerPlayer player) {
+                    var msg = new TranslatableComponent("spell.protego_diabolica.not_claimed");
+                    player.sendMessage(msg, NIL_UUID);
+                }
+                return;
             }
-            return;
-        }
 
-        var tickable = new ProtegoDiabolicaTickable(blocks, event.level);
-        Tickables.add(tickable);
+            var tickable = new ProtegoDiabolicaTickable(blocks, event.level);
+            Tickables.add(tickable);
+        }
     }
 }

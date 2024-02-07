@@ -26,12 +26,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import network.something.somepotter.SomePotter;
 import network.something.somepotter.init.BlockInit;
 import network.something.somepotter.init.SpellInit;
 import network.something.somepotter.particle.ParticleEffects;
-import network.something.somepotter.spells.spell.protego_maxima.claim.Claim;
-import network.something.somepotter.spells.spell.protego_maxima.claim.ClaimClient;
+import network.something.somepotter.spells.cast.projectile.ProjectileCastEntity;
+import network.something.somepotter.spells.spell.protego_maxima.claim.ClaimManager;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -96,7 +95,7 @@ public class ProtegoDiabolicaBlock extends Block {
     @Override
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         if (pLevel instanceof ServerLevel serverLevel
-                && !Claim.exists(serverLevel, pPos)) {
+                && !ClaimManager.exists(serverLevel, pPos)) {
             getShieldPositions(serverLevel, pPos).forEach(pos ->
                     serverLevel.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState()));
             return Shapes.empty();
@@ -105,26 +104,20 @@ public class ProtegoDiabolicaBlock extends Block {
         if (pContext instanceof EntityCollisionContext entityContext) {
             var entity = entityContext.getEntity();
 
+            // Magic
+            if (entity instanceof ProjectileCastEntity) {
+                return COLLISION_SHAPE;
+            }
+
+            // Item collision
+            if (isItem(entity)) {
+                return Shapes.empty();
+            }
 
             if (pState.getValue(BLOCKING)) {
-
-                // Server-side player collision
-                if (entity instanceof ServerPlayer player
-                        && pLevel instanceof ServerLevel serverLevel
-                        && Claim.hasAccess(serverLevel, pPos, player)) {
-                    return Shapes.empty();
-                }
-
-                // Client-side player collision
                 if (entity instanceof Player player
                         && pLevel instanceof Level level
-                        && level.isClientSide
-                        && ClaimClient.hasAccess(pPos, player)) {
-                    return Shapes.empty();
-                }
-
-                // Item collision
-                if (isItem(entity)) {
+                        && ClaimManager.hasAccess(level, player, pPos)) {
                     return Shapes.empty();
                 }
 
@@ -182,7 +175,7 @@ public class ProtegoDiabolicaBlock extends Block {
 
         if (pLevel.getGameTime() % 10 != 0) return;
         if (entity instanceof ServerPlayer player
-                && Claim.hasAccess((ServerLevel) pLevel, pPos, player)) return;
+                && ClaimManager.hasAccess(pLevel, player, pPos)) return;
 
         var spell = (ProtegoDiabolicaSpell) SpellInit.get(ProtegoDiabolicaSpell.ID);
         var source = spell.getDamageSource();
@@ -196,7 +189,6 @@ public class ProtegoDiabolicaBlock extends Block {
         if (!pLevel.isClientSide) {
             var isBlockingPlayers = !isPowered(pLevel, pPos);
 
-            SomePotter.LOGGER.info("isBlockingPlayers: " + isBlockingPlayers);
             getShieldPositions(pLevel, pPos).forEach(pos -> {
                 var posBlockingPlayers = pLevel.getBlockState(pos).getValue(BLOCKING);
                 if (posBlockingPlayers != isBlockingPlayers) {
