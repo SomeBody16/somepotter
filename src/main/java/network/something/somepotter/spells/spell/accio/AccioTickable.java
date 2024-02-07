@@ -2,7 +2,6 @@ package network.something.somepotter.spells.spell.accio;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
-import network.something.somepotter.SomePotter;
 import network.something.somepotter.spells.tickable.Tickable;
 
 import java.util.List;
@@ -34,12 +33,6 @@ public class AccioTickable extends Tickable {
     @Override
     public void tick() {
         super.tick();
-        SomePotter.LOGGER.info("tick");
         moveToEntity(target, entities, speed);
-    }
-
-    @Override
-    public void onExpired() {
-        SomePotter.LOGGER.info("expired");
     }
 }

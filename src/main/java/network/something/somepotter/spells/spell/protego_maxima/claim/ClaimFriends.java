@@ -40,16 +40,19 @@ public class ClaimFriends {
             DATA = new GlobalDataWrapper<>(ClaimFriends.Data.class)
                     .dir(SomePotter.MOD_ID)
                     .named("protego_maxima.friends")
+                    .synced()
                     .saved();
         }
 
         public static List<UUID> get(UUID player) {
+            DATA.load();
             DATA.get().friends.putIfAbsent(player, new ArrayList<>());
             return DATA.get().friends.get(player);
         }
 
         public static void setDirty() {
             DATA.setDirty();
+            new ClaimSyncPacket().sendToAllClients();
         }
     }
 

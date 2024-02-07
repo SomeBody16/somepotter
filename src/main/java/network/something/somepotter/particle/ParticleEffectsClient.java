@@ -15,6 +15,10 @@ import java.awt.*;
 @OnlyIn(Dist.CLIENT)
 class ParticleEffectsClient {
 
+    public static void protegoDiabolica(Level level, Vec3 pos, Color startColor, Color endColor) {
+        spawnParticles(level, pos, startColor, endColor, 2, 0.001, 1);
+    }
+
     public static void incarcerousCaptura(Level level, Vec3 caster, Vec3 target, Color color) {
         spawnParticles(level, target, color, color.darker(), 5, 0.5, 1);
     }

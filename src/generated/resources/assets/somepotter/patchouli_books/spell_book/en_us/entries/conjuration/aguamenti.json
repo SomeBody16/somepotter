@@ -18,6 +18,11 @@
       "advancement": "somepotter:spell/aguamenti"
     },
     {
+      "type": "patchouli:text",
+      "text": "spell.aguamenti.page2",
+      "advancement": "somepotter:spell/aguamenti"
+    },
+    {
       "type": "somepotter:spell_requirements",
       "spell_id": "aguamenti"
     }

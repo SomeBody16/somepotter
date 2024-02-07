@@ -18,6 +18,11 @@
       "advancement": "somepotter:spell/confringo"
     },
     {
+      "type": "patchouli:text",
+      "text": "spell.confringo.page2",
+      "advancement": "somepotter:spell/confringo"
+    },
+    {
       "type": "somepotter:spell_requirements",
       "spell_id": "confringo"
     }

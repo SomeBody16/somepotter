@@ -1,9 +1,11 @@
 package network.something.somepotter.spells.spell.protego_maxima.claim;
 
 import ca.lukegrahamlandry.lib.data.impl.LevelDataWrapper;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.phys.Vec3;
 import network.something.somepotter.SomePotter;
 
 import javax.annotation.Nullable;
@@ -16,6 +18,9 @@ public class Claim {
     public ChunkPos pos;
     public UUID owner;
 
+    public static boolean exists(ServerLevel level, BlockPos pos) {
+        return exists(level, new ChunkPos(pos));
+    }
 
     public static boolean exists(ServerLevel level, ChunkPos pos) {
         return Data.get(level).containsKey(pos);
@@ -36,6 +41,14 @@ public class Claim {
 
     public static void remove(ServerLevel level, ChunkPos pos) {
         Data.remove(level, pos);
+    }
+
+    public static boolean hasAccess(ServerLevel level, Vec3 pos, ServerPlayer player) {
+        return hasAccess(level, new BlockPos(pos), player);
+    }
+
+    public static boolean hasAccess(ServerLevel level, BlockPos pos, ServerPlayer player) {
+        return hasAccess(level, new ChunkPos(pos), player);
     }
 
     public static boolean hasAccess(ServerLevel level, ChunkPos chunkPos, ServerPlayer player) {
@@ -61,6 +74,7 @@ public class Claim {
             DATA = new LevelDataWrapper<>(Data.class)
                     .dir(SomePotter.MOD_ID)
                     .named("protego_maxima.claim")
+                    .synced()
                     .saved();
         }
 
@@ -82,6 +96,7 @@ public class Claim {
             claims.computeIfAbsent(pos.x, k -> new HashMap<>());
             claims.get(pos.x).put(pos.z, claim);
             DATA.setDirty(level);
+            new ClaimSyncPacket().sendToAllClients();
         }
 
         public static void remove(ServerLevel level, ChunkPos pos) {
@@ -90,6 +105,7 @@ public class Claim {
                 DATA.get(level).claims.remove(pos.x);
             }
             DATA.setDirty(level);
+            new ClaimSyncPacket().sendToAllClients();
         }
     }
 }

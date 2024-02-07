@@ -18,6 +18,11 @@
       "advancement": "somepotter:spell/incarcerous_captura"
     },
     {
+      "type": "patchouli:text",
+      "text": "spell.incarcerous_captura.page2",
+      "advancement": "somepotter:spell/incarcerous_captura"
+    },
+    {
       "type": "somepotter:spell_requirements",
       "spell_id": "incarcerous_captura"
     }

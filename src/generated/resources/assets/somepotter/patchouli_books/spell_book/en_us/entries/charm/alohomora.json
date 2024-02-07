@@ -18,6 +18,11 @@
       "advancement": "somepotter:spell/alohomora"
     },
     {
+      "type": "patchouli:text",
+      "text": "spell.alohomora.page2",
+      "advancement": "somepotter:spell/alohomora"
+    },
+    {
       "type": "somepotter:spell_requirements",
       "spell_id": "alohomora"
     }

@@ -18,6 +18,11 @@
       "advancement": "somepotter:spell/circumrota"
     },
     {
+      "type": "patchouli:text",
+      "text": "spell.circumrota.page2",
+      "advancement": "somepotter:spell/circumrota"
+    },
+    {
       "type": "somepotter:spell_requirements",
       "spell_id": "circumrota"
     }

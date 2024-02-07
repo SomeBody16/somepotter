@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:hex",
+  "name": "spell.protego_diabolica",
+  "description": "spell.protego_diabolica.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "protego_diabolica",
+      "spell": "spell.protego_diabolica",
+      "spell_type": "spell.type.hex",
+      "cast_type": "spell.cast.touch",
+      "description": "spell.protego_diabolica.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "protego_diabolica",
+      "advancement": "somepotter:spell/protego_diabolica"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.protego_diabolica.page2",
+      "advancement": "somepotter:spell/protego_diabolica"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "protego_diabolica"
+    }
+  ]
+}

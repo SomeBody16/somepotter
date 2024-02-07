@@ -18,6 +18,11 @@
       "advancement": "somepotter:spell/protego_maxima"
     },
     {
+      "type": "patchouli:text",
+      "text": "spell.protego_maxima.page2",
+      "advancement": "somepotter:spell/protego_maxima"
+    },
+    {
       "type": "somepotter:spell_requirements",
       "spell_id": "protego_maxima"
     }

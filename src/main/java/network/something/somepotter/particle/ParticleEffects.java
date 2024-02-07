@@ -5,14 +5,24 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import network.something.somepotter.particle.packet.ChunkHighlightParticlePacket;
-import network.something.somepotter.particle.packet.IncarcerousCapturaParticlePacket;
-import network.something.somepotter.particle.packet.TeleportParticlePacket;
-import network.something.somepotter.particle.packet.TouchParticlePacket;
+import network.something.somepotter.particle.packet.*;
 
 import java.awt.*;
 
 public class ParticleEffects {
+
+    public static void protegoDiabolica(Level level, Vec3 pos, Color color) {
+        protegoDiabolica(level, pos, color, color.darker());
+    }
+
+    public static void protegoDiabolica(Level level, Vec3 pos, Color startColor, Color endColor) {
+        if (level instanceof ServerLevel serverLevel) {
+            new ProtegoDiabolicaParticlePacket(pos, startColor, endColor)
+                    .sendToTrackingClients(serverLevel, new BlockPos(pos));
+            return;
+        }
+        ParticleEffectsClient.protegoDiabolica(level, pos, startColor, endColor);
+    }
 
     public static void incarcerousCaptura(Level level, Vec3 caster, Vec3 target, Color color) {
         if (level instanceof ServerLevel serverLevel) {

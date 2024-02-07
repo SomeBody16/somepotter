@@ -18,6 +18,11 @@
       "advancement": "somepotter:spell/liberate_specimen"
     },
     {
+      "type": "patchouli:text",
+      "text": "spell.liberate_specimen.page2",
+      "advancement": "somepotter:spell/liberate_specimen"
+    },
+    {
       "type": "somepotter:spell_requirements",
       "spell_id": "liberate_specimen"
     }

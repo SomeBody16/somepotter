@@ -24,6 +24,7 @@ import network.something.somepotter.spells.spell.engorgio.EngorgioSpell;
 import network.something.somepotter.spells.spell.incarcerous_captura.IncarcerousCapturaSpell;
 import network.something.somepotter.spells.spell.liberate_specimen.LiberateSpecimenSpell;
 import network.something.somepotter.spells.spell.protego.ProtegoSpell;
+import network.something.somepotter.spells.spell.protego_diabolica.ProtegoDiabolicaSpell;
 import network.something.somepotter.spells.spell.protego_maxima.ProtegoMaximaSpell;
 import network.something.somepotter.spells.spell.reducio.ReducioSpell;
 
@@ -76,7 +77,7 @@ public class SpellInit {
 //        register(new ObscuroSpell());
 //        register(new PetrificusTotalusSpell());
         register(new ProtegoSpell());
-//        register(new ProtegoDiabolicaSpell());
+        register(new ProtegoDiabolicaSpell());
         register(new ProtegoMaximaSpell());
         registerIfLoaded("pehkui", new ReducioSpell());
 //        register(new RevelioSpell());

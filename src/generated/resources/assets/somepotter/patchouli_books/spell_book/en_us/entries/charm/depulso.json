@@ -18,6 +18,11 @@
       "advancement": "somepotter:spell/depulso"
     },
     {
+      "type": "patchouli:text",
+      "text": "spell.depulso.page2",
+      "advancement": "somepotter:spell/depulso"
+    },
+    {
       "type": "somepotter:spell_requirements",
       "spell_id": "depulso"
     }

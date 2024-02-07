@@ -18,6 +18,11 @@
       "advancement": "somepotter:spell/apparition"
     },
     {
+      "type": "patchouli:text",
+      "text": "spell.apparition.page2",
+      "advancement": "somepotter:spell/apparition"
+    },
+    {
       "type": "somepotter:spell_requirements",
       "spell_id": "apparition"
     }

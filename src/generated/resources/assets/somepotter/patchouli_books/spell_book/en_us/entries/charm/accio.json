@@ -18,6 +18,11 @@
       "advancement": "somepotter:spell/accio"
     },
     {
+      "type": "patchouli:text",
+      "text": "spell.accio.page2",
+      "advancement": "somepotter:spell/accio"
+    },
+    {
       "type": "somepotter:spell_requirements",
       "spell_id": "accio"
     }

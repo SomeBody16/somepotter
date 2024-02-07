@@ -18,6 +18,11 @@
       "advancement": "somepotter:spell/engorgio"
     },
     {
+      "type": "patchouli:text",
+      "text": "spell.engorgio.page2",
+      "advancement": "somepotter:spell/engorgio"
+    },
+    {
       "type": "somepotter:spell_requirements",
       "spell_id": "engorgio"
     }

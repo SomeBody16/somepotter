@@ -18,6 +18,11 @@
       "advancement": "somepotter:spell/protego"
     },
     {
+      "type": "patchouli:text",
+      "text": "spell.protego.page2",
+      "advancement": "somepotter:spell/protego"
+    },
+    {
       "type": "somepotter:spell_requirements",
       "spell_id": "protego"
     }

@@ -1,16 +1,13 @@
 package network.something.somepotter.spells.spell.protego_maxima.claim;
 
-import ca.lukegrahamlandry.lib.network.ClientSideHandler;
-import ca.lukegrahamlandry.lib.network.ServerSideHandler;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.ChunkPos;
 
 import javax.annotation.Nullable;
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
-
-import static net.minecraft.Util.NIL_UUID;
 
 public class ClaimClient {
 
@@ -36,34 +33,23 @@ public class ClaimClient {
         return cache.containsKey(chunkX) && cache.get(chunkX).containsKey(chunkZ);
     }
 
+    public static boolean hasAccess(BlockPos pos, Player player) {
+        return hasAccess(new ChunkPos(pos), player);
+    }
+
+    public static boolean hasAccess(ChunkPos chunkPos, Player player) {
+        return hasAccess(chunkPos.x, chunkPos.z, player);
+    }
+
+    public static boolean hasAccess(int chunkX, int chunkZ, Player player) {
+        return isClaimed(chunkX, chunkZ)
+                && cache.get(chunkX).get(chunkZ).owner != null
+                && cache.get(chunkX).get(chunkZ).owner.equals(player.getUUID());
+    }
+
     @Nullable
     public static Claim get(int chunkX, int chunkZ) {
         return isClaimed(chunkX, chunkZ) ? cache.get(chunkX).get(chunkZ) : null;
     }
 
-}
-
-class ClaimSyncPacket implements ServerSideHandler, ClientSideHandler {
-    protected Map<Integer, Map<Integer, Claim>> claims = new HashMap<>();
-
-    // ClientSideHandler
-    @Override
-    public void handle() {
-        ClaimClient.update(claims);
-    }
-
-    // ServerSideHandler
-    @Override
-    public void handle(ServerPlayer player) {
-        Claim.Data.get((ServerLevel) player.level).forEach((pos, claim) -> {
-            claims.computeIfAbsent(pos.x, k -> new HashMap<>());
-
-            var clone = new Claim();
-            clone.pos = claim.pos;
-            clone.owner = player.getUUID().equals(claim.owner) ? player.getUUID() : NIL_UUID;
-
-            claims.get(pos.x).put(pos.z, clone);
-        });
-        sendToClient(player);
-    }
 }
