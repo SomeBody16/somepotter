@@ -79,11 +79,20 @@ public class ProtegoDiabolicaListener extends SpellListener<ProtegoDiabolicaSpel
 
     @Override
     public void onSpellHitBlock(SpellHitEvent.Post<ProtegoDiabolicaSpell> event, BlockHitResult hitResult) {
-        var block = event.level.getBlockState(hitResult.getBlockPos()).getBlock();
-        if (block == Blocks.AIR || block == BlockInit.PROTEGO_DIABOLICA.get()) return;
-
         if (event.caster instanceof ServerPlayer serverPlayer) {
 
+            var block = event.level.getBlockState(hitResult.getBlockPos()).getBlock();
+            if (block == Blocks.AIR) return;
+
+            if (block == BlockInit.PROTEGO_DIABOLICA.get()
+                    && ClaimManager.hasAccess(event.level, serverPlayer, hitResult.getBlockPos())
+                    && serverPlayer.isCrouching()
+            ) {
+                ProtegoDiabolicaBlock.removeShield(event.level, hitResult.getBlockPos());
+                return;
+            }
+
+            if (block == BlockInit.PROTEGO_DIABOLICA.get()) return;
             var blocks = listBlocksOfType(event.level, hitResult.getBlockPos(), 64, block);
 
             var canPutShield = blocks.stream().allMatch(pos ->
