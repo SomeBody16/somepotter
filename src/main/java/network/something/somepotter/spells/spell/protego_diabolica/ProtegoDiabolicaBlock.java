@@ -6,10 +6,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -96,8 +95,7 @@ public class ProtegoDiabolicaBlock extends Block {
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         if (pLevel instanceof ServerLevel serverLevel
                 && !ClaimManager.exists(serverLevel, pPos)) {
-            getShieldPositions(serverLevel, pPos).forEach(pos ->
-                    serverLevel.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState()));
+            removeShield(serverLevel, pPos);
             return Shapes.empty();
         }
 
@@ -106,6 +104,11 @@ public class ProtegoDiabolicaBlock extends Block {
 
             // Magic
             if (entity instanceof ProjectileCastEntity) {
+                return COLLISION_SHAPE;
+            }
+
+            // Ender pearl and stuff
+            if (entity instanceof ThrowableProjectile) {
                 return COLLISION_SHAPE;
             }
 
@@ -139,6 +142,7 @@ public class ProtegoDiabolicaBlock extends Block {
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, @NotNull Entity entity) {
         if (entity instanceof ItemEntity itemEntity) {
             var stack = itemEntity.getItem();
+            // TODO: Change color of particles
 //
 //            if (item.is(Items.STICK)) {
 //                itemEntity.remove(Entity.RemovalReason.KILLED);
@@ -214,14 +218,9 @@ public class ProtegoDiabolicaBlock extends Block {
         return ProtegoDiabolicaListener.listBlocksOfType(level, pos, 64, BlockInit.PROTEGO_DIABOLICA.get());
     }
 
-    public static boolean isHostile(Entity entity) {
-        return entity instanceof Enemy;
-    }
-
-    public static boolean isPassive(Entity entity) {
-        if (entity instanceof Enemy) return false;
-        if (entity instanceof Player) return false;
-        return entity instanceof Mob;
+    public static void removeShield(Level level, BlockPos shieldPos) {
+        getShieldPositions(level, shieldPos).forEach(pos ->
+                level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState()));
     }
 
     public static boolean isItem(Entity entity) {
