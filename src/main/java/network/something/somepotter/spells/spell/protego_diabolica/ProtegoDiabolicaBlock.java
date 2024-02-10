@@ -182,11 +182,13 @@ public class ProtegoDiabolicaBlock extends Block {
         if (entity instanceof ServerPlayer player
                 && ClaimManager.hasAccess(pLevel, player, pPos)) return;
 
-        var spell = (ProtegoDiabolicaSpell) SpellInit.get(ProtegoDiabolicaSpell.ID);
-        var source = spell.getDamageSource();
-        var damage = 2;
+        if (entity instanceof Player) {
+            var spell = (ProtegoDiabolicaSpell) SpellInit.get(ProtegoDiabolicaSpell.ID);
+            var source = spell.getDamageSource();
+            var damage = 2;
 
-        entity.hurt(source, damage);
+            entity.hurt(source, damage);
+        }
     }
 
     @Override
