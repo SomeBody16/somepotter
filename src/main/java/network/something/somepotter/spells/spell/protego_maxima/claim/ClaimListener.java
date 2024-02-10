@@ -9,17 +9,15 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.ExplosionEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import network.something.somepotter.SomePotter;
+import network.something.somepotter.effect.Effects;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.init.SpellInit;
-import network.something.somepotter.particle.ParticleEffects;
 import network.something.somepotter.spells.spell.protego_maxima.ProtegoMaximaSpell;
 
 import java.util.List;
@@ -38,7 +36,7 @@ public class ClaimListener {
         var color = SpellInit.get(ProtegoMaximaSpell.ID).getColor();
 
         var centerPos = Vec3.atCenterOf(new BlockPos(pos));
-        ParticleEffects.touch(player.level, centerPos, color);
+        Effects.touch(player.level, centerPos, color);
     }
 
     public static void denyAccess(ServerPlayer player, BlockPos pos) {
@@ -49,6 +47,7 @@ public class ClaimListener {
     public static void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         if (event.getPlayer().getLevel() instanceof ServerLevel serverLevel
                 && event.getPlayer() instanceof ServerPlayer serverPlayer
+                && !serverPlayer.isCreative()
                 && ClaimManager.exists(serverLevel, event.getPos())
                 && !ClaimManager.hasAccess(serverLevel, serverPlayer, event.getPos())
         ) {
@@ -67,18 +66,7 @@ public class ClaimListener {
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
         if (event.getWorld() instanceof ServerLevel serverLevel
                 && event.getPlayer() instanceof ServerPlayer serverPlayer
-                && ClaimManager.exists(serverLevel, event.getPos())
-                && !ClaimManager.hasAccess(serverLevel, serverPlayer, event.getPos())
-        ) {
-            event.setCanceled(true);
-            denyAccess(serverPlayer, event.getPos());
-        }
-    }
-
-    @SubscribeEvent
-    public static void onBlockPlace(BlockEvent.EntityPlaceEvent event) {
-        if (event.getWorld() instanceof ServerLevel serverLevel
-                && event.getEntity() instanceof ServerPlayer serverPlayer
+                && !serverPlayer.isCreative()
                 && ClaimManager.exists(serverLevel, event.getPos())
                 && !ClaimManager.hasAccess(serverLevel, serverPlayer, event.getPos())
         ) {
@@ -97,7 +85,7 @@ public class ClaimListener {
             event.setCanceled(true);
 
             var color = SpellInit.get(ProtegoMaximaSpell.ID).getColor();
-            ParticleEffects.touch(serverLevel, event.getExplosion().getPosition(), color);
+            Effects.touch(serverLevel, event.getExplosion().getPosition(), color);
 
             var hitEvent = new SpellHitEvent.Post<>();
             hitEvent.level = serverLevel;
@@ -108,13 +96,6 @@ public class ClaimListener {
                     false
             );
             new ProtegoMaximaSpell().playHitSound(hitEvent);
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-        if (event.getPlayer() instanceof ServerPlayer serverPlayer) {
-            ClaimManager.sync(serverPlayer.level);
         }
     }
 

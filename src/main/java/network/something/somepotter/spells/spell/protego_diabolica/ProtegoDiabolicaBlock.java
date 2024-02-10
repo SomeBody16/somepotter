@@ -25,9 +25,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import network.something.somepotter.effect.Effects;
 import network.something.somepotter.init.BlockInit;
 import network.something.somepotter.init.SpellInit;
-import network.something.somepotter.particle.ParticleEffects;
 import network.something.somepotter.spells.cast.projectile.ProjectileCastEntity;
 import network.something.somepotter.spells.spell.protego_maxima.claim.ClaimManager;
 import org.jetbrains.annotations.NotNull;
@@ -49,6 +49,7 @@ public class ProtegoDiabolicaBlock extends Block {
                 .isRedstoneConductor((pState, pLevel, pPos) -> false)
                 .strength(-1F, 3600000.8F)
                 .isValidSpawn((pState, pLevel, pPos, pType) -> false)
+                .lightLevel((pState) -> 8)
                 .noDrops();
     }
 
@@ -135,7 +136,7 @@ public class ProtegoDiabolicaBlock extends Block {
     public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, Random pRandom) {
         var pos = Vec3.atCenterOf(pPos);
         var color = getColor(pState);
-        ParticleEffects.protegoDiabolica(pLevel, pos, color);
+        Effects.protegoDiabolica(pLevel, pos, color);
     }
 
     @Override

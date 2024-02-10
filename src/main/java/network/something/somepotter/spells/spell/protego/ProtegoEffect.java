@@ -6,10 +6,10 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import network.something.somepotter.SomePotter;
+import network.something.somepotter.effect.Effects;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.init.EffectInit;
 import network.something.somepotter.init.SpellInit;
-import network.something.somepotter.particle.ParticleEffects;
 import network.something.somepotter.spells.spell.SpellEffect;
 import network.something.somepotter.spells.spell_type.curse.CurseType;
 import network.something.somepotter.util.AbilityPowerUtil;
@@ -39,7 +39,7 @@ public class ProtegoEffect extends SpellEffect<ProtegoSpell> {
 
             livingEntity.removeEffect(EffectInit.PROTEGO.get());
             var color = SpellInit.get(ProtegoSpell.ID).getColor();
-            ParticleEffects.touch(livingEntity.level, livingEntity.getEyePosition(), color);
+            Effects.touch(livingEntity.level, livingEntity.getEyePosition(), color);
         }
     }
 }

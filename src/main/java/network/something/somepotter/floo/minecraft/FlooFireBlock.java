@@ -24,12 +24,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import network.something.somepotter.SomePotter;
+import network.something.somepotter.effect.Effects;
 import network.something.somepotter.floo.network.FlooNetworkManager;
 import network.something.somepotter.floo.packet.OpenFlooNetworkScreenPacket;
 import network.something.somepotter.init.BlockInit;
 import network.something.somepotter.integration.Integrations;
-import network.something.somepotter.spells.cast.touch.TouchCast;
-import network.something.somepotter.util.ColorUtil;
 
 @Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class FlooFireBlock extends Block {
@@ -61,8 +60,7 @@ public class FlooFireBlock extends Block {
             if (origin == null) {
                 level.setBlockAndUpdate(pos, Blocks.FIRE.defaultBlockState());
                 level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1, 1);
-                var particle = new ColorUtil(0xFFFF00).getParticle();
-                TouchCast.playParticles(particle, serverLevel, new Vec3(pos.getX(), pos.getY(), pos.getZ()));
+                Effects.teleport(serverLevel, Vec3.atCenterOf(pos));
                 return;
             }
 

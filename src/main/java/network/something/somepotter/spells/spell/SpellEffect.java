@@ -3,8 +3,8 @@ package network.something.somepotter.spells.spell;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
+import network.something.somepotter.effect.Effects;
 import network.something.somepotter.init.SpellInit;
-import network.something.somepotter.particle.ParticleEffects;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class SpellEffect<T extends Spell> extends MobEffect {
@@ -25,11 +25,11 @@ public abstract class SpellEffect<T extends Spell> extends MobEffect {
     }
 
     public void onAdded(LivingEntity target, int amplifier, LivingEntity caster) {
-        ParticleEffects.touch(target.level, target.getEyePosition(), getSpell().getColor());
+        Effects.touch(target.level, target.getEyePosition(), getSpell().getColor());
     }
 
     public void onExpired(LivingEntity target, int amplifier) {
-        ParticleEffects.touch(target.level, target.getEyePosition(), getSpell().getColor());
+        Effects.touch(target.level, target.getEyePosition(), getSpell().getColor());
     }
 
     @Override

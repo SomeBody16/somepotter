@@ -1,4 +1,4 @@
-package network.something.somepotter.particle;
+package network.something.somepotter.effect.client;
 
 import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
@@ -7,13 +7,10 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.awt.*;
 
-@OnlyIn(Dist.CLIENT)
-class ParticleEffectsClient {
+public class ParticleClient {
 
     public static void protegoDiabolica(Level level, Vec3 pos, Color startColor, Color endColor) {
         spawnParticles(level, pos, startColor, endColor, 2, 0.001, 1);
@@ -86,5 +83,4 @@ class ParticleEffectsClient {
         var particleColorVec = new Vector3f(color.getRed() / 255F, color.getGreen() / 255F, color.getBlue() / 255F);
         return new DustParticleOptions(particleColorVec, 1F);
     }
-
 }

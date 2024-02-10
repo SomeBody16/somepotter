@@ -7,9 +7,9 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.phys.Vec3;
+import network.something.somepotter.effect.Effects;
 import network.something.somepotter.floo.network.FlooNetworkManager;
 import network.something.somepotter.floo.network.FlooNode;
-import network.something.somepotter.particle.ParticleEffects;
 
 public class TeleportToNodePacket implements ServerSideHandler {
 
@@ -41,8 +41,8 @@ public class TeleportToNodePacket implements ServerSideHandler {
         playTeleportSound(level, new BlockPos(origin));
         playTeleportSound(level, node.getPos());
 
-        ParticleEffects.teleport(level, origin);
-        ParticleEffects.teleport(level, Vec3.atCenterOf(node.getPos()));
+        Effects.teleport(level, origin);
+        Effects.teleport(level, Vec3.atCenterOf(node.getPos()));
     }
 
     protected void playTeleportSound(ServerLevel level, BlockPos pos) {

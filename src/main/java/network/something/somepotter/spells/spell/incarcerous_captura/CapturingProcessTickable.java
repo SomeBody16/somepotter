@@ -6,7 +6,7 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
-import network.something.somepotter.particle.ParticleEffects;
+import network.something.somepotter.effect.Effects;
 import network.something.somepotter.spells.tickable.Tickable;
 import network.something.somepotter.util.AbilityPowerUtil;
 import virtuoel.pehkui.api.ScaleTypes;
@@ -52,7 +52,7 @@ public class CapturingProcessTickable extends Tickable {
         var targetScale = Mth.lerp(getProgress(), 0.1F, 1);
         ScaleTypes.BASE.getScaleData(target).setScale(targetScale);
 
-        ParticleEffects.incarcerousCaptura(caster.level, caster.getEyePosition(), target.getEyePosition(), getColor());
+        Effects.incarcerousCaptura(caster.level, caster.getEyePosition(), target.getEyePosition(), getColor());
     }
 
     @Override
@@ -65,7 +65,7 @@ public class CapturingProcessTickable extends Tickable {
         }
 
         sendFinishMessage();
-        ParticleEffects.touch(caster.level, target.getEyePosition(), spell.getColor());
+        Effects.touch(caster.level, target.getEyePosition(), spell.getColor());
         if (!captured) return;
 
         var holdingDuration = AbilityPowerUtil.scale(abilityPower, 20 * 30, 20 * 60 * 10);

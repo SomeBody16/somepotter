@@ -178,8 +178,8 @@ dependencies {
     minecraft "net.minecraftforge:forge:${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    // Lodestone
-    implementation fg.deobf("team.lodestar.lodestone:lodestone:${minecraft_version}-${lodestone_version}")
+    // Shimmer
+    implementation fg.deobf("com.lowdragmc.shimmer:Shimmer-forge:${shimmer_version}")
 
     // The Vault
     compileOnly fg.deobf("iskallia.vault:the_vault:${the_vault_version}")

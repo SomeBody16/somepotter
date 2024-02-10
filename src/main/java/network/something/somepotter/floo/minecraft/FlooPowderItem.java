@@ -8,12 +8,11 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import network.something.somepotter.effect.Effects;
 import network.something.somepotter.floo.network.FlooNetworkManager;
 import network.something.somepotter.init.BlockInit;
 import network.something.somepotter.init.ItemInit;
 import network.something.somepotter.integration.Integrations;
-import network.something.somepotter.spells.cast.touch.TouchCast;
-import network.something.somepotter.util.ColorUtil;
 
 public class FlooPowderItem extends Item {
     public static final String ID = "floo_powder";
@@ -50,8 +49,7 @@ public class FlooPowderItem extends Item {
             }
 
             level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1, 1);
-            var particle = new ColorUtil(0x00AA00).getParticle();
-            TouchCast.playParticles(particle, level, new Vec3(pos.getX(), pos.getY(), pos.getZ()));
+            Effects.teleport(level, Vec3.atCenterOf(pos));
         }
 
         super.onDestroyed(itemEntity, damageSource);

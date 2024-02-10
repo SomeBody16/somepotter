@@ -2,7 +2,6 @@ package network.something.somepotter.spells.spell.protego_maxima.claim;
 
 import ca.lukegrahamlandry.lib.data.DataWrapper;
 import ca.lukegrahamlandry.lib.data.impl.LevelDataWrapper;
-import ca.lukegrahamlandry.lib.network.ClientSideHandler;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import network.something.somepotter.SomePotter;
@@ -33,10 +32,6 @@ public class ClaimData {
                 .named("protego_maxima.claim_data")
                 .synced()
                 .saved();
-    }
-
-    public static void sync(Level level) {
-//        new ClaimDataPacket(getData(level)).sendToAllClients();
     }
 
     public static Map<ChunkPos, Claim> get(Level level) {
@@ -71,23 +66,8 @@ public class ClaimData {
 
     public static void setDirty(Level level) {
         DATA.setDirty();
-        sync(level);
     }
 
     public Map<Integer, Map<Integer, Claim>> claims = new HashMap<>();
 
-}
-
-class ClaimDataPacket implements ClientSideHandler {
-
-    protected ClaimData data;
-
-    public ClaimDataPacket(ClaimData data) {
-        this.data = data;
-    }
-
-    @Override
-    public void handle() {
-        ClaimData.cachedData = data;
-    }
 }

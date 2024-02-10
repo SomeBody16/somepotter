@@ -17,10 +17,6 @@ public class ClaimManager {
         ClaimData.init();
     }
 
-    public static void sync(Level level) {
-        ClaimData.sync(level);
-    }
-
     public static void add(Level level, ChunkPos pos, ServerPlayer player) {
         add(level, pos, player.getUUID());
     }

@@ -1,11 +1,11 @@
-package network.something.somepotter.particle;
+package network.something.somepotter.effect;
 
 import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class ParticleEffectsUtil {
+class EffectsUtil {
 
     public static List<Vec3> bezierCurve(Vec3 start, Vec3 cp1, Vec3 cp2, Vec3 end, int steps) {
         List<Vec3> points = new ArrayList<>();

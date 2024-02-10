@@ -8,9 +8,9 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import network.something.somepotter.effect.Effects;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.init.SpellInit;
-import network.something.somepotter.particle.ParticleEffects;
 import network.something.somepotter.spells.spell.SpellListener;
 import network.something.somepotter.spells.spell.protego_maxima.claim.ClaimManager;
 
@@ -51,7 +51,7 @@ public class ProtegoMaximaListener extends SpellListener<ProtegoMaximaSpell> {
             }
 
             var color = SpellInit.get(ProtegoMaximaSpell.ID).getColor();
-            ParticleEffects.chunkHighlight(event.level, pos, hitResult.getBlockPos().getY(), color);
+            Effects.chunkHighlight(event.level, pos, hitResult.getBlockPos().getY(), color);
 
             caster.sendMessage(message, ChatType.GAME_INFO, NIL_UUID);
         }
