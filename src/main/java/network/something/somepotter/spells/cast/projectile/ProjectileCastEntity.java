@@ -1,7 +1,5 @@
 package network.something.somepotter.spells.cast.projectile;
 
-import com.lowdragmc.shimmer.client.light.ColorPointLight;
-import com.lowdragmc.shimmer.client.light.LightManager;
 import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
@@ -90,32 +88,6 @@ public class ProjectileCastEntity extends Projectile {
         getEntityData().define(RANGE, 0);
     }
 
-
-    protected ColorPointLight light;
-
-    public void updateLight() {
-        if (!level.isClientSide) return;
-        if (light == null) {
-            light = LightManager.INSTANCE.addLight(
-                    new Vector3f(position()),
-                    getSpell().getColor().getRGB(),
-                    4,
-                    false
-            );
-        }
-        if (light != null) {
-            light.setPos((float) getX(), (float) getY(), (float) getZ());
-        }
-    }
-
-    @Override
-    public void onRemovedFromWorld() {
-        super.onRemovedFromWorld();
-        if (level.isClientSide && light != null) {
-            light.remove();
-        }
-    }
-
     public LivingEntity getCaster() {
         return (LivingEntity) getOwner();
     }
@@ -170,7 +142,6 @@ public class ProjectileCastEntity extends Projectile {
     @Override
     public void tick() {
         var entity = getOwner();
-        updateLight();
         if (level.isClientSide || (entity == null || !entity.isRemoved()) && level.hasChunkAt(blockPosition())) {
             super.tick();
             tickRange();

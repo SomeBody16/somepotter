@@ -178,9 +178,6 @@ dependencies {
     minecraft "net.minecraftforge:forge:${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    // Shimmer
-    implementation fg.deobf("com.lowdragmc.shimmer:Shimmer-forge:${shimmer_version}")
-
     // The Vault
     compileOnly fg.deobf("iskallia.vault:the_vault:${the_vault_version}")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
