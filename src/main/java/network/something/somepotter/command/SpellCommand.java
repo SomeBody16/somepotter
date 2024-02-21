@@ -92,7 +92,9 @@ public class SpellCommand {
 
         var message = new TextComponent("Spell Points: " + oldAmount + " -> " + newAmount);
         ctx.getSource().sendSuccess(message, true);
-        player.sendMessage(message, NIL_UUID);
+        if (!ctx.getSource().getPlayerOrException().getUUID().equals(player.getUUID())) {
+            player.sendMessage(message, NIL_UUID);
+        }
 
         return 1;
     }
@@ -107,7 +109,9 @@ public class SpellCommand {
 
         var message = new TextComponent("Spell Points: " + oldAmount + " -> " + newAmount);
         ctx.getSource().sendSuccess(message, true);
-        player.sendMessage(message, NIL_UUID);
+        if (!ctx.getSource().getPlayerOrException().getUUID().equals(player.getUUID())) {
+            player.sendMessage(message, NIL_UUID);
+        }
 
         return 1;
     }
