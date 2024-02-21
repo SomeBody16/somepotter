@@ -5,6 +5,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlockContainer;
 import net.minecraft.world.level.material.Fluids;
@@ -12,6 +13,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.spells.spell.SpellListener;
+import network.something.somepotter.spells.tickable.Tickables;
 
 public class AguamentiListener extends SpellListener<AguamentiSpell> {
 
@@ -30,30 +32,43 @@ public class AguamentiListener extends SpellListener<AguamentiSpell> {
     @Override
     public void onSpellHitBlock(SpellHitEvent.Post<AguamentiSpell> event, BlockHitResult hitResult) {
         var blockPos = hitResult.getBlockPos();
-        var blockState = event.level.getBlockState(blockPos);
+        onSpellHitBlock(event.level, blockPos, hitResult, event.areaOfEffect, true);
+    }
 
-        // TODO: Extinguish fire
-//        if (blockState.getBlock() instanceof BaseFireBlock) {
-//            var tickable = new ExtinguishFireTickable(event.level, blockPos, event.abilityPower, (int) event.areaOfEffect);
-//            Tickables.add(tickable);
-//            return;
-//        }
+    public void onSpellHitBlock(ServerLevel level, BlockPos blockPos, BlockHitResult hitResult, float areaOfEffect, boolean tryRelative) {
+        var blockState = level.getBlockState(blockPos);
 
-        // If block can be waterlogged
-        if (blockState.getBlock() instanceof LiquidBlockContainer liquidBlockContainer
-                && liquidBlockContainer.canPlaceLiquid(event.level, blockPos, blockState, Fluids.WATER)) {
-            liquidBlockContainer.placeLiquid(event.level, blockPos, blockState, Fluids.WATER.getSource(true));
-            playEmptySound(event.level, blockPos);
+        // Extinguish fire
+        if (blockState.getBlock() instanceof BaseFireBlock
+                && blockState.canBeReplaced(Fluids.WATER)) {
+            extinguish(level, blockPos, areaOfEffect);
             return;
         }
 
-        // Relative to target block
-        blockPos = blockPos.relative(hitResult.getDirection());
-        blockState = event.level.getBlockState(blockPos);
-
-        if (blockState.canBeReplaced(Fluids.WATER)) {
-            event.level.setBlockAndUpdate(blockPos, Blocks.WATER.defaultBlockState());
-            playEmptySound(event.level, blockPos);
+        // If block can be waterlogged
+        if (blockState.getBlock() instanceof LiquidBlockContainer liquidBlockContainer
+                && liquidBlockContainer.canPlaceLiquid(level, blockPos, blockState, Fluids.WATER)) {
+            liquidBlockContainer.placeLiquid(level, blockPos, blockState, Fluids.WATER.getSource(true));
+            playEmptySound(level, blockPos);
+            return;
         }
+
+        // Can place water
+        if (blockState.is(Blocks.AIR)) {
+            level.setBlockAndUpdate(blockPos, Blocks.WATER.defaultBlockState());
+            playEmptySound(level, blockPos);
+            return;
+        }
+
+        if (tryRelative) {
+            // Relative to target block
+            blockPos = blockPos.relative(hitResult.getDirection());
+            onSpellHitBlock(level, blockPos, hitResult, areaOfEffect, false);
+        }
+    }
+
+    protected void extinguish(ServerLevel level, BlockPos blockPos, float areaOfEffect) {
+        var tickable = new ExtinguishFireTickable(level, blockPos, areaOfEffect);
+        Tickables.add(tickable);
     }
 }
