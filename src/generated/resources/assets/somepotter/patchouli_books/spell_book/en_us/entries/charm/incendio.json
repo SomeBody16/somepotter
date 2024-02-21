@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:charm",
+  "name": "spell.incendio",
+  "description": "spell.incendio.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "incendio",
+      "spell": "spell.incendio",
+      "spell_type": "spell.type.charm",
+      "cast_type": "spell.cast.projectile",
+      "description": "spell.incendio.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "incendio",
+      "advancement": "somepotter:spell/incendio"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.incendio.page2",
+      "advancement": "somepotter:spell/incendio"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "incendio"
+    }
+  ]
+}
