@@ -23,11 +23,15 @@ import network.something.somepotter.spells.spell.disillusio.DisillusioSpell;
 import network.something.somepotter.spells.spell.engorgio.EngorgioSpell;
 import network.something.somepotter.spells.spell.expelliarmus.ExpelliarmusSpell;
 import network.something.somepotter.spells.spell.incarcerous_captura.IncarcerousCapturaSpell;
+import network.something.somepotter.spells.spell.incendio.IncendioSpell;
 import network.something.somepotter.spells.spell.liberate_specimen.LiberateSpecimenSpell;
+import network.something.somepotter.spells.spell.obscuro.ObscuroSpell;
 import network.something.somepotter.spells.spell.protego.ProtegoSpell;
 import network.something.somepotter.spells.spell.protego_diabolica.ProtegoDiabolicaSpell;
 import network.something.somepotter.spells.spell.protego_maxima.ProtegoMaximaSpell;
 import network.something.somepotter.spells.spell.reducio.ReducioSpell;
+import network.something.somepotter.spells.spell.stupefy.StupefySpell;
+import network.something.somepotter.spells.spell.tempest.TempestSpell;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,7 +71,7 @@ public class SpellInit {
 //        register(new GlaciusSpell());
 //        register(new HerbivicusSpell());
         register(new IncarcerousCapturaSpell());
-//        register(new IncendioSpell());
+        register(new IncendioSpell());
 //        register(new LeviosoSpell());
         register(new LiberateSpecimenSpell());
 //        register(new LumosSpell());
@@ -75,7 +79,7 @@ public class SpellInit {
 //        register(new MorsmordreSpell());
 //        register(new NebulusSpell());
 //        register(new NoxSpell());
-//        register(new ObscuroSpell());
+        register(new ObscuroSpell());
 //        register(new PetrificusTotalusSpell());
         register(new ProtegoSpell());
         register(new ProtegoDiabolicaSpell());
@@ -83,8 +87,8 @@ public class SpellInit {
         registerIfLoaded("pehkui", new ReducioSpell());
 //        register(new RevelioSpell());
 //        register(new SectumsempraSpell());
-//        register(new StupefySpell());
-//        register(new TempestSpell());
+        register(new StupefySpell());
+        register(new TempestSpell());
 //        register(new WingardiumLeviosaSpell());
     }
 

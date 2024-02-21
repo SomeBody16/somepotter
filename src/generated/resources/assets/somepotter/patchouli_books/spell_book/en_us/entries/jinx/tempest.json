@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:jinx",
+  "name": "spell.tempest",
+  "description": "spell.tempest.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "tempest",
+      "spell": "spell.tempest",
+      "spell_type": "spell.type.jinx",
+      "cast_type": "spell.cast.projectile",
+      "description": "spell.tempest.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "tempest",
+      "advancement": "somepotter:spell/tempest"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.tempest.page2",
+      "advancement": "somepotter:spell/tempest"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "tempest"
+    }
+  ]
+}
