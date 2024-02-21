@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:charm",
+  "name": "spell.expelliarmus",
+  "description": "spell.expelliarmus.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "expelliarmus",
+      "spell": "spell.expelliarmus",
+      "spell_type": "spell.type.charm",
+      "cast_type": "spell.cast.projectile",
+      "description": "spell.expelliarmus.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "expelliarmus",
+      "advancement": "somepotter:spell/expelliarmus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.expelliarmus.page2",
+      "advancement": "somepotter:spell/expelliarmus"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "expelliarmus"
+    }
+  ]
+}

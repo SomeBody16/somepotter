@@ -21,6 +21,7 @@ import network.something.somepotter.spells.spell.confringo.ConfringoSpell;
 import network.something.somepotter.spells.spell.depulso.DepulsoSpell;
 import network.something.somepotter.spells.spell.disillusio.DisillusioSpell;
 import network.something.somepotter.spells.spell.engorgio.EngorgioSpell;
+import network.something.somepotter.spells.spell.expelliarmus.ExpelliarmusSpell;
 import network.something.somepotter.spells.spell.incarcerous_captura.IncarcerousCapturaSpell;
 import network.something.somepotter.spells.spell.liberate_specimen.LiberateSpecimenSpell;
 import network.something.somepotter.spells.spell.protego.ProtegoSpell;
@@ -61,7 +62,7 @@ public class SpellInit {
         register(new DisillusioSpell());
         registerIfLoaded("pehkui", new EngorgioSpell());
 //        register(new EpiskeySpell());
-//        register(new ExpelliarmusSpell());
+        register(new ExpelliarmusSpell());
 //        register(new FumosSpell());
 //        register(new GlaciusSpell());
 //        register(new HerbivicusSpell());

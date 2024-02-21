@@ -1,6 +1,7 @@
 package network.something.somepotter.command;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandSourceStack;
@@ -8,12 +9,16 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.commands.arguments.coordinates.BlockPosArgument;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import network.something.somepotter.event.SpellHitEvent;
+import network.something.somepotter.mechanics.spell_point.SpellPointData;
 import network.something.somepotter.util.AbilityPowerUtil;
+
+import static net.minecraft.Util.NIL_UUID;
 
 public class SpellCommand {
 
@@ -41,10 +46,70 @@ public class SpellCommand {
 
         var spell = Commands.literal("spell").then(spellArg);
 
+        var spell_point = Commands.literal("spell_point")
+                .then(
+                        Commands.argument("player", EntityArgument.player())
+                                .then(
+                                        Commands.argument("amount", IntegerArgumentType.integer(0))
+                                                .then(
+                                                        Commands.literal("set")
+                                                                .executes(SpellCommand::setSpellPoints)
+                                                )
+                                                .then(
+                                                        Commands.literal("add")
+                                                                .executes(SpellCommand::addSpellPoints)
+                                                )
+                                                .then(
+                                                        Commands.literal("get")
+                                                                .executes(SpellCommand::getSpellPoints)
+                                                )
+                                )
+                );
+
         dispatcher.register(
                 Commands.literal("somepotter")
                         .then(spell)
+                        .then(spell_point)
         );
+    }
+
+    protected static int getSpellPoints(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        var player = EntityArgument.getPlayer(ctx, "player");
+        var spellPoints = SpellPointData.get(player);
+
+        var message = new TextComponent("Spell Points: " + spellPoints);
+        ctx.getSource().sendSuccess(message, true);
+        return 1;
+    }
+
+    protected static int addSpellPoints(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        var player = EntityArgument.getPlayer(ctx, "player");
+        var amount = IntegerArgumentType.getInteger(ctx, "amount");
+
+        var oldAmount = SpellPointData.get(player);
+        SpellPointData.add(player, amount);
+        var newAmount = SpellPointData.get(player);
+
+        var message = new TextComponent("Spell Points: " + oldAmount + " -> " + newAmount);
+        ctx.getSource().sendSuccess(message, true);
+        player.sendMessage(message, NIL_UUID);
+
+        return 1;
+    }
+
+    protected static int setSpellPoints(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        var player = EntityArgument.getPlayer(ctx, "player");
+        var amount = IntegerArgumentType.getInteger(ctx, "amount");
+
+        var oldAmount = SpellPointData.get(player);
+        SpellPointData.set(player, amount);
+        var newAmount = SpellPointData.get(player);
+
+        var message = new TextComponent("Spell Points: " + oldAmount + " -> " + newAmount);
+        ctx.getSource().sendSuccess(message, true);
+        player.sendMessage(message, NIL_UUID);
+
+        return 1;
     }
 
     protected static int cast(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {

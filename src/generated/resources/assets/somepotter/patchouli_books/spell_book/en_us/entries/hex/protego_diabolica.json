@@ -9,7 +9,7 @@
       "spell_id": "protego_diabolica",
       "spell": "spell.protego_diabolica",
       "spell_type": "spell.type.hex",
-      "cast_type": "spell.cast.touch",
+      "cast_type": "spell.cast.projectile",
       "description": "spell.protego_diabolica.description"
     },
     {
