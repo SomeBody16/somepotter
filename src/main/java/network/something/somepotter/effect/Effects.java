@@ -46,6 +46,10 @@ public class Effects {
         EffectsClient.chunkHighlight(level, pos, startColor, endColor);
     }
 
+    public static void touch(Level level, BlockPos pos, Color color) {
+        touch(level, Vec3.atCenterOf(pos), color, color.darker());
+    }
+
     public static void touch(Level level, Vec3 pos, Color color) {
         touch(level, pos, color, color.darker());
     }

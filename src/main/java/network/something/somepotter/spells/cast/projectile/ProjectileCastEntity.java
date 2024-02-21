@@ -17,6 +17,7 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.RegistryEvent;
@@ -114,14 +115,6 @@ public class ProjectileCastEntity extends Projectile {
         }
     }
 
-    @Override
-    public void remove(RemovalReason pReason) {
-        if (!level.isClientSide) {
-            Effects.touch(level, position(), getSpell().getColor());
-        }
-        super.remove(pReason);
-    }
-
 
     @Override
     public boolean hurt(@NotNull DamageSource pSource, float pAmount) {
@@ -148,6 +141,12 @@ public class ProjectileCastEntity extends Projectile {
 
             var hitResult = ProjectileUtil.getHitResult(this, this::canHitEntity);
             if (hitResult.getType() != HitResult.Type.MISS && !ForgeEventFactory.onProjectileImpact(this, hitResult)) {
+                if (hitResult instanceof EntityHitResult entityHitResult) {
+                    Effects.touch(level, entityHitResult.getEntity().getEyePosition(), getSpell().getColor());
+                }
+                if (hitResult instanceof BlockHitResult blockHitResult) {
+                    Effects.touch(level, blockHitResult.getBlockPos(), getSpell().getColor());
+                }
                 onHit(hitResult);
             }
 
@@ -177,6 +176,7 @@ public class ProjectileCastEntity extends Projectile {
                     true
             );
             onHit(hitResult);
+            Effects.touch(level, position(), getSpell().getColor());
             discard();
         }
     }
