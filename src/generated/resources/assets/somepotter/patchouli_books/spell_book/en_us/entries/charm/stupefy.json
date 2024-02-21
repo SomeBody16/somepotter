@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:charm",
+  "name": "spell.stupefy",
+  "description": "spell.stupefy.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "stupefy",
+      "spell": "spell.stupefy",
+      "spell_type": "spell.type.charm",
+      "cast_type": "spell.cast.projectile",
+      "description": "spell.stupefy.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "stupefy",
+      "advancement": "somepotter:spell/stupefy"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.stupefy.page2",
+      "advancement": "somepotter:spell/stupefy"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "stupefy"
+    }
+  ]
+}
