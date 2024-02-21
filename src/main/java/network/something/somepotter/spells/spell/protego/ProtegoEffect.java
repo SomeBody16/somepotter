@@ -12,7 +12,6 @@ import network.something.somepotter.init.EffectInit;
 import network.something.somepotter.init.SpellInit;
 import network.something.somepotter.spells.spell.SpellEffect;
 import network.something.somepotter.spells.spell_type.curse.CurseType;
-import network.something.somepotter.util.AbilityPowerUtil;
 
 @Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ProtegoEffect extends SpellEffect<ProtegoSpell> {
@@ -26,16 +25,8 @@ public class ProtegoEffect extends SpellEffect<ProtegoSpell> {
                 && hitResult.getEntity() instanceof LivingEntity livingEntity
                 && livingEntity.hasEffect(EffectInit.PROTEGO.get())) {
 
-            var casterPower = AbilityPowerUtil.get(event.caster);
-            var targetPower = AbilityPowerUtil.get(livingEntity);
-
-            if (casterPower < targetPower * 2) {
-                event.setCanceled(true);
-            }
-
-            if (event.spell.getType() instanceof CurseType) {
-                event.setCanceled(false);
-            }
+            var isCurse = event.spell.getType() instanceof CurseType;
+            event.setCanceled(!isCurse);
 
             livingEntity.removeEffect(EffectInit.PROTEGO.get());
             var color = SpellInit.get(ProtegoSpell.ID).getColor();
