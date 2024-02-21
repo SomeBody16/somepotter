@@ -3,7 +3,6 @@ package network.something.somepotter.spells.spell.avada_kedavra;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.item.ItemStack;
@@ -99,9 +98,8 @@ public class AvadaKedavraSpell extends Spell {
 
     @Override
     public DamageSource getDamageSource(LivingEntity caster) {
-        DamageSource result = new EntityDamageSource(ID, caster);
-        return result
-                .setProjectile()
-                .setMagic();
+        return DamageSource.MAGIC
+                .setMagic()
+                .setProjectile();
     }
 }
