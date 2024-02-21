@@ -35,13 +35,14 @@ public class CooldownHud {
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         var font = Minecraft.getInstance().font;
 
-        var x = (screenWidth / 2) - 91;
-        var y = screenHeight - 60;
+        var x = getStartX(screenWidth);
+        var y = getStartY(screenHeight);
         var language = Language.getInstance();
 
         var cooldowns = CooldownClient.getCooldowns();
 //        cooldowns.put("avada_kedavra", new CooldownClient.Cooldown("avada_kedavra", 0.5F));
 
+        var config = CooldownClientConfig.get();
         for (var entry : cooldowns.entrySet()) {
             var spell = SpellInit.get(entry.getKey());
             var cooldown = entry.getValue();
@@ -54,12 +55,65 @@ public class CooldownHud {
             var colored = text.substring(0, coloredCount);
             var remaining = text.substring(coloredCount, coloredCount + remainingCount);
 
-            var remainingX = x + font.width(colored);
+            var targetX = x;
+            if (config.rightToLeft) {
+                targetX -= font.width(text);
+            }
 
-            font.draw(stack, colored, x, y, spell.getColor().getRGB());
+            var remainingX = targetX + font.width(colored);
+
+            font.draw(stack, colored, targetX, y, spell.getColor().getRGB());
             font.draw(stack, remaining, remainingX, y, 0x000000);
-            y -= font.lineHeight + 2;
+
+            if (config.topToBottom) {
+                y += font.lineHeight + 2;
+            } else {
+                y -= font.lineHeight + 2;
+            }
         }
+    }
+
+    protected static int getStartX(int screenWidth) {
+        int x = (screenWidth / 2) - 90;
+
+        var config = CooldownClientConfig.get();
+        if (config.hudX > -1) {
+            x = CooldownClientConfig.get().hudX;
+        }
+        x += config.hudOffsetX;
+        return x;
+    }
+
+    protected static int getStartY(int screenHeight) {
+        int y = screenHeight - 50;
+
+        var config = CooldownClientConfig.get();
+        if (config.hudY > -1) {
+            y = CooldownClientConfig.get().hudY;
+        } else {
+            var player = Minecraft.getInstance().player;
+            if (player != null) {
+                // Handle armor
+                if (player.getArmorValue() > 0) {
+                    y -= 10;
+                }
+
+                // Handle multiple bars of health
+                var maxHealth = player.getMaxHealth();
+                var rows = (int) Math.ceil(maxHealth / 20);
+                if (rows == 2) {
+                    y -= 10;
+                }
+                if (rows == 3) {
+                    y -= 16;
+                }
+                if (rows == 4) {
+                    y -= 22;
+                }
+            }
+        }
+        y += config.hudOffsetY;
+        return y;
     }
 
 }
