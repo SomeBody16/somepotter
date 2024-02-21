@@ -9,7 +9,7 @@ import network.something.somepotter.util.AbilityPowerUtil;
 public class AlarteAscendareListener extends SpellListener<AlarteAscendareSpell> {
 
     public static void applyForce(Entity entity, int abilityPower) {
-        var force = AbilityPowerUtil.scale(abilityPower, 1.0F, 2.0F);
+        var force = AbilityPowerUtil.scale(abilityPower, 1.5F, 3.0F);
         var motion = entity.getDeltaMovement().add(0, force, 0);
         entity.setDeltaMovement(motion);
         entity.fallDistance = 0;
