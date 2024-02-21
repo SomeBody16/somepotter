@@ -44,6 +44,7 @@ public class TeleportToNodePacket implements ServerSideHandler {
         }
 
         var pos = Vec3.atCenterOf(node.getPos());
+        serverPlayer.fallDistance = 0;
         serverPlayer.teleportTo(
                 node.getLevel(serverPlayer.server),
                 pos.x, node.y, pos.z,
