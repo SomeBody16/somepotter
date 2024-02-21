@@ -2,6 +2,8 @@ package network.something.somepotter.floo.packet;
 
 import ca.lukegrahamlandry.lib.network.ServerSideHandler;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.ChatType;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -10,6 +12,8 @@ import net.minecraft.world.phys.Vec3;
 import network.something.somepotter.effect.Effects;
 import network.something.somepotter.floo.network.FlooNetworkManager;
 import network.something.somepotter.floo.network.FlooNode;
+
+import static net.minecraft.Util.NIL_UUID;
 
 public class TeleportToNodePacket implements ServerSideHandler {
 
@@ -25,9 +29,17 @@ public class TeleportToNodePacket implements ServerSideHandler {
     public void handle(ServerPlayer serverPlayer) {
         var level = serverPlayer.getLevel();
 
+        var group = FlooNetworkManager.getGroupOf(serverPlayer, node);
+
+        var randomIndex = serverPlayer.getRandom().nextInt(group.size());
+        node = group.get(randomIndex);
+
         if (!node.exists(serverPlayer.server)) {
             var nodeLevel = node.getLevel(serverPlayer.server);
             FlooNetworkManager.removeNode(nodeLevel, node.getPos());
+
+            var textMessage = new TranslatableComponent("floo_network.node_broken", node.name);
+            serverPlayer.sendMessage(textMessage, ChatType.CHAT, NIL_UUID);
             return;
         }
 

@@ -6,6 +6,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FlooNetworkManager {
@@ -56,7 +57,7 @@ public class FlooNetworkManager {
         var playerName = player.getName().getString();
         var sortedNames = FlooSortData.get(player);
 
-        return FlooNetworkManager.all()
+        var result = new ArrayList<>(FlooNetworkManager.all()
                 .stream()
                 // don't show nodes that the player doesn't have access to
                 .filter(node -> node.allowedPlayers.isEmpty() || node.allowedPlayers.contains(playerName))
@@ -68,6 +69,30 @@ public class FlooNetworkManager {
                     if (index2 == -1) return -1;
                     return Integer.compare(index1, index2);
                 })
+                .toList());
+
+        // Remove duplicate names
+        for (int i = 0; i < result.size(); i++) {
+            for (int j = i + 1; j < result.size(); j++) {
+                if (result.get(i).name.equals(result.get(j).name)) {
+                    result.remove(j);
+                    j--;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static List<FlooNode> getGroupOf(ServerPlayer player, FlooNode nodePredicate) {
+        var playerName = player.getName().getString();
+        
+        return FlooNetworkManager.all()
+                .stream()
+                // don't show nodes that the player doesn't have access to
+                .filter(node -> node.allowedPlayers.isEmpty() || node.allowedPlayers.contains(playerName))
+                // show only with same name
+                .filter(node -> node.name.equals(nodePredicate.name))
                 .toList();
     }
 
