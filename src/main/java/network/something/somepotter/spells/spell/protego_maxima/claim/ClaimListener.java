@@ -7,11 +7,15 @@ import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.ExplosionEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import network.something.somepotter.SomePotter;
@@ -96,6 +100,18 @@ public class ClaimListener {
                     false
             );
             new ProtegoMaximaSpell().playHitSound(hitEvent);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
+        var pos = new BlockPos(event.getX(), event.getY(), event.getZ());
+        if (event.getEntity() instanceof Mob
+                && event.getSpawnReason() == MobSpawnType.NATURAL
+                && event.getWorld() instanceof ServerLevel serverLevel
+                && ClaimManager.exists(serverLevel, pos)) {
+
+            event.setResult(Event.Result.DENY);
         }
     }
 
