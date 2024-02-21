@@ -75,7 +75,7 @@ public class FlooNetworkScreen extends Screen {
                 new TeleportToNodePacket(originPos, node).sendToServer();
             };
             var btn = new ExtendedButton(x, y, 200, 20, display, handler);
-            btn.active = origin == null || !origin.equals(node);
+            btn.active = origin == null || !origin.name.equals(node.name);
             addRenderableWidget(btn);
 
             // Sort buttons
