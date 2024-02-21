@@ -1,0 +1,30 @@
+{
+  "category": "somepotter:jinx",
+  "name": "spell.obscuro",
+  "description": "spell.obscuro.description",
+  "icon": "minecraft:enchanted_book",
+  "pages": [
+    {
+      "type": "somepotter:spell_summary",
+      "spell_id": "obscuro",
+      "spell": "spell.obscuro",
+      "spell_type": "spell.type.jinx",
+      "cast_type": "spell.cast.projectile",
+      "description": "spell.obscuro.description"
+    },
+    {
+      "type": "somepotter:wand_movement",
+      "spell_id": "obscuro",
+      "advancement": "somepotter:spell/obscuro"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "spell.obscuro.page2",
+      "advancement": "somepotter:spell/obscuro"
+    },
+    {
+      "type": "somepotter:spell_requirements",
+      "spell_id": "obscuro"
+    }
+  ]
+}

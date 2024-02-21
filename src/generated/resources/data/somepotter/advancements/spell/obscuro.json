@@ -1,0 +1,13 @@
+{
+  "parent": "somepotter:spell/root",
+  "criteria": {
+    "learned": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "learned"
+    ]
+  ]
+}
