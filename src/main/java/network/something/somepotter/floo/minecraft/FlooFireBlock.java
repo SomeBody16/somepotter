@@ -10,7 +10,9 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
@@ -28,6 +30,7 @@ import network.something.somepotter.effect.Effects;
 import network.something.somepotter.floo.network.FlooNetworkManager;
 import network.something.somepotter.floo.packet.OpenFlooNetworkScreenPacket;
 import network.something.somepotter.init.BlockInit;
+import network.something.somepotter.init.ItemInit;
 import network.something.somepotter.integration.Integrations;
 
 @Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -82,6 +85,14 @@ public class FlooFireBlock extends Block {
                 entity.setSecondsOnFire(8);
             }
             entity.hurt(DamageSource.IN_FIRE, 1);
+        }
+    }
+
+    @Override
+    public void destroy(LevelAccessor pLevel, BlockPos pPos, BlockState pState) {
+        if (pLevel instanceof ServerLevel serverLevel) {
+            var item = new ItemStack(ItemInit.FLOO_POWDER.get());
+            Block.popResource(serverLevel, pPos, item);
         }
     }
 }
