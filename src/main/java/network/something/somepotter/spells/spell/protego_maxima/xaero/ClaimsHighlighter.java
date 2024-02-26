@@ -13,8 +13,6 @@ import xaero.map.highlight.ChunkHighlighter;
 
 import java.util.List;
 
-import static net.minecraft.Util.NIL_UUID;
-
 public class ClaimsHighlighter extends ChunkHighlighter {
     public ClaimsHighlighter() {
         super(false);
@@ -23,7 +21,8 @@ public class ClaimsHighlighter extends ChunkHighlighter {
     @Override
     protected int[] getColors(ResourceKey<Level> dimension, int chunkX, int chunkZ) {
         var level = Minecraft.getInstance().level;
-        if (level == null) return null;
+        var player = Minecraft.getInstance().player;
+        if (level == null || player == null) return null;
         var currentClaim = ClaimManager.get(level, chunkX, chunkZ);
         if (currentClaim == null) {
             return null;
@@ -34,7 +33,7 @@ public class ClaimsHighlighter extends ChunkHighlighter {
         var bottomClaim = ClaimManager.get(level, chunkX, chunkZ + 1);
         var leftClaim = ClaimManager.get(level, chunkX - 1, chunkZ);
 
-        var isOwner = !currentClaim.owner.equals(NIL_UUID);
+        var isOwner = currentClaim.hasAccess(player);
         int centerColor = isOwner ? 0x00FF0077 : 0x0000FF77;
         int sideColor = isOwner ? 0x00FF00CC : 0x0000FFCC;
 

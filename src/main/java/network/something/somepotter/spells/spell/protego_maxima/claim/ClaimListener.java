@@ -20,8 +20,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import network.something.somepotter.SomePotter;
 import network.something.somepotter.effect.Effects;
+import network.something.somepotter.event.SpellCastEvent;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.init.SpellInit;
+import network.something.somepotter.spells.spell.apparition.ApparitionSpell;
 import network.something.somepotter.spells.spell.protego_maxima.ProtegoMaximaSpell;
 
 import java.util.List;
@@ -71,7 +73,6 @@ public class ClaimListener {
         if (event.getWorld() instanceof ServerLevel serverLevel
                 && event.getPlayer() instanceof ServerPlayer serverPlayer
                 && !serverPlayer.isCreative()
-                && ClaimManager.exists(serverLevel, event.getPos())
                 && !ClaimManager.hasAccess(serverLevel, serverPlayer, event.getPos())
         ) {
             event.setCanceled(true);
@@ -112,6 +113,32 @@ public class ClaimListener {
                 && ClaimManager.exists(serverLevel, pos)) {
 
             event.setResult(Event.Result.DENY);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPreSpellCast(SpellCastEvent.Pre<?> event) {
+        if (event.is(ApparitionSpell.ID)
+                && event.caster instanceof ServerPlayer serverPlayer
+                && !ClaimManager.hasAccess(event.level, serverPlayer, event.caster.blockPosition())) {
+            event.setCanceled(true);
+
+            var color = SpellInit.get(ProtegoMaximaSpell.ID).getColor();
+            Effects.touch(event.level, event.caster.getEyePosition(), color);
+
+            var hitEvent = new SpellHitEvent.Post<>();
+            hitEvent.level = event.level;
+            hitEvent.hitResult = new BlockHitResult(
+                    event.caster.getEyePosition(),
+                    Direction.DOWN,
+                    event.caster.blockPosition(),
+                    false
+            );
+            event.spell.playHitSound(hitEvent);
+
+            var message = new TranslatableComponent("spell.protego_maxima.claim.deny_access")
+                    .withStyle(ChatFormatting.RED);
+            serverPlayer.sendMessage(message, ChatType.GAME_INFO, NIL_UUID);
         }
     }
 
