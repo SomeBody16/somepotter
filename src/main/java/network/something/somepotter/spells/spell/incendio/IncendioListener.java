@@ -48,6 +48,17 @@ public class IncendioListener extends SpellListener<IncendioSpell> {
             event.level.setBlock(blockPos, blockState.setValue(BlockStateProperties.LIT, Boolean.TRUE), 11);
             event.level.gameEvent(event.caster, GameEvent.BLOCK_PLACE, blockPos);
         }
+
+        // Try to remove water
+        if (!blockState.is(Blocks.WATER)) {
+            blockPos = blockPos.relative(direction);
+            blockState = event.level.getBlockState(blockPos);
+        }
+
+        if (blockState.is(Blocks.WATER)) {
+            event.level.setBlockAndUpdate(blockPos, Blocks.AIR.defaultBlockState());
+            playFireSound(event.level, blockPos);
+        }
     }
 
     protected void playFireSound(LevelAccessor pLevel, BlockPos pPos) {
