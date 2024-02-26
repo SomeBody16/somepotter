@@ -14,6 +14,10 @@ import java.util.function.Supplier;
 
 public class ScreenVFXHelper {
 
+    /**
+     * Stolen from ArcanaCodexHelper
+     * <a href="https://github.dev/SammySemicolon/Malum-Mod/tree/1.6-1.20.1/src/main/java/com/sammy/malum/visual_effects">...</a>
+     */
     public static void point(PoseStack stack, ResourceLocation texture, boolean corrupted, int x, int y, Color color) {
         var size = 4;
 
