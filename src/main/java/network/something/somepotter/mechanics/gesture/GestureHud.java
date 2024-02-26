@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.ForgeIngameGui;
@@ -15,10 +16,19 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import network.something.somepotter.SomePotter;
-import network.something.somepotter.util.ColorUtil;
+import network.something.somepotter.init.SpellTypeInit;
+import network.something.somepotter.spells.spell_type.charm.CharmType;
+import network.something.somepotter.spells.spell_type.conjuration.ConjurationType;
+import network.something.somepotter.spells.spell_type.counter_spell.CounterSpellType;
+import network.something.somepotter.spells.spell_type.curse.CurseType;
+import network.something.somepotter.spells.spell_type.hex.HexType;
+import network.something.somepotter.spells.spell_type.jinx.JinxType;
+import network.something.somepotter.spells.spell_type.transfiguration.TransfigurationType;
 import network.something.somepotter.util.ScreenUtil;
+import network.something.somepotter.util.ScreenVFXHelper;
 import network.something.somepotter.util.WandUtil;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -28,14 +38,16 @@ import java.util.stream.Stream;
 @Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class GestureHud {
 
-    public static final List<Integer> LINE_COLORS = Arrays.asList(
-            ColorUtil.CHARM.getRGBA24(),
-            ColorUtil.CONJURATION.getRGBA24(),
-            ColorUtil.TRANSFIGURATION.getRGBA24(),
-            ColorUtil.JINX.getRGBA24(),
-            ColorUtil.HEX.getRGBA24(),
-            ColorUtil.CURSE.getRGBA24(),
-            ColorUtil.COUNTER_SPELL.getRGBA24()
+    public static final ResourceLocation TEXTURE = new ResourceLocation(SomePotter.MOD_ID, "textures/vfx/gesture.png");
+
+    public static final List<Color> LINE_COLORS = Arrays.asList(
+            SpellTypeInit.get(CharmType.ID).getColor(),
+            SpellTypeInit.get(ConjurationType.ID).getColor(),
+            SpellTypeInit.get(TransfigurationType.ID).getColor(),
+            SpellTypeInit.get(JinxType.ID).getColor(),
+            SpellTypeInit.get(HexType.ID).getColor(),
+            SpellTypeInit.get(CurseType.ID).getColor(),
+            SpellTypeInit.get(CounterSpellType.ID).getColor()
     );
 
     static {
@@ -72,16 +84,7 @@ public class GestureHud {
 
         if (points.size() > 1) {
             drawPoints(stack, points);
-            drawMousePoint(stack, recordedPoints, screenWidth / 2, screenHeight / 2);
         }
-    }
-
-    protected static void drawMousePoint(PoseStack stack, Point[] points, int centerX, int centerY) {
-        var mouseHandler = Minecraft.getInstance().mouseHandler;
-        var pointCenter = getCenter(points);
-        var x = centerX + (int) (mouseHandler.xpos() - pointCenter.X);
-        var y = centerY + (int) (mouseHandler.ypos() - pointCenter.Y);
-        GuiComponent.fill(stack, x - 1, y - 1, x + 1, y + 1, 0xFFFFFFFF);
     }
 
     protected static void drawPoints(PoseStack stack, List<Point> points) {
@@ -89,7 +92,7 @@ public class GestureHud {
 
         var point1 = points.get(0);
         int currentStrokeId = point1.StrokeID;
-        int color = getLineColor(currentStrokeId);
+        var color = getLineColor(currentStrokeId);
 
         for (int i = 1; i < points.size(); i++) {
             var point2 = points.get(i);
@@ -101,7 +104,11 @@ public class GestureHud {
                 var x2 = (int) point2.X;
                 var y2 = (int) point2.Y;
 
-                ScreenUtil.drawLine(stack, x1, y1, x2, y2, color); // Draw line with stroke-specific color
+                for (var point : ScreenUtil.getLinePoints(x1, y1, x2, y2)) {
+//                    GuiComponent.fill(stack, point.x, point.y, point.x + 6, point.y + 6, color.getRGB());
+                    ScreenVFXHelper.point(stack, TEXTURE, true, point.x - 2, point.y - 2, color);
+                }
+//                ScreenUtil.drawLine(stack, x1, y1, x2, y2, color.getRGB()); // Draw line with stroke-specific color
             } else {
                 // Update currentStrokeId and color for the new stroke
                 currentStrokeId = point2.StrokeID;
@@ -118,38 +125,12 @@ public class GestureHud {
     }
 
     protected static List<Point> getTransformedPoints(Point[] points, int centerX, int centerY) {
-        try {
-            var pointsCenter = getCenter(points);
-
-            return Stream.of(points)
-                    .map(point -> {
-                        var newX = centerX + (point.X - pointsCenter.X);
-                        var newY = centerY + (point.Y - pointsCenter.Y);
-                        return new Point(newX, newY, point.StrokeID);
-                    })
-                    .toList();
-        } catch (ArithmeticException e) {
-            return List.of(points);
-        }
+        return Stream.of(points)
+                .map(point -> new Point(point.X / 3, point.Y / 3, point.StrokeID))
+                .toList();
     }
 
-    protected static Point getCenter(Point[] points) {
-        // Calculate the average coordinates of all points
-        long totalX = 0, totalY = 0, count = 0;
-        for (Point point : points) {
-            if (point.StrokeID == 0) {
-                totalX += (long) point.X;
-                totalY += (long) point.Y;
-                count++;
-            }
-        }
-
-        var avgX = totalX / count;
-        var avgY = totalY / count;
-        return new Point(avgX, avgY, 0);
-    }
-
-    protected static int getLineColor(int strokeId) {
+    protected static Color getLineColor(int strokeId) {
         return LINE_COLORS.get(strokeId % LINE_COLORS.size());
     }
 }

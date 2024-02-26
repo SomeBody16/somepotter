@@ -31,6 +31,10 @@ public class SpellQueueManager {
         return QUEUE.remove(0);
     }
 
+    public static void clear() {
+        QUEUE.clear();
+    }
+
     public static List<Spell> get() {
         return QUEUE;
     }

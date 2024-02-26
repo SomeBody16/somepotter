@@ -186,6 +186,9 @@ dependencies {
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
 
+    // Lodestone
+    implementation fg.deobf("team.lodestar.lodestone:lodestone:${minecraft_version}-${lodestone_version}")
+
     // Pehkui
     implementation fg.deobf("com.github.Virtuoel:Pehkui:${pehkui_version}")
 

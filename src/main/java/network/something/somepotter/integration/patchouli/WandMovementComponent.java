@@ -9,6 +9,7 @@ import vazkii.patchouli.api.IComponentRenderContext;
 import vazkii.patchouli.api.ICustomComponent;
 import vazkii.patchouli.api.IVariable;
 
+import java.awt.*;
 import java.util.List;
 import java.util.function.UnaryOperator;
 
@@ -45,7 +46,7 @@ public class WandMovementComponent implements ICustomComponent {
 
         var point1 = points.get(0);
         int currentStrokeId = point1.StrokeID;
-        int color = getLineColor(currentStrokeId);
+        var color = getLineColor(currentStrokeId);
 
         var pointsToDraw = Math.min((int) (points.size() * progress), points.size());
 
@@ -59,7 +60,7 @@ public class WandMovementComponent implements ICustomComponent {
                 var x2 = (int) point2.X;
                 var y2 = (int) point2.Y;
 
-                ScreenUtil.drawLine(stack, x1, y1, x2, y2, color); // Draw line with stroke-specific color
+                ScreenUtil.drawLine(stack, x1, y1, x2, y2, color.getRGB()); // Draw line with stroke-specific color
             } else {
                 // Update currentStrokeId and color for the new stroke
                 currentStrokeId = point2.StrokeID;
@@ -70,7 +71,7 @@ public class WandMovementComponent implements ICustomComponent {
         }
     }
 
-    protected int getLineColor(int strokeId) {
+    protected Color getLineColor(int strokeId) {
         return LINE_COLORS.get(strokeId % LINE_COLORS.size());
     }
 
