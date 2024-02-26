@@ -56,7 +56,7 @@ public class ProjectileCastEntity extends Projectile {
                                 MobCategory.MISC
                         )
                         .fireImmune()
-                        .sized(0.25F, 0.25F)
+                        .sized(0.4F, 0.4F)
                         .build(ID)
                         .setRegistryName(SomePotter.MOD_ID, ID);
 
