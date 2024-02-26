@@ -169,5 +169,6 @@
   "spell.apparition.description": "$(italic)allows players to teleport directly to any Floo Network fireplace",
   "spell.protego_diabolica.not_claimed": "You only can cast this on claim",
   "death.attack.avada_kedavra": "%2$s cursed %1$s with §2Avada Kedavra",
-  "floo_network.node_broken": "Floo node %1$s broken, try again"
+  "floo_network.node_broken": "Floo node %1$s broken, try again",
+  "spell.apparition.dimension_not_allowed": "You can't use apparition in this dimension"
 }

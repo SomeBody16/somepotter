@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -86,7 +87,7 @@ public class FlooNetworkManager {
 
     public static List<FlooNode> getGroupOf(ServerPlayer player, FlooNode nodePredicate) {
         var playerName = player.getName().getString();
-        
+
         return FlooNetworkManager.all()
                 .stream()
                 // don't show nodes that the player doesn't have access to
@@ -108,6 +109,16 @@ public class FlooNetworkManager {
                         Math.pow(playerPos.y() - pos.getY(), 2) +
                         Math.pow(playerPos.z() - pos.getZ(), 2)
         );
+    }
+
+    public static boolean isAllowedFireplaceDimension(Level level) {
+        return FlooNetworkConfig.get().allowedFireplaceDimensions.stream()
+                .anyMatch(dim -> level.dimension().location().toString().matches(dim));
+    }
+
+    public static boolean isAllowedApparitionDimension(Level level) {
+        return FlooNetworkConfig.get().allowedApparitionDimensions.stream()
+                .anyMatch(dim -> level.dimension().location().toString().matches(dim));
     }
 
 }

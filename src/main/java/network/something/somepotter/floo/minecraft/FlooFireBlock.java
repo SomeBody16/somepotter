@@ -91,6 +91,7 @@ public class FlooFireBlock extends Block {
     @Override
     public void destroy(LevelAccessor pLevel, BlockPos pPos, BlockState pState) {
         if (pLevel instanceof ServerLevel serverLevel) {
+            FlooNetworkManager.removeNode(serverLevel, pPos);
             var item = new ItemStack(ItemInit.FLOO_POWDER.get());
             Block.popResource(serverLevel, pPos, item);
         }

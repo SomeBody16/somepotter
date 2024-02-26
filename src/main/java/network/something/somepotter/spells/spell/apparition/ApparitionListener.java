@@ -1,7 +1,8 @@
 package network.something.somepotter.spells.spell.apparition;
 
+import net.minecraft.network.chat.ChatType;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import network.something.somepotter.event.SpellHitEvent;
 import network.something.somepotter.floo.network.FlooNetworkManager;
@@ -9,7 +10,7 @@ import network.something.somepotter.floo.packet.OpenFlooNetworkScreenPacket;
 import network.something.somepotter.integration.Integrations;
 import network.something.somepotter.spells.spell.SpellListener;
 
-import java.util.List;
+import static net.minecraft.Util.NIL_UUID;
 
 public class ApparitionListener extends SpellListener<ApparitionSpell> {
 
@@ -20,8 +21,9 @@ public class ApparitionListener extends SpellListener<ApparitionSpell> {
             return;
         }
 
-        var allowedDimensions = List.of(Level.OVERWORLD, Level.NETHER, Level.END);
-        if (!allowedDimensions.contains(player.level.dimension())) {
+        if (!FlooNetworkManager.isAllowedApparitionDimension(event.level)) {
+            var message = new TranslatableComponent("spell.apparition.dimension_not_allowed");
+            player.sendMessage(message, ChatType.GAME_INFO, NIL_UUID);
             return;
         }
 

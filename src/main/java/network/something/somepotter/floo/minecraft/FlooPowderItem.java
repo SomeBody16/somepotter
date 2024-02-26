@@ -6,13 +6,11 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import network.something.somepotter.effect.Effects;
 import network.something.somepotter.floo.network.FlooNetworkManager;
 import network.something.somepotter.init.BlockInit;
 import network.something.somepotter.init.ItemInit;
-import network.something.somepotter.integration.Integrations;
 
 public class FlooPowderItem extends Item {
     public static final String ID = "floo_powder";
@@ -32,12 +30,9 @@ public class FlooPowderItem extends Item {
                 && itemEntity.level instanceof ServerLevel level
                 && !level.getBlockState(pos.below()).isAir()) {
 
-            if (Integrations.THE_VAULT.isLoaded()) {
-                if (level.dimension() != Level.OVERWORLD
-                        && level.dimension() != Level.NETHER
-                        && level.dimension() != Level.END) {
-                    return;
-                }
+            // Is allowed dimension
+            if (!FlooNetworkManager.isAllowedFireplaceDimension(level)) {
+                return;
             }
 
             var node = FlooNetworkManager.addNode(level, pos);
@@ -50,6 +45,7 @@ public class FlooPowderItem extends Item {
 
             level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1, 1);
             Effects.teleport(level, Vec3.atCenterOf(pos));
+
         }
 
         super.onDestroyed(itemEntity, damageSource);
