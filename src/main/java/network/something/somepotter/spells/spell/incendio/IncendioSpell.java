@@ -34,7 +34,7 @@ public class IncendioSpell extends Spell {
 
     @Override
     public @NotNull Cast getCast() {
-        return new ProjectileCast();
+        return new ProjectileCast().canHitFluid(true);
     }
 
     @Override

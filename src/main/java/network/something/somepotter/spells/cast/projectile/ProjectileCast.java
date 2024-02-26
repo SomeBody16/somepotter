@@ -19,7 +19,7 @@ public class ProjectileCast extends Cast {
     @Override
     public void execute() {
         var projectile = new ProjectileCastEntity(ProjectileCastEntity.TYPE,
-                level, caster, spell.getId(), abilityPower, areaOfEffect, range);
+                level, caster, spell.getId(), abilityPower, areaOfEffect, range, canHitFluid);
 
         var handPos = new Vec3(
                 caster.getX(),
