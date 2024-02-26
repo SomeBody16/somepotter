@@ -38,8 +38,6 @@ import java.util.stream.Stream;
 @Mod.EventBusSubscriber(modid = SomePotter.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class GestureHud {
 
-    public static final ResourceLocation TEXTURE = new ResourceLocation(SomePotter.MOD_ID, "textures/vfx/gesture.png");
-
     public static final List<Color> LINE_COLORS = Arrays.asList(
             SpellTypeInit.get(CharmType.ID).getColor(),
             SpellTypeInit.get(ConjurationType.ID).getColor(),
@@ -67,7 +65,6 @@ public class GestureHud {
 
     public static void render(ForgeIngameGui gui, PoseStack stack,
                               float partialTicks, int screenWidth, int screenHeight) {
-
         var player = Minecraft.getInstance().player;
         if (player == null || !WandUtil.isPlayerHoldingWand(player)) return;
 
@@ -104,11 +101,12 @@ public class GestureHud {
                 var x2 = (int) point2.X;
                 var y2 = (int) point2.Y;
 
+                ScreenUtil.drawLine(stack, x1, y1, x2, y2, color.getRGB()); // Draw line with stroke-specific color
                 for (var point : ScreenUtil.getLinePoints(x1, y1, x2, y2)) {
-//                    GuiComponent.fill(stack, point.x, point.y, point.x + 6, point.y + 6, color.getRGB());
-                    ScreenVFXHelper.point(stack, TEXTURE, true, point.x - 2, point.y - 2, color);
+                    ScreenVFXHelper.point(stack,
+                            new ResourceLocation(SomePotter.MOD_ID, "textures/vfx/infernal.png"),
+                            true, point.x - 2, point.y - 2, color);
                 }
-//                ScreenUtil.drawLine(stack, x1, y1, x2, y2, color.getRGB()); // Draw line with stroke-specific color
             } else {
                 // Update currentStrokeId and color for the new stroke
                 currentStrokeId = point2.StrokeID;

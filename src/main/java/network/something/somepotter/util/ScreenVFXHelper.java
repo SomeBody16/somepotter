@@ -20,8 +20,7 @@ public class ScreenVFXHelper {
      */
     public static void point(PoseStack stack, ResourceLocation texture, boolean corrupted, int x, int y, Color color) {
         var size = 4;
-
-        ExtendedShaderInstance shaderInstance = (ExtendedShaderInstance) LodestoneShaderRegistry.DISTORTED_TEXTURE.getInstance().get();
+        var shaderInstance = (ExtendedShaderInstance) LodestoneShaderRegistry.DISTORTED_TEXTURE.getInstance().get();
         shaderInstance.safeGetUniform("YFrequency").set(corrupted ? 5f : 11f);
         shaderInstance.safeGetUniform("XFrequency").set(corrupted ? 12f : 17f);
         shaderInstance.safeGetUniform("Speed").set(2000f * (corrupted ? -0.75f : 1));
@@ -35,8 +34,6 @@ public class ScreenVFXHelper {
                 .setAlpha(0.9f)
                 .setZLevel(200)
                 .setShader(() -> shaderInstance);
-
-        builder.setColor(color.darker());
 
         RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
         renderTexture(texture, stack, builder, x, y, 0, 0, size, size, 16, 16);
